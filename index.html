@@ -2,80 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vaulted – Luxury Handbag Inventory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vaulted – Welcome</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fdfdfd;
+    }
+    #wheel {
+      width: 80px;
+      height: 80px;
+      background-color: #555;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -40px 0 0 -40px;
+      z-index: 10;
+    }
+
+    .spin {
+      animation: spin 2s linear forwards;
+    }
+
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    #brands {
+      display: none;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
-<body class="bg-white text-gray-800">
+<body class="text-gray-800 text-center">
 
-  <!-- Navbar -->
-  <nav class="flex items-center justify-between p-6 bg-white shadow-md">
-    <div class="text-2xl font-bold tracking-tight text-pink-600">Vaulted</div>
-    <ul class="flex space-x-6 text-sm font-medium">
-      <li><a href="#about" class="hover:text-pink-600">About</a></li>
-      <li><a href="#features" class="hover:text-pink-600">Features</a></li>
-      <li><a href="#cta" class="hover:text-pink-600">Join</a></li>
-    </ul>
-  </nav>
+  <!-- Vault Image Placeholder -->
+  <div class="relative w-full h-[500px] bg-gray-800 flex items-center justify-center overflow-hidden">
+    <img id="vaultDoor" src="https://i.imgur.com/3o2e1Rf.png" alt="Vault Door" class="max-h-full z-0" />
+    <div id="wheel"></div>
+  </div>
 
-  <!-- Hero Section -->
-  <header class="text-center py-24 bg-pink-50">
-    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-pink-600">Your Handbag. Your Vault.</h1>
-    <p class="text-lg md:text-xl mb-8 text-gray-700">
-      Vaulted helps you organize, showcase, and share your collection of high-end handbags.
-    </p>
-    <a href="#cta" class="bg-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-pink-500 transition">
-      Get Started
-    </a>
-  </header>
-
-  <!-- About Section -->
-  <section id="about" class="py-20 px-6 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Why Vaulted?</h2>
-    <p class="text-gray-700 text-lg leading-relaxed">
-      Whether you're a collector, trader, or just love beautiful bags, Vaulted gives you the tools to keep track of every piece. 
-      Upload photos, write notes, track condition, and share your vault with buyers or friends. It's your private boutique, made shareable.
-    </p>
-  </section>
-
-  <!-- Features Section -->
-  <section id="features" class="bg-pink-100 py-20 px-6">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-3xl font-bold text-pink-600 mb-10">What You Can Do</h2>
-      <div class="grid md:grid-cols-3 gap-10">
-        <div class="bg-white p-6 rounded shadow-md">
-          <h3 class="font-semibold text-lg mb-2">Add Bags</h3>
-          <p class="text-gray-600">Upload photos, brand info, purchase history, condition, and more.</p>
-        </div>
-        <div class="bg-white p-6 rounded shadow-md">
-          <h3 class="font-semibold text-lg mb-2">Track Your Vault</h3>
-          <p class="text-gray-600">Manage your collection like a pro with detailed filtering and tags.</p>
-        </div>
-        <div class="bg-white p-6 rounded shadow-md">
-          <h3 class="font-semibold text-lg mb-2">Share with Others</h3>
-          <p class="text-gray-600">Create a link to share your collection or individual bags with potential buyers.</p>
-        </div>
-      </div>
+  <!-- Brand Names (Hidden Initially) -->
+  <div id="brands" class="py-12 fade-in space-y-4 text-xl">
+    <h2 class="text-2xl font-semibold mb-4 text-pink-600">Explore Your Brands</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+      <a href="#" class="hover:underline">Louis Vuitton</a>
+      <a href="#" class="hover:underline">Chanel</a>
+      <a href="#" class="hover:underline">Gucci</a>
+      <a href="#" class="hover:underline">Prada</a>
+      <a href="#" class="hover:underline">Hermès</a>
+      <a href="#" class="hover:underline">Dior</a>
+      <a href="#" class="hover:underline">Balenciaga</a>
+      <a href="#" class="hover:underline">Saint Laurent</a>
     </div>
-  </section>
+  </div>
 
-  <!-- Call to Action -->
-  <section id="cta" class="text-center py-24 bg-white">
-    <h2 class="text-3xl font-bold mb-6 text-pink-600">Start Building Your Vault</h2>
-    <p class="text-gray-700 mb-8">Create an account and begin organizing your handbag collection today.</p>
-    <a href="/signup" class="bg-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-pink-500 transition">
-      Join Now
-    </a>
-  </section>
+  <script>
+    // Simulate vault wheel spinning and door opening
+    window.addEventListener("load", () => {
+      const wheel = document.getElementById("wheel");
+      const brands = document.getElementById("brands");
 
-  <footer class="text-center text-sm text-gray-500 py-8">
-    &copy; 2025 Vaulted. All rights reserved.
-  </footer>
+      // Start wheel spin animation
+      wheel.classList.add("spin");
 
+      // After 2s, fade in the brands (simulate vault door opening)
+      setTimeout(() => {
+        brands.style.display = "block";
+        brands.classList.add("fade-in");
+      }, 2000);
+    });
+  </script>
 </body>
 </html>
