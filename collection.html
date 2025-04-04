@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Language" content="en-US" />
+  <meta name="google" content="notranslate">
+  <title>Vaulted – Collection</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0d0d0d;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #f5f5f5;
+    }
+
+    .gold-text {
+      color: #d4af37;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .designer-card {
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .designer-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px #d4af37;
+    }
+
+    .designer-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="text-center py-10">
+    <h1 class="text-4xl font-bold gold-text">Choose Your Vault</h1>
+    <p class="text-sm text-gray-400 mt-2">Tap a designer to view your collection</p>
+  </header>
+
+  <!-- Grid of Designer Categories -->
+  <main class="grid-container">
+    <a href="lv.html" class="designer-card">
+      <img src="/images/lv.png" alt="Louis Vuitton" class="designer-image">
+    </a>
+    <a href="hermes.html" class="designer-card">
+      <img src="/images/hermes.png" alt="Hermès" class="designer-image">
+    </a>
+    <a href="prada.html" class="designer-card">
+      <img src="/images/prada.png" alt="Prada" class="designer-image">
+    </a>
+    <a href="burberry.html" class="designer-card">
+      <img src="/images/burberry.png" alt="Burberry" class="designer-image">
+    </a>
+
+    <!-- Future designers can be added like this:
+    <a href="gucci.html" class="designer-card">
+      <img src="/images/gucci.png" alt="Gucci" class="designer-image">
+    </a>
+    -->
+  </main>
+
+</body>
+</html>
