@@ -10,16 +10,35 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #fdfdfd;
     }
+
+    #vaultContainer {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      height: 500px;
+      margin: 0 auto;
+      background-color: #111;
+      overflow: hidden;
+    }
+
+    #vaultDoor {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     #wheel {
-      width: 80px;
-      height: 80px;
-      background-color: #555;
+      width: 100px;
+      height: 100px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border: 6px solid #333;
       border-radius: 50%;
       position: absolute;
       top: 50%;
       left: 50%;
-      margin: -40px 0 0 -40px;
+      margin: -50px 0 0 -50px;
       z-index: 10;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
     }
 
     .spin {
@@ -48,13 +67,13 @@
 </head>
 <body class="text-gray-800 text-center">
 
-  <!-- Vault Image Placeholder -->
-  <div class="relative w-full h-[500px] bg-gray-800 flex items-center justify-center overflow-hidden">
-    <img id="vaultDoor" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Bank_Vault_Door.jpg/800px-Bank_Vault_Door.jpg" alt="Vault Door" class="max-h-full z-0" />
+  <!-- Vault Door with Wheel -->
+  <div id="vaultContainer" class="mt-10">
+    <img id="vaultDoor" src="/images/vault.png" alt="Vault Door" />
     <div id="wheel"></div>
   </div>
 
-  <!-- Brand Names (Hidden Initially) -->
+  <!-- Brand Names (Revealed After Animation) -->
   <div id="brands" class="py-12 fade-in space-y-4 text-xl">
     <h2 class="text-2xl font-semibold mb-4 text-pink-600">Explore Your Brands</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
@@ -69,16 +88,16 @@
     </div>
   </div>
 
+  <!-- Script to Animate -->
   <script>
-    // Simulate vault wheel spinning and door opening
     window.addEventListener("load", () => {
       const wheel = document.getElementById("wheel");
       const brands = document.getElementById("brands");
 
-      // Start wheel spin animation
+      // Spin the wheel
       wheel.classList.add("spin");
 
-      // After 2s, fade in the brands (simulate vault door opening)
+      // Show brands after delay
       setTimeout(() => {
         brands.style.display = "block";
         brands.classList.add("fade-in");
