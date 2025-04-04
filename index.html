@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vaulted – Luxury Handbag Vault</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Language" content="en" />
+  <title>Vaulted – Explore Luxury</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
   <style>
     html, body {
@@ -11,77 +12,54 @@
       padding: 0;
       height: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: black;
-      overflow: hidden;
+      background-color: #0d0d0d;
     }
 
-    #vaultAnimation {
+    #background {
+      background-image: url('/images/explore.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+    }
+
+    .overlay {
       position: absolute;
       top: 0;
       left: 0;
-      height: 100vh;
-      width: 100vw;
-      object-fit: cover;
-      z-index: 10;
-    }
-
-    #brandsContainer {
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: 100vw;
-      background: linear-gradient(to bottom right, #f9f9f9, #fff);
-      z-index: 20;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5); /* optional dark overlay */
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      opacity: 0;
-      animation: fadeIn 2s ease-in-out forwards;
+      color: white;
+      text-align: center;
+      padding: 2rem;
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+    .brand-text {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      color: #ff66a5;
+      text-shadow: 1px 1px 4px #000;
     }
   </style>
 </head>
 <body>
 
-  <!-- Vault Opening Animation -->
-  <img src="/images/vault-opening.gif" alt="Vault Opening" id="vaultAnimation" />
-
-  <!-- Brand Selection View -->
-  <div id="brandsContainer" class="text-center px-6">
-    <h2 class="text-3xl font-bold mb-6 text-pink-600">Explore the Collection</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-lg">
-      <a href="#" class="hover:text-pink-600 font-semibold">Louis Vuitton</a>
-      <a href="#" class="hover:text-pink-600 font-semibold">Chanel</a>
-      <a href="#" class="hover:text-pink-600 font-semibold">Gucci</a>
-      <a href="#" class="hover:text-pink-600 font-semibold">Prada</a>
-      <a href="#" class="hover:text-pink-600 font-semibold">Hermès</a>
-      <a href="#" class="hover:text-pink-600 font-semibold">Dior</a>
-      <a href="#" class="hover:text-pink-600 font-semibold">Balenciaga</a>
-      <a href="#" class="hover:text-pink-600 font-semibold">Saint Laurent</a>
+  <!-- Fullscreen Vault Boutique Background -->
+  <div id="background">
+    <div class="overlay">
+      <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4">Vaulted</h1>
+      <p class="text-lg md:text-xl max-w-2xl mb-6">Your private collection. Your luxury vault. Curated, organized, and ready to share.</p>
+      <p class="brand-text">Explore the Collection</p>
     </div>
   </div>
-
-  <script>
-    // After GIF animation completes, fade in the brand view
-    window.addEventListener("load", () => {
-      const animation = document.getElementById("vaultAnimation");
-      const brands = document.getElementById("brandsContainer");
-
-      // Adjust this timeout to match the GIF duration (~6 seconds?)
-      setTimeout(() => {
-        animation.style.display = "none";
-        brands.style.display = "flex";
-      }, 6000); // Update duration if your GIF is longer/shorter
-    });
-  </script>
 
 </body>
 </html>
