@@ -6,6 +6,7 @@
   <meta http-equiv="Content-Language" content="en" />
   <title>Vaulted – Explore Luxury</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     html, body {
       margin: 0;
@@ -31,7 +32,7 @@
       left: 0;
       height: 100%;
       width: 100%;
-      background: rgba(0, 0, 0, 0.5); /* optional dark overlay */
+      background: rgba(0, 0, 0, 0.5);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -41,12 +42,44 @@
       padding: 2rem;
     }
 
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      color: #f6e4d8;
+      text-shadow: 2px 2px 8px #000;
+      margin-bottom: 1rem;
+    }
+
+    .brand-sub {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 2rem;
+      color: #ccc;
+    }
+
     .brand-text {
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: bold;
-      margin-top: 1rem;
       color: #ff66a5;
+      margin-bottom: 1rem;
       text-shadow: 1px 1px 4px #000;
+    }
+
+    .explore-link {
+      font-size: 1rem;
+      color: #ffffff;
+      background-color: rgba(255, 102, 165, 0.2);
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      border: 1px solid #ff66a5;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .explore-link:hover {
+      background-color: #ff66a5;
+      color: #fff;
+      box-shadow: 0 0 12px #ff66a5;
     }
   </style>
 </head>
@@ -55,9 +88,10 @@
   <!-- Fullscreen Vault Boutique Background -->
   <div id="background">
     <div class="overlay">
-      <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4">Vaulted</h1>
-      <p class="text-lg md:text-xl max-w-2xl mb-6">Your private collection. Your luxury vault. Curated, organized, and ready to share.</p>
+      <h1 class="brand-title">Vaulted</h1>
+      <p class="brand-sub">Your private collection. Your luxury vault. Curated, organized, and ready to share.</p>
       <p class="brand-text">Explore the Collection</p>
+      <a href="collection.html" class="explore-link">Enter Collection</a>
     </div>
   </div>
 
