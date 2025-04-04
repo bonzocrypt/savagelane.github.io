@@ -11,54 +11,35 @@
       padding: 0;
       height: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: black;
       overflow: hidden;
     }
 
-    #vaultBg {
-      background-image: url('/images/vault.png');
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-      width: 100vw;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 2s ease-in-out;
-    }
-
-    #wheel {
-      width: 100px;
-      height: 100px;
-      background-color: rgba(255, 255, 255, 0.7);
-      border: 6px solid #333;
-      border-radius: 50%;
-      position: absolute;
-      z-index: 20;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
-      animation: spin 2s linear forwards;
-    }
-
-    @keyframes spin {
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    #brandsContainer {
+    #vaultAnimation {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100vw;
       height: 100vh;
-      background-color: #fdfdfd;
+      width: 100vw;
+      object-fit: cover;
       z-index: 10;
+    }
+
+    #brandsContainer {
       display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: linear-gradient(to bottom right, #f9f9f9, #fff);
+      z-index: 20;
+      display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       opacity: 0;
-      animation: fadeIn 1s ease-in-out forwards;
+      animation: fadeIn 2s ease-in-out forwards;
     }
 
     @keyframes fadeIn {
@@ -70,14 +51,12 @@
 </head>
 <body>
 
-  <!-- Vault Door Fullscreen Background -->
-  <div id="vaultBg">
-    <div id="wheel"></div>
-  </div>
+  <!-- Vault Opening Animation -->
+  <img src="/images/vault-opening.gif" alt="Vault Opening" id="vaultAnimation" />
 
-  <!-- Brand List (hidden at first) -->
+  <!-- Brand Selection View -->
   <div id="brandsContainer" class="text-center px-6">
-    <h2 class="text-3xl font-bold mb-6 text-pink-600">Welcome to Your Vault</h2>
+    <h2 class="text-3xl font-bold mb-6 text-pink-600">Explore the Collection</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-lg">
       <a href="#" class="hover:text-pink-600 font-semibold">Louis Vuitton</a>
       <a href="#" class="hover:text-pink-600 font-semibold">Chanel</a>
@@ -91,19 +70,18 @@
   </div>
 
   <script>
+    // After GIF animation completes, fade in the brand view
     window.addEventListener("load", () => {
-      const vaultBg = document.getElementById("vaultBg");
+      const animation = document.getElementById("vaultAnimation");
       const brands = document.getElementById("brandsContainer");
 
-      // Simulate door opening after wheel spins
+      // Adjust this timeout to match the GIF duration (~6 seconds?)
       setTimeout(() => {
-        vaultBg.style.opacity = 0; // fade out the vault
-        setTimeout(() => {
-          vaultBg.style.display = "none";
-          brands.style.display = "flex";
-        }, 2000); // wait for fade to complete
-      }, 2000); // let wheel spin first
+        animation.style.display = "none";
+        brands.style.display = "flex";
+      }, 6000); // Update duration if your GIF is longer/shorter
     });
   </script>
+
 </body>
 </html>
