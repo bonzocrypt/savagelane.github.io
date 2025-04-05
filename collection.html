@@ -9,54 +9,65 @@
 
   <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet" />
-  <!-- Luxury Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      background-color: #0d0d0d;
+      height: 100%;
+      scroll-snap-type: y mandatory;
       font-family: 'Inter', sans-serif;
-      color: #f5f5f5;
+      background: #000;
     }
 
-    h1, .subheading {
+    body::before {
+      content: "";
+      background-image: url('/images/explore.png');
+      background-size: cover;
+      background-position: center;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      opacity: 0.25;
+    }
+
+    .snap-section {
+      height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
       text-align: center;
     }
 
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem;
+      font-size: 2.5rem;
       color: #e0c98d;
-      text-shadow: 2px 2px 8px #000;
-      margin: 0;
+      text-shadow: 2px 2px 6px #000;
+      margin-bottom: 0.5rem;
     }
 
     .subheading {
-      font-size: 1.1rem;
-      color: #c9c9c9;
-      margin-top: 0.75rem;
-      letter-spacing: 0.4px;
-    }
-
-    .header-container {
-      padding: 4rem 1rem 2rem;
-      max-width: 700px;
-      margin: 0 auto;
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 2rem;
     }
 
     .grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      padding: 1rem 1.5rem 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      width: 100%;
+      max-width: 700px;
     }
 
     .designer-card {
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -64,7 +75,7 @@
 
     .designer-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 0 15px #d4af37;
+      box-shadow: 0 0 12px #d4af37;
     }
 
     .designer-image {
@@ -77,39 +88,40 @@
       h1 {
         font-size: 2rem;
       }
-
       .subheading {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Elegant Header -->
-  <div class="header-container">
+  <section class="snap-section">
     <h1>Choose Your Vault</h1>
     <p class="subheading">Tap a designer to view your collection</p>
-  </div>
 
-  <!-- Designer Grid -->
-  <main class="grid-container">
-    <a href="lv.html" class="designer-card">
-      <img src="/images/lv.png" alt="Louis Vuitton" class="designer-image" />
-    </a>
-    <a href="hermes.html" class="designer-card">
-      <img src="/images/hermes.png" alt="Hermès" class="designer-image" />
-    </a>
-    <a href="prada.html" class="designer-card">
-      <img src="/images/prada.png" alt="Prada" class="designer-image" />
-    </a>
-    <a href="burberry.html" class="designer-card">
-      <img src="/images/burberry.png" alt="Burberry" class="designer-image" />
-    </a>
+    <div class="grid-container">
+      <a href="lv.html" class="designer-card">
+        <img src="/images/lv.png" alt="Louis Vuitton" class="designer-image" />
+      </a>
+      <a href="hermes.html" class="designer-card">
+        <img src="/images/hermes.png" alt="Hermès" class="designer-image" />
+      </a>
+      <a href="prada.html" class="designer-card">
+        <img src="/images/prada.png" alt="Prada" class="designer-image" />
+      </a>
+      <a href="burberry.html" class="designer-card">
+        <img src="/images/burberry.png" alt="Burberry" class="designer-image" />
+      </a>
 
-    <!-- More designers coming soon... -->
-    <!-- <a href="gucci.html" class="designer-card"><img src="/images/gucci.png" alt="Gucci" class="designer-image" /></a> -->
-  </main>
+      <!-- Add more brands easily here -->
+      <!--
+      <a href="gucci.html" class="designer-card">
+        <img src="/images/gucci.png" alt="Gucci" class="designer-image" />
+      </a>
+      -->
+    </div>
+  </section>
 
 </body>
 </html>
