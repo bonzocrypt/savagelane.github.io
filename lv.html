@@ -13,6 +13,24 @@
       padding: 20px;
     }
 
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      max-width: 900px;
+      margin-inline: auto;
+    }
+
+    .top-bar input,
+    .top-bar select {
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 0.95rem;
+    }
+
     .bag-list {
       display: flex;
       flex-direction: column;
@@ -47,13 +65,13 @@
     }
 
     .bag-details h3 {
-      margin: 0;
-      font-size: 1.2rem;
+      margin: 0 0 8px;
+      font-size: 1.1rem;
       font-weight: 600;
     }
 
     .bag-details p {
-      margin: 6px 0;
+      margin: 4px 0;
       font-size: 0.95rem;
       color: #ccc;
     }
@@ -62,7 +80,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 10px;
+      margin-top: 12px;
     }
 
     .edit-button {
@@ -135,15 +153,34 @@
 </head>
 <body>
 
+  <!-- Top Filters -->
+  <div class="top-bar">
+    <input type="text" placeholder="Search bags...">
+    <select>
+      <option>Filter by...</option>
+      <option value="forsale">For Sale</option>
+      <option value="inventory">Inventory Only</option>
+    </select>
+    <select>
+      <option>Sort by...</option>
+      <option value="year">Year</option>
+      <option value="priceAsc">Price: Low to High</option>
+      <option value="priceDesc">Price: High to Low</option>
+    </select>
+  </div>
+
+  <!-- Bag Listings -->
   <div class="bag-list">
     
     <div class="bag-item">
       <img src="images/lv1.jpg" alt="Louis Vuitton Neverfull MM">
       <div class="bag-details">
         <h3>Louis Vuitton Neverfull MM</h3>
-        <p>2022</p>
-        <p>Light wear to corners, minor patina on handles</p>
+        <p>Year: 2022</p>
+        <p>Offer Price: $1,200</p>
         <p>Code: 427</p>
+        <p>Description: Light wear to corners, minor patina on handles</p>
+        <p>Condition: Pre-loved</p>
         <div class="bag-actions">
           <button class="edit-button">Edit</button>
           <div class="toggle-wrapper">
@@ -161,9 +198,11 @@
       <img src="images/lv2.jpg" alt="Louis Vuitton Speedy 25">
       <div class="bag-details">
         <h3>Louis Vuitton Speedy 25</h3>
-        <p>2019</p>
-        <p>Small water stain on the side, interior is clean</p>
-        <p>MB0159</p>
+        <p>Year: 2019</p>
+        <p>Offer Price: $990</p>
+        <p>Code: MB0159</p>
+        <p>Description: Small water stain on the side, interior is clean</p>
+        <p>Condition: Good</p>
         <div class="bag-actions">
           <button class="edit-button">Edit</button>
           <div class="toggle-wrapper">
@@ -181,9 +220,11 @@
       <img src="images/lv3.jpg" alt="Louis Vuitton Alma PM">
       <div class="bag-details">
         <h3>Louis Vuitton Alma PM</h3>
-        <p>2021</p>
-        <p>Excellent condition, very minimal signs of use</p>
-        <p>AR3140</p>
+        <p>Year: 2021</p>
+        <p>Offer Price: $1,450</p>
+        <p>Code: AR3140</p>
+        <p>Description: Excellent condition, very minimal signs of use</p>
+        <p>Condition: Excellent</p>
         <div class="bag-actions">
           <button class="edit-button">Edit</button>
           <div class="toggle-wrapper">
