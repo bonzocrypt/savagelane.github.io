@@ -73,6 +73,14 @@
       display: block;
     }
 
+    .designer-label {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      color: #e0c98d;
+      font-weight: 600;
+      text-align: center;
+    }
+
     @media (max-width: 768px) {
       h1 {
         font-size: 2rem;
@@ -94,9 +102,13 @@
 
   <!-- Designer Grid -->
   <main class="grid-container">
-    <a href="lv.html" class="designer-card">
+
+    <!-- Louis Vuitton with text label -->
+    <a href="lv.html" class="designer-card text-center">
       <img src="/images/lv.png" alt="Louis Vuitton" class="designer-image" />
+      <p class="designer-label">Louis Vuitton</p>
     </a>
+
     <a href="hermes.html" class="designer-card">
       <img src="/images/hermes.png" alt="Hermès" class="designer-image" />
     </a>
@@ -108,7 +120,12 @@
     </a>
 
     <!-- More designers coming soon... -->
-    <!-- <a href="gucci.html" class="designer-card"><img src="/images/gucci.png" alt="Gucci" class="designer-image" /></a> -->
+    <!--
+    <a href="gucci.html" class="designer-card">
+      <img src="/images/gucci.png" alt="Gucci" class="designer-image" />
+    </a>
+    -->
+
   </main>
 
 </body>
