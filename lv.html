@@ -13,6 +13,45 @@
       padding: 20px;
     }
 
+    /* Page Header */
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 0 auto 30px;
+      max-width: 900px;
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+    }
+
+    .page-header h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #f5f5f5;
+      text-transform: uppercase;
+    }
+
+    .back-icon {
+      font-size: 1.4rem;
+      text-decoration: none;
+      color: #f5f5f5;
+      border: 1px solid #f5f5f5;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .back-icon:hover {
+      background-color: #f5f5f5;
+      color: #121212;
+    }
+
     .top-bar {
       display: flex;
       flex-wrap: wrap;
@@ -215,6 +254,12 @@
 </head>
 <body>
 
+  <!-- Header -->
+  <header class="page-header">
+    <a href="collection.html" class="back-icon" title="Back to All Collections">&#8592;</a>
+    <h1>Louis Vuitton Collection</h1>
+  </header>
+
   <!-- Top Filters -->
   <div class="top-bar">
     <input type="text" id="searchInput" placeholder="Search bags...">
@@ -234,7 +279,6 @@
   <!-- Bag Listings -->
   <div class="bag-list" id="bagList">
 
-    <!-- Template for JS (copy-paste real bags into here for future database use) -->
     <div class="bag-item" onclick="openModal('lv1.jpg', 'Louis Vuitton Neverfull MM', 'Year: 2022', '$1,200', 'Code: 427', 'Light wear to corners, minor patina on handles', 'Pre-loved')">
       <img src="images/lv1.jpg" alt="LV1">
       <div class="bag-details">
@@ -257,7 +301,7 @@
       </div>
     </div>
 
-    <div class="bag-item" onclick="openModal('lv2.jpg', 'Louis Vuitton Speedy 25', 'Year: 2019', '$990', 'MB0159', 'Small water stain on the side, interior is clean', 'Good')">
+    <div class="bag-item" onclick="openModal('lv2.jpg', 'Louis Vuitton Speedy 25', 'Year: 2019', '$990', 'Code: MB0159', 'Small water stain on the side, interior is clean', 'Good')">
       <img src="images/lv2.jpg" alt="LV2">
       <div class="bag-details">
         <h3>Louis Vuitton Speedy 25</h3>
@@ -279,7 +323,7 @@
       </div>
     </div>
 
-    <div class="bag-item" onclick="openModal('lv3.jpg', 'Louis Vuitton Alma PM', 'Year: 2021', '$1,450', 'AR3140', 'Excellent condition, very minimal signs of use', 'Excellent')">
+    <div class="bag-item" onclick="openModal('lv3.jpg', 'Louis Vuitton Alma PM', 'Year: 2021', '$1,450', 'Code: AR3140', 'Excellent condition, very minimal signs of use', 'Excellent')">
       <img src="images/lv3.jpg" alt="LV3">
       <div class="bag-details">
         <h3>Louis Vuitton Alma PM</h3>
