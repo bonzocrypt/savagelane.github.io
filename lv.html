@@ -45,6 +45,7 @@
       border: 1px solid #333;
       border-radius: 12px;
       overflow: hidden;
+      cursor: pointer;
     }
 
     .bag-item img {
@@ -149,20 +150,81 @@
     input:checked + .slider:before {
       transform: translateX(20px);
     }
+
+    /* Quick View Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #1e1e1e;
+      margin: 10% auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 8px;
+      color: white;
+      position: relative;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      border-radius: 6px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 600px) {
+      .bag-item {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .bag-item img {
+        width: 90%;
+        border-radius: 12px 12px 0 0;
+      }
+
+      .bag-details {
+        padding: 16px;
+        text-align: center;
+      }
+
+      .bag-actions {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
   </style>
 </head>
 <body>
 
   <!-- Top Filters -->
   <div class="top-bar">
-    <input type="text" placeholder="Search bags...">
-    <select>
-      <option>Filter by...</option>
+    <input type="text" id="searchInput" placeholder="Search bags...">
+    <select id="filterSelect">
+      <option value="all">Filter by...</option>
       <option value="forsale">For Sale</option>
       <option value="inventory">Inventory Only</option>
     </select>
-    <select>
-      <option>Sort by...</option>
+    <select id="sortSelect">
+      <option value="default">Sort by...</option>
       <option value="year">Year</option>
       <option value="priceAsc">Price: Low to High</option>
       <option value="priceDesc">Price: High to Low</option>
@@ -170,10 +232,11 @@
   </div>
 
   <!-- Bag Listings -->
-  <div class="bag-list">
-    
-    <div class="bag-item">
-      <img src="images/lv1.jpg" alt="Louis Vuitton Neverfull MM">
+  <div class="bag-list" id="bagList">
+
+    <!-- Template for JS (copy-paste real bags into here for future database use) -->
+    <div class="bag-item" onclick="openModal('lv1.jpg', 'Louis Vuitton Neverfull MM', 'Year: 2022', '$1,200', 'Code: 427', 'Light wear to corners, minor patina on handles', 'Pre-loved')">
+      <img src="images/lv1.jpg" alt="LV1">
       <div class="bag-details">
         <h3>Louis Vuitton Neverfull MM</h3>
         <p>Year: 2022</p>
@@ -194,8 +257,8 @@
       </div>
     </div>
 
-    <div class="bag-item">
-      <img src="images/lv2.jpg" alt="Louis Vuitton Speedy 25">
+    <div class="bag-item" onclick="openModal('lv2.jpg', 'Louis Vuitton Speedy 25', 'Year: 2019', '$990', 'MB0159', 'Small water stain on the side, interior is clean', 'Good')">
+      <img src="images/lv2.jpg" alt="LV2">
       <div class="bag-details">
         <h3>Louis Vuitton Speedy 25</h3>
         <p>Year: 2019</p>
@@ -216,8 +279,8 @@
       </div>
     </div>
 
-    <div class="bag-item">
-      <img src="images/lv3.jpg" alt="Louis Vuitton Alma PM">
+    <div class="bag-item" onclick="openModal('lv3.jpg', 'Louis Vuitton Alma PM', 'Year: 2021', '$1,450', 'AR3140', 'Excellent condition, very minimal signs of use', 'Excellent')">
+      <img src="images/lv3.jpg" alt="LV3">
       <div class="bag-details">
         <h3>Louis Vuitton Alma PM</h3>
         <p>Year: 2021</p>
@@ -239,6 +302,80 @@
     </div>
 
   </div>
+
+  <!-- Quick View Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <img id="modalImg" src="" alt="Quick View">
+      <p id="modalYear"></p>
+      <p id="modalPrice"></p>
+      <p id="modalCode"></p>
+      <p id="modalDesc"></p>
+      <p id="modalCondition"></p>
+    </div>
+  </div>
+
+  <script>
+    function openModal(img, title, year, price, code, desc, cond) {
+      document.getElementById("modalImg").src = "images/" + img;
+      document.getElementById("modalTitle").innerText = title;
+      document.getElementById("modalYear").innerText = year;
+      document.getElementById("modalPrice").innerText = "Offer Price: " + price;
+      document.getElementById("modalCode").innerText = code;
+      document.getElementById("modalDesc").innerText = "Description: " + desc;
+      document.getElementById("modalCondition").innerText = "Condition: " + cond;
+      document.getElementById("modal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    // Live filtering
+    const searchInput = document.getElementById("searchInput");
+    const filterSelect = document.getElementById("filterSelect");
+    const sortSelect = document.getElementById("sortSelect");
+    const bagList = document.getElementById("bagList");
+
+    searchInput.addEventListener("input", filterBags);
+    filterSelect.addEventListener("change", filterBags);
+    sortSelect.addEventListener("change", sortBags);
+
+    function filterBags() {
+      const term = searchInput.value.toLowerCase();
+      const filter = filterSelect.value;
+
+      [...bagList.children].forEach(item => {
+        const text = item.innerText.toLowerCase();
+        const isForSale = item.querySelector("input[type='checkbox']").checked;
+
+        let match = text.includes(term);
+        if (filter === "forsale" && !isForSale) match = false;
+        if (filter === "inventory" && isForSale) match = false;
+
+        item.style.display = match ? "flex" : "none";
+      });
+    }
+
+    function sortBags() {
+      const option = sortSelect.value;
+      const bags = [...bagList.children];
+
+      bags.sort((a, b) => {
+        const getPrice = el => parseInt(el.querySelector("p:nth-of-type(2)").innerText.replace(/[^\d]/g, ''));
+        const getYear = el => parseInt(el.querySelector("p:nth-of-type(1)").innerText.replace(/[^\d]/g, ''));
+
+        if (option === "priceAsc") return getPrice(a) - getPrice(b);
+        if (option === "priceDesc") return getPrice(b) - getPrice(a);
+        if (option === "year") return getYear(b) - getYear(a);
+        return 0;
+      });
+
+      bags.forEach(bag => bagList.appendChild(bag));
+    }
+  </script>
 
 </body>
 </html>
