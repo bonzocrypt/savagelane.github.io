@@ -1,139 +1,274 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Language" content="en-US" />
-  <meta name="google" content="notranslate" />
-  <title>My Louis Vuitton Collection – Vaulted</title>
-
-  <!-- Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Louis Vuitton Collection</title>
   <style>
     body {
-      font-family: 'Inter', sans-serif;
-      background: #0d0d0d url('/images/explore.png') no-repeat center center;
-      background-size: cover;
-      color: white;
+      font-family: Arial, sans-serif;
+      background-color: #f6f6f6;
       margin: 0;
-      padding: 0;
+      padding: 20px;
     }
 
-    .backdrop {
-      background-color: rgba(0, 0, 0, 0.75);
-      min-height: 100vh;
-      padding: 2rem 1rem;
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
-    .toggle-switch {
-      appearance: none;
-      width: 40px;
-      height: 20px;
-      background: #888;
-      border-radius: 999px;
-      position: relative;
-      outline: none;
+    .search-filter {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    select {
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .view-toggle {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-toggle {
+      padding: 8px 12px;
       cursor: pointer;
+      border: none;
+      background-color: #ddd;
+      border-radius: 4px;
     }
 
-    .toggle-switch:checked {
-      background: #4ade80;
+    .btn-toggle.active {
+      background-color: #aaa;
+      color: #fff;
     }
 
-    .toggle-switch::before {
-      content: '';
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 16px;
-      height: 16px;
-      background: white;
-      border-radius: 50%;
-      transition: all 0.2s ease;
+    .collection {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
     }
 
-    .toggle-switch:checked::before {
-      transform: translateX(20px);
+    .bag-card {
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .bag-card img {
+      width: 100%;
+      display: block;
+    }
+
+    .bag-card-content {
+      padding: 15px;
+    }
+
+    .bag-card h3 {
+      margin: 0 0 5px;
+    }
+
+    .bag-card p {
+      margin: 4px 0;
+      color: #555;
+    }
+
+    .share-edit {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .bag-card .sale-toggle {
+      margin-top: 10px;
+    }
+
+    /* Hover effects only on lv3.jpg */
+    .hover-effect {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-effect:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 8px;
+    }
+
+    .modal img {
+      max-width: 100%;
+      border-radius: 6px;
+    }
+
+    .close-modal {
+      float: right;
+      font-size: 20px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <div class="backdrop">
-    <h1 class="text-3xl md:text-4xl font-bold text-center text-[#e0c98d] font-serif mb-8">My Louis Vuitton Collection</h1>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-
-      <!-- Purse Listing -->
-      <div class="bg-[#1a1a1a] rounded-lg p-4 shadow-lg">
-        <div class="flex gap-4 overflow-x-auto mb-4">
-          <img src="https://via.placeholder.com/120x100" class="rounded w-28 h-24 object-cover" />
-          <img src="https://via.placeholder.com/120x100" class="rounded w-28 h-24 object-cover" />
-        </div>
-        <h2 class="text-xl font-semibold mb-2">Louis Vuitton Speedy 30</h2>
-        <ul class="text-sm text-gray-300 space-y-1 mb-4">
-          <li><strong>Brand:</strong> Louis Vuitton</li>
-          <li><strong>Year:</strong> 2018</li>
-          <li><strong>Offer Price:</strong> $1,150</li>
-          <li><strong>Code:</strong> LV-18437</li>
-          <li><strong>Condition:</strong> Gently used, small scuff on handle</li>
-        </ul>
-
-        <div class="flex items-center justify-between mb-3">
-          <label class="text-sm">For Sale</label>
-          <input type="checkbox" class="toggle-switch" checked />
-        </div>
-
-        <div class="flex flex-wrap gap-2 mb-3">
-          <button class="bg-pink-600 hover:bg-pink-700 text-white text-xs px-3 py-1 rounded">Edit</button>
-          <a href="#" class="text-xs text-gray-400 hover:text-white underline">Copy Share Link</a>
-          <a href="#" class="text-xs text-blue-400 hover:underline">Twitter</a>
-          <a href="#" class="text-xs text-blue-600 hover:underline">Facebook</a>
-          <a href="#" class="text-xs text-pink-400 hover:underline">Instagram</a>
-        </div>
-      </div>
-
-      <!-- Repeat 4 more bags -->
-      <!-- You can duplicate and change the info/images below as needed -->
-
-      <div class="bg-[#1a1a1a] rounded-lg p-4 shadow-lg">
-        <div class="flex gap-4 overflow-x-auto mb-4">
-          <img src="https://via.placeholder.com/120x100" class="rounded w-28 h-24 object-cover" />
-          <img src="https://via.placeholder.com/120x100" class="rounded w-28 h-24 object-cover" />
-        </div>
-        <h2 class="text-xl font-semibold mb-2">Louis Vuitton Neverfull MM</h2>
-        <ul class="text-sm text-gray-300 space-y-1 mb-4">
-          <li><strong>Brand:</strong> Louis Vuitton</li>
-          <li><strong>Year:</strong> 2021</li>
-          <li><strong>Offer Price:</strong> $1,450</li>
-          <li><strong>Code:</strong> LV-29183</li>
-          <li><strong>Condition:</strong> Excellent, stored in dust bag</li>
-        </ul>
-        <div class="flex items-center justify-between mb-3">
-          <label class="text-sm">For Sale</label>
-          <input type="checkbox" class="toggle-switch" />
-        </div>
-        <div class="flex flex-wrap gap-2 mb-3">
-          <button class="bg-pink-600 hover:bg-pink-700 text-white text-xs px-3 py-1 rounded">Edit</button>
-          <a href="#" class="text-xs text-gray-400 hover:text-white underline">Copy Share Link</a>
-          <a href="#" class="text-xs text-blue-400 hover:underline">Twitter</a>
-          <a href="#" class="text-xs text-blue-600 hover:underline">Facebook</a>
-          <a href="#" class="text-xs text-pink-400 hover:underline">Instagram</a>
-        </div>
-      </div>
-
-      <!-- Add 3 more here just like above... -->
-      <!-- Placeholder entries #3, #4, #5 omitted for brevity -->
+  <header>
+    <div class="search-filter">
+      <input type="text" id="searchInput" placeholder="Search bags..."/>
+      <select id="filterSelect">
+        <option value="">Filter by...</option>
+        <option value="sale">For Sale</option>
+        <option value="inventory">In Inventory</option>
+      </select>
+      <select id="sortSelect">
+        <option value="">Sort by...</option>
+        <option value="priceAsc">Price: Low to High</option>
+        <option value="priceDesc">Price: High to Low</option>
+        <option value="year">Year</option>
+      </select>
     </div>
 
-    <div class="text-center mt-10">
-      <button class="bg-[#e0c98d] hover:bg-yellow-500 text-black font-semibold px-6 py-2 rounded shadow">
-        + Add New Purse
-      </button>
+    <div class="view-toggle">
+      <button class="btn-toggle active" id="gridViewBtn">Grid View</button>
+      <button class="btn-toggle" id="listViewBtn">List View</button>
+    </div>
+  </header>
+
+  <main class="collection" id="bagList">
+    <!-- Bag 1 -->
+    <div class="bag-card">
+      <img src="images/lv1.jpg" alt="LV Bag 1">
+      <div class="bag-card-content">
+        <h3>Louis Vuitton</h3>
+        <p>Year: 2020</p>
+        <p>Offer Price: $1,200</p>
+        <p>Code: LV001</p>
+        <p>Description: Classic Monogram Tote</p>
+        <label class="sale-toggle">
+          For Sale: <input type="checkbox" />
+        </label>
+        <div class="share-edit">
+          <button>Edit</button>
+          <button>Share</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bag 2 -->
+    <div class="bag-card">
+      <img src="images/lv2.jpg" alt="LV Bag 2">
+      <div class="bag-card-content">
+        <h3>Louis Vuitton</h3>
+        <p>Year: 2022</p>
+        <p>Offer Price: $2,000</p>
+        <p>Code: LV002</p>
+        <p>Description: Limited Edition Crossbody</p>
+        <label class="sale-toggle">
+          For Sale: <input type="checkbox" />
+        </label>
+        <div class="share-edit">
+          <button>Edit</button>
+          <button>Share</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bag 3 with Hover & Quick View -->
+    <div class="bag-card hover-effect" onclick="openModal()">
+      <img src="images/lv3.jpg" alt="LV Bag 3">
+      <div class="bag-card-content">
+        <h3>Louis Vuitton</h3>
+        <p>Year: 2023</p>
+        <p>Offer Price: $3,500</p>
+        <p>Code: LV003</p>
+        <p>Description: Collector's Edition Speedy</p>
+        <label class="sale-toggle">
+          For Sale: <input type="checkbox" checked />
+        </label>
+        <div class="share-edit">
+          <button>Edit</button>
+          <button>Share</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Quick View Modal -->
+  <div id="quickViewModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h2>Quick View: Collector's Edition Speedy</h2>
+      <img src="images/lv3.jpg" alt="LV Bag 3 Large">
+      <p><strong>Year:</strong> 2023</p>
+      <p><strong>Price:</strong> $3,500</p>
+      <p><strong>Description:</strong> A luxury Speedy bag from the limited 2023 drop.</p>
     </div>
   </div>
 
+  <script>
+    const gridViewBtn = document.getElementById("gridViewBtn");
+    const listViewBtn = document.getElementById("listViewBtn");
+    const bagList = document.getElementById("bagList");
+
+    gridViewBtn.onclick = () => {
+      gridViewBtn.classList.add("active");
+      listViewBtn.classList.remove("active");
+      bagList.style.display = "grid";
+    };
+
+    listViewBtn.onclick = () => {
+      listViewBtn.classList.add("active");
+      gridViewBtn.classList.remove("active");
+      bagList.style.display = "block";
+    };
+
+    function openModal() {
+      document.getElementById("quickViewModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("quickViewModal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("quickViewModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
 </body>
 </html>
