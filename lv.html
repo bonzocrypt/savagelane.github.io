@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Language" content="en-US" />
+  <meta name="google" content="notranslate" />
+  <title>My Louis Vuitton Collection – Vaulted</title>
+
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0d0d0d url('/images/explore.png') no-repeat center center;
+      background-size: cover;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    .backdrop {
+      background-color: rgba(0, 0, 0, 0.75);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .toggle-switch {
+      appearance: none;
+      width: 40px;
+      height: 20px;
+      background: #888;
+      border-radius: 999px;
+      position: relative;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .toggle-switch:checked {
+      background: #4ade80;
+    }
+
+    .toggle-switch::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-switch:checked::before {
+      transform: translateX(20px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="backdrop">
+    <h1 class="text-3xl md:text-4xl font-bold text-center text-[#e0c98d] font-serif mb-8">My Louis Vuitton Collection</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+
+      <!-- Purse Listing -->
+      <div class="bg-[#1a1a1a] rounded-lg p-4 shadow-lg">
+        <div class="flex gap-4 overflow-x-auto mb-4">
+          <img src="https://via.placeholder.com/120x100" class="rounded w-28 h-24 object-cover" />
+          <img src="https://via.placeholder.com/120x100" class="rounded w-28 h-24 object-cover" />
+        </div>
+        <h2 class="text-xl font-semibold mb-2">Louis Vuitton Speedy 30</h2>
+        <ul class="text-sm text-gray-300 space-y-1 mb-4">
+          <li><strong>Brand:</strong> Louis Vuitton</li>
+          <li><strong>Year:</strong> 2018</li>
+          <li><strong>Offer Price:</strong> $1,150</li>
+          <li><strong>Code:</strong> LV-18437</li>
+          <li><strong>Condition:</strong> Gently used, small scuff on handle</li>
+        </ul>
+
+        <div class="flex items-center justify-between mb-3">
+          <label class="text-sm">For Sale</label>
+          <input type="checkbox" class="toggle-switch" checked />
+        </div>
+
+        <div class="flex flex-wrap gap-2 mb-3">
+          <button class="bg-pink-600 hover:bg-pink-700 text-white text-xs px-3 py-1 rounded">Edit</button>
+          <a href="#" class="text-xs text-gray-400 hover:text-white underline">Copy Share Link</a>
+          <a href="#" class="text-xs text-blue-400 hover:underline">Twitter</a>
+          <a href="#" class="text-xs text-blue-600 hover:underline">Facebook</a>
+          <a href="#" class="text-xs text-pink-400 hover:underline">Instagram</a>
+        </div>
+      </div>
+
+      <!-- Repeat 4 more bags -->
+      <!-- You can duplicate and change the info/images below as needed -->
+
+      <div class="bg-[#1a1a1a] rounded-lg p-4 shadow-lg">
+        <div class="flex gap-4 overflow-x-auto mb-4">
+          <img src="https://via.placeholder.com/120x100" class="rounded w-28 h-24 object-cover" />
+          <img src="https://via.placeholder.com/120x100" class="rounded w-28 h-24 object-cover" />
+        </div>
+        <h2 class="text-xl font-semibold mb-2">Louis Vuitton Neverfull MM</h2>
+        <ul class="text-sm text-gray-300 space-y-1 mb-4">
+          <li><strong>Brand:</strong> Louis Vuitton</li>
+          <li><strong>Year:</strong> 2021</li>
+          <li><strong>Offer Price:</strong> $1,450</li>
+          <li><strong>Code:</strong> LV-29183</li>
+          <li><strong>Condition:</strong> Excellent, stored in dust bag</li>
+        </ul>
+        <div class="flex items-center justify-between mb-3">
+          <label class="text-sm">For Sale</label>
+          <input type="checkbox" class="toggle-switch" />
+        </div>
+        <div class="flex flex-wrap gap-2 mb-3">
+          <button class="bg-pink-600 hover:bg-pink-700 text-white text-xs px-3 py-1 rounded">Edit</button>
+          <a href="#" class="text-xs text-gray-400 hover:text-white underline">Copy Share Link</a>
+          <a href="#" class="text-xs text-blue-400 hover:underline">Twitter</a>
+          <a href="#" class="text-xs text-blue-600 hover:underline">Facebook</a>
+          <a href="#" class="text-xs text-pink-400 hover:underline">Instagram</a>
+        </div>
+      </div>
+
+      <!-- Add 3 more here just like above... -->
+      <!-- Placeholder entries #3, #4, #5 omitted for brevity -->
+    </div>
+
+    <div class="text-center mt-10">
+      <button class="bg-[#e0c98d] hover:bg-yellow-500 text-black font-semibold px-6 py-2 rounded shadow">
+        + Add New Purse
+      </button>
+    </div>
+  </div>
+
+</body>
+</html>
