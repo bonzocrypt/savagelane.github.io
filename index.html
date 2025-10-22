@@ -66,10 +66,12 @@
     <section class="panel" aria-labelledby="matchform">
       <h2 id="matchform" class="sr-only">Request your match</h2>
 
-      <!-- Replace the Formspree action with your form endpoint -->
-      <form action="https://formspree.io/f/your-id-here" method="POST" novalidate>
-        <!-- spam honeypot -->
-        <input class="hp" type="text" name="_subject_line" tabindex="-1" autocomplete="off" />
+<form action="https://formspree.io/f/mldpyljb" method="POST" novalidate>
+  <!-- spam honeypot -->
+  <input class="hp" type="text" name="_subject_line" tabindex="-1" autocomplete="off" />
+  <!-- redirect after successful submit -->
+  <input type="hidden" name="_next" value="https://savagelane.com/thanks.html" />
+
 
         <div class="full">
           <label for="name">Your name</label>
