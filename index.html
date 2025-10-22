@@ -1,220 +1,172 @@
-<!DOCTYPE html>
-<html lang="en-US">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Language" content="en-US" />
-  <meta name="google" content="notranslate" />
-  <title>Savagelane Referrals</title>
+  <meta charset="utf-8" />
+  <title>Home Match Concierge | Get Connected With A Proven Local Sales Professional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Free referral concierge. Tell us where you are buying or selling and we will register your request with our brokerage referral program and connect you with a proven full time sales professional." />
+  <link rel="canonical" href="https://savagelane.com/" />
+  <meta name="robots" content="index,follow" />
 
-  <!-- Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet" />
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Home Match Concierge" />
+  <meta property="og:description" content="Free referral concierge that connects serious buyers and sellers with proven local sales professionals." />
+  <meta property="og:url" content="https://savagelane.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://savagelane.com/assets/og/default.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Home Match Concierge" />
+  <meta name="twitter:description" content="Free referral concierge for buyers and sellers. Get matched fast." />
+  <meta name="twitter:image" content="https://savagelane.com/assets/og/default.jpg" />
+
+  <!-- Preload primary font if you host one later -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
 
   <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  font-family: 'Inter', sans-serif;
-  background-color: #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-    header {
-      text-align: center;
-      padding: 3rem 1rem 2rem;
-    }
-
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      color: #e0c98d;
-      text-shadow: 2px 2px 8px #000;
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
-
-    .featured-banner {
-      width: 100%;
-      max-width: 1000px;
-      background: linear-gradient(to right, #4c00ff, #00d2ff);
-      border-radius: 20px;
-      margin: 2rem 1rem;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
-    }
-
-    .featured-banner img {
-      max-width: 300px;
-      width: 100%;
-      height: auto;
-      margin-bottom: 1rem;
-      border-radius: 16px;
-    }
-
-    .featured-banner h2 {
-      font-size: 2rem;
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-
-    .featured-banner p {
-      font-size: 1.1rem;
-      color: #eee;
-      margin-bottom: 1.5rem;
-    }
-
-    .featured-banner a {
-      font-size: 1.1rem;
-      background: #ffffff;
-      color: #4c00ff;
-      padding: 0.75rem 2rem;
-      border-radius: 999px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .featured-banner a:hover {
-      background: #4c00ff;
-      color: #ffffff;
-    }
-
-    .referral-section {
-      width: 100%;
-      max-width: 800px;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .referral-card {
-      background-color: rgba(255, 255, 255, 0.05);
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 2rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      transition: all 0.3s ease;
-      overflow-wrap: break-word;
-    }
-
-    .referral-card img {
-      max-width: 300px;
-      width: 100%;
-      height: auto;
-      margin-bottom: 1rem;
-      border-radius: 12px;
-    }
-
-    .referral-card p {
-      font-size: 1rem;
-      color: #ddd;
-      margin-bottom: 1rem;
-    }
-
-    .referral-card a {
-      font-size: 1rem;
-      color: #ffffff;
-      background-color: rgba(255, 102, 165, 0.3);
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      border: 1px solid #ff66a5;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      display: inline-block;
-      margin-top: 1rem;
-    }
-
-    .referral-card a:hover {
-      background-color: #ff66a5;
-      color: #fff;
-    }
-
-    footer {
-      margin-top: auto;
-      font-size: 0.8rem;
-      color: #666;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      header p {
-        font-size: 1rem;
-      }
-      .featured-banner h2 {
-        font-size: 1.5rem;
-      }
-    }
+    :root{--bg:#0b1020;--panel:#0f172a;--text:#eef2f7;--muted:#b8c1d8;--accent:#2563eb;--ok:#10b981}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5}
+    .wrap{max-width:840px;margin:0 auto;padding:32px}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    header .brand{font-weight:600;letter-spacing:.2px}
+    .hero{padding:20px 0 8px}
+    h1{font-size:2rem;margin:0 0 8px}
+    p{margin:0 0 12px}
+    .panel{background:var(--panel);border:1px solid #1f2937;border-radius:14px;padding:18px}
+    form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+    label{font-size:.95rem;color:var(--muted)}
+    input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #263246;background:#0b1329;color:var(--text)}
+    textarea{grid-column:1 / -1}
+    .full{grid-column:1 / -1}
+    button{padding:12px 16px;border:0;border-radius:10px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
+    .legal{font-size:.9rem;color:var(--muted);margin-top:12px}
+    .footer{margin-top:28px;font-size:.9rem;color:var(--muted)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    /* honeypot field stays hidden */
+    .hp{display:none !important}
   </style>
-
-  <!-- Google Tag Manager -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6V7SK0GSCL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-6V7SK0GSCL');
-  </script>
-
 </head>
-
 <body>
+  <div class="wrap">
+    <header>
+      <div class="brand">SAVAGE LANE</div>
+      <div aria-hidden="true"></div>
+    </header>
 
-  <header>
-    <h1>Savagelane Referrals</h1>
-    <p>Trusted referral links - updated May 2025.</p>
-  </header>
+    <section class="hero">
+      <h1>Buying or selling</h1>
+      <p class="panel">Free referral concierge. Tell us where and your timeline. We will register your request with our brokerage referral program and connect you with a proven full time sales professional who serves that market.</p>
+    </section>
 
-<!-- FEATURED BANNER -->
-<div class="featured-banner">
-  <img src="/images/kraken.png" alt="Kraken Exchange">
-  <h2>Featured Referral: Kraken</h2>
-  <p>Make a qualifying deposit and trade and receive $50. Start trading securely with Kraken today.</p>
-  <a href="https://krakenpro.onelink.me/9f1e/5f2auvsc" target="_blank">Claim Your $50 Bonus</a>
-</div>
+    <section class="panel" aria-labelledby="matchform">
+      <h2 id="matchform" class="sr-only">Request your match</h2>
 
-  <!-- OTHER REFERRALS -->
-  <div class="referral-section">
+      <!-- Replace the Formspree action with your form endpoint -->
+      <form action="https://formspree.io/f/your-id-here" method="POST" novalidate>
+        <!-- spam honeypot -->
+        <input class="hp" type="text" name="_subject_line" tabindex="-1" autocomplete="off" />
 
-    <div class="referral-card">
-      <img src="/images/cashapp.png" alt="Cash App">
-      <p>Get $5 free when you send your first $5 through Cash App.</p>
-      <a href="https://cash.app/app/5TCM8J4" target="_blank">Get Cash App</a>
-    </div>
+        <div class="full">
+          <label for="name">Your name</label>
+          <input id="name" name="name" required autocomplete="name" />
+        </div>
 
-    <div class="referral-card">
-      <img src="/images/rak.png" alt="Rakuten">
-      <p>Get $30 back when you spend your first $30 with Rakuten shopping rewards.</p>
-      <a href="https://www.rakuten.com/r/WHITEM1188?eeid=28187" target="_blank">Join Rakuten</a>
-    </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required autocomplete="email" />
+        </div>
 
-    <div class="referral-card">
-      <img src="/images/savor.jpg" alt="Capital One Savor Card">
-      <p>Earn unlimited cashback dining out, buying groceries, and entertainment with Capital One Savor. Apply now and get a cash bonus if approved!</p>
-      <a href="https://i.capitalone.com/JNx13KwiU" target="_blank">Apply for Savor Card</a>
-    </div>
+        <div>
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" required autocomplete="tel" />
+        </div>
 
+        <div>
+          <label for="location">ZIP or City and State</label>
+          <input id="location" name="location" required />
+        </div>
+
+        <div>
+          <label for="intent">Buying or selling</label>
+          <select id="intent" name="intent" required>
+            <option value="">Choose one</option>
+            <option>Buying</option>
+            <option>Selling</option>
+            <option>Both</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="timeline">Timeline</label>
+          <select id="timeline" name="timeline">
+            <option value="">Select</option>
+            <option>Now</option>
+            <option>One to three months</option>
+            <option>Three to six months</option>
+            <option>Six plus months</option>
+          </select>
+        </div>
+
+        <div class="full">
+          <label for="notes">Price range or notes</label>
+          <textarea id="notes" name="notes" rows="4" placeholder="Example 450k to 650k single family near Lakewood Ranch with a home office"></textarea>
+        </div>
+
+        <div class="full">
+          <button type="submit">Request my match</button>
+          <p class="legal">
+            I operate strictly in a referral only capacity. After you submit this form I will register your request with my brokerage referral program so the assigned licensed sales professional can contact you regarding your real estate needs. I do not list show or negotiate real estate.
+          </p>
+        </div>
+      </form>
+    </section>
+
+    <p class="footer">
+      © <span id="y"></span> Savage Lane. All rights reserved.
+    </p>
   </div>
 
-  <footer>
-    © 2025 SavageLane | All Rights Reserved
-  </footer>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 
+  <!-- JSON-LD: minimalist and accurate for a referral concierge -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Savage Lane",
+    "url": "https://savagelane.com/",
+    "logo": "https://savagelane.com/assets/logo.png",
+    "sameAs": [],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Referral Concierge",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Real estate referral concierge",
+            "areaServed": "US",
+            "provider": { "@type": "Organization", "name": "Savage Lane" }
+          }
+        }
+      ]
+    },
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "contactType": "Referrals",
+      "email": "hello@savagelane.com",
+      "areaServed": "US"
+    }]
+  }
+  </script>
+  <noscript>Your browser has JavaScript disabled. The form still works without it.</noscript>
 </body>
 </html>
