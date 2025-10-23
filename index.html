@@ -78,7 +78,6 @@
       <form id="matchForm" action="https://formspree.io/f/mldpyljb" method="POST" novalidate>
         <!-- spam honeypot -->
         <input class="hp" type="text" name="_subject_line" tabindex="-1" autocomplete="off" />
-        <!-- redirect after successful submit is handled in script -->
 
         <div class="full">
           <label for="name">Your name</label>
@@ -95,11 +94,10 @@
           <input id="phone" name="phone" required autocomplete="tel" />
         </div>
 
-        <!-- Location split into City, State, ZIP with validation and hidden combined field -->
         <div>
           <label for="city">City</label>
           <input id="city" name="city" required autocomplete="address-level2" placeholder="Example Lakewood Ranch" />
-          <div id="cityErr" class="error" style="display:none">Enter a valid city name using letters and spaces only</div>
+          <div id="cityErr" class="error" style="display:none">Enter a valid city name using letters, spaces, dots, or apostrophes</div>
         </div>
 
         <div>
@@ -120,8 +118,9 @@
         </div>
 
         <div>
-          <label for="zip">ZIP code <span class="hint">(optional)</span></label>
-          <input id="zip" name="zip" inputmode="numeric" pattern="\\d{5}" placeholder="Example 34202" autocomplete="postal-code" />
+          <label for="zip">ZIP code</label>
+          <input id="zip" name="zip" required inputmode="numeric" pattern="\d{5}" placeholder="Example 34202" autocomplete="postal-code" />
+          <div id="zipErr" class="error" style="display:none">Enter a 5 digit ZIP</div>
         </div>
 
         <!-- Hidden combined location to preserve your prior Formspree field name -->
@@ -137,10 +136,20 @@
           </select>
         </div>
 
-        <!-- Property type as checkboxes for multiple selections -->
+        <div>
+          <label for="timeline">Timeline</label>
+          <select id="timeline" name="timeline" required>
+            <option value="">Select</option>
+            <option>Now</option>
+            <option>One to three months</option>
+            <option>Three to six months</option>
+            <option>Six plus months</option>
+          </select>
+        </div>
+
         <div class="full">
           <label>Property type</label>
-          <div class="checkboxes">
+          <div class="checkboxes" id="propertyTypes">
             <label><input type="checkbox" name="propertyType" value="Single Family"> Single Family</label>
             <label><input type="checkbox" name="propertyType" value="Townhouse"> Townhouse</label>
             <label><input type="checkbox" name="propertyType" value="New Construction"> New Construction</label>
@@ -148,23 +157,23 @@
             <label><input type="checkbox" name="propertyType" value="Commercial"> Commercial</label>
             <label><input type="checkbox" name="propertyType" value="Other"> Other</label>
           </div>
+          <div id="ptypeErr" class="error" style="display:none">Choose at least one property type</div>
         </div>
 
-        <!-- Budgets -->
         <div>
           <label for="minBudget">Min budget</label>
-          <input id="minBudget" name="minBudget" type="number" inputmode="numeric" step="1000" min="0" placeholder="Example 300000" />
+          <input id="minBudget" name="minBudget" type="number" inputmode="numeric" step="1000" min="0" required placeholder="Example 300000" />
         </div>
 
         <div>
           <label for="maxBudget">Max budget</label>
-          <input id="maxBudget" name="maxBudget" type="number" inputmode="numeric" step="1000" min="0" placeholder="Example 650000" />
+          <input id="maxBudget" name="maxBudget" type="number" inputmode="numeric" step="1000" min="0" required placeholder="Example 650000" />
+          <div id="budgetErr" class="error" style="display:none">Max budget must be greater than or equal to min budget</div>
         </div>
 
-        <!-- Beds and baths -->
         <div>
           <label for="beds">Bedrooms</label>
-          <select id="beds" name="beds">
+          <select id="beds" name="beds" required>
             <option value="">Select</option>
             <option>1+</option>
             <option>2+</option>
@@ -176,7 +185,7 @@
 
         <div>
           <label for="baths">Bathrooms</label>
-          <select id="baths" name="baths">
+          <select id="baths" name="baths" required>
             <option value="">Select</option>
             <option>1+</option>
             <option>2+</option>
@@ -186,7 +195,6 @@
           </select>
         </div>
 
-        <!-- Additional comments -->
         <div class="full">
           <label for="comments">Additional comments</label>
           <textarea id="comments" name="comments" rows="4" placeholder="Anything else that would help your match"></textarea>
@@ -207,18 +215,36 @@
   </div>
 
   <script>
-    // Simple client side checks for City and State, plus combined location builder
+    // validation and controlled redirect
     (function () {
       const form = document.getElementById('matchForm');
+
       const city = document.getElementById('city');
       const state = document.getElementById('state');
       const zip = document.getElementById('zip');
       const locationHidden = document.getElementById('location');
       const cityErr = document.getElementById('cityErr');
+      const zipErr = document.getElementById('zipErr');
+
+      const intent = document.getElementById('intent');
+      const timeline = document.getElementById('timeline');
+      const propertyTypes = document.getElementById('propertyTypes');
+      const ptypeErr = document.getElementById('ptypeErr');
+
+      const minBudget = document.getElementById('minBudget');
+      const maxBudget = document.getElementById('maxBudget');
+      const budgetErr = document.getElementById('budgetErr');
 
       function validCity(value) {
-        // Letters, spaces, dots and apostrophes for names like St. Louis or O'Fallon
         return /^[A-Za-z .']+$/.test(value.trim());
+      }
+
+      function validZip(value) {
+        return /^\d{5}$/.test(value.trim());
+      }
+
+      function atLeastOnePropertyType() {
+        return !!propertyTypes.querySelector('input[type="checkbox"]:checked');
       }
 
       function buildLocation() {
@@ -230,28 +256,68 @@
       }
 
       city.addEventListener('input', () => {
-        if (!city.value) { cityErr.style.display = 'none'; return; }
-        cityErr.style.display = validCity(city.value) ? 'none' : 'block';
+        cityErr.style.display = city.value && !validCity(city.value) ? 'block' : 'none';
+      });
+
+      zip.addEventListener('input', () => {
+        zipErr.style.display = zip.value && !validZip(zip.value) ? 'block' : 'none';
       });
 
       form.addEventListener('submit', async function (e) {
-        // Inline validation
+        // HTML required handles most fields, these enforce extra rules
+        let blocked = false;
+
         if (!validCity(city.value)) {
-          e.preventDefault();
-          city.focus();
           cityErr.style.display = 'block';
-          return;
+          city.focus();
+          blocked = true;
+        } else {
+          cityErr.style.display = 'none';
         }
+
         if (!state.value) {
-          e.preventDefault();
           state.focus();
+          blocked = true;
+        }
+
+        if (!validZip(zip.value)) {
+          zipErr.style.display = 'block';
+          if (!blocked) zip.focus();
+          blocked = true;
+        } else {
+          zipErr.style.display = 'none';
+        }
+
+        if (!atLeastOnePropertyType()) {
+          ptypeErr.style.display = 'block';
+          if (!blocked) propertyTypes.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          blocked = true;
+        } else {
+          ptypeErr.style.display = 'none';
+        }
+
+        const minVal = Number(minBudget.value || 0);
+        const maxVal = Number(maxBudget.value || 0);
+        if (minBudget.value === '' || maxBudget.value === '' || maxVal < minVal) {
+          budgetErr.style.display = 'block';
+          if (!blocked) minBudget.focus();
+          blocked = true;
+        } else {
+          budgetErr.style.display = 'none';
+        }
+
+        if (!intent.value) { if (!blocked) intent.focus(); blocked = true; }
+        if (!timeline.value) { if (!blocked) timeline.focus(); blocked = true; }
+
+        if (blocked) {
+          e.preventDefault();
           return;
         }
 
-        // Set combined location for Formspree
+        // combine location
         buildLocation();
 
-        // Submit via fetch then redirect to your thank you page
+        // submit via fetch then redirect
         e.preventDefault();
         const data = new FormData(form);
 
@@ -273,9 +339,9 @@
           window.location.href = '/thanks.html';
         }
       });
-    })();
 
-    document.getElementById("y").textContent = new Date().getFullYear();
+      document.getElementById("y").textContent = new Date().getFullYear();
+    })();
   </script>
 
   <!-- JSON-LD -->
