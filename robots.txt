@@ -2,7 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://savagelane.com/sitemap.xml
-
-# Savage Lane | Home Match Concierge
-# Referral-only real estate concierge website
-# CBRRN compliant - no direct brokerage activity

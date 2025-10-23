@@ -1,27 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
+<!-- Static sitemap for Savage Lane. Update whenever you publish a new page. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core pages -->
   <url>
     <loc>https://savagelane.com/</loc>
-    <lastmod>2025-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2025-10-23</lastmod>
   </url>
-
   <url>
-    <loc>https://savagelane.com/thanks.html</loc>
-    <lastmod>2025-10-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <loc>https://savagelane.com/buyers.html</loc>
+    <lastmod>2025-10-23</lastmod>
   </url>
-
+  <url>
+    <loc>https://savagelane.com/sellers.html</loc>
+    <lastmod>2025-10-23</lastmod>
+  </url>
+  <url>
+    <loc>https://savagelane.com/concierge.html</loc>
+    <lastmod>2025-10-23</lastmod>
+  </url>
   <url>
     <loc>https://savagelane.com/privacy.html</loc>
-    <lastmod>2025-10-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <lastmod>2025-10-23</lastmod>
+  </url>
+  <url>
+    <loc>https://savagelane.com/thanks.html</loc>
+    <lastmod>2025-10-23</lastmod>
+  </url>
+  <url>
+    <loc>https://savagelane.com/sitemap.html</loc>
+    <lastmod>2025-10-23</lastmod>
   </url>
 
+  <!-- Buyer guides -->
+  <url>
+    <loc>https://savagelane.com/guides/buyer-credit-basics.html</loc>
+    <lastmod>2025-10-23</lastmod>
+  </url>
+  <url>
+    <loc>https://savagelane.com/guides/preapproval-vs-prequalification.html</loc>
+    <lastmod>2025-10-23</lastmod>
+  </url>
+  <!-- Add new BUYER guide URLs below this line -->
+  <!--
+  <url>
+    <loc>https://savagelane.com/guides/loan-types-fha-va-conventional.html</loc>
+    <lastmod>YYYY-MM-DD</lastmod>
+  </url>
+  <url>
+    <loc>https://savagelane.com/guides/how-much-house-can-i-afford.html</loc>
+    <lastmod>YYYY-MM-DD</lastmod>
+  </url>
+  -->
+
+  <!-- Seller guides -->
+  <url>
+    <loc>https://savagelane.com/guides/how-to-price-your-home.html</loc>
+    <lastmod>2025-10-23</lastmod>
+  </url>
+  <url>
+    <loc>https://savagelane.com/guides/preinspection-benefits-for-sellers.html</loc>
+    <lastmod>2025-10-23</lastmod>
+  </url>
+  <!-- Add new SELLER guide URLs below this line -->
+  <!--
+  <url>
+    <loc>https://savagelane.com/guides/marketing-plan-basics.html</loc>
+    <lastmod>YYYY-MM-DD</lastmod>
+  </url>
+  <url>
+    <loc>https://savagelane.com/guides/how-to-review-offers.html</loc>
+    <lastmod>YYYY-MM-DD</lastmod>
+  </url>
+  -->
 </urlset>
