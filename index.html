@@ -34,7 +34,7 @@
     body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5}
     .wrap{max-width:840px;margin:0 auto;padding:32px}
     header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    header .brand{font-weight:600;letter-spacing:.2px}
+    header img{height:64px;width:auto;border-radius:8px;}
     .hero{padding:20px 0 8px}
     h1{font-size:2rem;margin:0 0 8px}
     p{margin:0 0 12px}
@@ -55,26 +55,26 @@
 <body>
   <div class="wrap">
     <header>
-  <div class="brand">SAVAGE LANE</div>
-  <div aria-hidden="true">Home Match Concierge</div>
-</header>
+      <a href="/" aria-label="Savage Lane Home Match Concierge">
+        <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
+      </a>
+      <div aria-hidden="true">Home Match Concierge</div>
+    </header>
 
-<section class="hero">
-  <img src="/images/home-match-banner.png" alt="Home Match Concierge" width="1600" height="600" style="width:100%;height:auto;border-radius:14px;border:1px solid #1f2937;margin:0 0 12px" />
-  <h1>Home Match Concierge</h1>
-  <p class="panel">Free referral concierge for buyers and sellers. Tell us where and your timeline. We will register your request with our brokerage referral program and connect you with a proven full time licensed sales professional who serves that market.</p>
-</section>
-
+    <section class="hero">
+      <img src="/images/home-match-banner.png" alt="Home Match Concierge" width="1600" height="600" style="width:100%;height:auto;border-radius:14px;border:1px solid #1f2937;margin:0 0 12px" />
+      <h1>Home Match Concierge</h1>
+      <p class="panel">Free referral concierge for buyers and sellers. Tell us where and your timeline. We will register your request with our brokerage referral program and connect you with a proven full time licensed sales professional who serves that market.</p>
+    </section>
 
     <section class="panel" aria-labelledby="matchform">
       <h2 id="matchform" class="sr-only">Request your match</h2>
 
-<form action="https://formspree.io/f/mldpyljb" method="POST" novalidate>
-  <!-- spam honeypot -->
-  <input class="hp" type="text" name="_subject_line" tabindex="-1" autocomplete="off" />
-  <!-- redirect after successful submit -->
-  <input type="hidden" name="_next" value="https://savagelane.com/thanks.html" />
-
+      <form action="https://formspree.io/f/mldpyljb" method="POST" novalidate>
+        <!-- spam honeypot -->
+        <input class="hp" type="text" name="_subject_line" tabindex="-1" autocomplete="off" />
+        <!-- redirect after successful submit -->
+        <input type="hidden" name="_next" value="https://savagelane.com/thanks.html" />
 
         <div class="full">
           <label for="name">Your name</label>
@@ -140,14 +140,14 @@
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
 
-  <!-- JSON-LD: minimalist and accurate for a referral concierge -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Savage Lane",
     "url": "https://savagelane.com/",
-    "logo": "https://savagelane.com/assets/logo.png",
+    "logo": "https://savagelane.com/images/savage-lane-logo.png",
     "sameAs": [],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
