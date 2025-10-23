@@ -2,32 +2,284 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Thank You | Home Match Concierge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Thank you for your request. Your information has been received and will be registered with our brokerage referral program shortly." />
-  <link rel="canonical" href="https://savagelane.com/thanks.html" />
-  <meta name="robots" content="noindex,follow" />
-  <meta property="og:title" content="Thank You | Home Match Concierge" />
-  <meta property="og:description" content="Your referral concierge request has been received." />
+
+  <title>Thank You | Savage Lane Home Match Concierge</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+
+  <meta name="description" content="Thanks for reaching out. A trusted Coldwell Banker Realty professional will contact you soon to help with your home goals." />
+  <link rel="canonical" href="https://savagelane.com/thanks" />
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://savagelane.com/thanks.html" />
-  <meta property="og:image" content="https://savagelane.com/assets/og/default.jpg" />
+  <meta property="og:title" content="Thank You | Savage Lane Home Match Concierge" />
+  <meta property="og:description" content="Thanks for reaching out. A trusted Coldwell Banker Realty professional will contact you soon to help with your home goals." />
+  <meta property="og:image" content="/images/default-og.png" />
+  <meta property="og:url" content="https://savagelane.com/thanks" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Thank You | Savage Lane Home Match Concierge" />
+  <meta name="twitter:description" content="Thanks for reaching out. A trusted Coldwell Banker Realty professional will contact you soon to help with your home goals." />
+  <meta name="twitter:image" content="/images/default-og.png" />
+
+  <!-- SEO handling for thank you pages -->
+  <meta name="robots" content="noindex, nofollow" />
+
   <style>
-    body{margin:0;background:#0b1020;color:#f3f4f6;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;text-align:center}
-    .box{max-width:640px;background:#111827;border:1px solid #1f2937;border-radius:16px;padding:40px}
-    h1{font-size:2rem;margin:0 0 12px}
-    p{margin:0 0 16px;line-height:1.5}
-    a{color:#60a5fa;text-decoration:none;font-weight:600}
-    a:hover{text-decoration:underline}
+    :root {
+      --bgDark: rgba(0, 0, 0, 0.6);
+      --textLight: #ffffff;
+      --textSoft: rgba(255, 255, 255, 0.85);
+      --brand: #1e90ff;
+      --brandDark: #1573cc;
+      --cardBg: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.15);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      --radius: 16px;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+      color: var(--textLight);
+      background: #0b0f16;
+    }
+
+    .heroSection {
+      position: relative;
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      background-image: url("/images/home-match-banner.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.75));
+      backdrop-filter: blur(1px);
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 880px;
+      padding: 24px;
+    }
+
+    .card {
+      background: var(--cardBg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px 28px;
+      text-align: center;
+      backdrop-filter: saturate(140%) blur(6px);
+      animation: fadeIn 600ms ease-out both;
+    }
+
+    .brand {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--textSoft);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 44px;
+      line-height: 1.1;
+      margin: 6px 0 14px 0;
+    }
+
+    .lead {
+      font-size: 18px;
+      color: var(--textSoft);
+      margin: 0 auto 22px auto;
+      max-width: 720px;
+    }
+
+    .actions {
+      margin-top: 22px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      border: 1px solid transparent;
+    }
+
+    .btnPrimary {
+      background: var(--brand);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(30, 144, 255, 0.3);
+    }
+    .btnPrimary:hover {
+      background: var(--brandDark);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(21, 115, 204, 0.35);
+    }
+
+    .btnGhost {
+      background: transparent;
+      color: var(--textLight);
+      border-color: var(--border);
+    }
+    .btnGhost:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-1px);
+    }
+
+    .checkWrap {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 18px auto;
+      position: relative;
+    }
+
+    .ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(30,144,255,0.25), transparent 70%);
+      animation: pulse 1800ms ease-out infinite;
+    }
+
+    .check {
+      width: 82px;
+      height: 82px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .check circle {
+      fill: none;
+      stroke: rgba(255,255,255,0.35);
+      stroke-width: 2.5;
+    }
+
+    .check path {
+      fill: none;
+      stroke: #fff;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: draw 700ms ease-out 250ms forwards;
+      filter: drop-shadow(0 2px 6px rgba(255,255,255,0.35));
+    }
+
+    .note {
+      margin-top: 18px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      text-align: center;
+    }
+
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes pulse {
+      0%   { opacity: 0.0; transform: scale(0.85); }
+      40%  { opacity: 0.7; transform: scale(1); }
+      100% { opacity: 0.0; transform: scale(1.15); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .legal {
+      margin-top: 26px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .srOnly {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
   </style>
 </head>
+
 <body>
-  <div class="box">
-    <h1>Thank You!</h1>
-    <p>Your request has been received.</p>
-    <p>We’ll register your information with our brokerage referral program and confirm placement with a qualified sales professional who serves your area.</p>
-    <p>You’ll receive an email shortly confirming receipt.</p>
-    <p><a href="/">← Return to Home</a></p>
-  </div>
+  <section class="heroSection" role="banner" aria-label="Savage Lane Home Match Concierge">
+    <div class="overlay" aria-hidden="true"></div>
+    <div class="container">
+      <div class="card" role="status" aria-live="polite">
+        <div class="checkWrap" aria-hidden="true">
+          <div class="ring"></div>
+          <svg class="check" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="29"></circle>
+            <path d="M18 33 L28 43 L47 23"></path>
+          </svg>
+        </div>
+
+        <div class="brand">Savage Lane</div>
+        <h1>Thank you for your request</h1>
+        <p class="lead">
+          We received your details. A trusted Coldwell Banker Realty professional will reach out soon to learn about your plans and connect you with the right Realtor for your goals.
+        </p>
+
+        <div class="actions">
+          <a class="btn btnPrimary" href="/index.html" aria-label="Return to Home">
+            Return to Home
+          </a>
+          <a class="btn btnGhost" href="/privacy.html" aria-label="View Privacy Policy">
+            Privacy Policy
+          </a>
+        </div>
+
+        <p class="note">
+          If you have anything to add, reply to the confirmation email and we will include it for the match.
+        </p>
+
+        <div class="legal">
+          Savage Lane | Home Match Concierge operates as a referral concierge with Coldwell Banker Realty Referral Network. This is not a solicitation for listing or buyer representation and not an offer of brokerage services. All referrals are placed through CBRRN under the Independent Contractor Agreement and related addenda. Equal Housing Opportunity.
+        </div>
+      </div>
+
+      <footer>
+        © <span id="year"></span> Savage Lane. All rights reserved.
+      </footer>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

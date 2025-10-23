@@ -2,90 +2,280 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Privacy Policy | Savage Lane Referral Concierge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Privacy policy explaining what we collect, how we use it, and how to contact us." />
-  <link rel="canonical" href="https://savagelane.com/privacy.html" />
-  <meta name="robots" content="index,follow" />
-  <meta property="og:title" content="Privacy Policy | Savage Lane Referral Concierge" />
-  <meta property="og:description" content="What we collect, how we use it, and your choices." />
+
+  <title>Privacy Policy | Savage Lane Home Match Concierge</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+
+  <meta name="description" content="Privacy policy for Savage Lane Home Match Concierge. Learn what we collect, how it is used, and your choices." />
+  <link rel="canonical" href="https://savagelane.com/privacy" />
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://savagelane.com/privacy.html" />
-  <meta property="og:image" content="https://savagelane.com/assets/og/default.jpg" />
+  <meta property="og:title" content="Privacy Policy | Savage Lane Home Match Concierge" />
+  <meta property="og:description" content="Privacy policy for Savage Lane Home Match Concierge. Learn what we collect, how it is used, and your choices." />
+  <meta property="og:image" content="/images/default-og.png" />
+  <meta property="og:url" content="https://savagelane.com/privacy" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Privacy Policy | Savage Lane Home Match Concierge" />
+  <meta name="twitter:description" content="Privacy policy for Savage Lane Home Match Concierge. Learn what we collect, how it is used, and your choices." />
+  <meta name="twitter:image" content="/images/default-og.png" />
+
+  <!-- Indexable for SEO -->
+  <meta name="robots" content="index, follow" />
+
   <style>
-    body{margin:0;background:#0b1020;color:#f3f4f6;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
-    .wrap{max-width:900px;margin:0 auto;padding:32px}
-    h1{font-size:2rem;margin:0 0 12px}
-    h2{font-size:1.25rem;margin:20px 0 8px}
-    p,li{color:#d7deea}
-    a{color:#60a5fa;text-decoration:none;font-weight:600}
-    a:hover{text-decoration:underline}
-    .panel{background:#111827;border:1px solid #1f2937;border-radius:14px;padding:18px}
-    .meta{color:#93a3bd;font-size:.95rem;margin-bottom:16px}
+    :root {
+      --bgDark: rgba(0, 0, 0, 0.6);
+      --textLight: #ffffff;
+      --textSoft: rgba(255, 255, 255, 0.85);
+      --brand: #1e90ff;
+      --brandDark: #1573cc;
+      --cardBg: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.15);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      --radius: 16px;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+      color: var(--textLight);
+      background: #0b0f16;
+    }
+
+    .heroSection {
+      position: relative;
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      background-image: url("/images/home-match-banner.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.75));
+      backdrop-filter: blur(1px);
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 980px;
+      padding: 24px;
+    }
+
+    .card {
+      background: var(--cardBg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px 28px;
+      backdrop-filter: saturate(140%) blur(6px);
+    }
+
+    .brand {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--textSoft);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 44px;
+      line-height: 1.1;
+      margin: 6px 0 20px 0;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin: 26px 0 10px;
+    }
+
+    p, li {
+      font-size: 16px;
+      color: var(--textSoft);
+      line-height: 1.7;
+    }
+
+    .metaRow {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      color: rgba(255,255,255,0.8);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .btnRow {
+      margin-top: 22px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      border: 1px solid transparent;
+    }
+    .btnPrimary {
+      background: var(--brand);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(30, 144, 255, 0.3);
+    }
+    .btnPrimary:hover {
+      background: var(--brandDark);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(21, 115, 204, 0.35);
+    }
+    .btnGhost {
+      background: transparent;
+      color: var(--textLight);
+      border-color: var(--border);
+    }
+    .btnGhost:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-1px);
+    }
+
+    .legal {
+      margin-top: 26px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      text-align: center;
+    }
+
+    .srOnly {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Savage Lane | Home Match Concierge",
+    "url": "https://savagelane.com",
+    "logo": "https://savagelane.com/images/default-og.png",
+    "sameAs": []
+  }
+  </script>
 </head>
+
 <body>
-  <div class="wrap">
-    <h1>Privacy Policy</h1>
-    <p class="meta">Last updated: <span id="updated"></span></p>
+  <section class="heroSection" role="banner" aria-label="Savage Lane Home Match Concierge">
+    <div class="overlay" aria-hidden="true"></div>
+    <div class="container">
+      <div class="card">
+        <div class="brand">Savage Lane</div>
+        <h1>Privacy Policy</h1>
+        <div class="metaRow">
+          <div>Effective date: <span id="effective"></span></div>
+        </div>
 
-    <div class="panel">
-      <h2>Who we are</h2>
-      <p>Savage Lane operates a referral concierge for real estate. We act in a referral only capacity. After you submit our form we register your request with our brokerage referral program so a licensed sales professional can contact you about your real estate needs. We do not list, show, or negotiate real estate.</p>
+        <p>
+          Savage Lane Home Match Concierge respects your privacy. This page explains what we collect, how we use it, and the choices you have. We operate as a referral concierge under the Coldwell Banker Realty Referral Network. We do not perform brokerage services. All referrals are placed under the Independent Contractor Agreement and related addenda.
+        </p>
 
-      <h2>What we collect</h2>
-      <ul>
-        <li>Contact details such as name, email, phone</li>
-        <li>Location such as ZIP or city and state</li>
-        <li>Basic intent such as buying, selling, or both plus optional timeline and notes</li>
-      </ul>
+        <h2>Information we collect</h2>
+        <ul>
+          <li><strong>Contact details</strong>, such as your name, email, and phone, when you submit the form.</li>
+          <li><strong>Home goals</strong>, such as city, price range, and timing, that you share in the form.</li>
+          <li><strong>Technical data</strong> that your browser provides, such as IP address and user agent, for security and site performance.</li>
+        </ul>
 
-      <h2>How we collect it</h2>
-      <p>Information is collected when you submit the form on <strong>savagelane.com</strong>. Form handling is provided by Formspree which securely relays submissions to our email and dashboard.</p>
+        <h2>How we use information</h2>
+        <ul>
+          <li>To respond to your request and confirm details for your referral.</li>
+          <li>To place a referral through CBRRN and connect you with a qualified Coldwell Banker Realty professional.</li>
+          <li>To improve our site and safeguard against fraud or misuse.</li>
+        </ul>
 
-      <h2>How we use information</h2>
-      <ul>
-        <li>To review your request and confirm we received it</li>
-        <li>To register your request with our brokerage referral program for placement with a qualified licensed sales professional</li>
-        <li>To stay in touch about status and service quality</li>
-      </ul>
+        <h2>Sharing</h2>
+        <p>
+          We share your information only as needed to process your referral through CBRRN and to connect you with the assigned professional. We do not sell your personal information.
+        </p>
 
-      <h2>Sharing</h2>
-      <p>We share your details only as needed to register and place your referral with the brokerage referral program and the assigned licensed sales professional. We do not sell personal information.</p>
+        <h2>Retention</h2>
+        <p>
+          We keep your information for as long as needed to service your request and meet our obligations, including recordkeeping required by CBRRN policies.
+        </p>
 
-      <h2>Data retention</h2>
-      <p>We keep referral records for as long as needed for placement, follow up, and compliance. If you ask us to delete your information we will do so unless we must keep it for legal or record keeping reasons.</p>
+        <h2>Your choices</h2>
+        <ul>
+          <li>You can request access, correction, or deletion of your information, subject to legal and contractual limits.</li>
+          <li>You can contact us to update your preferences or withdraw your request before a referral is placed.</li>
+        </ul>
 
-      <h2>Your choices</h2>
-      <ul>
-        <li>You may request access, correction, or deletion of your information</li>
-        <li>You may request that we stop contacting you except for required notices</li>
-      </ul>
+        <h2>Security</h2>
+        <p>
+          We use reasonable safeguards to protect your information. No method of transmission or storage is fully secure, but we work to protect your data and review safeguards over time.
+        </p>
 
-      <h2>Security</h2>
-      <p>We use reasonable administrative and technical safeguards. No method of transmission or storage is perfectly secure, but we work to protect your information.</p>
+        <h2>Form submissions</h2>
+        <p>
+          Our contact form is powered by Formspree. Form content you submit is transmitted to us so we can respond. For questions about how Formspree processes data, review their documentation.
+        </p>
 
-      <h2>Cookies and analytics</h2>
-      <p>We do not use analytics or advertising cookies on this site at this time.</p>
+        <h2>Contact</h2>
+        <p>
+          To ask questions or exercise a privacy right, reply to your confirmation email or reach us through the contact form on the home page.
+        </p>
 
-      <h2>Children</h2>
-      <p>This service is for adults and is not directed to children under 18.</p>
+        <div class="btnRow">
+          <a class="btn btnPrimary" href="/index.html" aria-label="Return to Home">Return to Home</a>
+          <a class="btn btnGhost" href="/thanks.html" aria-label="View confirmation page">View Thank You Page</a>
+        </div>
 
-      <h2>Contact</h2>
-      <p>For privacy requests email <a href="mailto:hello@savagelane.com">hello@savagelane.com</a>.</p>
+        <div class="legal">
+          Equal Housing Opportunity. Savage Lane Home Match Concierge is a referral concierge with Coldwell Banker Realty Referral Network. This is not a solicitation for listing or buyer representation and not an offer of brokerage services.
+        </div>
+      </div>
 
-      <h2>Changes</h2>
-      <p>We may update this policy. Material changes will be posted on this page with a new effective date.</p>
+      <footer>
+        © <span id="year"></span> Savage Lane. All rights reserved.
+      </footer>
     </div>
-
-    <p style="margin-top:18px;"><a href="/">Return to Home</a></p>
-  </div>
+  </section>
 
   <script>
-    // Insert todays date in Month Day, Year format
-    const d = new Date();
-    const opts = { year: "numeric", month: "long", day: "numeric" };
-    document.getElementById("updated").textContent = d.toLocaleDateString(undefined, opts);
+    const now = new Date();
+    document.getElementById("year").textContent = now.getFullYear();
+    document.getElementById("effective").textContent = now.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
   </script>
 </body>
 </html>
