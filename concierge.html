@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <title>Home Match Concierge | Savage Lane</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Free referral concierge for buyers and sellers. Tell us your city and timing. We register your request with our brokerage referral program and connect you with a proven licensed pro in your market." />
+  <meta name="description" content="Free referral concierge for buyers and sellers. Tell us your city and timing. We register your request with our brokerage referral program and connect you with a proven licensed Realtor in your market." />
   <link rel="canonical" href="https://savagelane.com/concierge.html" />
   <meta name="robots" content="index,follow" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Home Match Concierge | Savage Lane" />
-  <meta property="og:description" content="Free referral concierge that connects buyers and sellers with proven local pros." />
+  <meta property="og:description" content="Free referral concierge that connects buyers and sellers with proven local Realtors." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://savagelane.com/concierge.html" />
   <meta property="og:image" content="https://savagelane.com/images/default-og.png" />
@@ -58,8 +58,6 @@
 
     .container{max-width:1100px;margin:0 auto;padding:20px}
     .grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap)}
-    @media(min-width:900px){.grid-2{grid-template-columns:1.2fr .8fr}}
-    @media(min-width:1100px){.grid-3{grid-template-columns:repeat(3,1fr)}}
 
     /* Sticky nav */
     .nav-wrap{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.7);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
@@ -74,8 +72,6 @@
     /* Buttons */
     .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 16px;border:1px solid rgba(0,0,0,.08);background:#ffffff;color:var(--ink);font-weight:600;box-shadow:var(--shadow)}
     .btn.primary{background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29;border:none}
-    .btn.coral{background:linear-gradient(90deg, var(--accent-2), #ffb3a6); color:#3a0e0e;border:none}
-    .btn.sky{background:linear-gradient(90deg, var(--accent-3), #9fd0ff); color:#0b2447;border:none}
 
     /* Breadcrumb */
     .crumbs{margin:10px 0 14px;font-size:.95rem;color:var(--muted)}
@@ -90,20 +86,12 @@
         linear-gradient(180deg,#ffffff 0%,#fbfeff 100%);
       border:1px solid rgba(0,0,0,.06)}
     .hero h1{margin:6px 0 8px;font-size:2.1rem;letter-spacing:.2px}
-    .hero p.lead{margin:0 0 14px;color:var(--muted)}
+    .hero p.lead{margin:0;color:var(--muted)}
     .hero img{width:100%;height:auto;border-radius:16px;border:1px solid rgba(0,0,0,.08);margin:0 0 12px}
 
-    /* Cards and video */
+    /* Card + form */
     .card{background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
-    .card h3{margin:0 0 8px}
-    .note{font-size:.95rem;color:var(--muted);margin-top:8px}
-
-    .video-card{background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-    .video-card header{padding:14px 16px;font-weight:600;border-bottom:1px solid rgba(0,0,0,.06)}
-    .video-wrap{position:relative;aspect-ratio:16/9;background:#eef5ff}
-    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-
-    /* Form */
+    .card h2{margin:0 0 8px}
     form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     label{font-size:.95rem;color:var(--muted)}
     input,select,textarea{
@@ -168,24 +156,19 @@
       <a href="/">Home</a><span class="sep" aria-hidden="true">›</span><span>Concierge</span>
     </nav>
 
-    <!-- Hero -->
+    <!-- Hero (no extra buttons) -->
     <section class="hero">
       <img src="/images/home-match-banner.png" alt="Home Match Concierge banner">
       <h1>Home Match Concierge</h1>
       <p class="lead">
-        Free referral concierge for buyers and sellers. Tell us your city and timing. We register your request with our brokerage referral program and connect you with a proven licensed pro in your market.
+        Free referral concierge for buyers and sellers. Tell us your city and timing. We register your request with our brokerage referral program and connect you with a proven licensed Realtor in your market.
       </p>
-      <div class="links" style="margin-top:10px;flex-wrap:wrap;gap:10px">
-        <a class="btn sky" href="#matchform">Request my match</a>
-        <a class="btn coral" href="#how-it-works">How it works</a>
-      </div>
     </section>
 
-    <!-- Main content grid: form + info/video -->
-    <section class="grid grid-2" style="margin-top:18px">
-      <!-- Form card -->
-      <div class="card" aria-labelledby="matchform">
-        <h2 id="matchform" style="margin-top:0">Request your match</h2>
+    <!-- Single-column content: centered form card -->
+    <section class="grid" style="margin-top:18px">
+      <div class="card" aria-labelledby="matchform" style="max-width:760px;margin:0 auto">
+        <h2 id="matchform">Request your match</h2>
 
         <form id="matchForm" action="https://formspree.io/f/mldpyljb" method="POST" novalidate>
           <!-- spam honeypot -->
@@ -333,27 +316,6 @@
           </div>
         </form>
       </div>
-
-      <!-- Info and optional video -->
-      <div class="grid" id="how-it-works" style="gap:18px">
-        <div class="video-card">
-          <header>Learn fast</header>
-          <div class="video-wrap" id="video-slot" aria-label="Concierge explainer video"></div>
-        </div>
-
-        <div class="card">
-          <h3>How it works</h3>
-          <ul class="note" style="list-style:disc;padding-left:18px;margin:10px 0 0">
-            <li>Share your city timing and basic needs</li>
-            <li>We register your request with our brokerage referral program</li>
-            <li>A licensed pro in your market reaches out</li>
-            <li>You get help from tour to close</li>
-          </ul>
-          <div style="margin-top:12px">
-            <a class="btn primary" href="#matchform">Start your match</a>
-          </div>
-        </div>
-      </div>
     </section>
 
     <footer>
@@ -458,19 +420,6 @@
       });
 
       document.getElementById("y").textContent=new Date().getFullYear();
-    })();
-
-    // Featured video hook
-    (function(){
-      window.SL_FEATURED_VIDEO = window.SL_FEATURED_VIDEO || "";
-      const vid = window.SL_FEATURED_VIDEO;
-      const el = document.getElementById("video-slot");
-      if (el && vid) {
-        el.innerHTML =
-          '<iframe title="Concierge explainer video" src="https://www.youtube.com/embed/' +
-          encodeURIComponent(vid) +
-          '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
-      }
     })();
   </script>
 </body>
