@@ -4,10 +4,10 @@
   <meta charset="utf-8" />
   <title>Buyer Resource Center | Savage Lane</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Clear, step by step guides for home buyers. Credit, loans, down payment assistance, inspections, closing costs, and more. When you are ready, use Home Match Concierge to get matched to trusted local pros." />
+  <meta name="description" content="Clear step by step guides for home buyers. Credit loans down payment assistance inspections closing costs and more. When you are ready use Home Match Concierge to get matched to trusted local pros." />
   <link rel="canonical" href="https://savagelane.com/buyers.html" />
   <meta name="robots" content="index,follow" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
 
   <meta property="og:title" content="Buyer Resource Center | Savage Lane" />
   <meta property="og:description" content="Everything a buyer needs to know in one place. Learn first then get matched to trusted local pros." />
@@ -21,35 +21,118 @@
   <meta name="twitter:image" content="https://savagelane.com/images/default-og.png" />
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
 
   <style>
-    :root{--bg:#0b1020;--panel:#0f172a;--text:#eef2f7;--muted:#b8c1d8;--accent:#2563eb}
+    :root{
+      --bg:#f7fbff;
+      --ink:#0b1b2b;
+      --muted:#52637a;
+      --card:#ffffff;
+      --accent:#2ec5b6; /* mint */
+      --accent-2:#ff7a7a; /* coral */
+      --accent-3:#5aa8ff; /* sky */
+      --ring:rgba(46,197,182,.24);
+      --shadow:0 10px 25px rgba(0,0,0,.06);
+      --radius:16px;
+      --grid-gap:18px;
+      --nav-h:68px;
+    }
+
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
-    .wrap{max-width:1000px;margin:0 auto;padding:32px}
-    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-    header img{height:56px;width:auto;border-radius:8px}
-    .links{display:flex;gap:14px;align-items:center}
-    a{color:#8ab4ff;text-decoration:none}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(94,179,255,.25), transparent 60%),
+        radial-gradient(1000px 500px at 90% 0%, rgba(255,164,164,.22), transparent 60%),
+        linear-gradient(180deg,#f9fcff 0%,#f6fbff 40%,#f4fafc 100%);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      line-height:1.6;
+    }
+
+    /* Layout */
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    .pad{padding:20px}
+    .grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap)}
+    @media(min-width:900px){.grid-2{grid-template-columns:1fr 1fr}}
+    @media(min-width:1100px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+
+    /* Sticky Nav */
+    .nav-wrap{
+      position:sticky;top:0;z-index:30;background:rgba(255,255,255,.7);
+      backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    nav.main{
+      height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:14px
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img{height:44px;width:auto;border-radius:10px;box-shadow:var(--shadow)}
+    .brand span{font-weight:700;font-size:1.05rem;color:var(--ink)}
+    .links{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    a{color:#0a63dd;text-decoration:none}
     a:hover{text-decoration:underline}
-    .btn{display:inline-block;padding:12px 16px;border-radius:10px;background:#2b2f3a;color:#fff;font-weight:600}
-    .btn.primary{background:#5a7cff}
-    .hero{padding:10px 0 6px}
-    h1{font-size:2rem;margin:4px 0 8px}
-    p{margin:0 0 12px;color:#cfd6e6}
-    .panel{background:var(--panel);border:1px solid #1f2937;border-radius:14px;padding:18px}
-    .grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:18px}
-    @media(min-width:880px){.grid{grid-template-columns:1fr 1fr}}
-    .card{background:#14161c;border:1px solid #232733;border-radius:14px;padding:18px}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 16px;
+      border:1px solid rgba(0,0,0,.08); background:#ffffff; color:var(--ink); font-weight:600;
+      box-shadow:var(--shadow)
+    }
+    .btn.primary{background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29;border:none}
+    .btn.coral{background:linear-gradient(90deg, var(--accent-2), #ffb3a6); color:#3a0e0e;border:none}
+    .btn.sky{background:linear-gradient(90deg, var(--accent-3), #9fd0ff); color:#0b2447;border:none}
+
+    /* Hero */
+    .hero{
+      border-radius:24px; padding:28px; box-shadow:var(--shadow);
+      background:
+        radial-gradient(1200px 500px at 0% 0%, rgba(94,179,255,.30), transparent 60%),
+        radial-gradient(900px 450px at 100% 0%, rgba(255,164,164,.26), transparent 60%),
+        linear-gradient(180deg,#ffffff 0%,#fbfeff 100%);
+      border:1px solid rgba(0,0,0,.06);
+    }
+    .hero h1{margin:6px 0 8px;font-size:2.1rem;letter-spacing:.2px}
+    .hero p.lead{margin:0 0 14px;color:var(--muted)}
+
+    /* Video */
+    .video-card{
+      background:var(--card); border:1px solid rgba(0,0,0,.06); border-radius:var(--radius);
+      box-shadow:var(--shadow); overflow:hidden
+    }
+    .video-card header{padding:14px 16px;font-weight:600;border-bottom:1px solid rgba(0,0,0,.06)}
+    .video-wrap{position:relative;aspect-ratio:16/9;background:#eef5ff}
+    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+    /* Cards */
+    .card{
+      background:var(--card); border:1px solid rgba(0,0,0,.06); border-radius:var(--radius);
+      padding:18px; box-shadow:var(--shadow)
+    }
     .card h3{margin:0 0 8px}
-    ul{margin:10px 0 0;padding-left:18px}
-    .note{font-size:.9rem;color:var(--muted);margin-top:8px}
-    footer{margin-top:28px;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    .note{font-size:.95rem;color:var(--muted);margin-top:8px}
+
+    /* List blocks */
+    ol,ul{margin:10px 0 0;padding-left:18px}
+    .list-clean{list-style:none;padding-left:0;margin:8px 0 0}
+    .list-clean li{padding:8px 0;border-top:1px dashed rgba(0,0,0,.08)}
+    .list-clean li:first-child{border-top:none}
+
+    /* Breadcrumb */
+    .crumbs{margin:10px 0 14px;font-size:.95rem;color:var(--muted)}
+    .crumbs a{color:#0a63dd;text-decoration:none}
+    .crumbs .sep{margin:0 6px}
+
+    /* Footer */
+    footer{margin:28px 0 30px;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    footer .links a{color:#0a63dd}
+
+    /* Focus */
+    :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:10px}
   </style>
 
+  <!-- FAQ schema -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -58,7 +141,7 @@
       {
         "@type":"Question",
         "name":"What credit score do I need to buy a home",
-        "acceptedAnswer":{"@type":"Answer","text":"Many lenders can approve as low as the mid six hundreds for certain loan types. Higher scores can improve rate and lower costs. Work on on time payments, low balances, and correcting errors before you apply."}
+        "acceptedAnswer":{"@type":"Answer","text":"Many lenders can approve as low as the mid six hundreds for certain loan types. Higher scores can improve rate and lower costs. Work on on time payments low balances and correcting errors before you apply."}
       },
       {
         "@type":"Question",
@@ -67,7 +150,9 @@
       }
     ]
   }
-   </script>
+  </script>
+
+  <!-- Organization schema -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -81,23 +166,29 @@
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <a href="/" aria-label="Savage Lane Home">
-        <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
-      </a>
-      <nav class="links" aria-label="Main">
-        <a href="/buyers.html" aria-current="page">Buyers</a>
-        <a href="/sellers.html">Sellers</a>
-        <a class="btn" href="/concierge.html">Home Match Concierge</a>
+  <!-- Sticky nav -->
+  <div class="nav-wrap">
+    <div class="container">
+      <nav class="main" aria-label="Primary">
+        <a class="brand" href="/" aria-label="Savage Lane Home">
+          <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
+          <span>Savage Lane</span>
+        </a>
+        <div class="links">
+          <a href="/buyers.html" aria-current="page">Buyers</a>
+          <a href="/sellers.html">Sellers</a>
+          <a class="btn primary" href="/concierge.html">Home Match Concierge</a>
+        </div>
       </nav>
-      </header>
+    </div>
+  </div>
 
-    <nav aria-label="Breadcrumb" style="margin:4px 0 10px;font-size:.95rem;color:#b8c1d8">
-      <a href="/" style="color:#8ab4ff;text-decoration:none">Home</a>
-      <span aria-hidden="true"> › </span>
-      <span>Buyers</span>
+  <div class="container">
+    <!-- Breadcrumbs -->
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep" aria-hidden="true">›</span><span>Buyers</span>
     </nav>
+
     <script type="application/ld+json">
     {
       "@context":"https://schema.org",
@@ -109,26 +200,53 @@
     }
     </script>
 
+    <!-- Hero -->
     <section class="hero">
       <h1>Buyer Resource Center</h1>
-      <p class="panel">
-        Learn the steps from credit to keys. When you are ready, we can match you to trusted local agents and lenders with Home Match Concierge.
+      <p class="lead">
+        Learn the steps from credit to keys. When you are ready we can match you to trusted local agents and lenders with Home Match Concierge.
       </p>
-
-      <p>
-        Quick start choices
-      </p>
-      <div class="links" style="margin-top:8px;flex-wrap:wrap;gap:10px">
+      <div class="links" style="margin-top:10px;flex-wrap:wrap;gap:10px">
         <a class="btn primary" href="#top-questions">Top buyer questions</a>
-        <a class="btn" href="#core-guides">Core guides</a>
-        <a class="btn" href="/concierge.html">Get matched now</a>
+        <a class="btn sky" href="#core-guides">Core guides</a>
+        <a class="btn coral" href="/concierge.html">Get matched now</a>
       </div>
     </section>
 
-    <section id="top-questions" class="grid">
+    <!-- Featured video block with hook -->
+    <section class="grid grid-2" style="margin-top:18px" aria-labelledby="learnfast">
+      <div class="video-card">
+        <header id="learnfast">Learn fast</header>
+        <div class="video-wrap" id="video-slot" aria-label="Featured buyer video"></div>
+      </div>
+
+      <div class="card">
+        <h3>How matching works</h3>
+        <p>
+          Tell us your city timeline and basic needs. We register your request with our brokerage referral program and a licensed pro in your market will reach out. We do not list show or negotiate real estate. We act only in a referral capacity.
+        </p>
+        <p class="note">
+          If someone referred you mention them in the Referred By field and we share twenty percent of our referral earnings with them.
+        </p>
+
+        <ul class="list-clean" style="margin-top:12px">
+          <li>Step one share your city and timeline</li>
+          <li>Step two we match you to a local pro</li>
+          <li>Step three you tour homes with your agent</li>
+          <li>Step four close with confidence</li>
+        </ul>
+
+        <div style="margin-top:12px">
+          <a class="btn primary" href="/concierge.html" aria-label="Use Home Match Concierge">Use Home Match Concierge</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Top questions -->
+    <section id="top-questions" class="grid grid-2" style="margin-top:18px">
       <div class="card">
         <h3>Top buyer questions</h3>
-        <ol style="margin:8px 0 0;padding-left:18px">
+        <ol>
           <li>How much can I afford and what payment fits my budget</li>
           <li>What credit score do I need and how do I improve it</li>
           <li>Should I get pre approval before I shop</li>
@@ -139,21 +257,22 @@
       </div>
 
       <div class="card">
-        <h3>How matching works</h3>
-        <p>
-          Tell us your city, timeline, and basic needs. We register your request with our brokerage referral program and a licensed pro in your market will reach out. We do not list, show, or negotiate real estate. We act only in a referral capacity.
-        </p>
-        <p class="note">If someone referred you, mention them in the Referred By field and we share twenty percent of our referral earnings with them.</p>
+        <h3>Quick start choices</h3>
+        <div class="links" style="flex-wrap:wrap;gap:10px">
+          <a class="btn sky" href="#core-guides">Core guides</a>
+          <a class="btn coral" href="/concierge.html">Get matched now</a>
+        </div>
       </div>
     </section>
 
-    <section id="core-guides" class="grid">
+    <!-- Core guides -->
+    <section id="core-guides" class="grid grid-3" style="margin-top:18px">
       <div class="card">
         <h3>Credit and loans</h3>
         <ul>
           <li><a href="/guides/buyer-credit-basics.html">Credit score basics and quick wins</a></li>
           <li><a href="/guides/preapproval-vs-prequalification.html">Pre approval vs pre qualification</a></li>
-          <li><a href="/guides/loan-types-fha-va-conventional.html">FHA, VA, and conventional explained</a></li>
+          <li><a href="/guides/loan-types-fha-va-conventional.html">FHA VA and conventional explained</a></li>
           <li><a href="/guides/down-payment-assistance.html">Down payment help and grants by state</a></li>
         </ul>
       </div>
@@ -177,22 +296,16 @@
           <li><a href="/guides/closing-day-prep.html">Closing day prep list</a></li>
         </ul>
       </div>
-
-      <div class="card">
-        <h3>Next step</h3>
-        <p>Ready to talk to a pro in your market</p>
-        <p><a class="btn primary" href="/concierge.html">Use Home Match Concierge</a></p>
-        <p class="note">No cost to you for matching. If a transaction closes with a matched pro we may receive a referral fee from the brokerage where allowed by law.</p>
-      </div>
     </section>
 
-    <section class="grid" aria-labelledby="recs" style="margin-top:18px;">
+    <!-- Recommended reads -->
+    <section class="grid" aria-labelledby="recs" style="margin-top:18px">
       <div class="card">
         <h3 id="recs">Recommended reads</h3>
-        <ul style="padding-left:18px; margin:10px 0 0;">
+        <ul style="padding-left:18px;margin:10px 0 0">
           <li><a href="/guides/buyer-credit-basics.html">Buyer credit basics and quick wins</a></li>
           <li><a href="/guides/preapproval-vs-prequalification.html">Pre approval versus pre qualification</a></li>
-          <li><a href="/guides/loan-types-fha-va-conventional.html">FHA, VA, and conventional explained</a></li>
+          <li><a href="/guides/loan-types-fha-va-conventional.html">FHA VA and conventional explained</a></li>
           <li><a href="/guides/hidden-costs-for-buyers.html">Hidden costs buyers should expect</a></li>
         </ul>
       </div>
@@ -200,18 +313,30 @@
 
     <footer>
       <div>© <span id="y"></span> Savage Lane</div>
-      <div>
+      <div class="links">
         <a href="/sellers.html">Sellers</a>
         <span aria-hidden="true"> • </span>
         <a href="/concierge.html">Concierge</a>
         <span aria-hidden="true"> • </span>
         <a href="/privacy.html">Privacy</a>
       </div>
+      <div class="note" style="flex-basis:100%">
+        Disclosure Savage Lane participates solely as a referral associate through the Coldwell Banker Realty Referral Network. We do not list show or negotiate property. Matches are made to licensed professionals in your market through the brokerage referral program where permitted by law.
+      </div>
     </footer>
-
   </div>
 
+  <!-- Featured video hook -->
   <script>
+    window.SL_FEATURED_VIDEO = window.SL_FEATURED_VIDEO || "dQw4w9WgXcQ"; // set your YouTube id globally when needed
+    const vid = window.SL_FEATURED_VIDEO;
+    const el = document.getElementById("video-slot");
+    if (el && vid) {
+      el.innerHTML =
+        '<iframe title="Featured buyer video" src="https://www.youtube.com/embed/' +
+        encodeURIComponent(vid) +
+        '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+    }
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
 </body>

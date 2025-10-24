@@ -2,275 +2,227 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>Privacy Policy | Savage Lane Home Match Concierge</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Privacy policy for Savage Lane Home Match Concierge. Learn what we collect, how it is used, and your choices." />
-  <link rel="canonical" href="https://savagelane.com/privacy" />
+  <link rel="canonical" href="https://savagelane.com/privacy.html" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Privacy Policy | Savage Lane Home Match Concierge" />
   <meta property="og:description" content="Privacy policy for Savage Lane Home Match Concierge. Learn what we collect, how it is used, and your choices." />
-  <meta property="og:image" content="/images/default-og.png" />
-  <meta property="og:url" content="https://savagelane.com/privacy" />
+  <meta property="og:image" content="https://savagelane.com/images/default-og.png" />
+  <meta property="og:url" content="https://savagelane.com/privacy.html" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Privacy Policy | Savage Lane Home Match Concierge" />
   <meta name="twitter:description" content="Privacy policy for Savage Lane Home Match Concierge. Learn what we collect, how it is used, and your choices." />
-  <meta name="twitter:image" content="/images/default-og.png" />
+  <meta name="twitter:image" content="https://savagelane.com/images/default-og.png" />
 
-  <!-- Indexable for SEO -->
-  <meta name="robots" content="index, follow" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
 
   <style>
-    :root {
-      --bgDark: rgba(0, 0, 0, 0.6);
-      --textLight: #ffffff;
-      --textSoft: rgba(255, 255, 255, 0.85);
-      --brand: #1e90ff;
-      --brandDark: #1573cc;
-      --cardBg: rgba(255, 255, 255, 0.06);
-      --border: rgba(255, 255, 255, 0.15);
-      --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-      --radius: 16px;
+    :root{
+      --bg:#f7fbff;
+      --ink:#0b1b2b;
+      --muted:#52637a;
+      --card:#ffffff;
+      --accent:#2ec5b6;
+      --accent-2:#ff7a7a;
+      --accent-3:#5aa8ff;
+      --ring:rgba(46,197,182,.24);
+      --shadow:0 10px 25px rgba(0,0,0,.06);
+      --radius:16px;
+      --grid-gap:18px;
+      --nav-h:68px;
     }
 
-    html, body { height: 100%; }
-
-    body {
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
-      color: var(--textLight);
-      background: #0b0f16;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(94,179,255,.25), transparent 60%),
+        radial-gradient(1000px 500px at 90% 0%, rgba(255,164,164,.22), transparent 60%),
+        linear-gradient(180deg,#f9fcff 0%,#f6fbff 40%,#f4fafc 100%);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7
     }
 
-    .heroSection {
-      position: relative;
-      min-height: 100%;
-      display: grid;
-      place-items: center;
-      background-image: url("/images/home-match-banner.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    .grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap)}
 
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.75));
-      backdrop-filter: blur(1px);
-    }
+    /* Sticky nav */
+    .nav-wrap{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.7);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
+    nav.main{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img{height:44px;width:auto;border-radius:10px;box-shadow:var(--shadow)}
+    .brand span{font-weight:700;font-size:1.05rem;color:var(--ink)}
+    .links{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    a{color:#0a63dd;text-decoration:none}
+    a:hover{text-decoration:underline}
 
-    .container {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 980px;
-      padding: 24px;
-    }
+    /* Breadcrumb */
+    .crumbs{margin:10px 0 14px;font-size:.95rem;color:var(--muted)}
+    .crumbs a{color:#0a63dd;text-decoration:none}
+    .crumbs .sep{margin:0 6px}
 
-    .card {
-      background: var(--cardBg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 40px 28px;
-      backdrop-filter: saturate(140%) blur(6px);
+    /* Hero */
+    .hero{
+      border-radius:24px;padding:28px;box-shadow:var(--shadow);
+      background:
+        radial-gradient(1200px 500px at 0% 0%, rgba(94,179,255,.30), transparent 60%),
+        radial-gradient(900px 450px at 100% 0%, rgba(255,164,164,.26), transparent 60%),
+        linear-gradient(180deg,#ffffff 0%,#fbfeff 100%);
+      border:1px solid rgba(0,0,0,.06)
     }
+    .hero h1{margin:6px 0 8px;font-size:2.1rem;letter-spacing:.2px}
+    .metaRow{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:.95rem;margin:4px 0 6px}
 
-    .brand {
-      font-size: 14px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--textSoft);
-      margin-bottom: 10px;
-      text-align: center;
-    }
+    /* Card/content */
+    .card{background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    .card h2{font-size:1.25rem;margin:22px 0 10px}
+    .card p,.card li{color:#244056}
+    .btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
 
-    h1 {
-      font-size: 44px;
-      line-height: 1.1;
-      margin: 6px 0 20px 0;
-      text-align: center;
-    }
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 16px;border:1px solid rgba(0,0,0,.08);background:#ffffff;color:var(--ink);font-weight:600;box-shadow:var(--shadow)}
+    .btn.primary{background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29;border:none}
+    .btn.ghost{background:#fff}
 
-    h2 {
-      font-size: 22px;
-      margin: 26px 0 10px;
-    }
+    /* Footer */
+    footer{margin:28px 0 30px;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    footer .links a{color:#0a63dd}
 
-    p, li {
-      font-size: 16px;
-      color: var(--textSoft);
-      line-height: 1.7;
-    }
-
-    .metaRow {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-      color: rgba(255,255,255,0.8);
-      font-size: 14px;
-      margin-bottom: 18px;
-    }
-
-    .btnRow {
-      margin-top: 22px;
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 18px;
-      border-radius: 10px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
-      border: 1px solid transparent;
-    }
-    .btnPrimary {
-      background: var(--brand);
-      color: #fff;
-      box-shadow: 0 8px 18px rgba(30, 144, 255, 0.3);
-    }
-    .btnPrimary:hover {
-      background: var(--brandDark);
-      transform: translateY(-1px);
-      box-shadow: 0 10px 22px rgba(21, 115, 204, 0.35);
-    }
-    .btnGhost {
-      background: transparent;
-      color: var(--textLight);
-      border-color: var(--border);
-    }
-    .btnGhost:hover {
-      background: rgba(255,255,255,0.06);
-      transform: translateY(-1px);
-    }
-
-    .legal {
-      margin-top: 26px;
-      font-size: 12px;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.75);
-      text-align: center;
-    }
-
-    footer {
-      margin-top: 18px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.65);
-      text-align: center;
-    }
-
-    .srOnly {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      border: 0;
-    }
+    /* Focus */
+    :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:10px}
   </style>
 
+  <!-- Organization schema -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Savage Lane | Home Match Concierge",
-    "url": "https://savagelane.com",
-    "logo": "https://savagelane.com/images/default-og.png",
-    "sameAs": []
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Savage Lane | Home Match Concierge",
+    "url":"https://savagelane.com/",
+    "logo":"https://savagelane.com/images/savage-lane-logo.png",
+    "sameAs":[]
   }
   </script>
 </head>
 
 <body>
-  <section class="heroSection" role="banner" aria-label="Savage Lane Home Match Concierge">
-    <div class="overlay" aria-hidden="true"></div>
+  <!-- Sticky nav -->
+  <div class="nav-wrap">
     <div class="container">
-      <div class="card">
-        <div class="brand">Savage Lane</div>
-        <h1>Privacy Policy</h1>
-        <div class="metaRow">
-          <div>Effective date: <span id="effective"></span></div>
+      <nav class="main" aria-label="Primary">
+        <a class="brand" href="/" aria-label="Savage Lane Home">
+          <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
+          <span>Savage Lane</span>
+        </a>
+        <div class="links">
+          <a href="/buyers.html">Buyers</a>
+          <a href="/sellers.html">Sellers</a>
+          <a class="btn primary" href="/concierge.html">Home Match Concierge</a>
         </div>
-
-        <p>
-          Savage Lane Home Match Concierge respects your privacy. This page explains what we collect, how we use it, and the choices you have. We operate as a referral concierge under the Coldwell Banker Realty Referral Network. We do not perform brokerage services. All referrals are placed under the Independent Contractor Agreement and related addenda.
-        </p>
-
-        <h2>Information we collect</h2>
-        <ul>
-          <li><strong>Contact details</strong>, such as your name, email, and phone, when you submit the form.</li>
-          <li><strong>Home goals</strong>, such as city, price range, and timing, that you share in the form.</li>
-          <li><strong>Technical data</strong> that your browser provides, such as IP address and user agent, for security and site performance.</li>
-        </ul>
-
-        <h2>How we use information</h2>
-        <ul>
-          <li>To respond to your request and confirm details for your referral.</li>
-          <li>To place a referral through CBRRN and connect you with a qualified Coldwell Banker Realty professional.</li>
-          <li>To improve our site and safeguard against fraud or misuse.</li>
-        </ul>
-
-        <h2>Sharing</h2>
-        <p>
-          We share your information only as needed to process your referral through CBRRN and to connect you with the assigned professional. We do not sell your personal information.
-        </p>
-
-        <h2>Retention</h2>
-        <p>
-          We keep your information for as long as needed to service your request and meet our obligations, including recordkeeping required by CBRRN policies.
-        </p>
-
-        <h2>Your choices</h2>
-        <ul>
-          <li>You can request access, correction, or deletion of your information, subject to legal and contractual limits.</li>
-          <li>You can contact us to update your preferences or withdraw your request before a referral is placed.</li>
-        </ul>
-
-        <h2>Security</h2>
-        <p>
-          We use reasonable safeguards to protect your information. No method of transmission or storage is fully secure, but we work to protect your data and review safeguards over time.
-        </p>
-
-        <h2>Form submissions</h2>
-        <p>
-          Our contact form is powered by Formspree. Form content you submit is transmitted to us so we can respond. For questions about how Formspree processes data, review their documentation.
-        </p>
-
-        <h2>Contact</h2>
-        <p>
-          To ask questions or exercise a privacy right, reply to your confirmation email or reach us through the contact form on the home page.
-        </p>
-
-        <div class="btnRow">
-          <a class="btn btnPrimary" href="/index.html" aria-label="Return to Home">Return to Home</a>
-          <a class="btn btnGhost" href="/thanks.html" aria-label="View confirmation page">View Thank You Page</a>
-        </div>
-
-        <div class="legal">
-          Equal Housing Opportunity. Savage Lane Home Match Concierge is a referral concierge with Coldwell Banker Realty Referral Network. This is not a solicitation for listing or buyer representation and not an offer of brokerage services.
-        </div>
-      </div>
-
-      <footer>
-        © <span id="year"></span> Savage Lane. All rights reserved.
-      </footer>
+      </nav>
     </div>
-  </section>
+  </div>
+
+  <div class="container">
+    <!-- Breadcrumbs -->
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep" aria-hidden="true">›</span><span>Privacy</span>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Privacy Policy</h1>
+      <div class="metaRow">
+        <div>Effective date: <span id="effective"></span></div>
+      </div>
+      <div class="btnrow">
+        <a class="btn primary" href="/index.html">Return to Home</a>
+        <a class="btn ghost" href="/thanks.html">View Thank You Page</a>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="card" style="margin-top:18px">
+      <p>
+        Savage Lane Home Match Concierge respects your privacy. This page explains what we collect, how we use it, and the choices you have. We operate as a referral concierge under the Coldwell Banker Realty Referral Network. We do not perform brokerage services. All referrals are placed under the Independent Contractor Agreement and related addenda.
+      </p>
+
+      <h2>Information we collect</h2>
+      <ul>
+        <li><strong>Contact details</strong>, such as your name, email, and phone, when you submit the form.</li>
+        <li><strong>Home goals</strong>, such as city, price range, and timing, that you share in the form.</li>
+        <li><strong>Technical data</strong> that your browser provides, such as IP address and user agent, for security and site performance.</li>
+      </ul>
+
+      <h2>How we use information</h2>
+      <ul>
+        <li>To respond to your request and confirm details for your referral.</li>
+        <li>To place a referral through CBRRN and connect you with a qualified Coldwell Banker Realty professional.</li>
+        <li>To improve our site and safeguard against fraud or misuse.</li>
+      </ul>
+
+      <h2>Sharing</h2>
+      <p>
+        We share your information only as needed to process your referral through CBRRN and to connect you with the assigned professional. We do not sell your personal information.
+      </p>
+
+      <h2>Retention</h2>
+      <p>
+        We keep your information for as long as needed to service your request and meet our obligations, including recordkeeping required by CBRRN policies.
+      </p>
+
+      <h2>Your choices</h2>
+      <ul>
+        <li>You can request access, correction, or deletion of your information, subject to legal and contractual limits.</li>
+        <li>You can contact us to update your preferences or withdraw your request before a referral is placed.</li>
+      </ul>
+
+      <h2>Security</h2>
+      <p>
+        We use reasonable safeguards to protect your information. No method of transmission or storage is fully secure, but we work to protect your data and review safeguards over time.
+      </p>
+
+      <h2>Form submissions</h2>
+      <p>
+        Our contact form is powered by Formspree. Form content you submit is transmitted to us so we can respond. For questions about how Formspree processes data, review their documentation.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        To ask questions or exercise a privacy right, reply to your confirmation email or reach us through the contact form on the home page.
+      </p>
+
+      <div class="note" style="margin-top:10px">
+        Equal Housing Opportunity. Savage Lane Home Match Concierge is a referral concierge with Coldwell Banker Realty Referral Network. This is not a solicitation for listing or buyer representation and not an offer of brokerage services.
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>© <span id="year"></span> Savage Lane</div>
+      <div class="links">
+        <a href="/buyers.html">Buyers</a>
+        <span aria-hidden="true"> • </span>
+        <a href="/sellers.html">Sellers</a>
+        <span aria-hidden="true"> • </span>
+        <a href="/concierge.html">Concierge</a>
+        <span aria-hidden="true"> • </span>
+        <a href="/privacy.html" aria-current="page">Privacy</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
     const now = new Date();

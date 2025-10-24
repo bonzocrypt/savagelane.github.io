@@ -7,7 +7,7 @@
   <meta name="description" content="Explore all pages on Savage Lane including buyer guides, seller guides, and the Home Match Concierge referral program." />
   <link rel="canonical" href="https://savagelane.com/sitemap.html" />
   <meta name="robots" content="index,follow" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Site Map | Savage Lane" />
@@ -17,85 +17,197 @@
   <meta property="og:image" content="https://savagelane.com/images/default-og.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
 
   <style>
-    :root{--bg:#0b1020;--panel:#0f172a;--text:#eef2f7;--muted:#b8c1d8;--accent:#2563eb}
+    :root{
+      --bg:#f7fbff;
+      --ink:#0b1b2b;
+      --muted:#52637a;
+      --card:#ffffff;
+      --accent:#2ec5b6;
+      --accent-2:#ff7a7a;
+      --accent-3:#5aa8ff;
+      --ring:rgba(46,197,182,.24);
+      --shadow:0 10px 25px rgba(0,0,0,.06);
+      --radius:16px;
+      --grid-gap:18px;
+      --nav-h:68px;
+    }
+
     *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
-    .wrap{max-width:900px;margin:0 auto;padding:32px}
-    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-    header img{height:56px;width:auto;border-radius:8px}
-    h1{font-size:2rem;margin:8px 0 20px}
-    h2{margin:20px 0 8px;font-size:1.3rem}
-    ul{list-style:none;margin:0 0 12px;padding-left:0}
-    li{margin:6px 0}
-    a{color:#8ab4ff;text-decoration:none}
+    html,body{height:100%}
+    body{
+      margin:0;color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(94,179,255,.25), transparent 60%),
+        radial-gradient(1000px 500px at 90% 0%, rgba(255,164,164,.22), transparent 60%),
+        linear-gradient(180deg,#f9fcff 0%,#f6fbff 40%,#f4fafc 100%);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      line-height:1.6;
+    }
+
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    .grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap)}
+    @media(min-width:1000px){.grid-2{grid-template-columns:1fr 1fr}}
+
+    /* Sticky nav */
+    .nav-wrap{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.7);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
+    nav.main{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img{height:44px;width:auto;border-radius:10px;box-shadow:var(--shadow)}
+    .brand span{font-weight:700;font-size:1.05rem;color:var(--ink)}
+    .links{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    a{color:#0a63dd;text-decoration:none}
     a:hover{text-decoration:underline}
-    footer{margin-top:28px;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-    .panel{background:var(--panel);border:1px solid #1f2937;border-radius:14px;padding:18px}
+
+    /* Breadcrumb */
+    .crumbs{margin:10px 0 14px;font-size:.95rem;color:var(--muted)}
+    .crumbs a{color:#0a63dd;text-decoration:none}
+    .crumbs .sep{margin:0 6px}
+
+    /* Hero */
+    .hero{
+      border-radius:24px;padding:28px;box-shadow:var(--shadow);
+      background:
+        radial-gradient(1200px 500px at 0% 0%, rgba(94,179,255,.30), transparent 60%),
+        radial-gradient(900px 450px at 100% 0%, rgba(255,164,164,.26), transparent 60%),
+        linear-gradient(180deg,#ffffff 0%,#fbfeff 100%);
+      border:1px solid rgba(0,0,0,.06)
+    }
+    .hero h1{margin:6px 0 8px;font-size:2.1rem;letter-spacing:.2px}
+    .hero .meta{color:var(--muted);font-size:.95rem;margin-top:6px}
+
+    /* Cards */
+    .card{background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .card h2{margin:0 0 8px;font-size:1.25rem}
+    ul{list-style:none;margin:8px 0 0;padding-left:0}
+    li{margin:6px 0}
+    .note{font-size:.95rem;color:var(--muted);margin-top:8px}
+
+    /* Footer */
+    footer{margin:28px 0 30px;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    footer .links a{color:#0a63dd}
+
+    /* Focus */
+    :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:10px}
   </style>
+
+  <!-- Organization schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Savage Lane",
+    "url":"https://savagelane.com/",
+    "logo":"https://savagelane.com/images/savage-lane-logo.png",
+    "sameAs":[]
+  }
+  </script>
 </head>
+
 <body>
-  <div class="wrap">
-    <header>
-      <a href="/" aria-label="Savage Lane Home">
-        <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
-      </a>
-      <nav>
-        <a href="/buyers.html">Buyers</a>
-        <span aria-hidden="true"> • </span>
-        <a href="/sellers.html">Sellers</a>
-        <span aria-hidden="true"> • </span>
-        <a href="/concierge.html">Concierge</a>
+  <!-- Sticky nav -->
+  <div class="nav-wrap">
+    <div class="container">
+      <nav class="main" aria-label="Primary">
+        <a class="brand" href="/" aria-label="Savage Lane Home">
+          <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
+          <span>Savage Lane</span>
+        </a>
+        <div class="links">
+          <a href="/buyers.html">Buyers</a>
+          <a href="/sellers.html">Sellers</a>
+          <a class="btn" href="/concierge.html" style="border:none;background:linear-gradient(90deg, var(--accent), #77e3d8);color:#052b29;font-weight:700">Home Match Concierge</a>
+        </div>
       </nav>
-    </header>
-
-    <h1>Site Map</h1>
-    <p class="panel">Browse all Savage Lane pages and guides for buyers and sellers. Updated October 2025.</p>
-
-    <h2>Core Pages</h2>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/buyers.html">Buyer Resource Center</a></li>
-      <li><a href="/sellers.html">Seller Resource Center</a></li>
-      <li><a href="/concierge.html">Home Match Concierge</a></li>
-      <li><a href="/privacy.html">Privacy Policy</a></li>
-      <li><a href="/thanks.html">Thank-You Page</a></li>
-    </ul>
-
-    <h2>Buyer Guides</h2>
-    <ul>
-      <li><a href="/guides/buyer-credit-basics.html">Credit Score Basics and Quick Wins</a></li>
-      <li><a href="/guides/preapproval-vs-prequalification.html">Pre-Approval vs. Pre-Qualification</a></li>
-      <!-- Add new buyer guides below -->
-      <li><a href="/guides/loan-types-fha-va-conventional.html">FHA, VA & Conventional Loans Explained</a></li>
-      <li><a href="/guides/how-much-house-can-i-afford.html">How Much House Can I Afford</a></li>
-    </ul>
-
-    <h2>Seller Guides</h2>
-    <ul>
-      <li><a href="/guides/how-to-price-your-home.html">How to Price Your Home</a></li>
-      <li><a href="/guides/preinspection-benefits-for-sellers.html">Pre-Inspection Benefits for Sellers</a></li>
-      <!-- Add new seller guides below -->
-      <li><a href="/guides/marketing-plan-basics.html">Marketing Plan Basics</a></li>
-      <li><a href="/guides/how-to-review-offers.html">How to Review Offers</a></li>
-    </ul>
-
-    <footer>
-      <div>© <span id="y"></span> Savage Lane</div>
-      <div>
-        <a href="/buyers.html">Buyers</a>
-        <span aria-hidden="true"> • </span>
-        <a href="/sellers.html">Sellers</a>
-        <span aria-hidden="true"> • </span>
-        <a href="/concierge.html">Concierge</a>
-      </div>
-    </footer>
+    </div>
   </div>
 
-  <script>document.getElementById("y").textContent=new Date().getFullYear()</script>
+  <div class="container">
+    <!-- Breadcrumbs -->
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep" aria-hidden="true">›</span><span>Site Map</span>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Site Map</h1>
+      <p class="meta">Browse all Savage Lane pages and guides. Last updated: <span id="updated"></span>.</p>
+    </section>
+
+    <!-- Lists -->
+    <section class="grid grid-2" style="margin-top:18px">
+      <div class="card">
+<h2>Core Pages</h2>
+<ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/buyers.html">Buyer Resource Center</a></li>
+  <li><a href="/sellers.html">Seller Resource Center</a></li>
+  <li><a href="/videos.html">Video Library</a></li>
+  <li><a href="/concierge.html">Home Match Concierge</a></li>
+  <li><a href="/privacy.html">Privacy Policy</a></li>
+  <li><a href="/thanks.html">Thank-You Page</a></li>
+</ul>
+
+      </div>
+
+      <div class="card">
+        <h2>Buyer guides</h2>
+        <ul>
+          <li><a href="/guides/buyer-credit-basics.html">Credit Score Basics and Quick Wins</a></li>
+          <li><a href="/guides/preapproval-vs-prequalification.html">Pre-Approval vs Pre-Qualification</a></li>
+          <li><a href="/guides/loan-types-fha-va-conventional.html">FHA, VA & Conventional Loans Explained</a></li>
+          <li><a href="/guides/how-much-house-can-i-afford.html">How Much House Can I Afford</a></li>
+          <!-- Add new buyer guides below (duplicate and edit): -->
+          <!-- <li><a href="/guides/NEW-GUIDE.html">New Buyer Guide Title</a></li> -->
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Seller guides</h2>
+        <ul>
+          <li><a href="/guides/how-to-price-your-home.html">How to Price Your Home</a></li>
+          <li><a href="/guides/preinspection-benefits-for-sellers.html">Pre-Inspection Benefits for Sellers</a></li>
+          <li><a href="/guides/marketing-plan-basics.html">Marketing Plan Basics</a></li>
+          <li><a href="/guides/how-to-review-offers.html">How to Review Offers</a></li>
+          <!-- Add new seller guides below: -->
+          <!-- <li><a href="/guides/NEW-GUIDE.html">New Seller Guide Title</a></li> -->
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Utilities</h2>
+        <ul>
+          <li><a href="/sitemap.xml">XML Sitemap</a> (for search engines)</li>
+        </ul>
+        <p class="note">Tip: When you publish a new guide, add it to this page and to <code>/sitemap.xml</code> for SEO.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>© <span id="y"></span> Savage Lane</div>
+      <div class="links">
+        <a href="/buyers.html">Buyers</a>
+        <span aria-hidden="true"> • </span>
+        <a href="/sellers.html">Sellers</a>
+        <span aria-hidden="true"> • </span>
+        <a href="/concierge.html">Concierge</a>
+        <span aria-hidden="true"> • </span>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const now = new Date();
+    document.getElementById("y").textContent = now.getFullYear();
+    document.getElementById("updated").textContent = now.toLocaleDateString(undefined, { year: "numeric", month: "long" });
+  </script>
 </body>
 </html>

@@ -1,75 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Static sitemap for Savage Lane. Update whenever you publish a new page. -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Core pages -->
-  <url>
-    <loc>https://savagelane.com/</loc>
-    <lastmod>2025-10-23</lastmod>
-  </url>
-  <url>
-    <loc>https://savagelane.com/buyers.html</loc>
-    <lastmod>2025-10-23</lastmod>
-  </url>
-  <url>
-    <loc>https://savagelane.com/sellers.html</loc>
-    <lastmod>2025-10-23</lastmod>
-  </url>
-  <url>
-    <loc>https://savagelane.com/concierge.html</loc>
-    <lastmod>2025-10-23</lastmod>
-  </url>
-  <url>
-    <loc>https://savagelane.com/privacy.html</loc>
-    <lastmod>2025-10-23</lastmod>
-  </url>
-  <url>
-    <loc>https://savagelane.com/thanks.html</loc>
-    <lastmod>2025-10-23</lastmod>
-  </url>
-  <url>
-    <loc>https://savagelane.com/sitemap.html</loc>
-    <lastmod>2025-10-23</lastmod>
-  </url>
+<!--
+  Savage Lane Master Sitemap
+  Last updated: 2025-10-24
+  Purpose: references all HTML and video sitemaps, so crawlers discover every page and video.
+  Notes:
+  • Add new <url> entries here when you publish new pages.
+  • Keep lastmod in YYYY-MM-DD format for accurate recrawling.
+  • Update <sitemapindex> links only if you rename or relocate sitemap files.
+-->
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Buyer guides -->
-  <url>
-    <loc>https://savagelane.com/guides/buyer-credit-basics.html</loc>
-    <lastmod>2025-10-23</lastmod>
-  </url>
-  <url>
-    <loc>https://savagelane.com/guides/preapproval-vs-prequalification.html</loc>
-    <lastmod>2025-10-23</lastmod>
-  </url>
-  <!-- Add new BUYER guide URLs below this line -->
-  <!--
-  <url>
-    <loc>https://savagelane.com/guides/loan-types-fha-va-conventional.html</loc>
-    <lastmod>YYYY-MM-DD</lastmod>
-  </url>
-  <url>
-    <loc>https://savagelane.com/guides/how-much-house-can-i-afford.html</loc>
-    <lastmod>YYYY-MM-DD</lastmod>
-  </url>
-  -->
+  <!-- HTML Pages Sitemap -->
+  <sitemap>
+    <loc>https://savagelane.com/sitemap-pages.xml</loc>
+    <lastmod>2025-10-24</lastmod>
+  </sitemap>
 
-  <!-- Seller guides -->
-  <url>
-    <loc>https://savagelane.com/guides/how-to-price-your-home.html</loc>
-    <lastmod>2025-10-23</lastmod>
-  </url>
-  <url>
-    <loc>https://savagelane.com/guides/preinspection-benefits-for-sellers.html</loc>
-    <lastmod>2025-10-23</lastmod>
-  </url>
-  <!-- Add new SELLER guide URLs below this line -->
-  <!--
-  <url>
-    <loc>https://savagelane.com/guides/marketing-plan-basics.html</loc>
-    <lastmod>YYYY-MM-DD</lastmod>
-  </url>
-  <url>
-    <loc>https://savagelane.com/guides/how-to-review-offers.html</loc>
-    <lastmod>YYYY-MM-DD</lastmod>
-  </url>
-  -->
-</urlset>
+  <!-- Video Sitemap -->
+  <sitemap>
+    <loc>https://savagelane.com/videos-sitemap.xml</loc>
+    <lastmod>2025-10-24</lastmod>
+  </sitemap>
+
+</sitemapindex>

@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Video Library | Savage Lane</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Short, clear real estate videos for buyers and sellers—first-time buyer tips, loan basics, smart pre-listing prep, FSBO pitfalls, and why working with an agent matters." />
+  <link rel="canonical" href="https://savagelane.com/videos.html" />
+  <meta name="robots" content="index,follow" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Video Library | Savage Lane" />
+  <meta property="og:description" content="Bite-sized videos that help you buy or sell with confidence. Watch now, then get matched to trusted local pros." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://savagelane.com/videos.html" />
+  <meta property="og:image" content="https://savagelane.com/images/default-og.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Video Library | Savage Lane" />
+  <meta name="twitter:description" content="Short, clear videos for buyers and sellers—curated to keep you on the right path with a pro." />
+  <meta name="twitter:image" content="https://savagelane.com/images/default-og.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- YouTube perf hints -->
+  <link rel="preconnect" href="https://www.youtube.com">
+  <link rel="preconnect" href="https://img.youtube.com">
+  <link rel="dns-prefetch" href="https://www.youtube.com">
+  <link rel="dns-prefetch" href="https://img.youtube.com">
+
+  <!-- Preload featured thumbnail for instant paint -->
+  <link rel="preload" as="image" href="https://img.youtube.com/vi/tipwvuveDxU/hqdefault.jpg" imagesrcset="https://img.youtube.com/vi/tipwvuveDxU/hqdefault.jpg 1x" fetchpriority="high">
+
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+
+  <style>
+    :root{
+      --bg:#f7fbff;
+      --ink:#0b1b2b;
+      --muted:#52637a;
+      --card:#ffffff;
+      --accent:#2ec5b6;
+      --accent-2:#ff7a7a;
+      --accent-3:#5aa8ff;
+      --shadow:0 10px 25px rgba(0,0,0,.06);
+      --radius:16px;
+      --grid-gap:18px;
+      --nav-h:68px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(94,179,255,.25), transparent 60%),
+        radial-gradient(1000px 500px at 90% 0%, rgba(255,164,164,.22), transparent 60%),
+        linear-gradient(180deg,#f9fcff 0%,#f6fbff 40%,#f4fafc 100%);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6
+    }
+
+    .container{max-width:1200px;margin:0 auto;padding:20px}
+    .grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap)}
+    @media(min-width:900px){.grid-2{grid-template-columns:1.1fr .9fr}}
+    @media(min-width:1000px){.gallery{grid-template-columns:repeat(3,1fr)}}
+    @media(min-width:1300px){.gallery{grid-template-columns:repeat(4,1fr)}}
+
+    /* Sticky nav */
+    .nav-wrap{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.75);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
+    nav.main{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img{height:44px;width:auto;border-radius:10px;box-shadow:var(--shadow)}
+    .brand span{font-weight:700;font-size:1.05rem;color:var(--ink)}
+    .links{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    a{color:#0a63dd;text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Breadcrumb */
+    .crumbs{margin:10px 0 14px;font-size:.95rem;color:var(--muted)}
+    .crumbs a{color:#0a63dd;text-decoration:none}
+    .crumbs .sep{margin:0 6px}
+
+    /* Hero + video */
+    .hero{
+      border-radius:24px;padding:28px;box-shadow:var(--shadow);
+      background:
+        radial-gradient(1200px 500px at 0% 0%, rgba(94,179,255,.30), transparent 60%),
+        radial-gradient(900px 450px at 100% 0%, rgba(255,164,164,.26), transparent 60%),
+        linear-gradient(180deg,#ffffff 0%,#fbfeff 100%);
+      border:1px solid rgba(0,0,0,.06)
+    }
+    .hero h1{margin:6px 0 8px;font-size:2.1rem;letter-spacing:.2px}
+    .hero p.lead{margin:0 0 14px;color:var(--muted)}
+    .video-card{background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .video-card header{padding:14px 16px;font-weight:600;border-bottom:1px solid rgba(0,0,0,.06)}
+    .video-wrap{position:relative;aspect-ratio:16/9;background:#eef5ff}
+    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+    /* Sections */
+    .section{margin-top:18px}
+    .card{background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .card h2{margin:0 0 8px;font-size:1.25rem}
+    .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+
+    /* Thumbs */
+    .thumb{
+      position:relative;display:block;border-radius:14px;overflow:hidden;border:1px solid rgba(0,0,0,.06);background:#fff;text-decoration:none;color:inherit;
+      box-shadow:var(--shadow)
+    }
+    .thumb img{width:100%;height:auto;display:block}
+    .thumb .meta{padding:10px 12px}
+    .thumb .title{font-weight:600}
+    .play{
+      position:absolute;inset:auto 12px 12px auto;width:42px;height:42px;border-radius:50%;background:linear-gradient(90deg, var(--accent-3), #9fd0ff);
+      box-shadow:0 6px 16px rgba(0,0,0,.18);display:grid;place-items:center
+    }
+    .play:after{
+      content:"";display:block;border-left:11px solid #0b2447;border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px
+    }
+
+    /* Footer */
+    footer{margin:28px 0 30px;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    footer .links a{color:#0a63dd}
+
+    /* Accessibility: respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .play, .video-card, .card { transition: none !important; }
+    }
+
+    /* Modal */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+    .modal.open{display:flex}
+    .modal-inner{width:min(100%,980px);background:#000;border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+    .modal-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#0b1b2b;color:#fff}
+    .modal-title{font-weight:600}
+    .modal-close{appearance:none;background:#fff;border:0;border-radius:10px;padding:6px 10px;font-weight:700;cursor:pointer}
+    .modal-body{position:relative;aspect-ratio:16/9}
+    .modal-body iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  </style>
+
+  <!-- Organization schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Savage Lane",
+    "url":"https://savagelane.com/",
+    "logo":"https://savagelane.com/images/savage-lane-logo.png",
+    "sameAs":[]
+  }
+  </script>
+
+  <!-- ItemList / VideoObject schema (all 8 videos, with corrected thumbnail URLs) -->
+  <script type="application/ld+json" id="videoSchema">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Savage Lane Video Library",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "VideoObject",
+          "name": "First-Time Buyer Tips (in One Minute)",
+          "description": "Quick advice to start your home search with confidence.",
+          "thumbnailUrl": "https://savagelane.com/images/thumbs/first-time-buyer-tips.jpg",
+          "uploadDate": "2025-10-01",
+          "contentUrl": "https://www.youtube.com/watch?v=tipwvuveDxU",
+          "embedUrl": "https://www.youtube-nocookie.com/embed/tipwvuveDxU"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "VideoObject",
+          "name": "Pre-Approval vs Pre-Qualification",
+          "description": "Know the difference and why it matters to sellers.",
+          "thumbnailUrl": "https://savagelane.com/images/thumbs/preapproval-vs-prequal.jpg",
+          "uploadDate": "2025-10-01",
+          "contentUrl": "https://www.youtube.com/watch?v=ZI8nqrB8qGI",
+          "embedUrl": "https://www.youtube-nocookie.com/embed/ZI8nqrB8qGI"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "VideoObject",
+          "name": "What Updates Add the Most Value Before Selling",
+          "description": "Practical upgrades that can help your home sell for more.",
+          "thumbnailUrl": "https://savagelane.com/images/thumbs/updates-add-value.jpg",
+          "uploadDate": "2025-10-01",
+          "contentUrl": "https://www.youtube.com/watch?v=Epq4k8cToH8",
+          "embedUrl": "https://www.youtube-nocookie.com/embed/Epq4k8cToH8"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "VideoObject",
+          "name": "FHA vs Conventional vs VA vs USDA Loans",
+          "description": "Key differences among common mortgage types.",
+          "thumbnailUrl": "https://savagelane.com/images/thumbs/fha-va-conventional-usda.jpg",
+          "uploadDate": "2025-10-01",
+          "contentUrl": "https://www.youtube.com/watch?v=OzD6RIN_BDk",
+          "embedUrl": "https://www.youtube-nocookie.com/embed/OzD6RIN_BDk"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "item": {
+          "@type": "VideoObject",
+          "name": "How Much House Can I Afford?",
+          "description": "Understand DTI and affordability before you shop.",
+          "thumbnailUrl": "https://savagelane.com/images/thumbs/how-much-house-afford.jpg",
+          "uploadDate": "2025-10-01",
+          "contentUrl": "https://www.youtube.com/watch?v=q0MbJNXUslQ",
+          "embedUrl": "https://www.youtube-nocookie.com/embed/q0MbJNXUslQ"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "item": {
+          "@type": "VideoObject",
+          "name": "Benefits of a Pre-Listing Inspection",
+          "description": "Avoid surprises and build seller confidence.",
+          "thumbnailUrl": "https://savagelane.com/images/thumbs/prelisting-inspection.jpg",
+          "uploadDate": "2025-10-01",
+          "contentUrl": "https://www.youtube.com/watch?v=8z9bmSFjzmY",
+          "embedUrl": "https://www.youtube-nocookie.com/embed/8z9bmSFjzmY"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "item": {
+          "@type": "VideoObject",
+          "name": "Why You Shouldn’t Sell Your Home Yourself (FSBO Pitfalls)",
+          "description": "The risks of going it alone—pricing, marketing, and legal exposure.",
+          "thumbnailUrl": "https://savagelane.com/images/thumbs/fsbo-pitfalls.jpg",
+          "uploadDate": "2025-10-01",
+          "contentUrl": "https://www.youtube.com/watch?v=iFLPpki9Xeg",
+          "embedUrl": "https://www.youtube-nocookie.com/embed/iFLPpki9Xeg"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "item": {
+          "@type": "VideoObject",
+          "name": "Why Work With a Real Estate Agent",
+          "description": "The value of working with a trusted professional.",
+          "thumbnailUrl": "https://savagelane.com/images/thumbs/why-work-with-agent.jpg",
+          "uploadDate": "2025-10-01",
+          "contentUrl": "https://www.youtube.com/watch?v=SCqiiZXK6v0",
+          "embedUrl": "https://www.youtube-nocookie.com/embed/SCqiiZXK6v0"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Sticky nav -->
+  <div class="nav-wrap">
+    <div class="container">
+      <nav class="main" aria-label="Primary">
+        <a class="brand" href="/" aria-label="Savage Lane Home">
+          <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
+          <span>Savage Lane</span>
+        </a>
+        <div class="links">
+          <a href="/buyers.html">Buyers</a>
+          <a href="/sellers.html">Sellers</a>
+          <a class="btn" href="/concierge.html" style="border:none;background:linear-gradient(90deg, var(--accent), #77e3d8);color:#052b29;font-weight:700">Home Match Concierge</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Breadcrumbs -->
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep" aria-hidden="true">›</span><span>Videos</span>
+    </nav>
+
+    <!-- Hero with featured video -->
+    <section class="hero grid grid-2" aria-labelledby="videolib">
+      <div>
+        <h1 id="videolib">Video Library</h1>
+        <p class="lead">
+          Bite-sized explainers to help you buy or sell with confidence. Watch a topic, then take the next step with Home Match Concierge.
+        </p>
+        <div class="links" style="margin-top:10px;flex-wrap:wrap;gap:10px;display:flex">
+          <a class="btn" href="/buyers.html">Buyer guides</a>
+          <a class="btn" href="/sellers.html">Seller guides</a>
+          <a class="btn" href="/concierge.html" style="border:none;background:linear-gradient(90deg, var(--accent-2), #ffb3a6);color:#3a0e0e;font-weight:700">Get matched now</a>
+        </div>
+      </div>
+      <div class="video-card">
+        <header>Featured</header>
+        <div class="video-wrap" id="featured-slot" aria-label="Featured video"></div>
+      </div>
+    </section>
+
+    <!-- Buyer videos -->
+    <section class="section card" aria-labelledby="buyershort">
+      <h2 id="buyershort">Buyer Videos</h2>
+      <div class="gallery" id="buyerGallery">
+        <a class="thumb" href="#" data-video-id="tipwvuveDxU" data-title="First-Time Buyer Tips (in One Minute)" aria-label="Play First-Time Buyer Tips (in One Minute)">
+          <img loading="lazy" decoding="async" width="480" height="270" src="/images/thumbs/first-time-buyer-tips.jpg" alt="First-Time Buyer Tips (in One Minute) thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <div class="meta">
+            <div class="title">First-Time Buyer Tips (in One Minute)</div>
+            <div class="muted" style="color:var(--muted);font-size:.95rem">Quick advice to start strong</div>
+          </div>
+        </a>
+
+        <a class="thumb" href="#" data-video-id="q0MbJNXUslQ" data-title="How Much House Can I Afford?" aria-label="Play How Much House Can I Afford">
+          <img loading="lazy" decoding="async" width="480" height="270" src="/images/thumbs/how-much-house-afford.jpg" alt="How Much House Can I Afford thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <div class="meta">
+            <div class="title">How Much House Can I Afford?</div>
+            <div class="muted" style="color:var(--muted);font-size:.95rem">Understand DTI & budget</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Loan basics -->
+    <section class="section card" aria-labelledby="loanbasics" style="margin-top:18px">
+      <h2 id="loanbasics">Loan Basics</h2>
+      <div class="gallery" id="loanGallery">
+        <a class="thumb" href="#" data-video-id="ZI8nqrB8qGI" data-title="Pre-Approval vs Pre-Qualification" aria-label="Play Pre-Approval vs Pre-Qualification">
+          <img loading="lazy" decoding="async" width="480" height="270" src="/images/thumbs/preapproval-vs-prequal.jpg" alt="Pre-Approval vs Pre-Qualification thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <div class="meta">
+            <div class="title">Pre-Approval vs Pre-Qualification</div>
+            <div class="muted" style="color:var(--muted);font-size:.95rem">Be offer-ready</div>
+          </div>
+        </a>
+
+        <a class="thumb" href="#" data-video-id="OzD6RIN_BDk" data-title="FHA vs Conventional vs VA vs USDA Loans" aria-label="Play FHA vs Conventional vs VA vs USDA Loans">
+          <img loading="lazy" decoding="async" width="480" height="270" src="/images/thumbs/fha-va-conventional-usda.jpg" alt="FHA vs Conventional vs VA vs USDA Loans thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <div class="meta">
+            <div class="title">FHA vs Conventional vs VA vs USDA Loans</div>
+            <div class="muted" style="color:var(--muted);font-size:.95rem">Compare options</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Seller videos -->
+    <section class="section card" aria-labelledby="sellershort" style="margin-top:18px">
+      <h2 id="sellershort">Seller Videos</h2>
+      <div class="gallery" id="sellerGallery">
+        <a class="thumb" href="#" data-video-id="Epq4k8cToH8" data-title="What Updates Add the Most Value Before Selling" aria-label="Play What Updates Add the Most Value Before Selling">
+          <img loading="lazy" decoding="async" width="480" height="270" src="/images/thumbs/updates-add-value.jpg" alt="What Updates Add the Most Value Before Selling thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <div class="meta">
+            <div class="title">What Updates Add the Most Value Before Selling</div>
+            <div class="muted" style="color:var(--muted);font-size:.95rem">High-impact upgrades</div>
+          </div>
+        </a>
+
+        <a class="thumb" href="#" data-video-id="8z9bmSFjzmY" data-title="Benefits of a Pre-Listing Inspection" aria-label="Play Benefits of a Pre-Listing Inspection">
+          <img loading="lazy" decoding="async" width="480" height="270" src="/images/thumbs/prelisting-inspection.jpg" alt="Benefits of a Pre-Listing Inspection thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <div class="meta">
+            <div class="title">Benefits of a Pre-Listing Inspection</div>
+            <div class="muted" style="color:var(--muted);font-size:.95rem">Avoid surprises</div>
+          </div>
+        </a>
+
+        <a class="thumb" href="#" data-video-id="iFLPpki9Xeg" data-title="Why You Shouldn’t Sell Your Home Yourself (FSBO Pitfalls)" aria-label="Play Why You Shouldn’t Sell Your Home Yourself (FSBO Pitfalls)">
+          <img loading="lazy" decoding="async" width="480" height="270" src="/images/thumbs/fsbo-pitfalls.jpg" alt="Why You Shouldn’t Sell Your Home Yourself (FSBO Pitfalls) thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <div class="meta">
+            <div class="title">Why You Shouldn’t Sell Your Home Yourself (FSBO Pitfalls)</div>
+            <div class="muted" style="color:var(--muted);font-size:.95rem">Use a pro</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Why work with a Realtor -->
+    <section class="section card" aria-labelledby="whyagent" style="margin-top:18px">
+      <h2 id="whyagent">Why Work With a Realtor</h2>
+      <div class="gallery" id="agentGallery">
+        <a class="thumb" href="#" data-video-id="SCqiiZXK6v0" data-title="Why Work With a Real Estate Agent" aria-label="Play Why Work With a Real Estate Agent">
+          <img loading="lazy" decoding="async" width="480" height="270" src="/images/thumbs/why-work-with-agent.jpg" alt="Why Work With a Real Estate Agent thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <div class="meta">
+            <div class="title">Why Work With a Real Estate Agent</div>
+            <div class="muted" style="color:var(--muted);font-size:.95rem">Expertise & trust</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <noscript>
+      <div class="section card" style="margin-top:18px">
+        <h2>JavaScript is disabled</h2>
+        <p>To watch videos on this page, enable JavaScript. In the meantime, you can open each video on YouTube:</p>
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=tipwvuveDxU" rel="noopener">First-Time Buyer Tips (in One Minute)</a></li>
+          <li><a href="https://www.youtube.com/watch?v=ZI8nqrB8qGI" rel="noopener">Pre-Approval vs Pre-Qualification</a></li>
+          <li><a href="https://www.youtube.com/watch?v=Epq4k8cToH8" rel="noopener">What Updates Add the Most Value Before Selling</a></li>
+          <li><a href="https://www.youtube.com/watch?v=OzD6RIN_BDk" rel="noopener">FHA vs Conventional vs VA vs USDA Loans</a></li>
+          <li><a href="https://www.youtube.com/watch?v=q0MbJNXUslQ" rel="noopener">How Much House Can I Afford?</a></li>
+          <li><a href="https://www.youtube.com/watch?v=8z9bmSFjzmY" rel="noopener">Benefits of a Pre-Listing Inspection</a></li>
+          <li><a href="https://www.youtube.com/watch?v=iFLPpki9Xeg" rel="noopener">Why You Shouldn’t Sell Your Home Yourself (FSBO Pitfalls)</a></li>
+          <li><a href="https://www.youtube.com/watch?v=SCqiiZXK6v0" rel="noopener">Why Work With a Real Estate Agent</a></li>
+        </ul>
+      </div>
+    </noscript>
+  </div>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>© <span id="y"></span> Savage Lane</div>
+      <div class="links">
+        <a href="/buyers.html">Buyers</a>
+        <span aria-hidden="true"> • </span>
+        <a href="/sellers.html">Sellers</a>
+        <span aria-hidden="true"> • </span>
+        <a href="/concierge.html">Concierge</a>
+        <span aria-hidden="true"> • </span>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal player -->
+  <div class="modal" id="playerModal" aria-hidden="true" role="dialog" aria-label="Video player">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div class="modal-title" id="modalTitle">Video</div>
+        <button class="modal-close" id="modalClose" aria-label="Close video">Close</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    // Footer year
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Featured video (edit this constant to change the featured video)
+    window.SL_FEATURED_VIDEO = "tipwvuveDxU";
+
+    // Featured video: defer YouTube until click (privacy-friendly with youtube-nocookie.com)
+    (function(){
+      const el = document.getElementById("featured-slot");
+      const vid = (window.SL_FEATURED_VIDEO || "").trim();
+      if (!el) return;
+
+      function loadIframe() {
+        const src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(vid) + "?autoplay=1";
+        el.innerHTML =
+          '<iframe title="Featured video" src="' + src +
+          '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+      }
+
+      if (vid) {
+        const thumb = "https://img.youtube.com/vi/" + encodeURIComponent(vid) + "/hqdefault.jpg";
+        el.innerHTML =
+          '<div id="featuredPlaceholder" role="button" aria-label="Play featured video" tabindex="0" ' +
+          'style="position:relative;width:100%;height:100%;cursor:pointer;">' +
+            '<img src="' + thumb + '" alt="Featured video thumbnail" width="1280" height="720" ' +
+            'style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;" fetchpriority="high">' +
+            '<div style="position:absolute;inset:0;display:grid;place-items:center;">' +
+              '<div style="width:68px;height:68px;border-radius:50%;background:rgba(255,255,255,.92);' +
+              'box-shadow:0 8px 18px rgba(0,0,0,.25);display:grid;place-items:center;">' +
+                '<div style="margin-left:4px;border-left:18px solid #0b2447;border-top:12px solid transparent;border-bottom:12px solid transparent;"></div>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+
+        const ph = document.getElementById("featuredPlaceholder");
+        ph.addEventListener("click", loadIframe);
+        ph.addEventListener("keydown", (e)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); loadIframe(); }});
+      } else {
+        el.innerHTML = '<div style="display:grid;place-items:center;height:100%;color:#52637a">Set <code>window.SL_FEATURED_VIDEO</code> to show a featured video</div>';
+      }
+    })();
+
+    // Modal player for gallery thumbnails (privacy-friendly embeds)
+    (function(){
+      const modal = document.getElementById('playerModal');
+      const body = document.getElementById('modalBody');
+      const title = document.getElementById('modalTitle');
+      const closeBtn = document.getElementById('modalClose');
+
+      function open(id, name){
+        title.textContent = name || "Video";
+        body.innerHTML =
+          '<iframe title="' + (name || 'Video') +
+          '" src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
+          '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+      function close(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        body.innerHTML = "";
+      }
+
+      document.addEventListener('click', function(e){
+        const a = e.target.closest('.thumb');
+        if(!a) return;
+        e.preventDefault();
+        const id = a.getAttribute('data-video-id');
+        const name = a.getAttribute('data-title');
+        if(id) open(id, name);
+      });
+
+      closeBtn.addEventListener('click', close);
+      modal.addEventListener('click', function(e){ if(e.target === modal) close(); });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('open')) close(); });
+    })();
+  </script>
+</body>
+</html>

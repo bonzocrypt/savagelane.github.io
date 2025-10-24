@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+# Disallow non-public or thank-you pages
+Disallow: /thanks.html
+
+# Main sitemap for crawlers
 Sitemap: https://savagelane.com/sitemap.xml
+
+# Notes:
+# - Add a second sitemap line below if you later create a /videos-sitemap.xml
+# - The /videos.html page will remain crawlable and indexable

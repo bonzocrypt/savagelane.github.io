@@ -2,233 +2,376 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Savage Lane | Home Match Concierge</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <title>Home Match Concierge | Savage Lane</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Savage Lane provides a free referral concierge for buyers and sellers. We register your request with our brokerage referral program and connect you with a proven full time licensed sales professional." />
-  <link rel="canonical" href="https://savagelane.com/" />
+  <meta name="description" content="Free referral concierge for buyers and sellers. Tell us your city and timing. We register your request with our brokerage referral program and connect you with a proven licensed pro in your market." />
+  <link rel="canonical" href="https://savagelane.com/concierge.html" />
   <meta name="robots" content="index,follow" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Savage Lane | Home Match Concierge" />
-  <meta property="og:description" content="Free referral concierge that connects buyers and sellers with proven local sales professionals." />
-  <meta property="og:url" content="https://savagelane.com/" />
+  <meta property="og:title" content="Home Match Concierge | Savage Lane" />
+  <meta property="og:description" content="Free referral concierge that connects buyers and sellers with proven local pros." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://savagelane.com/concierge.html" />
   <meta property="og:image" content="https://savagelane.com/images/default-og.png" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Savage Lane | Home Match Concierge" />
+  <meta name="twitter:title" content="Home Match Concierge | Savage Lane" />
   <meta name="twitter:description" content="Free referral concierge for buyers and sellers. Get matched fast." />
   <meta name="twitter:image" content="https://savagelane.com/images/default-og.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
 
   <style>
-    :root{--bg:#0b1020;--panel:#0f172a;--text:#eef2f7;--muted:#b8c1d8;--accent:#2563eb}
+    :root{
+      --bg:#f7fbff;
+      --ink:#0b1b2b;
+      --muted:#52637a;
+      --card:#ffffff;
+      --accent:#2ec5b6;
+      --accent-2:#ff7a7a;
+      --accent-3:#5aa8ff;
+      --ring:rgba(46,197,182,.24);
+      --shadow:0 10px 25px rgba(0,0,0,.06);
+      --radius:16px;
+      --grid-gap:18px;
+      --nav-h:68px;
+      --field-border:1px solid rgba(0,0,0,.10);
+      --field-bg:#ffffff;
+    }
+
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5}
-    .wrap{max-width:840px;margin:0 auto;padding:32px}
-    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    header img{height:64px;width:auto;border-radius:8px;}
-    .hero{padding:20px 0 8px}
-    h1{font-size:2rem;margin:0 0 8px}
-    p{margin:0 0 12px}
-    .panel{background:var(--panel);border:1px solid #1f2937;border-radius:14px;padding:18px}
-    form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+    body{
+      margin:0;color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(94,179,255,.25), transparent 60%),
+        radial-gradient(1000px 500px at 90% 0%, rgba(255,164,164,.22), transparent 60%),
+        linear-gradient(180deg,#f9fcff 0%,#f6fbff 40%,#f4fafc 100%);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6
+    }
+
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    .grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap)}
+    @media(min-width:900px){.grid-2{grid-template-columns:1.2fr .8fr}}
+    @media(min-width:1100px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+
+    /* Sticky nav */
+    .nav-wrap{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.7);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
+    nav.main{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img{height:44px;width:auto;border-radius:10px;box-shadow:var(--shadow)}
+    .brand span{font-weight:700;font-size:1.05rem;color:var(--ink)}
+    .links{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    a{color:#0a63dd;text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 16px;border:1px solid rgba(0,0,0,.08);background:#ffffff;color:var(--ink);font-weight:600;box-shadow:var(--shadow)}
+    .btn.primary{background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29;border:none}
+    .btn.coral{background:linear-gradient(90deg, var(--accent-2), #ffb3a6); color:#3a0e0e;border:none}
+    .btn.sky{background:linear-gradient(90deg, var(--accent-3), #9fd0ff); color:#0b2447;border:none}
+
+    /* Breadcrumb */
+    .crumbs{margin:10px 0 14px;font-size:.95rem;color:var(--muted)}
+    .crumbs a{color:#0a63dd;text-decoration:none}
+    .crumbs .sep{margin:0 6px}
+
+    /* Hero */
+    .hero{border-radius:24px;padding:28px;box-shadow:var(--shadow);
+      background:
+        radial-gradient(1200px 500px at 0% 0%, rgba(94,179,255,.30), transparent 60%),
+        radial-gradient(900px 450px at 100% 0%, rgba(255,164,164,.26), transparent 60%),
+        linear-gradient(180deg,#ffffff 0%,#fbfeff 100%);
+      border:1px solid rgba(0,0,0,.06)}
+    .hero h1{margin:6px 0 8px;font-size:2.1rem;letter-spacing:.2px}
+    .hero p.lead{margin:0 0 14px;color:var(--muted)}
+    .hero img{width:100%;height:auto;border-radius:16px;border:1px solid rgba(0,0,0,.08);margin:0 0 12px}
+
+    /* Cards and video */
+    .card{background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .card h3{margin:0 0 8px}
+    .note{font-size:.95rem;color:var(--muted);margin-top:8px}
+
+    .video-card{background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .video-card header{padding:14px 16px;font-weight:600;border-bottom:1px solid rgba(0,0,0,.06)}
+    .video-wrap{position:relative;aspect-ratio:16/9;background:#eef5ff}
+    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+    /* Form */
+    form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     label{font-size:.95rem;color:var(--muted)}
-    input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #263246;background:#0b1329;color:var(--text)}
+    input,select,textarea{
+      width:100%;padding:12px;border-radius:12px;border:var(--field-border);background:var(--field-bg);color:var(--ink);
+      box-shadow:0 1px 0 rgba(0,0,0,.02) inset
+    }
     textarea{grid-column:1 / -1}
     .full{grid-column:1 / -1}
-    button{padding:12px 16px;border:0;border-radius:10px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
-    .legal{font-size:.9rem;color:var(--muted);margin-top:12px}
-    .footer{margin-top:28px;font-size:.9rem;color:var(--muted)}
+    button[type="submit"]{padding:12px 16px;border:0;border-radius:12px;background:linear-gradient(90deg, var(--accent), #77e3d8);color:#052b29;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+    .legal{font-size:.9rem;color:var(--muted);margin-top:8px}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     .hp{display:none !important}
-    .hint{font-size:.85rem;color:var(--muted);margin-top:6px}
-    .error{color:#ffb4b4;font-size:.9rem;margin-top:6px;opacity:0;transition:opacity 0.3s ease}
+    .hint{font-size:.85rem;color:var(--muted);margin-left:4px}
+    .error{color:#ff3b3b;font-size:.9rem;margin-top:6px;opacity:0;transition:opacity .2s}
     .error.show{opacity:1}
     .checkboxes{display:flex;flex-wrap:wrap;gap:10px}
-    .checkboxes label{display:flex;align-items:center;gap:8px;border:1px solid #263246;border-radius:10px;padding:8px 10px;background:#0b1329;cursor:pointer}
+    .checkboxes label{display:flex;align-items:center;gap:8px;border:var(--field-border);border-radius:12px;padding:8px 10px;background:#fff;cursor:pointer}
     .checkboxes input{width:auto}
+
+    /* Footer */
+    footer{margin:28px 0 30px;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    footer .links a{color:#0a63dd}
+
+    /* Focus */
+    :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:10px}
   </style>
+
+  <!-- Organization schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Savage Lane",
+    "url":"https://savagelane.com/",
+    "logo":"https://savagelane.com/images/savage-lane-logo.png",
+    "sameAs":[]
+  }
+  </script>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <a href="/" aria-label="Savage Lane Home Match Concierge">
-        <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
-      </a>
-      <div aria-hidden="true">Home Match Concierge</div>
-    </header>
-
-    <section class="hero">
-      <img src="/images/home-match-banner.png" alt="Home Match Concierge" width="1600" height="600" style="width:100%;height:auto;border-radius:14px;border:1px solid #1f2937;margin:0 0 12px" />
-      <h1>Home Match Concierge</h1>
-      <p class="panel">Free referral concierge for buyers and sellers. Tell us where and your timeline. We will register your request with our brokerage referral program and connect you with a proven full time licensed sales professional who serves that market.</p>
-    </section>
-
-    <section class="panel" aria-labelledby="matchform">
-      <h2 id="matchform" class="sr-only">Request your match</h2>
-
-      <form id="matchForm" action="https://formspree.io/f/mldpyljb" method="POST" novalidate>
-        <!-- spam honeypot -->
-        <input class="hp" type="text" name="_subject_line" tabindex="-1" autocomplete="off" />
-
-        <div class="full">
-          <label for="name">Your name</label>
-          <input id="name" name="name" required autocomplete="name" />
-          <div id="nameErr" class="error">Enter your name</div>
+  <!-- Sticky nav -->
+  <div class="nav-wrap">
+    <div class="container">
+      <nav class="main" aria-label="Primary">
+        <a class="brand" href="/" aria-label="Savage Lane Home">
+          <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
+          <span>Savage Lane</span>
+        </a>
+        <div class="links">
+          <a href="/buyers.html">Buyers</a>
+          <a href="/sellers.html">Sellers</a>
+          <a class="btn primary" href="/concierge.html" aria-current="page">Home Match Concierge</a>
         </div>
-
-        <div>
-          <label for="email">Email</label>
-          <input id="email" type="email" name="email" required autocomplete="email" />
-          <div id="emailErr" class="error">Enter a valid email</div>
-        </div>
-
-        <div>
-          <label for="phone">Phone</label>
-          <input id="phone" name="phone" required autocomplete="tel" placeholder="Example 5551234567" />
-          <div id="phoneErr" class="error">Enter a valid phone number with at least 10 digits</div>
-        </div>
-
-        <div>
-          <label for="city">City</label>
-          <input id="city" name="city" required autocomplete="address-level2" placeholder="Example Lakewood Ranch" />
-          <div id="cityErr" class="error">Enter a valid city name using letters, spaces, dots, or apostrophes</div>
-        </div>
-
-        <div>
-          <label for="state">State</label>
-          <select id="state" name="state" required autocomplete="address-level1">
-            <option value="">Select state</option>
-            <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option>
-            <option>CO</option><option>CT</option><option>DE</option><option>DC</option><option>FL</option>
-            <option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option>
-            <option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option>
-            <option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option>
-            <option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option>
-            <option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option>
-            <option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option>
-            <option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option>
-            <option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
-          </select>
-          <div id="stateErr" class="error">Choose a state</div>
-        </div>
-
-        <div>
-          <label for="zip">ZIP code</label>
-          <input id="zip" name="zip" required inputmode="numeric" pattern="\d{5}" placeholder="Example 34202" autocomplete="postal-code" />
-          <div id="zipErr" class="error">Enter a 5 digit ZIP</div>
-        </div>
-
-        <input type="hidden" id="location" name="location" />
-
-        <div>
-          <label for="intent">Buying or selling</label>
-          <select id="intent" name="intent" required>
-            <option value="">Choose one</option>
-            <option>Buying</option>
-            <option>Selling</option>
-            <option>Both</option>
-          </select>
-          <div id="intentErr" class="error">Choose buying, selling, or both</div>
-        </div>
-
-        <div>
-          <label for="timeline">Timeline</label>
-          <select id="timeline" name="timeline" required>
-            <option value="">Select</option>
-            <option>Now</option>
-            <option>One to three months</option>
-            <option>Three to six months</option>
-            <option>Six plus months</option>
-          </select>
-          <div id="timelineErr" class="error">Choose a timeline</div>
-        </div>
-
-        <div class="full">
-          <label>Property type</label>
-          <div class="checkboxes" id="propertyTypes">
-            <label><input type="checkbox" name="propertyType" value="Single Family"> Single Family</label>
-            <label><input type="checkbox" name="propertyType" value="Townhouse"> Townhouse</label>
-            <label><input type="checkbox" name="propertyType" value="New Construction"> New Construction</label>
-            <label><input type="checkbox" name="propertyType" value="Condo / Co-op"> Condo / Co-op</label>
-            <label><input type="checkbox" name="propertyType" value="Commercial"> Commercial</label>
-            <label><input type="checkbox" name="propertyType" value="Other"> Other</label>
-          </div>
-          <div id="ptypeErr" class="error">Choose at least one property type</div>
-        </div>
-
-        <div>
-          <label for="minBudget">Min budget</label>
-          <input id="minBudget" name="minBudget" type="number" inputmode="numeric" step="1000" min="0" required placeholder="Example 300000" />
-          <div id="minBudgetErr" class="error">Enter a number</div>
-        </div>
-
-        <div>
-          <label for="maxBudget">Max budget</label>
-          <input id="maxBudget" name="maxBudget" type="number" inputmode="numeric" step="1000" min="0" required placeholder="Example 650000" />
-          <div id="budgetErr" class="error">Max budget must be greater than or equal to min budget</div>
-        </div>
-
-        <div>
-          <label for="beds">Bedrooms</label>
-          <select id="beds" name="beds" required>
-            <option value="">Select</option>
-            <option>1+</option>
-            <option>2+</option>
-            <option>3+</option>
-            <option>4+</option>
-            <option>5+</option>
-          </select>
-          <div id="bedsErr" class="error">Choose bedrooms</div>
-        </div>
-
-        <div>
-          <label for="baths">Bathrooms</label>
-          <select id="baths" name="baths" required>
-            <option value="">Select</option>
-            <option>1+</option>
-            <option>2+</option>
-            <option>3+</option>
-            <option>4+</option>
-            <option>5+</option>
-          </select>
-          <div id="bathsErr" class="error">Choose bathrooms</div>
-        </div>
-
-        <div class="full">
-          <label for="referredBy">Referred By <span class="hint">(optional)</span></label>
-          <input id="referredBy" name="referredBy" placeholder="Enter the person’s name if applicable" />
-        </div>
-
-        <div class="full">
-         <label for="comments">Additional comments <span class="hint">(optional)</span></label>
-
-          <textarea id="comments" name="comments" rows="4" placeholder="Anything else that would help your match"></textarea>
-        </div>
-
-        <div class="full">
-          <button type="submit">Request my match</button>
-          <p class="legal">
-            I operate strictly in a referral only capacity. After you submit this form I will register your request with my brokerage referral program so the assigned licensed sales professional can contact you regarding your real estate needs. I do not list show or negotiate real estate.
-          </p>
-        </div>
-      </form>
-    </section>
-
-    <p class="footer">
-      © <span id="y"></span> Savage Lane. All rights reserved.
-    </p>
+      </nav>
+    </div>
   </div>
 
+  <div class="container">
+    <!-- Breadcrumbs -->
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep" aria-hidden="true">›</span><span>Concierge</span>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <img src="/images/home-match-banner.png" alt="Home Match Concierge banner">
+      <h1>Home Match Concierge</h1>
+      <p class="lead">
+        Free referral concierge for buyers and sellers. Tell us your city and timing. We register your request with our brokerage referral program and connect you with a proven licensed pro in your market.
+      </p>
+      <div class="links" style="margin-top:10px;flex-wrap:wrap;gap:10px">
+        <a class="btn sky" href="#matchform">Request my match</a>
+        <a class="btn coral" href="#how-it-works">How it works</a>
+      </div>
+    </section>
+
+    <!-- Main content grid: form + info/video -->
+    <section class="grid grid-2" style="margin-top:18px">
+      <!-- Form card -->
+      <div class="card" aria-labelledby="matchform">
+        <h2 id="matchform" style="margin-top:0">Request your match</h2>
+
+        <form id="matchForm" action="https://formspree.io/f/mldpyljb" method="POST" novalidate>
+          <!-- spam honeypot -->
+          <input class="hp" type="text" name="_subject_line" tabindex="-1" autocomplete="off" />
+
+          <div class="full">
+            <label for="name">Your name</label>
+            <input id="name" name="name" required autocomplete="name" />
+            <div id="nameErr" class="error">Enter your name</div>
+          </div>
+
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" required autocomplete="email" />
+            <div id="emailErr" class="error">Enter a valid email</div>
+          </div>
+
+          <div>
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" required autocomplete="tel" placeholder="Example 5551234567" />
+            <div id="phoneErr" class="error">Enter a valid phone number with at least 10 digits</div>
+          </div>
+
+          <div>
+            <label for="city">City</label>
+            <input id="city" name="city" required autocomplete="address-level2" placeholder="Example Lakewood Ranch" />
+            <div id="cityErr" class="error">Enter a valid city name using letters spaces dots or apostrophes</div>
+          </div>
+
+          <div>
+            <label for="state">State</label>
+            <select id="state" name="state" required autocomplete="address-level1">
+              <option value="">Select state</option>
+              <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option>
+              <option>CO</option><option>CT</option><option>DE</option><option>DC</option><option>FL</option>
+              <option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option>
+              <option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option>
+              <option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option>
+              <option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option>
+              <option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option>
+              <option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option>
+              <option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option>
+              <option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+            </select>
+            <div id="stateErr" class="error">Choose a state</div>
+          </div>
+
+          <div>
+            <label for="zip">ZIP code</label>
+            <input id="zip" name="zip" required inputmode="numeric" pattern="\d{5}" placeholder="Example 34202" autocomplete="postal-code" />
+            <div id="zipErr" class="error">Enter a 5 digit ZIP</div>
+          </div>
+
+          <input type="hidden" id="location" name="location" />
+
+          <div>
+            <label for="intent">Buying or selling</label>
+            <select id="intent" name="intent" required>
+              <option value="">Choose one</option>
+              <option>Buying</option>
+              <option>Selling</option>
+              <option>Both</option>
+            </select>
+            <div id="intentErr" class="error">Choose buying selling or both</div>
+          </div>
+
+          <div>
+            <label for="timeline">Timeline</label>
+            <select id="timeline" name="timeline" required>
+              <option value="">Select</option>
+              <option>Now</option>
+              <option>One to three months</option>
+              <option>Three to six months</option>
+              <option>Six plus months</option>
+            </select>
+            <div id="timelineErr" class="error">Choose a timeline</div>
+          </div>
+
+          <div class="full">
+            <label>Property type</label>
+            <div class="checkboxes" id="propertyTypes">
+              <label><input type="checkbox" name="propertyType" value="Single Family"> Single Family</label>
+              <label><input type="checkbox" name="propertyType" value="Townhouse"> Townhouse</label>
+              <label><input type="checkbox" name="propertyType" value="New Construction"> New Construction</label>
+              <label><input type="checkbox" name="propertyType" value="Condo / Co-op"> Condo / Co-op</label>
+              <label><input type="checkbox" name="propertyType" value="Commercial"> Commercial</label>
+              <label><input type="checkbox" name="propertyType" value="Other"> Other</label>
+            </div>
+            <div id="ptypeErr" class="error">Choose at least one property type</div>
+          </div>
+
+          <div>
+            <label for="minBudget">Min budget</label>
+            <input id="minBudget" name="minBudget" type="number" inputmode="numeric" step="1000" min="0" required placeholder="Example 300000" />
+            <div id="minBudgetErr" class="error">Enter a number</div>
+          </div>
+
+          <div>
+            <label for="maxBudget">Max budget</label>
+            <input id="maxBudget" name="maxBudget" type="number" inputmode="numeric" step="1000" min="0" required placeholder="Example 650000" />
+            <div id="budgetErr" class="error">Max budget must be greater than or equal to min budget</div>
+          </div>
+
+          <div>
+            <label for="beds">Bedrooms</label>
+            <select id="beds" name="beds" required>
+              <option value="">Select</option>
+              <option>1+</option>
+              <option>2+</option>
+              <option>3+</option>
+              <option>4+</option>
+              <option>5+</option>
+            </select>
+            <div id="bedsErr" class="error">Choose bedrooms</div>
+          </div>
+
+          <div>
+            <label for="baths">Bathrooms</label>
+            <select id="baths" name="baths" required>
+              <option value="">Select</option>
+              <option>1+</option>
+              <option>2+</option>
+              <option>3+</option>
+              <option>4+</option>
+              <option>5+</option>
+            </select>
+            <div id="bathsErr" class="error">Choose bathrooms</div>
+          </div>
+
+          <div class="full">
+            <label for="referredBy">Referred By <span class="hint">(optional)</span></label>
+            <input id="referredBy" name="referredBy" placeholder="Enter the person’s name if applicable" />
+          </div>
+
+          <div class="full">
+            <label for="comments">Additional comments <span class="hint">(optional)</span></label>
+            <textarea id="comments" name="comments" rows="4" placeholder="Anything else that would help your match"></textarea>
+          </div>
+
+          <div class="full" style="margin-top:4px">
+            <button type="submit">Request my match</button>
+            <p class="legal">
+              I operate strictly in a referral only capacity. After you submit this form I will register your request with my brokerage referral program so the assigned licensed sales professional can contact you regarding your real estate needs. I do not list show or negotiate real estate.
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Info and optional video -->
+      <div class="grid" id="how-it-works" style="gap:18px">
+        <div class="video-card">
+          <header>Learn fast</header>
+          <div class="video-wrap" id="video-slot" aria-label="Concierge explainer video"></div>
+        </div>
+
+        <div class="card">
+          <h3>How it works</h3>
+          <ul class="note" style="list-style:disc;padding-left:18px;margin:10px 0 0">
+            <li>Share your city timing and basic needs</li>
+            <li>We register your request with our brokerage referral program</li>
+            <li>A licensed pro in your market reaches out</li>
+            <li>You get help from tour to close</li>
+          </ul>
+          <div style="margin-top:12px">
+            <a class="btn primary" href="#matchform">Start your match</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="y"></span> Savage Lane</div>
+      <div class="links">
+        <a href="/buyers.html">Buyers</a>
+        <span aria-hidden="true"> • </span>
+        <a href="/sellers.html">Sellers</a>
+        <span aria-hidden="true"> • </span>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+      <div class="note" style="flex-basis:100%">
+        Disclosure Savage Lane participates solely as a referral associate through the Coldwell Banker Realty Referral Network. We do not list show or negotiate property. Matches are made to licensed professionals in your market through the brokerage referral program where permitted by law.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
   <script>
     (function () {
       const form = document.getElementById('matchForm');
@@ -263,9 +406,9 @@
       const minBudgetErr = document.getElementById('minBudgetErr');
       const budgetErr = document.getElementById('budgetErr');
 
-      function validCity(v){return /^[A-Za-z .']+$/.test(v.trim());}
-      function validZip(v){return /^\d{5}$/.test(v.trim());}
-      function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());}
+      function validCity(v){return /^[A-Za-z .']+$/.test((v||'').trim());}
+      function validZip(v){return /^\d{5}$/.test((v||'').trim());}
+      function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v||'').trim());}
       function validPhone(v){const digits=(v||'').replace(/\D/g,'');return digits.length>=10;}
       function atLeastOnePropertyType(){return !!propertyTypes.querySelector('input[type="checkbox"]:checked');}
       function buildLocation(){
@@ -279,35 +422,24 @@
       form.addEventListener('submit', async function(e){
         let blocked=false;
 
-        // name
         if(!nameEl.value.trim()){nameErr.classList.add('show');if(!blocked)nameEl.focus();blocked=true;} else nameErr.classList.remove('show');
-        // email
         if(!validEmail(email.value)){emailErr.classList.add('show');if(!blocked)email.focus();blocked=true;} else emailErr.classList.remove('show');
-        // phone
         if(!validPhone(phone.value)){phoneErr.classList.add('show');if(!blocked)phone.focus();blocked=true;} else phoneErr.classList.remove('show');
 
-        // city
         if(!validCity(city.value)){cityErr.classList.add('show');if(!blocked)city.focus();blocked=true;} else cityErr.classList.remove('show');
-        // state
         if(!state.value){stateErr.classList.add('show');if(!blocked)state.focus();blocked=true;} else stateErr.classList.remove('show');
-        // zip
         if(!validZip(zip.value)){zipErr.classList.add('show');if(!blocked)zip.focus();blocked=true;} else zipErr.classList.remove('show');
 
-        // intent
         if(!intent.value){intentErr.classList.add('show');if(!blocked)intent.focus();blocked=true;} else intentErr.classList.remove('show');
-        // timeline
         if(!timeline.value){timelineErr.classList.add('show');if(!blocked)timeline.focus();blocked=true;} else timelineErr.classList.remove('show');
 
-        // property type
         if(!atLeastOnePropertyType()){ptypeErr.classList.add('show');if(!blocked)propertyTypes.scrollIntoView({behavior:'smooth',block:'center'});blocked=true;} else ptypeErr.classList.remove('show');
 
-        // budgets
         const minVal=Number(minBudget.value||NaN);
         const maxVal=Number(maxBudget.value||NaN);
         if(Number.isNaN(minVal)){minBudgetErr.classList.add('show');if(!blocked)minBudget.focus();blocked=true;} else minBudgetErr.classList.remove('show');
         if(Number.isNaN(maxVal) || maxVal<minVal){budgetErr.classList.add('show');if(!blocked)maxBudget.focus();blocked=true;} else budgetErr.classList.remove('show');
 
-        // beds/baths
         if(!beds.value){bedsErr.classList.add('show');if(!blocked)beds.focus();blocked=true;} else bedsErr.classList.remove('show');
         if(!baths.value){bathsErr.classList.add('show');if(!blocked)baths.focus();blocked=true;} else bathsErr.classList.remove('show');
 
@@ -326,6 +458,19 @@
       });
 
       document.getElementById("y").textContent=new Date().getFullYear();
+    })();
+
+    // Featured video hook
+    (function(){
+      window.SL_FEATURED_VIDEO = window.SL_FEATURED_VIDEO || "";
+      const vid = window.SL_FEATURED_VIDEO;
+      const el = document.getElementById("video-slot");
+      if (el && vid) {
+        el.innerHTML =
+          '<iframe title="Concierge explainer video" src="https://www.youtube.com/embed/' +
+          encodeURIComponent(vid) +
+          '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+      }
     })();
   </script>
 </body>
