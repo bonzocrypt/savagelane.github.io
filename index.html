@@ -6,55 +6,138 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/images/favicon.png" type="image/png" sizes="32x32">
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-  <meta name="description" content="Learn how to buy or sell a home with clear guides on loans, credit, inspections, pricing, staging, and closing. Get matched to trusted local pros with Home Match Concierge.">
+  <meta name="description" content="Learn how to buy or sell a home with fun, clear guides on loans, credit, inspections, pricing, staging, and closing. Watch short videos, browse easy checklists, and get matched to trusted local pros with Home Match Concierge.">
   <link rel="canonical" href="https://savagelane.com/">
-  <meta property="og:title" content="Smart Guides for Home Buyers and Sellers">
-  <meta property="og:description" content="Clear, no fluff guides for buyers and sellers. Then get matched to trusted local pros.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Smart, Fun Guides for Home Buyers and Sellers">
+  <meta property="og:description" content="Short videos + checklists to make real estate simple (and enjoyable). Then get matched to trusted local pros.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://savagelane.com/">
   <meta property="og:image" content="/images/og/default.jpg">
+
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Smart Guides for Home Buyers and Sellers">
-  <meta name="twitter:description" content="Clear, no fluff guides for buyers and sellers. Then get matched to trusted local pros.">
+  <meta name="twitter:title" content="Smart, Fun Guides for Home Buyers and Sellers">
+  <meta name="twitter:description" content="Short videos + checklists to make real estate simple (and enjoyable). Then get matched to trusted local pros.">
   <meta name="twitter:image" content="/images/og/default.jpg">
+
   <style>
-    :root { color-scheme: light dark; }
-    body { margin:0; font-family: Inter, system-ui, Arial, sans-serif; line-height:1.6; background:#0b0b0d; color:#f5f7fb; }
-    a { color:#8ab4ff; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    header, main, footer { max-width:1100px; margin:0 auto; padding:16px; }
-    .nav { display:flex; align-items:center; justify-content:space-between; gap:16px; }
-    .brand { display:flex; align-items:center; gap:12px; }
-    .brand img { width:48px; height:48px; object-fit:cover; border-radius:8px; }
-    .brand h1 { font-size:20px; margin:0; font-weight:700; letter-spacing:.2px; }
-    .links { display:flex; gap:16px; }
-    .hero { padding:48px 16px 12px; }
-    .hero h2 { font-size:36px; margin:0 0 12px; }
-    .hero p { max-width:820px; margin:0 0 24px; color:#cfd6e6; }
-    .cta-row { display:flex; flex-wrap:wrap; gap:12px; margin:20px 0 0; }
-    .btn { display:inline-block; padding:12px 16px; border-radius:10px; background:#2b2f3a; color:#fff; font-weight:600; }
-    .btn.primary { background:#5a7cff; }
-    .grid { display:grid; grid-template-columns:1fr; gap:18px; margin-top:28px; }
-    @media(min-width:840px){ .grid { grid-template-columns:1fr 1fr; } }
-    .card { background:#14161c; border:1px solid #232733; border-radius:14px; padding:18px; }
-    .card h3 { margin:0 0 8px; font-size:20px; }
-    .card ol { padding-left:18px; margin:10px 0 0; }
-    .note { font-size:13px; color:#9aa6bd; margin-top:10px; }
-    footer { margin-top:40px; padding-bottom:32px; font-size:14px; color:#9aa6bd; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    :root{
+      --bg:#f6f9ff;            /* light, cheerful base */
+      --bg-grad1:#f6f9ff;
+      --bg-grad2:#e9f2ff;
+      --panel:#ffffff;
+      --ink:#0c1222;
+      --muted:#5b6a86;
+      --brand:#5a7cff;         /* sky blue */
+      --brand-2:#ff6f61;       /* coral */
+      --accent:#b6ffb6;        /* mint pop */
+      --ring:rgba(90,124,255,.35);
+      --card: #ffffff;
+      --shadow: 0 10px 25px rgba(14, 35, 84, .08);
+      color-scheme: light;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6;color:var(--ink);
+      background:linear-gradient(180deg,var(--bg-grad1),var(--bg-grad2) 60%,#edf3ff 100%);
+      background-attachment: fixed;
+    }
+
+    /* Sticky nav */
+    .shell{max-width:1200px;margin:0 auto;padding:0 16px}
+    header.navbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(180%) blur(8px);
+      background:rgba(255,255,255,.8);
+      border-bottom:1px solid #e6ecff;
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0;
+    }
+    .brand{display:flex; align-items:center; gap:12px;}
+    .brand img{width:44px;height:44px;object-fit:cover;border-radius:10px;box-shadow:var(--shadow)}
+    .brand h1{font-size:18px;margin:0;font-weight:800;letter-spacing:.2px}
+    .links{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .btn{display:inline-block;padding:12px 16px;border-radius:12px;background:#1f2a44;color:#fff;font-weight:700;box-shadow:var(--shadow)}
+    .btn.primary{background:var(--brand)}
+    .btn.alt{background:var(--brand-2)}
+    .btn.ghost{background:#eef3ff;color:#1f2a44}
+
+    main{padding:0 0 40px}
+    section{margin-top:22px}
+
+    /* HERO */
+    .hero{
+      display:grid;grid-template-columns:1fr;gap:18px;padding:36px 0 8px;
+    }
+    @media(min-width:980px){ .hero{grid-template-columns:1.1fr .9fr;align-items:center} }
+    .hero-card{
+      background:linear-gradient(170deg,#ffffff 0%,#ffffff 55%, #f7fbff 100%);
+      border:1px solid #e6ecff; border-radius:18px; padding:24px; box-shadow:var(--shadow);
+    }
+    .badge{display:inline-flex;align-items:center;gap:8px;background:#eef4ff;color:#2b3f7d;padding:6px 10px;border-radius:999px;font-weight:700;font-size:.85rem}
+    .title{font-size:34px;line-height:1.15;margin:10px 0 8px}
+    .subtitle{color:var(--muted);margin:0 0 14px}
+    .cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .hero-points{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+    .chip{display:flex;align-items:center;gap:8px;background:#f2f7ff;border:1px solid #e6ecff;border-radius:12px;padding:8px 10px;font-size:.95rem}
+    .chip b{color:#1a2a5a}
+
+    /* Responsive video embed */
+    .video-wrap{position:relative;border-radius:18px;overflow:hidden;border:1px solid #e6ecff;box-shadow:var(--shadow);background:#000}
+    .video-wrap::before{content:"";display:block;padding-top:56.25%} /* 16:9 */
+    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+    /* Video carousel (horizontal scroll, future-proof to accept more items) */
+    .carousel{
+      background:var(--panel); border:1px solid #e6ecff; border-radius:18px; box-shadow:var(--shadow); padding:16px;
+    }
+    .carousel h3{margin:0 0 8px}
+    .scroller{display:flex; gap:12px; overflow-x:auto; padding-bottom:2px; scroll-snap-type:x mandatory}
+    .card{
+      min-width:260px; background:#fff; border:1px solid #e6ecff; border-radius:14px; box-shadow:var(--shadow); scroll-snap-align:start;
+      padding:10px; display:flex; flex-direction:column; gap:8px;
+    }
+    .thumb{position:relative;border-radius:10px;overflow:hidden}
+    .thumb::before{content:"";display:block;padding-top:56%}
+    .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .card a.btn{align-self:flex-start}
+
+    /* Icon callouts */
+    .grid{display:grid;grid-template-columns:1fr;gap:18px}
+    @media(min-width:900px){ .grid.two{grid-template-columns:1fr 1fr} .grid.three{grid-template-columns:1fr 1fr 1fr} }
+    .info{
+      background:#fff; border:1px solid #e6ecff; border-radius:16px; padding:18px; box-shadow:var(--shadow);
+    }
+    .info h4{margin:0 0 6px}
+    .info p{margin:0;color:var(--muted)}
+    .icon{font-size:22px}
+
+    footer{margin-top:40px;padding:18px 0;color:#5b6a86}
   </style>
+
+  <!-- JSON-LD: WebSite -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Savage Lane",
-    "url": "https://savagelane.com/",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://savagelane.com/search?q={query}",
-      "query-input": "required name=query"
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Savage Lane",
+    "url":"https://savagelane.com/",
+    "potentialAction":{
+      "@type":"SearchAction",
+      "target":"https://savagelane.com/search?q={query}",
+      "query-input":"required name=query"
     }
   }
   </script>
+
+  <!-- JSON-LD: Organization -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -66,109 +149,205 @@
   }
   </script>
 </head>
-
 <body>
-  <header>
-    <nav class="nav" aria-label="Main">
-      <div class="brand">
+  <!-- Sticky nav -->
+  <header class="navbar">
+    <div class="shell nav" aria-label="Main">
+      <a class="brand" href="/" aria-label="Savage Lane Home">
         <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
         <h1>Savage Lane</h1>
-      </div>
-      <div class="links">
+      </a>
+      <nav class="links">
         <a href="/buyers.html">Buyers</a>
         <a href="/sellers.html">Sellers</a>
-        <a href="/concierge.html" class="btn">Home Match Concierge</a>
-      </div>
-    </nav>
+        <a class="btn ghost" href="/sitemap.html">Explore</a>
+        <a class="btn primary" href="/concierge.html">Home Match Concierge</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <section class="hero">
-      <h2>Learn how to buy or sell with confidence</h2>
-      <p>
-        Clear guides on credit, loans, inspections, pricing, staging, closing costs, and more. When you are ready, get matched to trusted local agents and lenders with Home Match Concierge.
-      </p>
-      <div class="cta-row">
-        <a class="btn primary" href="/buyers.html">Start with Buyer Guides</a>
-        <a class="btn" href="/sellers.html">Start with Seller Guides</a>
-        <a class="btn" href="/concierge.html">Use Home Match Concierge</a>
-      </div>
-    </section>
-
-    <section class="grid" aria-labelledby="qheads">
-      <div class="card">
-        <h3 id="qheads">Top 5 buyer questions</h3>
-        <ol>
-          <li>How much can I afford and what payment fits my budget</li>
-          <li>What credit score do I need and how do I improve it</li>
-          <li>Should I get pre approval before shopping</li>
-          <li>What hidden costs should I expect beyond the down payment</li>
-          <li>How do I find a great real estate agent</li>
-        </ol>
-        <div class="cta-row" style="margin-top:14px;">
-          <a class="btn primary" href="/buyers.html">View Buyer Resource Center</a>
-          <a class="btn" href="/concierge.html">Get matched to a lender or agent</a>
+    <div class="shell">
+      <!-- HERO: joyful, visual, video -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-card">
+          <span class="badge">🎉 Learn home buying & selling the fun way</span>
+          <h2 class="title" id="hero-title">Short videos, cheerful guides, and clear next steps</h2>
+          <p class="subtitle">Skip the dense textbooks. Watch, skim, and smile your way to confident decisions — then get matched to a trusted local pro.</p>
+          <div class="hero-points">
+            <div class="chip">✅ <b>2-minute videos</b> that actually help</div>
+            <div class="chip">🎯 <b>Buyer & seller checklists</b> you’ll use</div>
+            <div class="chip">💬 <b>Plain-English answers</b> to top questions</div>
+            <div class="chip">🤝 <b>Concierge</b> connects you to a great agent</div>
+          </div>
+          <div class="cta-row">
+            <a class="btn primary" href="/buyers.html">I’m buying</a>
+            <a class="btn alt" href="/sellers.html">I’m selling</a>
+            <a class="btn" href="/concierge.html">Match me to a pro</a>
+          </div>
         </div>
-        <p class="note">Education first then a smooth handoff to a local licensed pro.</p>
-      </div>
 
-      <div class="card">
-        <h3>Top 5 seller questions</h3>
-        <ol>
-          <li>What is my home worth right now</li>
-          <li>Which repairs or updates are worth doing first</li>
-          <li>How do I price my home to attract strong offers</li>
-          <li>Do I need a pre listing inspection</li>
-          <li>How do I choose the right listing agent</li>
-        </ol>
-        <div class="cta-row" style="margin-top:14px;">
-          <a class="btn primary" href="/sellers.html">View Seller Resource Center</a>
-          <a class="btn" href="/concierge.html">Get matched to a listing agent</a>
+        <!-- Replace the YouTube URL with your own video ID -->
+        <div class="video-wrap" aria-label="Featured explainer video">
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+            title="Savage Lane: How Home Match Concierge Works"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
         </div>
-        <p class="note">Learn the moves then connect with a top local agent.</p>
-      </div>
-    </section>
+      </section>
 
-    <section class="grid" style="margin-top:18px;">
-      <div class="card">
-        <h3>How we help</h3>
-        <p>
-          Savage Lane is an education and referral concierge. We teach you the process and match you to licensed professionals when you are ready.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Referral disclosure</h3>
-        <p>
-          If you use Home Match Concierge and close a qualifying transaction with a matched professional, Savage Lane may receive a referral fee from the brokerage where permitted by law. If someone referred you and you enter their name, we share twenty percent of our referral earnings with them.
-        </p>
-      </div>
-    </section>
+      <!-- VIDEO CAROUSEL: add your shorts / explainers here -->
+      <section class="carousel" aria-labelledby="watch">
+        <h3 id="watch">🎥 Watch & learn (quick tips)</h3>
+        <div class="scroller" role="list">
+          <!-- Card 1 -->
+          <article class="card" role="listitem">
+            <div class="thumb">
+              <img src="/images/thumbs/preapproval.jpg" alt="Pre-approval in 90 seconds">
+            </div>
+            <strong>Pre-approval in 90 seconds</strong>
+            <p class="muted" style="margin:0;color:var(--muted)">Why it matters before you tour.</p>
+            <a class="btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener">Watch</a>
+          </article>
 
-    <section class="grid" aria-labelledby="recs" style="margin-top:18px;">
-      <div class="card">
-        <h3 id="recs">Recommended reads</h3>
-        <ul style="padding-left:18px; margin:10px 0 0;">
-          <li><a href="/guides/buyer-credit-basics.html">Buyer credit basics and quick wins</a></li>
-          <li><a href="/guides/preapproval-vs-prequalification.html">Pre approval versus pre qualification</a></li>
-          <li><a href="/guides/how-to-price-your-home.html">How to price your home</a></li>
-          <li><a href="/guides/preinspection-benefits-for-sellers.html">Pre inspection benefits for sellers</a></li>
-        </ul>
-      </div>
-    </section>
+          <!-- Card 2 -->
+          <article class="card" role="listitem">
+            <div class="thumb">
+              <img src="/images/thumbs/hidden-costs.jpg" alt="Hidden costs for buyers">
+            </div>
+            <strong>Hidden costs for buyers</strong>
+            <p class="muted" style="margin:0;color:var(--muted)">Budget beyond the down payment.</p>
+            <a class="btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener">Watch</a>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="card" role="listitem">
+            <div class="thumb">
+              <img src="/images/thumbs/pricing.jpg" alt="Price your home smart">
+            </div>
+            <strong>Price your home smart</strong>
+            <p class="muted" style="margin:0;color:var(--muted)">Comps, tempo, and strategy.</p>
+            <a class="btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener">Watch</a>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="card" role="listitem">
+            <div class="thumb">
+              <img src="/images/thumbs/staging.jpg" alt="Staging tips that pop">
+            </div>
+            <strong>Staging tips that pop</strong>
+            <p class="muted" style="margin:0;color:var(--muted)">Small tweaks, big smiles.</p>
+            <a class="btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener">Watch</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- ICON CALLOUTS: joyful, scannable education -->
+      <section class="grid three" aria-labelledby="whyfun">
+        <div class="info">
+          <div class="icon">🏡</div>
+          <h4 id="whyfun">Friendly guides</h4>
+          <p>Colorful cards, simple steps, and short reads. Learn faster and feel good doing it.</p>
+        </div>
+        <div class="info">
+          <div class="icon">🎬</div>
+          <h4>Short videos</h4>
+          <p>Every big topic gets a fast explainer. Tap, watch, done.</p>
+        </div>
+        <div class="info">
+          <div class="icon">🤝</div>
+          <h4>Concierge match</h4>
+          <p>When you’re ready, we introduce you to a trusted local agent — the easy way.</p>
+        </div>
+      </section>
+
+      <!-- EXISTING educational sections preserved and visually consistent -->
+      <section class="grid two" aria-labelledby="qheads" style="margin-top:22px">
+        <div class="info">
+          <h3 id="qheads">Top 5 buyer questions</h3>
+          <ol style="padding-left:18px;margin:8px 0 0">
+            <li>How much can I afford and what payment fits my budget</li>
+            <li>What credit score do I need and how do I improve it</li>
+            <li>Should I get pre approval before shopping</li>
+            <li>What hidden costs should I expect beyond the down payment</li>
+            <li>How do I find a great real estate agent</li>
+          </ol>
+          <div class="cta-row" style="margin-top:12px">
+            <a class="btn primary" href="/buyers.html">View Buyer Resource Center</a>
+            <a class="btn" href="/concierge.html">Get matched to a lender or agent</a>
+          </div>
+        </div>
+
+        <div class="info">
+          <h3>Top 5 seller questions</h3>
+          <ol style="padding-left:18px;margin:8px 0 0">
+            <li>What is my home worth right now</li>
+            <li>Which repairs or updates are worth doing first</li>
+            <li>How do I price my home to attract strong offers</li>
+            <li>Do I need a pre listing inspection</li>
+            <li>How do I choose the right listing agent</li>
+          </ol>
+          <div class="cta-row" style="margin-top:12px">
+            <a class="btn alt" href="/sellers.html">View Seller Resource Center</a>
+            <a class="btn" href="/concierge.html">Get matched to a listing agent</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid two" style="margin-top:18px">
+        <div class="info">
+          <h3>How we help</h3>
+          <p>Savage Lane is an education and referral concierge. We teach you the process and match you to licensed professionals when you are ready.</p>
+        </div>
+        <div class="info">
+          <h3>Referral disclosure</h3>
+          <p>If you use Home Match Concierge and close a qualifying transaction with a matched professional, Savage Lane may receive a referral fee from the brokerage where permitted by law. If someone referred you and you enter their name, we share twenty percent of our referral earnings with them.</p>
+        </div>
+      </section>
+
+      <section class="grid" aria-labelledby="recs" style="margin-top:18px;">
+        <div class="info">
+          <h3 id="recs">Recommended reads</h3>
+          <ul style="padding-left:18px; margin:10px 0 0;">
+            <li><a href="/guides/buyer-credit-basics.html">Buyer credit basics and quick wins</a></li>
+            <li><a href="/guides/preapproval-vs-prequalification.html">Pre approval versus pre qualification</a></li>
+            <li><a href="/guides/how-to-price-your-home.html">How to price your home</a></li>
+            <li><a href="/guides/preinspection-benefits-for-sellers.html">Pre inspection benefits for sellers</a></li>
+          </ul>
+        </div>
+      </section>
+    </div>
   </main>
 
-
   <footer>
-    <div>© <span id="y"></span> Savage Lane. All rights reserved.</div>
-    <div>
-      <a href="/privacy.html">Privacy</a>
-      <span aria-hidden="true"> • </span>
-      <a href="/concierge.html">Concierge</a>
+    <div class="shell" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px">
+      <div>© <span id="y"></span> Savage Lane. All rights reserved.</div>
+      <div>
+        <a href="/privacy.html">Privacy</a>
+        <span aria-hidden="true"> • </span>
+        <a href="/sitemap.html">Site Map</a>
+        <span aria-hidden="true"> • </span>
+        <a href="/concierge.html">Concierge</a>
+      </div>
     </div>
   </footer>
 
   <script>
+    // Year
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Future-proof: simple enhancement hook for swapping video IDs globally later
+    // Put your YouTube video ID in window.SL_FEATURED_VIDEO to override without editing HTML
+    (function(){
+      const vid = window.SL_FEATURED_VIDEO;
+      if(!vid) return;
+      const iframe = document.querySelector('.video-wrap iframe');
+      if(iframe){
+        iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(vid) + "?rel=0&modestbranding=1";
+      }
+    })();
   </script>
 </body>
 </html>
