@@ -41,17 +41,24 @@
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      color:var(--ink);
-      background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(94,179,255,.25), transparent 60%),
-        radial-gradient(1000px 500px at 90% 0%, rgba(255,164,164,.22), transparent 60%),
-        linear-gradient(180deg,#f9fcff 0%,#f6fbff 40%,#f4fafc 100%);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      line-height:1.6;
-    }
+html,body{
+  height:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+body{
+  margin:0;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(94,179,255,.25), transparent 60%),
+    radial-gradient(1000px 500px at 90% 0%, rgba(255,164,164,.22), transparent 60%),
+    linear-gradient(180deg,#f9fcff 0%,#f6fbff 40%,#f4fafc 100%);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+
 
     .container{max-width:1100px;margin:0 auto;padding:20px}
     .grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap)}
@@ -62,9 +69,13 @@
       position:sticky;top:0;z-index:30;background:rgba(255,255,255,.7);
       backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(0,0,0,.06);
     }
-    nav.main{
-      height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:14px
-    }
+nav.main{
+  min-height:var(--nav-h);
+  padding:calc(10px + env(safe-area-inset-top)) 0 10px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:14px
+}
+
+
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
     .brand img{height:44px;width:auto;border-radius:10px;box-shadow:var(--shadow)}
     .brand span{font-weight:700;font-size:1.05rem;color:var(--ink)}
@@ -323,7 +334,8 @@
   </div>
 
   <script>
-    window.SL_FEATURED_VIDEO = window.SL_FEATURED_VIDEO || "dQw4w9WgXcQ";
+   window.SL_FEATURED_VIDEO = "EbZmg86IL8U";
+
     const vid = window.SL_FEATURED_VIDEO;
     const el = document.getElementById("video-slot");
     if (el && vid) {

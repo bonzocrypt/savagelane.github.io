@@ -51,7 +51,9 @@
     /* Sticky nav */
     .shell{max-width:1200px;margin:0 auto;padding:0 20px}
     header.navbar{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(8px); background:rgba(255,255,255,.8); border-bottom:1px solid #e6ecff}
-    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 10px}
+.nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:10px}
+
+
     .brand{display:flex; align-items:center; gap:12px;}
     .brand img{width:44px;height:44px;object-fit:cover;border-radius:10px;box-shadow:var(--shadow)}
     .brand h1{font-size:18px;margin:0;font-weight:800;letter-spacing:.2px}
@@ -116,14 +118,14 @@
 
     footer{margin-top:40px;padding:18px 0;color:#5b6a86}
 
-    /* Mobile polish: center hero text and tighten header padding */
-    @media (max-width: 768px){
-      .title,
-      .subtitle,
-      .cta-row{ text-align:center }
-      .hero-points{ grid-template-columns:1fr }
-      header.navbar{ padding-left:6px; padding-right:6px }
-    }
+/* Mobile polish: center hero text */
+@media (max-width: 768px){
+  .title,
+  .subtitle,
+  .cta-row{ text-align:center }
+  .hero-points{ grid-template-columns:1fr }
+}
+
   </style>
 
   <!-- JSON-LD: WebSite -->
