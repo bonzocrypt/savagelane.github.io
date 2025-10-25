@@ -234,9 +234,10 @@
           </div>
 
           <div>
-            <label for="zip">ZIP code</label>
-            <input id="zip" name="zip" required inputmode="numeric" pattern="\d{5}" placeholder="Example 34202" autocomplete="postal-code" />
-            <div id="zipErr" class="error">Enter a 5 digit ZIP</div>
+<label for="zip">ZIP code <span class="hint">(optional)</span></label>
+<input id="zip" name="zip" inputmode="numeric" pattern="\d{5}" placeholder="Example 34202" autocomplete="postal-code" />
+<div id="zipErr" class="error">Enter a 5 digit ZIP</div>
+
           </div>
 
           <!-- Combined location -->
@@ -424,7 +425,13 @@
 
         if(!validCity(city.value)){cityErr.classList.add('show');if(!blocked)city.focus();blocked=true;} else cityErr.classList.remove('show');
         if(!state.value){stateErr.classList.add('show');if(!blocked)state.focus();blocked=true;} else stateErr.classList.remove('show');
-        if(!validZip(zip.value)){zipErr.classList.add('show');if(!blocked)zip.focus();blocked=true;} else zipErr.classList.remove('show');
+        if(zip.value.trim() && !validZip(zip.value)){
+  zipErr.classList.add('show');
+  if(!blocked) zip.focus();
+  blocked = true;
+} else {
+  zipErr.classList.remove('show');
+}
 
         if(!intent.value){intentErr.classList.add('show');if(!blocked)intent.focus();blocked=true;} else intentErr.classList.remove('show');
         if(!timeline.value){timelineErr.classList.add('show');if(!blocked)timeline.focus();blocked=true;} else timelineErr.classList.remove('show');
