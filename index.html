@@ -38,17 +38,20 @@
       --shadow: 0 10px 25px rgba(14, 35, 84, .08);
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html,body{height:100%; max-width:100%; overflow-x:hidden}
     body{
       margin:0;font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6;color:var(--ink);
       background:linear-gradient(180deg,var(--bg-grad1),var(--bg-grad2) 60%,#edf3ff 100%);
-      background-attachment: fixed;
+      /* Fix iOS Safari zoom and parallax jitter that caused “zoomed in” + overflow */
+      background-attachment: scroll;
+      -webkit-text-size-adjust:100%;
+      text-size-adjust:100%;
     }
 
     /* Sticky nav */
-    .shell{max-width:1200px;margin:0 auto;padding:0 16px}
+    .shell{max-width:1200px;margin:0 auto;padding:0 20px}
     header.navbar{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(8px); background:rgba(255,255,255,.8); border-bottom:1px solid #e6ecff}
-    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 10px}
     .brand{display:flex; align-items:center; gap:12px;}
     .brand img{width:44px;height:44px;object-fit:cover;border-radius:10px;box-shadow:var(--shadow)}
     .brand h1{font-size:18px;margin:0;font-weight:800;letter-spacing:.2px}
@@ -63,7 +66,7 @@
     main{padding:0 0 40px}
     section{margin-top:22px}
 
-    /* HERO layout (kept like your original) */
+    /* HERO layout */
     .hero{display:grid;grid-template-columns:1fr;gap:18px;padding:36px 0 8px}
     @media(min-width:980px){ .hero{grid-template-columns:1.1fr .9fr;align-items:center} }
     .hero-card{
@@ -112,6 +115,15 @@
     .icon{font-size:22px}
 
     footer{margin-top:40px;padding:18px 0;color:#5b6a86}
+
+    /* Mobile polish: center hero text and tighten header padding */
+    @media (max-width: 768px){
+      .title,
+      .subtitle,
+      .cta-row{ text-align:center }
+      .hero-points{ grid-template-columns:1fr }
+      header.navbar{ padding-left:6px; padding-right:6px }
+    }
   </style>
 
   <!-- JSON-LD: WebSite -->
