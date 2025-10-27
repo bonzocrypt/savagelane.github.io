@@ -31,13 +31,60 @@
   <link rel="dns-prefetch" href="https://www.youtube.com">
   <link rel="dns-prefetch" href="https://img.youtube.com">
 
-<link rel="stylesheet" href="/css/style.css">
-
+  <link rel="stylesheet" href="/css/style.css">
 
   <!-- JSON-LD: WebSite -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebSite","name":"Savage Lane","url":"https://savagelane.com/"}
   </script>
+
+  <style>
+    /* Floating FAB and modal, minimal and self-contained */
+    .rea-fab {
+      position: fixed; right: 24px; bottom: 24px; height: 56px; width: 56px;
+      border-radius: 9999px; background: #6d28d9; color: #fff; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,.2);
+      cursor: pointer; z-index: 60; border: 0;
+    }
+    .rea-fab:hover { background: #5b21b6; }
+    .rea-modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,.55); display: none;
+      align-items: center; justify-content: center; padding: 20px; z-index: 70;
+    }
+    .rea-modal {
+      width: min(100%, 520px); background: #fff; color: #111; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+    }
+    .rea-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 14px; background: #ede9fe; color: #4c1d95; font-weight: 700;
+    }
+    .rea-close {
+      appearance: none; background: #fff; border: 0; border-radius: 10px; padding: 6px 10px; font-weight: 700; cursor: pointer;
+    }
+    .rea-body { padding: 14px; }
+    .rea-foot {
+      padding: 10px 14px; background: #fafafa; color: #555; font-size: .9rem;
+    }
+    .rea-input {
+      width: 100%; border: 1px solid #ddd; border-radius: 10px; padding: 10px; margin: 6px 0 10px;
+      font-size: 1rem;
+    }
+    .rea-btn {
+      width: 100%; background: #6d28d9; color: #fff; border: 0; border-radius: 10px; padding: 10px 12px; font-weight: 700; cursor: pointer;
+    }
+    .rea-btn[disabled] { opacity: .6; cursor: not-allowed; }
+    .rea-progress {
+      height: 6px; background: #e5e7eb; border-radius: 9999px; overflow: hidden; margin-top: 10px;
+    }
+    .rea-progress > span {
+      display: block; height: 100%; background: #8b5cf6; width: 8%;
+      transition: width .15s ease;
+    }
+    .rea-result {
+      margin-top: 12px; background: #f9fafb; border: 1px solid #eee; border-radius: 10px; padding: 10px; font-size: .95rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -172,7 +219,7 @@
         </div>
       </section>
 
-      <!-- ICON CALLOUTS: joyful, scannable education -->
+      <!-- ICON CALLOUTS -->
       <section class="grid three" aria-labelledby="whyfun">
         <div class="info">
           <div class="icon">🏡</div>
@@ -196,11 +243,11 @@
         <div class="info">
           <h3 id="qheads">Top 5 buyer questions</h3>
           <ol style="padding-left:18px;margin:8px 0 0">
-            <li>How much can I afford and what payment fits my budget</li>
-            <li>What credit score do I need and how do I improve it</li>
-            <li>Should I get pre approval before shopping</li>
-            <li>What hidden costs should I expect beyond the down payment</li>
-            <li>How do I find a great real estate agent</li>
+            <li>How much money do I really need to buy a house?</li>
+            <li>What credit score do I need and how do I improve it?</li>
+            <li>How long does it take to buy a house from start to finish?</li>
+            <li>What hidden costs should I expect beyond the down payment?</li>
+            <li>How do I find a great real estate agent?</li>
           </ol>
           <div class="cta-row" style="margin-top:12px">
             <a class="btn primary" href="/buyers.html">View Buyer Resource Center</a>
@@ -273,17 +320,39 @@
     </div>
   </div>
 
+  <!-- Real Estate Answers floating button and modal -->
+  <button class="rea-fab" id="reaFab" aria-label="Ask Real Estate Answers" title="Ask Real Estate Answers">?</button>
+
+  <div class="rea-modal-backdrop" id="reaBackdrop" aria-hidden="true" role="dialog" aria-label="Real Estate Answers">
+    <div class="rea-modal" role="document">
+      <div class="rea-head">
+        <div>Real Estate Answers</div>
+        <button class="rea-close" id="reaClose" aria-label="Close">Close</button>
+      </div>
+      <div class="rea-body">
+        <label for="reaQ" style="font-weight:600;display:block;margin-bottom:6px">Ask a question</label>
+        <textarea id="reaQ" class="rea-input" rows="3" placeholder="Ask about buying or selling a home..."></textarea>
+        <button id="reaAsk" class="rea-btn">Ask</button>
+        <div class="rea-progress" id="reaProg" style="display:none"><span id="reaProgBar"></span></div>
+        <div class="rea-result" id="reaResult" style="display:none"></div>
+      </div>
+      <div class="rea-foot">
+        Educational only. For offers, negotiations, pricing strategy, or contracts, a licensed Realtor handles next steps. We can connect you through Home Match Concierge.
+      </div>
+    </div>
+  </div>
+
   <script>
     // Year
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Featured thumbnail -> iframe on click (reliable preview)
+    // Featured thumbnail -> iframe on click
     (function(){
       const ph = document.getElementById('featuredPh');
       if(!ph) return;
       ph.addEventListener('click', function(){
         const vid = ph.getAttribute('data-video-id') || 'tipwvuveDxU';
-        const wrap = ph.parentElement; // .video-wrap
+        const wrap = ph.parentElement;
         wrap.innerHTML =
           '<iframe title="Featured video" src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) +
           '?autoplay=1&rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
@@ -291,7 +360,7 @@
       }, { once:true });
     })();
 
-    // Modal player for carousel items (stay on site)
+    // Modal player for carousel items
     (function(){
       const modal = document.getElementById('playerModal');
       const body = document.getElementById('modalBody');
@@ -325,6 +394,82 @@
       closeBtn.addEventListener('click', close);
       modal.addEventListener('click', (e)=>{ if(e.target === modal) close(); });
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && modal.getAttribute('aria-hidden')==='false') close(); });
+    })();
+
+    // Real Estate Answers floating modal logic
+    (function(){
+      const fab = document.getElementById('reaFab');
+      const backdrop = document.getElementById('reaBackdrop');
+      const closeBtn = document.getElementById('reaClose');
+      const askBtn = document.getElementById('reaAsk');
+      const input = document.getElementById('reaQ');
+      const result = document.getElementById('reaResult');
+      const prog = document.getElementById('reaProg');
+      const bar = document.getElementById('reaProgBar');
+
+      function open() {
+        backdrop.style.display = 'flex';
+        backdrop.setAttribute('aria-hidden','false');
+        setTimeout(()=>input.focus(), 50);
+      }
+      function close() {
+        backdrop.style.display = 'none';
+        backdrop.setAttribute('aria-hidden','true');
+        result.style.display = 'none';
+        result.textContent = '';
+        input.value = '';
+        bar.style.width = '8%';
+        prog.style.display = 'none';
+      }
+
+      fab.addEventListener('click', open);
+      closeBtn.addEventListener('click', close);
+      backdrop.addEventListener('click', (e)=>{ if(e.target === backdrop) close(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && backdrop.getAttribute('aria-hidden')==='false') close(); });
+
+      async function postQuestion(q){
+        const url = "https://us-central1-savagelane-ai.cloudfunctions.net/realEstateAnswers";
+        const resp = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt: q })
+        });
+        return resp.json();
+      }
+
+      askBtn.addEventListener('click', async ()=>{
+        const q = String(input.value || "").trim();
+        if (!q) { input.focus(); return; }
+
+        askBtn.disabled = true;
+        prog.style.display = 'block';
+        result.style.display = 'none';
+        result.textContent = '';
+
+        // simple visual progress
+        let pct = 8;
+        const timer = setInterval(()=>{ pct = Math.min(100, pct + 3); bar.style.width = pct + "%"; }, 60);
+
+        try {
+          const data = await postQuestion(q);
+          result.style.display = 'block';
+          if (data && data.result) {
+            result.innerHTML = '<b>Real Estate Answers:</b><div style="margin-top:6px">' + data.result.replace(/\n/g,"<br>") + '</div>';
+          } else if (data && data.error) {
+            result.textContent = "Error: " + (data.error.message || JSON.stringify(data.error));
+          } else {
+            result.textContent = "No response from Real Estate Answers.";
+          }
+        } catch (err) {
+          result.style.display = 'block';
+          result.textContent = "Error: " + (err && err.message ? err.message : String(err));
+        } finally {
+          clearInterval(timer);
+          bar.style.width = "100%";
+          setTimeout(()=>{ prog.style.display = 'none'; bar.style.width = "8%"; }, 400);
+          askBtn.disabled = false;
+        }
+      });
     })();
   </script>
 </body>

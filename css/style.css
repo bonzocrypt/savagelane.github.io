@@ -194,3 +194,103 @@ footer .links a{color:#0a63dd}
   gap:8px;
 }
 
+/* Anchor offset so category headers are visible below the sticky nav */
+#buyer-education .card { scroll-margin-top: calc(var(--nav-h) + 24px); }
+
+/* Smooth scrolling for TOC chips and in-page links */
+html { scroll-behavior: smooth; }
+
+
+/* ===== Buyers page refinements (dropdown FAQ, compact hero) ===== */
+
+/* Compact hero spacing (matches your screenshot) */
+.hero.compact { padding: 22px 0 4px; }
+.hero.compact h1 { margin: 6px 0 6px; font-size: 2.1rem; }
+.hero.compact .lead { margin: 0 0 12px; }
+.hero-cta { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* Make the "How matching works" card narrower than the video on desktop */
+@media (min-width: 900px){
+  .match-narrow{
+    width: 100%;
+    max-width: 560px;        /* narrower than a typical 16:9 video in the same grid */
+    justify-self: end;       /* align to the right so it visually pairs with the video */
+  }
+}
+
+/* FAQ categories use <details> with the same card look */
+.faq { margin-top: 18px; }
+.faq h2 { margin: 0 0 8px; }
+.faq .note { color: var(--muted); }
+
+/* Category container already has .card in the HTML, so just style the toggles */
+.faq-cat { margin: 12px 0; }
+
+/* Category header */
+.faq-cat > summary{
+  list-style: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  font-weight: 700;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+}
+.faq-cat > summary::-webkit-details-marker{ display:none; }
+.faq-cat > summary::after{
+  content:"▾"; opacity:.85; transform: rotate(0deg); transition: transform .2s ease;
+}
+.faq-cat[open] > summary::after{ transform: rotate(180deg); }
+
+/* Inner Q&A items */
+.qa { padding: 0 12px 12px 12px; }
+.qa-item{
+  margin-top: 8px;
+  border:1px dashed rgba(0,0,0,.08);
+  border-radius: 12px;
+  background:#fff;
+}
+.qa-item > summary{
+  list-style:none; cursor:pointer; padding:12px 14px; font-weight:600; border-radius:12px;
+}
+.qa-item > summary::-webkit-details-marker{ display:none; }
+.qa-item[open] > summary{ background:#f7fbff; }
+.qa-item > div{ padding: 0 14px 14px 14px; color: var(--ink); }
+
+/* Accessible focus ring consistent with your theme */
+.faq-cat > summary:focus-visible,
+.qa-item > summary:focus-visible{
+  outline:3px solid var(--ring); outline-offset:2px; border-radius:12px;
+}
+/* Keep hero content stacked even when .hero becomes 2 columns at ≥980px */
+.hero .hero-content { grid-column: 1 / -1; }
+/* Optional: compact spacing */
+.hero.compact { padding: 22px 0 4px; }
+.hero.compact h1 { margin: 6px 0 6px; font-size: 2.1rem; }
+.hero.compact .lead { margin: 0 0 12px; }
+/* Topic chips (TOC above Buyer Education) */
+.toc-chips{
+  display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 6px;
+}
+.chip{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:8px 12px; border-radius:999px; font-weight:600; font-size:.95rem;
+  background:#eef3ff; color:#1f2a44; border:1px solid #e6ecff; text-decoration:none;
+}
+.chip:hover{ text-decoration:none; transform:translateY(-1px); box-shadow:var(--shadow); }
+.chip.mint{ background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29; border:none }
+.chip.coral{ background:linear-gradient(90deg, var(--accent-2), #ffb3a6); color:#3a0e0e; border:none }
+.chip.sky{ background:linear-gradient(90deg, var(--accent-3), #9fd0ff); color:#0b2447; border:none }
+
+/* Compact expandable Q&As inside cards */
+.qalist{ list-style:none; padding-left:0; margin:10px 0 0; }
+.qalist li + li{ margin-top:6px; }
+.qa-snippet{ background:#fff; border:1px dashed rgba(0,0,0,.08); border-radius:12px; }
+.qa-snippet > summary{
+  cursor:pointer; padding:10px 12px; font-weight:600; list-style:none; border-radius:12px;
+}
+.qa-snippet > summary::-webkit-details-marker{ display:none; }
+.qa-snippet[open] > summary{ background:#f7fbff; }
+.qa-snippet > div{ padding:8px 12px 12px; color:var(--ink); }
+.qa-snippet a{ font-weight:600; }
+
+
