@@ -180,7 +180,8 @@ nav.main{
   </script>
 </head>
 
-<body>
+<body class="sellers">
+
   <div class="nav-wrap">
     <div class="container">
       <nav class="main" aria-label="Primary">
@@ -213,7 +214,8 @@ nav.main{
     }
     </script>
 
-    <section class="hero">
+<section class="hero hero-card">
+
       <h1>Seller Resource Center</h1>
       <p class="lead">
         Learn how to prepare price market and close. When you are ready we can match you to a trusted listing agent with Home Match Concierge.
@@ -224,32 +226,25 @@ nav.main{
         <a class="btn coral" href="/concierge.html">Get matched now</a>
       </div>
     </section>
-
-    <!-- Featured video and how matching works -->
+ <!-- Featured video and how matching works (same structure as sellers) -->
     <section class="grid grid-2" style="margin-top:18px" aria-labelledby="learnfast">
       <div class="video-card">
         <header id="learnfast">Learn fast</header>
-        <div class="video-wrap" id="video-slot" aria-label="Featured seller video"></div>
+        <div class="video-wrap" id="video-slot" aria-label="Featured buyer video"></div>
       </div>
 
-      <div class="card">
-        <h3>How matching works</h3>
-        <p>
-          Tell us your city timeline and basic needs. We register your request with our brokerage referral program and a licensed pro in your market will reach out. We do not list show or negotiate real estate. We act only in a referral capacity.
-        </p>
-        <p class="note">If someone referred you mention them in the Referred By field and we share twenty percent of our referral earnings with them.</p>
-
-        <ul class="list-clean" style="margin-top:12px">
-          <li>Step one share your city and timing</li>
-          <li>Step two a listing agent reviews pricing and prep</li>
-          <li>Step three launch with photos marketing and showings</li>
-          <li>Step four review offers and close with confidence</li>
-        </ul>
-
-        <div style="margin-top:12px">
-          <a class="btn primary" href="/concierge.html" aria-label="Use Home Match Concierge">Use Home Match Concierge</a>
+            <div class="card" style="display:flex;flex-direction:column;justify-content:center">
+        <div>
+          <h3>How matching works</h3>
+          <p>
+            Tell us your city timeline and basic needs. We register your request with our brokerage referral program and a licensed Realtor in your market will reach out. We do not list show or negotiate real estate. We act only in a referral capacity.
+          </p>
+          <div style="margin-top:12px">
+            <a class="btn primary" href="/concierge.html" aria-label="Use Home Match Concierge">Use Home Match Concierge</a>
+          </div>
         </div>
       </div>
+
     </section>
 
     <section id="top-questions" class="grid grid-2" style="margin-top:18px">
@@ -345,6 +340,10 @@ nav.main{
         '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
     }
     document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+</script>
+
+<!-- Sitewide AskSavvy launcher -->
+<script src="/js/asksavvy.js" defer></script>
 </body>
 </html>
+

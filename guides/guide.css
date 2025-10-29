@@ -1,0 +1,133 @@
+/* ==========================================================================
+   Savage Lane — Guide Reading Mode (dark)
+   Used by: /guides/*.html
+   Purpose: clean, high-contrast, easy-reading article layout
+   ========================================================================== */
+
+/* Theme tokens (dark) */
+:root{
+  --bg:#0b1020;          /* page background */
+  --panel:#0f172a;       /* panel cards */
+  --text:#eef2f7;        /* primary text */
+  --muted:#b8c1d8;       /* secondary text */
+  --accent:#5a7cff;      /* buttons/links (brand) */
+
+  --ring: rgba(90,124,255,.45);
+  --border:#1f2937;
+  --shadow:0 18px 40px rgba(0,0,0,.25);
+
+  --wrap:900px;          /* max content width */
+  --radius:14px;
+}
+
+/* Base */
+*{ box-sizing:border-box }
+html,body{ height:100% }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* Layout */
+.wrap{ max-width:var(--wrap); margin:0 auto; padding:32px 20px }
+
+/* Header */
+header{
+  display:flex; justify-content:space-between; align-items:center;
+  gap:14px; margin-bottom:16px;
+}
+header img{ height:56px; width:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.25) }
+header nav{ display:flex; align-items:center; flex-wrap:wrap; gap:10px }
+header nav .sep{ opacity:.6 }
+@media (max-width:640px){
+  header{ flex-direction:column; align-items:flex-start }
+}
+
+/* Links */
+a{ color:#8ab4ff; text-decoration:none }
+a:hover{ text-decoration:underline }
+
+/* Buttons */
+.btn{
+  display:inline-block; padding:10px 14px; border-radius:10px;
+  background:#2b2f3a; color:#fff; font-weight:600; border:1px solid #343a46;
+  text-decoration:none;
+}
+.btn.primary{ background:var(--accent); border-color:transparent }
+.btn:focus-visible{ outline:3px solid var(--ring); outline-offset:2px }
+
+/* Article */
+article{ margin-top:10px }
+h1{ font-size:2rem; margin:8px 0 12px; line-height:1.2 }
+h2{ margin:18px 0 8px; font-size:1.25rem }
+p{ color:#cfd6e6; margin:0 0 12px }
+
+/* Panels / callouts */
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:18px;
+  margin:12px 0;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+}
+
+/* Lists and text elements */
+ul,ol{ margin:10px 0 0; padding-left:20px }
+li{ margin:6px 0 }
+strong,b{ color:#fff }
+em,i{ color:#d4dbeb }
+blockquote{
+  margin:12px 0; padding:10px 14px;
+  border-left:3px solid var(--accent);
+  background:rgba(255,255,255,.03);
+  border-radius:10px;
+  color:#dbe3f7;
+}
+code, pre{
+  font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  background:#111827; color:#e5e7eb; border-radius:8px;
+}
+code{ padding:.15em .35em; border:1px solid #1f2937 }
+pre{ padding:12px; overflow:auto; border:1px solid #1f2937 }
+
+/* Media */
+img, video, iframe{ max-width:100%; height:auto }
+iframe{ border:0; aspect-ratio:16/9 }
+figure{ margin:12px 0 }
+figcaption{ color:var(--muted); font-size:.95rem; margin-top:6px }
+
+/* Footer */
+footer{
+  margin-top:28px; color:#9aa6bd;
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+}
+footer a{ color:#b8c1ff }
+
+/* Accessibility */
+:focus-visible{ outline:3px solid var(--ring); outline-offset:2px; border-radius:10px }
+
+/* Small devices */
+@media (max-width:480px){
+  h1{ font-size:1.7rem }
+}
+
+/* ================= Reading progress bar (inert until markup exists) ================ */
+/* Usage (next step): add <div class="reading-progress"><span class="reading-progress__bar"></span></div>
+   at the start of <body>, and a 6-line script to update width on scroll. */
+.reading-progress{
+  position:fixed; inset:0 auto auto 0; height:4px; width:100%;
+  background:transparent; z-index:100; pointer-events:none;
+}
+.reading-progress__bar{
+  display:block; height:100%; width:0%;
+  background:linear-gradient(90deg, var(--accent), #8ab4ff);
+  box-shadow:0 2px 8px rgba(0,0,0,.25);
+  transition:width .15s ease;
+}
+

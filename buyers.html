@@ -4,70 +4,145 @@
   <meta charset="utf-8" />
   <title>Buyer Resource Center | Savage Lane</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Clear step by step guides for home buyers. Credit loans down payment assistance inspections closing costs and more. When you are ready use Home Match Concierge to get matched to trusted local pros." />
+  <meta name="description" content="Clear step by step guides for home buyers. Financing pre approval shopping offers inspection appraisal and closing. When ready use Home Match Concierge to get matched to a trusted local Realtor." />
   <link rel="canonical" href="https://savagelane.com/buyers.html" />
   <meta name="robots" content="index,follow" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Buyer Resource Center | Savage Lane" />
-  <meta property="og:description" content="Everything a buyer needs to know in one place. Learn first then get matched to trusted local pros." />
+  <meta property="og:description" content="Everything a buyer needs in one place. Learn first then get matched to a trusted local Realtor." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://savagelane.com/buyers.html" />
   <meta property="og:image" content="https://savagelane.com/images/default-og.png" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Buyer Resource Center | Savage Lane" />
   <meta name="twitter:description" content="Learn how to buy with confidence then get matched to trusted local pros." />
   <meta name="twitter:image" content="https://savagelane.com/images/default-og.png" />
 
-  <!-- Fonts + sitewide stylesheet -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
-  <link rel="stylesheet" href="/css/style.css" />
 
-  <!-- FAQ schema (keep several representative Qs for SEO) -->
+  <!-- Inline styles copied to match sellers.html layout exactly -->
+  <style>
+    :root{
+      --bg:#f7fbff;
+      --ink:#0b1b2b;
+      --muted:#52637a;
+      --card:#ffffff;
+      --accent:#2ec5b6;
+      --accent-2:#ff7a7a;
+      --accent-3:#5aa8ff;
+      --ring:rgba(46,197,182,.24);
+      --shadow:0 10px 25px rgba(0,0,0,.06);
+      --radius:16px;
+      --grid-gap:18px;
+      --nav-h:68px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;max-width:100%;overflow-x:hidden}
+    body{
+      margin:0;color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(94,179,255,.25), transparent 60%),
+        radial-gradient(1000px 500px at 90% 0%, rgba(255,164,164,.22), transparent 60%),
+        linear-gradient(180deg,#f9fcff 0%,#f6fbff 40%,#f4fafc 100%);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      line-height:1.6;
+      -webkit-text-size-adjust:100%;
+      text-size-adjust:100%;
+    }
+
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    .grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap)}
+    @media(min-width:900px){.grid-2{grid-template-columns:1fr 1fr}}
+    @media(min-width:1100px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+
+    .nav-wrap{
+      position:sticky;top:0;z-index:30;background:rgba(255,255,255,.7);
+      backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    nav.main{
+      min-height:var(--nav-h);
+      padding:calc(10px + env(safe-area-inset-top)) 0 10px 0;
+      display:flex;align-items:center;justify-content:space-between;gap:14px
+    }
+
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img{height:44px;width:auto;border-radius:10px;box-shadow:var(--shadow)}
+    .brand span{font-weight:700;font-size:1.05rem;color:var(--ink)}
+    .links{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    a{color:#0a63dd;text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 16px;
+      border:1px solid rgba(0,0,0,.08); background:#ffffff; color:var(--ink); font-weight:600;
+      box-shadow:var(--shadow)
+    }
+    .btn.primary{background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29;border:none}
+    .btn.coral{background:linear-gradient(90deg, var(--accent-2), #ffb3a6); color:#3a0e0e;border:none}
+    .btn.sky{background:linear-gradient(90deg, var(--accent-3), #9fd0ff); color:#0b2447;border:none}
+
+    .hero{
+      border-radius:24px; padding:28px; box-shadow:var(--shadow);
+      background:
+        radial-gradient(1200px 500px at 0% 0%, rgba(94,179,255,.30), transparent 60%),
+        radial-gradient(900px 450px at 100% 0%, rgba(255,164,164,.26), transparent 60%),
+        linear-gradient(180deg,#ffffff 0%,#fbfeff 100%);
+      border:1px solid rgba(0,0,0,.06);
+    }
+    .hero h1{margin:6px 0 8px;font-size:2.1rem;letter-spacing:.2px}
+    .hero p.lead{margin:0 0 14px;color:var(--muted)}
+
+    .video-card{
+      background:var(--card); border:1px solid rgba(0,0,0,.06); border-radius:var(--radius);
+      box-shadow:var(--shadow); overflow:hidden
+    }
+    .video-card header{padding:14px 16px;font-weight:600;border-bottom:1px solid rgba(0,0,0,.06)}
+    .video-wrap{position:relative;aspect-ratio:16/9;background:#eef5ff}
+    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+    .card{
+      background:var(--card); border:1px solid rgba(0,0,0,.06); border-radius:var(--radius);
+      padding:18px; box-shadow:var(--shadow)
+    }
+    .card h3{margin:0 0 8px}
+    .note{font-size:.95rem;color:var(--muted);margin-top:8px}
+
+    ol,ul{margin:10px 0 0;padding-left:18px}
+    .list-clean{list-style:none;padding-left:0;margin:8px 0 0}
+    .list-clean li{padding:8px 0;border-top:1px dashed rgba(0,0,0,.08)}
+    .list-clean li:first-child{border-top:none}
+
+    .crumbs{margin:10px 0 14px;font-size:.95rem;color:var(--muted)}
+    .crumbs a{color:#0a63dd;text-decoration:none}
+    .crumbs .sep{margin:0 6px}
+
+    footer{margin:28px 0 30px;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    footer .links a{color:#0a63dd}
+
+    :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:10px}
+  </style>
+
+  <!-- Minimal FAQ schema to keep rich results while links live on their own pages later -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"What credit score do I need to buy a home",
-        "acceptedAnswer":{"@type":"Answer","text":"Many lenders can approve in the mid six hundreds for certain loan types. Higher scores can improve your rate and lower costs. A local lender your Realtor trusts can map the fastest path for you and verify what will qualify in your area."}
-      },
-      {
-        "@type":"Question",
-        "name":"Should I get pre approval before I tour homes",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes. Sellers want proof you are qualified. A strong pre approval also lets your agent set the right search budget and move fast when the right home appears."}
-      },
-      {
-        "@type":"Question",
-        "name":"Is it better to buy or rent right now",
-        "acceptedAnswer":{"@type":"Answer","text":"It depends on local prices taxes and rents. A local Realtor can run a rent versus buy comparison for your city and show the real after tax monthly cost for homes that match your needs."}
-      }
+      {"@type":"Question","name":"How much house can I afford","acceptedAnswer":{"@type":"Answer","text":"Affordability depends on income debts credit taxes insurance and local prices. A local lender can model a real number for your city."}},
+      {"@type":"Question","name":"Should I get pre approval before I tour homes","acceptedAnswer":{"@type":"Answer","text":"Yes sellers expect a current pre approval. It also sets your real budget and speeds up your offer."}},
+      {"@type":"Question","name":"Which loan type is best for me","acceptedAnswer":{"@type":"Answer","text":"FHA VA USDA and conventional have different down payment mortgage insurance and appraisal rules. Your lender can compare side by side for your situation."}}
     ]
-  }
-  </script>
-
-  <!-- Organization schema -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"Savage Lane",
-    "url":"https://savagelane.com/",
-    "logo":"https://savagelane.com/images/savage-lane-logo.png",
-    "sameAs":[]
   }
   </script>
 </head>
 
-<body>
-  <!-- Sticky nav -->
+<body class="buyers">
+
+  <!-- Sticky, padded header identical to sellers.html -->
   <div class="nav-wrap">
     <div class="container">
       <nav class="main" aria-label="Primary">
@@ -85,7 +160,7 @@
   </div>
 
   <div class="container">
-    <!-- Breadcrumbs -->
+    <!-- Breadcrumbs like sellers.html -->
     <nav class="crumbs" aria-label="Breadcrumb">
       <a href="/">Home</a><span class="sep" aria-hidden="true">›</span><span>Buyers</span>
     </nav>
@@ -101,170 +176,136 @@
     }
     </script>
 
-    <!-- Hero -->
-    <section class="hero compact">
-      <div class="hero-content">
-        <h1>Buyer Resource Center</h1>
-        <p class="lead">
-          Learn the steps from credit to keys. When you are ready we can match you to trusted local agents and lenders with Home Match Concierge.
-        </p>
-       <div class="links hero-cta" style="margin-top:10px;flex-wrap:wrap;gap:10px">
-  <a class="btn primary" href="#buyer-education">Buyer education</a>
-  <a class="btn sky" href="#be-fin">Start with financing</a>
-  <a class="btn coral" href="/concierge.html">Get matched now</a>
-</div>
-
+    <!-- Hero card with buffers and gradient -->
+    <section class="hero hero-card">
+      <h1>Buyer Resource Center</h1>
+      <p class="lead">
+        Learn how to search finance offer and close with confidence. When you are ready we can match you to a trusted Realtor with Home Match Concierge.
+      </p>
+      <div class="links" style="margin-top:10px;flex-wrap:wrap;gap:10px">
+        <a class="btn primary" href="#buyer-education">Buyer education</a>
+        <a class="btn sky" href="#be-fin">Start with financing</a>
+        <a class="btn coral" href="/concierge.html">Get matched now</a>
       </div>
     </section>
 
-    <!-- Featured video block with hook -->
+    <!-- Featured video and how matching works (same structure as sellers) -->
     <section class="grid grid-2" style="margin-top:18px" aria-labelledby="learnfast">
       <div class="video-card">
         <header id="learnfast">Learn fast</header>
         <div class="video-wrap" id="video-slot" aria-label="Featured buyer video"></div>
       </div>
 
-     <div class="card" style="max-width:520px; margin-left:auto;">
-
-        <h3>How matching works</h3>
-        <p>
-          Tell us your city timeline and basic needs. We register your request with our brokerage referral program and a licensed pro in your market will reach out. We do not list show or negotiate real estate. We act only in a referral capacity.
-        </p>
-        <p class="note">
-          If someone referred you mention them in the Referred By field and we share twenty percent of our referral earnings with them.
-        </p>
-
-        <ul class="list-clean" style="margin-top:12px">
-          <li>Step one share your city and timeline</li>
-          <li>Step two we match you to a local pro</li>
-          <li>Step three you tour homes with your agent</li>
-          <li>Step four close with confidence</li>
-        </ul>
-
-        <div style="margin-top:12px">
-          <a class="btn primary" href="/concierge.html" aria-label="Use Home Match Concierge">Use Home Match Concierge</a>
+            <div class="card" style="display:flex;flex-direction:column;justify-content:center">
+        <div>
+          <h3>How matching works</h3>
+          <p>
+            Tell us your city timeline and basic needs. We register your request with our brokerage referral program and a licensed Realtor in your market will reach out. We do not list show or negotiate real estate. We act only in a referral capacity.
+          </p>
+          <div style="margin-top:12px">
+            <a class="btn primary" href="/concierge.html" aria-label="Use Home Match Concierge">Use Home Match Concierge</a>
+          </div>
         </div>
       </div>
+
     </section>
 
-        <!-- Buyer Education TOC chips -->
-    <nav class="toc-chips" aria-label="Buyer topics">
-      <a class="chip mint" href="#be-fin">💸 Financing</a>
-      <a class="chip sky" href="#be-process">🧭 Buying process</a>
-      <a class="chip coral" href="#be-rent">🏠 Buy vs. rent</a>
-      <a class="chip mint" href="#be-realtors">🤝 Working with Realtors</a>
-      <a class="chip sky" href="#be-condition">🛠️ Home condition</a>
-      <a class="chip coral" href="#be-reads">📚 Recommended reads</a>
-    </nav>
+    <!-- Sellers-style link categories -->
+<section id="buyer-education" class="grid grid-3" style="margin-top:18px;scroll-margin-top:92px">
 
-    <!-- Buyer Education (card blocks; compact expandable Q&A) -->
-    <section id="buyer-education" class="grid grid-3" style="margin-top:18px">
-      <!-- Financing & Affordability -->
+      <div class="card" id="be-top" style="scroll-margin-top: 92px;">
+        <h3>Top buyer questions</h3>
+        <ul>
+          <li><a href="#">How much house can I afford</a></li>
+          <li><a href="#">Should I get pre approval before I tour homes</a></li>
+          <li><a href="#">Which loan type is best for me</a></li>
+          <li><a href="#">What credit score do I need</a></li>
+          <li><a href="#">What are hidden costs for buyers</a></li>
+        </ul>
+      </div>
+
+      <div class="card" id="be-core">
+        <h3>Core guides</h3>
+        <ul>
+          <li><a href="#">Credit score basics and quick wins</a></li>
+          <li><a href="#">Pre approval versus pre qualification</a></li>
+          <li><a href="#">FHA VA and conventional explained</a></li>
+          <li><a href="#">Down payment assistance and grants</a></li>
+          <li><a href="#">How much house can I afford</a></li>
+          <li><a href="#">Hidden costs buyers should expect</a></li>
+          <li><a href="#">How to choose the right agent</a></li>
+        </ul>
+      </div>
+
       <div class="card" id="be-fin" style="scroll-margin-top: 92px;">
         <h3>💸 Financing and affordability</h3>
-        <ul class="qalist">
-          <li><details class="qa-snippet"><summary>How much money do I need to buy a home</summary><div>Plan for down payment + closing costs + a small cushion. A local lender your Realtor trusts can show the exact number for your city—<a href="/concierge.html">get matched</a>.</div></details></li>
-          <li><details class="qa-snippet"><summary>What payment fits my budget</summary><div>Payment = principal, interest, taxes, insurance (+HOA if any). Your agent + lender can model a real monthly for specific homes—<a href="/concierge.html">get matched</a>.</div></details></li>
-          <li><details class="qa-snippet"><summary>What credit score do I need</summary><div>Mid-600s can work for some programs; higher can lower costs. Ask a local lender for a quick action plan—<a href="/concierge.html">get matched</a>.</div></details></li>
-          <li><details class="qa-snippet"><summary>Should I get pre approval before I shop</summary><div>Yes—sellers expect it and it sets your real budget. Your Realtor can fast-track the pre-approval—<a href="/concierge.html">get matched</a>.</div></details></li>
-          <li><details class="qa-snippet"><summary>What loan type is best for me</summary><div>FHA/VA/USDA/conventional each have tradeoffs. Your agent will flag which ones appraise and close smoother—<a href="/guides/loan-types-fha-va-conventional.html">learn more</a>.</div></details></li>
-          <li><details class="qa-snippet"><summary>Can I buy with student loans or self employed income</summary><div>Often yes—underwriting just needs the right docs. Your agent can steer you to lenders who do these files often.</div></details></li>
-          <li><details class="qa-snippet"><summary>What are closing costs and how can I lower them</summary><div>Lender/title fees, taxes, escrows. Your agent can negotiate seller credits or lender incentives in some markets.</div></details></li>
-          <li><details class="qa-snippet"><summary>What if rates change while I shop</summary><div>Your lender can lock at the right moment; some offer float-downs. Your Realtor times the offer so you close within the lock.</div></details></li>
-          <li><details class="qa-snippet"><summary>How much should I keep in savings after I buy</summary><div>Keep a small reserve for comfort/repairs. Your agent helps target homes with lower near-term repair risk.</div></details></li>
-          <li><details class="qa-snippet"><summary>Are there down payment grants or credits I can use</summary><div>Yes—city/state/employer programs and builder credits exist. Your Realtor and lender can package them correctly.</div></details></li>
-        </ul>
-        <!-- Guides grouped under financing for quick paths -->
         <ul>
-          <li><a href="/guides/buyer-credit-basics.html">Credit score basics and quick wins</a></li>
-          <li><a href="/guides/preapproval-vs-prequalification.html">Pre approval versus pre qualification</a></li>
-          <li><a href="/guides/loan-types-fha-va-conventional.html">FHA VA and conventional explained</a></li>
-          <li><a href="/guides/down-payment-assistance.html">Down payment help and grants by state</a></li>
-          <li><a href="/guides/how-much-house-can-i-afford.html">How much house can I afford</a></li>
-          <li><a href="/guides/hidden-costs-for-buyers.html">Hidden costs buyers should expect</a></li>
+          <li><a href="#">How much house can I afford</a></li>
+          <li><a href="#">What payment fits my budget</a></li>
+          <li><a href="#">What credit score do I need to buy a home</a></li>
+          <li><a href="#">Should I get pre approval before I tour homes</a></li>
+          <li><a href="#">Which loan type is best for me FHA VA or conventional</a></li>
+          <li><a href="#">Can I buy with zero down or assistance</a></li>
+          <li><a href="#">What are closing costs and who pays them</a></li>
+          <li><a href="#">What if mortgage rates change while I am house hunting</a></li>
+          <li><a href="#">How much should I set aside for repairs and maintenance</a></li>
         </ul>
-        <p class="note"><a href="#buyer-education">Back to top ↑</a></p>
       </div>
 
-      <!-- The Buying Process -->
-      <div class="card" id="be-process" style="scroll-margin-top: 92px;">
+      <div class="card" id="be-process">
         <h3>🧭 The buying process</h3>
-        <ul class="qalist">
-          <li><details class="qa-snippet"><summary>How long does the whole process take</summary><div>Often weeks to find, ~30 days to close. A skilled Realtor keeps timelines tight and on track—<a href="/concierge.html">get matched</a>.</div></details></li>
-          <li><details class="qa-snippet"><summary>How much should I offer on a home I like</summary><div>Your agent runs comps + calls the listing agent to tailor terms that win without overpaying.</div></details></li>
-          <li><details class="qa-snippet"><summary>What is earnest money and can I get it back</summary><div>Good-faith deposit, usually credited at close. Contract timelines help protect it—your Realtor manages those.</div></details></li>
-          <li><details class="qa-snippet"><summary>Inspection vs appraisal—what’s the difference</summary><div>Inspection = condition; appraisal = value for lender. Your agent coordinates both and negotiates when needed.</div></details></li>
-          <li><details class="qa-snippet"><summary>Should I waive inspection to be competitive</summary><div>Risky. Use fast inspections or repair caps instead—your agent structures it safely.</div></details></li>
-          <li><details class="qa-snippet"><summary>What are common red flags during inspection</summary><div>Roof life, HVAC age, moisture, electrical. Your Realtor’s inspectors explain severity and cost.</div></details></li>
-          <li><details class="qa-snippet"><summary>How do I pick the right neighborhood</summary><div>Compare schools, taxes, HOA rules, commute, trends. Your agent lines up tours that fit your goals.</div></details></li>
-          <li><details class="qa-snippet"><summary>What happens after my offer is accepted</summary><div>Deposit → inspection → appraisal → loan approval → final walk-through. Your Realtor keeps all pros in sync.</div></details></li>
-          <li><details class="qa-snippet"><summary>Should I buy a fixer or move in ready</summary><div>Depends on budget and timeline. Your agent can price repairs with trusted vendors to compare total cost.</div></details></li>
-          <li><details class="qa-snippet"><summary>What should I expect on closing day</summary><div>Bring ID; plan ~1 hour of signing. Your Realtor and lender confirm final numbers and keys.</div></details></li>
+        <ul>
+          <li><a href="#">How long does buying a home take</a></li>
+          <li><a href="#">What happens from offer to close</a></li>
+          <li><a href="#">What contingencies should I keep</a></li>
+          <li><a href="#">How do appraisals work</a></li>
+          <li><a href="#">What happens at closing</a></li>
         </ul>
-        <p class="note"><a href="#buyer-education">Back to top ↑</a></p>
       </div>
 
-      <!-- Buying vs Renting -->
-      <div class="card" id="be-rent" style="scroll-margin-top: 92px;">
-        <h3>🏠 Buying versus renting</h3>
-        <ul class="qalist">
-          <li><details class="qa-snippet"><summary>Buy or rent right now in my area</summary><div>Depends on local prices, taxes, and rent trends. Get a side-by-side for actual homes—<a href="/concierge.html">get matched</a>.</div></details></li>
-          <li><details class="qa-snippet"><summary>How long should I stay for buying to make sense</summary><div>Many markets break even around 2–3 years; your agent can model it with local numbers.</div></details></li>
-          <li><details class="qa-snippet"><summary>Owner costs renters avoid</summary><div>Maintenance, repairs, sometimes HOA dues. Your Realtor helps target low-risk homes for your budget.</div></details></li>
-          <li><details class="qa-snippet"><summary>Tax benefits as an owner</summary><div>Often mortgage interest and property taxes—ask your tax pro. Your agent can estimate neighborhood taxes.</div></details></li>
-          <li><details class="qa-snippet"><summary>Low/zero-down programs</summary><div>Some loans allow 3% down; some qualify for 0% down. Your Realtor + lender pair you with the right program.</div></details></li>
-          <li><details class="qa-snippet"><summary>What if prices cool later</summary><div>If the home fits your budget and timeline it can still be wise. Your agent focuses on strong resale drivers.</div></details></li>
-          <li><details class="qa-snippet"><summary>Prep this year if buying next year</summary><div>Pre-approval + savings/credit plan. Your Realtor sets a watch list so you’re ready to act.</div></details></li>
-          <li><details class="qa-snippet"><summary>Keep rental and buy another place</summary><div>Sometimes yes if income qualifies with both payments. Your agent + lender model the steps.</div></details></li>
-          <li><details class="qa-snippet"><summary>Are new builds cheaper than renting</summary><div>Builders may offer credits that drop payments. Your Realtor compares them to local rents.</div></details></li>
-          <li><details class="qa-snippet"><summary>Who should I talk to first</summary><div>A quick consult with a trusted Realtor gives you a clear plan and lender options—<a href="/concierge.html">get matched</a>.</div></details></li>
+      <div class="card" id="be-rent">
+        <h3>🏠 Buy versus rent</h3>
+        <ul>
+          <li><a href="#">Is it better to buy or rent right now</a></li>
+          <li><a href="#">How to compare buying vs renting for my city</a></li>
+          <li><a href="#">How long should I plan to stay to break even</a></li>
         </ul>
-        <p class="note"><a href="#buyer-education">Back to top ↑</a></p>
       </div>
 
-      <!-- Working with Realtors -->
-      <div class="card" id="be-realtors" style="scroll-margin-top: 92px;">
+      <div class="card" id="be-realtors">
         <h3>🤝 Working with Realtors</h3>
-        <ul class="qalist">
-          <li><details class="qa-snippet"><summary>Do I pay my buyer’s agent</summary><div>In many cases, buyers don’t pay directly. Your Realtor will explain local norms in plain language.</div></details></li>
-          <li><details class="qa-snippet"><summary>What does a buyer’s agent do day to day</summary><div>Filter homes, pricing strategy, offers, repairs, deadlines—so you avoid costly mistakes.</div></details></li>
-          <li><details class="qa-snippet"><summary>How do I know if an agent is experienced</summary><div>Ask about recent deals, neighborhoods, strategy. We’ll match you to a proven local—<a href="/concierge.html">get matched</a>.</div></details></li>
-          <li><details class="qa-snippet"><summary>Should I use the listing agent</summary><div>Dual roles can limit advocacy. A dedicated buyer’s agent negotiates purely for you.</div></details></li>
-          <li><details class="qa-snippet"><summary>Can I change agents if I’m not happy</summary><div>Yes—expect a simple written agreement. Choose someone who communicates and wins in your market.</div></details></li>
-          <li><a href="/guides/agent-selection-for-buyers.html">How to choose the right agent</a></li>
+        <ul>
+          <li><a href="#">How to choose the right agent</a></li>
+          <li><a href="#">What does a buyer’s agent do</a></li>
+          <li><a href="#">How are agents paid</a></li>
+          <li><a href="#">Can I work with multiple agents</a></li>
         </ul>
-        <p class="note"><a href="#buyer-education">Back to top ↑</a></p>
       </div>
 
-      <!-- Home Condition & Maintenance -->
-      <div class="card" id="be-condition" style="scroll-margin-top: 92px;">
-        <h3>🛠️ Home condition and maintenance</h3>
-        <ul class="qalist">
-          <li><details class="qa-snippet"><summary>Most expensive repairs to watch for</summary><div>Roof, HVAC, plumbing, foundation. Your agent books inspectors who explain severity and cost.</div></details></li>
-          <li><details class="qa-snippet"><summary>Should I buy a home warranty</summary><div>Useful for older systems. Your Realtor compares repair history by neighborhood.</div></details></li>
-          <li><details class="qa-snippet"><summary>Estimate repair costs before I buy</summary><div>Your agent pulls vendor quotes fast so you can compare total cost vs. move-in-ready homes.</div></details></li>
+      <div class="card" id="be-condition">
+        <h3>🛠️ Home condition</h3>
+        <ul>
+          <li><a href="#">Should I waive inspection or appraisal</a></li>
+          <li><a href="#">What should I look for at showings</a></li>
+          <li><a href="#">What repairs are normal after inspection</a></li>
         </ul>
-        <p class="note"><a href="#buyer-education">Back to top ↑</a></p>
       </div>
 
-      <!-- Recommended reads -->
-      <div class="card" id="be-reads" style="scroll-margin-top: 92px;">
+      <div class="card" id="be-reads">
         <h3>📚 Recommended reads</h3>
         <ul>
-          <li><a href="/guides/buyer-credit-basics.html">Buyer credit basics and quick wins</a></li>
-          <li><a href="/guides/preapproval-vs-prequalification.html">Pre approval versus pre qualification</a></li>
-          <li><a href="/guides/loan-types-fha-va-conventional.html">FHA VA and conventional explained</a></li>
-          <li><a href="/guides/hidden-costs-for-buyers.html">Hidden costs buyers should expect</a></li>
+          <li><a href="#">Credit score basics and quick wins</a></li>
+          <li><a href="#">Pre approval versus pre qualification</a></li>
+          <li><a href="#">Marketing plan basics</a></li>
+          <li><a href="#">How to review offers</a></li>
         </ul>
-        <p class="note"><a href="#buyer-education">Back to top ↑</a></p>
       </div>
     </section>
-
 
     <footer>
       <div>© <span id="y"></span> Savage Lane</div>
       <div class="links">
-        <a href="/sellers.html">Sellers</a>
+        <a href="/buyers.html" aria-current="page">Buyers</a>
         <span aria-hidden="true"> • </span>
         <a href="/concierge.html">Concierge</a>
         <span aria-hidden="true"> • </span>
@@ -276,18 +317,23 @@
     </footer>
   </div>
 
-  <!-- Featured video hook -->
   <script>
+    // Use the specified buyer video and start at 1 second
     window.SL_FEATURED_VIDEO = "9eTRiU6-D5c";
+
     const vid = window.SL_FEATURED_VIDEO;
     const el = document.getElementById("video-slot");
     if (el && vid) {
       el.innerHTML =
         '<iframe title="Featured buyer video" src="https://www.youtube.com/embed/' +
         encodeURIComponent(vid) +
-        '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+        '?start=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
     }
     document.getElementById("y").textContent = new Date().getFullYear();
-  </script>  <nav class="toc-chips" aria-label="Buyer topics">
+  </script>
+
+  <!-- Sitewide AskSavvy launcher -->
+  <script src="/js/asksavvy.js" defer></script>
 </body>
 </html>
+

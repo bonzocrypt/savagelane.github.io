@@ -62,12 +62,22 @@ a:hover{text-decoration:underline}
 
 /* Sticky header (works for both index and buyers/sellers) */
 .nav-wrap,
-header.navbar{
+/* Sticky header (buyers/index use .nav-wrap) */
+.nav-wrap{
   position:sticky; top:0; z-index:50;
   background:rgba(255,255,255,.8);
   backdrop-filter:saturate(150%) blur(8px);
   border-bottom:1px solid #e6ecff;
 }
+
+/* Preserve legacy seller header look */
+header.navbar{
+  position:static;
+  background:transparent;
+  border:0;
+  backdrop-filter:none;
+}
+
 
 /* Inner nav: support both ".nav" (index) and "nav.main" (buyers/sellers) */
 .nav,
@@ -292,5 +302,45 @@ html { scroll-behavior: smooth; }
 .qa-snippet[open] > summary{ background:#f7fbff; }
 .qa-snippet > div{ padding:8px 12px 12px; color:var(--ink); }
 .qa-snippet a{ font-weight:600; }
+/* Sellers page header: keep non-sticky and transparent even with global CSS linked */
+body:has(link[rel="canonical"][href$="/sellers.html"]) .nav-wrap {
+  position: static;
+  background: transparent;
+  border: 0;
+  backdrop-filter: none;
+}
 
+/* =========================
+   Page namespaces (safe)
+   ========================= */
+
+/* Buyers page: keep sticky header look and correct in-page anchor offset */
+body.buyers .nav-wrap{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255,255,255,.8);
+  backdrop-filter: saturate(150%) blur(8px);
+  border-bottom: 1px solid #e6ecff;
+}
+
+/* Ensure category headers are not hidden under sticky nav on buyers page */
+body.buyers #buyer-education .card,
+body.buyers #top-questions,
+body.buyers #core-guides{
+  scroll-margin-top: calc(var(--nav-h) + 24px);
+}
+
+/* Sellers page: explicitly non-sticky, transparent header */
+body.sellers .nav-wrap{
+  position: static;
+  background: transparent;
+  border: 0;
+  backdrop-filter: none;
+}
+
+/* Optional: keep buyers’ compact hero scoped so index hero is untouched */
+body.buyers .hero.compact{ padding:22px 0 4px; }
+body.buyers .hero.compact h1{ margin:6px 0 6px; font-size:2.1rem; }
+body.buyers .hero.compact .lead{ margin:0 0 12px; }
 

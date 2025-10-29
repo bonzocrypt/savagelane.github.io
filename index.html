@@ -37,54 +37,6 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebSite","name":"Savage Lane","url":"https://savagelane.com/"}
   </script>
-
-  <style>
-    /* Floating FAB and modal, minimal and self-contained */
-    .rea-fab {
-      position: fixed; right: 24px; bottom: 24px; height: 56px; width: 56px;
-      border-radius: 9999px; background: #6d28d9; color: #fff; font-weight: 700;
-      display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,.2);
-      cursor: pointer; z-index: 60; border: 0;
-    }
-    .rea-fab:hover { background: #5b21b6; }
-    .rea-modal-backdrop {
-      position: fixed; inset: 0; background: rgba(0,0,0,.55); display: none;
-      align-items: center; justify-content: center; padding: 20px; z-index: 70;
-    }
-    .rea-modal {
-      width: min(100%, 520px); background: #fff; color: #111; border-radius: 16px; overflow: hidden;
-      box-shadow: 0 18px 40px rgba(0,0,0,.25);
-    }
-    .rea-head {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 14px; background: #ede9fe; color: #4c1d95; font-weight: 700;
-    }
-    .rea-close {
-      appearance: none; background: #fff; border: 0; border-radius: 10px; padding: 6px 10px; font-weight: 700; cursor: pointer;
-    }
-    .rea-body { padding: 14px; }
-    .rea-foot {
-      padding: 10px 14px; background: #fafafa; color: #555; font-size: .9rem;
-    }
-    .rea-input {
-      width: 100%; border: 1px solid #ddd; border-radius: 10px; padding: 10px; margin: 6px 0 10px;
-      font-size: 1rem;
-    }
-    .rea-btn {
-      width: 100%; background: #6d28d9; color: #fff; border: 0; border-radius: 10px; padding: 10px 12px; font-weight: 700; cursor: pointer;
-    }
-    .rea-btn[disabled] { opacity: .6; cursor: not-allowed; }
-    .rea-progress {
-      height: 6px; background: #e5e7eb; border-radius: 9999px; overflow: hidden; margin-top: 10px;
-    }
-    .rea-progress > span {
-      display: block; height: 100%; background: #8b5cf6; width: 8%;
-      transition: width .15s ease;
-    }
-    .rea-result {
-      margin-top: 12px; background: #f9fafb; border: 1px solid #eee; border-radius: 10px; padding: 10px; font-size: .95rem;
-    }
-  </style>
 </head>
 
 <body>
@@ -106,7 +58,9 @@
 
   <main>
     <div class="shell">
-      <!-- HERO (unchanged layout) -->
+      <!-- (your existing page content unchanged) -->
+
+      <!-- HERO -->
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-card">
           <span class="badge">🎉 Learn home buying & selling the fun way</span>
@@ -125,7 +79,6 @@
           </div>
         </div>
 
-        <!-- Featured video with reliable image preview; JS replaces with iframe on click -->
         <div class="video-wrap" aria-label="Featured explainer video">
           <button class="yt-ph" id="featuredPh" aria-label="Play featured video" data-video-id="tipwvuveDxU" title="First-Time Buyer Tips (in One Minute)">
             <img src="https://img.youtube.com/vi/tipwvuveDxU/hqdefault.jpg" alt="First-Time Buyer Tips (thumbnail)" width="1280" height="720" loading="lazy">
@@ -134,12 +87,9 @@
         </div>
       </section>
 
-      <!-- VIDEO CAROUSEL (no duplicate of featured) -->
       <section class="carousel" aria-labelledby="watch">
         <h3 id="watch">🎥 Watch & learn (quick tips)</h3>
         <div class="scroller" role="list">
-
-          <!-- How Much House Can I Afford? -->
           <article class="card" role="listitem">
             <a class="thumb js-play" href="#" data-video-id="q0MbJNXUslQ" data-title="How Much House Can I Afford?">
               <img src="/images/thumbs/how-much-house-afford.jpg" width="480" height="270" loading="lazy" alt="How Much House Can I Afford thumbnail">
@@ -150,7 +100,6 @@
             <a class="btn watch js-play" href="#" data-video-id="q0MbJNXUslQ" data-title="How Much House Can I Afford?">Watch</a>
           </article>
 
-          <!-- FHA vs Conventional vs VA vs USDA Loans -->
           <article class="card" role="listitem">
             <a class="thumb js-play" href="#" data-video-id="OzD6RIN_BDk" data-title="FHA vs Conventional vs VA vs USDA Loans">
               <img src="/images/thumbs/fha-va-conventional-usda.jpg" width="480" height="270" loading="lazy" alt="Loan types explained thumbnail">
@@ -161,7 +110,6 @@
             <a class="btn watch js-play" href="#" data-video-id="OzD6RIN_BDk" data-title="FHA vs Conventional vs VA vs USDA Loans">Watch</a>
           </article>
 
-          <!-- What Updates Help Homes Sell -->
           <article class="card" role="listitem">
             <a class="thumb js-play" href="#" data-video-id="Epq4k8cToH8" data-title="What Updates Help Homes Sell">
               <img src="/images/thumbs/updates-add-value.jpg" width="480" height="270" loading="lazy" alt="What updates help homes sell thumbnail">
@@ -172,7 +120,6 @@
             <a class="btn watch js-play" href="#" data-video-id="Epq4k8cToH8" data-title="What Updates Help Homes Sell">Watch</a>
           </article>
 
-          <!-- Pre-Approval vs Pre-Qualification -->
           <article class="card" role="listitem">
             <a class="thumb js-play" href="#" data-video-id="ZI8nqrB8qGI" data-title="Pre-Approval vs Pre-Qualification">
               <img src="/images/thumbs/preapproval-vs-prequal.jpg" width="480" height="270" loading="lazy" alt="Pre-Approval vs Pre-Qualification thumbnail">
@@ -183,7 +130,6 @@
             <a class="btn watch js-play" href="#" data-video-id="ZI8nqrB8qGI" data-title="Pre-Approval vs Pre-Qualification">Watch</a>
           </article>
 
-          <!-- Pre-Listing Inspection -->
           <article class="card" role="listitem">
             <a class="thumb js-play" href="#" data-video-id="8z9bmSFjzmY" data-title="Benefits of a Pre-Listing Inspection">
               <img src="/images/thumbs/prelisting-inspection.jpg" width="480" height="270" loading="lazy" alt="Pre-Listing Inspection thumbnail">
@@ -194,32 +140,18 @@
             <a class="btn watch js-play" href="#" data-video-id="8z9bmSFjzmY" data-title="Benefits of a Pre-Listing Inspection">Watch</a>
           </article>
 
-          <!-- Why Work With a Real Estate Agent -->
           <article class="card" role="listitem">
             <a class="thumb js-play" href="#" data-video-id="SCqiiZXK6v0" data-title="Why Work With a Real Estate Agent">
               <img src="/images/thumbs/why-work-with-agent.jpg" width="480" height="270" loading="lazy" alt="Why Work With a Real Estate Agent thumbnail">
-              <span class="play" aria-hidden="true"></span>
-            </a>
-            <strong>Why Work With a Real Estate Agent</strong>
-            <p class="muted" style="margin:0;color:var(--muted)">Expertise & trust.</p>
-            <a class="btn watch js-play" href="#" data-video-id="SCqiiZXK6v0" data-title="Why Work With a Real Estate Agent">Watch</a>
-          </article>
-
-          <!-- FSBO Pitfalls -->
-          <article class="card" role="listitem">
-            <a class="thumb js-play" href="#" data-video-id="iFLPpki9Xeg" data-title="Why You Shouldn’t Sell Your Home Yourself (FSBO Pitfalls)">
-              <img src="/images/thumbs/fsbo-pitfalls.jpg" width="480" height="270" loading="lazy" alt="Why not sell yourself thumbnail">
               <span class="play" aria-hidden="true"></span>
             </a>
             <strong>Why You Shouldn’t Sell Your Home Yourself</strong>
             <p class="muted" style="margin:0;color:var(--muted)">FSBO risks & agent value.</p>
             <a class="btn watch js-play" href="#" data-video-id="iFLPpki9Xeg" data-title="Why You Shouldn’t Sell Your Home Yourself (FSBO Pitfalls)">Watch</a>
           </article>
-
         </div>
       </section>
 
-      <!-- ICON CALLOUTS -->
       <section class="grid three" aria-labelledby="whyfun">
         <div class="info">
           <div class="icon">🏡</div>
@@ -238,7 +170,6 @@
         </div>
       </section>
 
-      <!-- EXISTING educational sections preserved -->
       <section class="grid two" aria-labelledby="qheads" style="margin-top:22px">
         <div class="info">
           <h3 id="qheads">Top 5 buyer questions</h3>
@@ -309,7 +240,7 @@
     </div>
   </footer>
 
-  <!-- Modal player (keeps users on site) -->
+  <!-- Modal player (unchanged) -->
   <div class="modal" id="playerModal" aria-hidden="true" role="dialog" aria-label="Video player" style="position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:50">
     <div class="modal-inner" style="width:min(100%,980px);background:#000;border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
       <div class="modal-head" style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#0b1b2b;color:#fff">
@@ -317,28 +248,6 @@
         <button class="modal-close" id="modalClose" aria-label="Close video" style="appearance:none;background:#fff;border:0;border-radius:10px;padding:6px 10px;font-weight:700;cursor:pointer">Close</button>
       </div>
       <div class="modal-body" id="modalBody" style="position:relative;aspect-ratio:16/9"></div>
-    </div>
-  </div>
-
-  <!-- Real Estate Answers floating button and modal -->
-  <button class="rea-fab" id="reaFab" aria-label="Ask Real Estate Answers" title="Ask Real Estate Answers">?</button>
-
-  <div class="rea-modal-backdrop" id="reaBackdrop" aria-hidden="true" role="dialog" aria-label="Real Estate Answers">
-    <div class="rea-modal" role="document">
-      <div class="rea-head">
-        <div>Real Estate Answers</div>
-        <button class="rea-close" id="reaClose" aria-label="Close">Close</button>
-      </div>
-      <div class="rea-body">
-        <label for="reaQ" style="font-weight:600;display:block;margin-bottom:6px">Ask a question</label>
-        <textarea id="reaQ" class="rea-input" rows="3" placeholder="Ask about buying or selling a home..."></textarea>
-        <button id="reaAsk" class="rea-btn">Ask</button>
-        <div class="rea-progress" id="reaProg" style="display:none"><span id="reaProgBar"></span></div>
-        <div class="rea-result" id="reaResult" style="display:none"></div>
-      </div>
-      <div class="rea-foot">
-        Educational only. For offers, negotiations, pricing strategy, or contracts, a licensed Realtor handles next steps. We can connect you through Home Match Concierge.
-      </div>
     </div>
   </div>
 
@@ -395,82 +304,9 @@
       modal.addEventListener('click', (e)=>{ if(e.target === modal) close(); });
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && modal.getAttribute('aria-hidden')==='false') close(); });
     })();
-
-    // Real Estate Answers floating modal logic
-    (function(){
-      const fab = document.getElementById('reaFab');
-      const backdrop = document.getElementById('reaBackdrop');
-      const closeBtn = document.getElementById('reaClose');
-      const askBtn = document.getElementById('reaAsk');
-      const input = document.getElementById('reaQ');
-      const result = document.getElementById('reaResult');
-      const prog = document.getElementById('reaProg');
-      const bar = document.getElementById('reaProgBar');
-
-      function open() {
-        backdrop.style.display = 'flex';
-        backdrop.setAttribute('aria-hidden','false');
-        setTimeout(()=>input.focus(), 50);
-      }
-      function close() {
-        backdrop.style.display = 'none';
-        backdrop.setAttribute('aria-hidden','true');
-        result.style.display = 'none';
-        result.textContent = '';
-        input.value = '';
-        bar.style.width = '8%';
-        prog.style.display = 'none';
-      }
-
-      fab.addEventListener('click', open);
-      closeBtn.addEventListener('click', close);
-      backdrop.addEventListener('click', (e)=>{ if(e.target === backdrop) close(); });
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && backdrop.getAttribute('aria-hidden')==='false') close(); });
-
-      async function postQuestion(q){
-        const url = "https://us-central1-savagelane-ai.cloudfunctions.net/realEstateAnswers";
-        const resp = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prompt: q })
-        });
-        return resp.json();
-      }
-
-      askBtn.addEventListener('click', async ()=>{
-        const q = String(input.value || "").trim();
-        if (!q) { input.focus(); return; }
-
-        askBtn.disabled = true;
-        prog.style.display = 'block';
-        result.style.display = 'none';
-        result.textContent = '';
-
-        // simple visual progress
-        let pct = 8;
-        const timer = setInterval(()=>{ pct = Math.min(100, pct + 3); bar.style.width = pct + "%"; }, 60);
-
-        try {
-          const data = await postQuestion(q);
-          result.style.display = 'block';
-          if (data && data.result) {
-            result.innerHTML = '<b>Real Estate Answers:</b><div style="margin-top:6px">' + data.result.replace(/\n/g,"<br>") + '</div>';
-          } else if (data && data.error) {
-            result.textContent = "Error: " + (data.error.message || JSON.stringify(data.error));
-          } else {
-            result.textContent = "No response from Real Estate Answers.";
-          }
-        } catch (err) {
-          result.style.display = 'block';
-          result.textContent = "Error: " + (err && err.message ? err.message : String(err));
-        } finally {
-          clearInterval(timer);
-          bar.style.width = "100%";
-          setTimeout(()=>{ prog.style.display = 'none'; bar.style.width = "8%"; }, 400);
-          askBtn.disabled = false;
-        }
-      });
-    })();
   </script>
+
+  <!-- Sitewide AskSavvy launcher -->
+  <script src="/js/asksavvy.js" defer></script>
 </body>
 </html>

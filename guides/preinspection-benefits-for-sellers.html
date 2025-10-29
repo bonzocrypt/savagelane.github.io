@@ -23,24 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
-
-  <style>
-    :root{--bg:#0b1020;--panel:#0f172a;--text:#eef2f7;--muted:#b8c1d8;--accent:#2563eb}
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
-    .wrap{max-width:900px;margin:0 auto;padding:32px}
-    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-    header img{height:56px;width:auto;border-radius:8px}
-    a{color:#8ab4ff;text-decoration:none}
-    a:hover{text-decoration:underline}
-    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:#2b2f3a;color:#fff;font-weight:600}
-    .btn.primary{background:#5a7cff}
-    h1{font-size:2rem;margin:8px 0 12px}
-    h2{margin:18px 0 8px}
-    p{color:#cfd6e6;margin:0 0 12px}
-    .panel{background:var(--panel);border:1px solid #1f2937;border-radius:14px;padding:18px;margin:12px 0}
-    footer{margin-top:28px;color:#9aa6bd;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-  </style>
+  <link rel="stylesheet" href="/guides/guide.css" />
 
   <script type="application/ld+json">
   {
@@ -55,8 +38,35 @@
     ]
   }
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://savagelane.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Sellers",
+        "item": "https://savagelane.com/sellers.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Pre Inspection Benefits for Sellers",
+        "item": "https://savagelane.com/guides/preinspection-benefits-for-sellers.html"
+      }
+    ]
+  }
+  </script>
 </head>
-<body>
+<body class="guide">
   <div class="wrap">
     <header>
       <a href="/" aria-label="Savage Lane Home">
@@ -64,12 +74,21 @@
       </a>
       <nav>
         <a href="/buyers.html">Buyers</a>
-        <span aria-hidden="true"> • </span>
+        <span aria-hidden="true" class="sep"> • </span>
         <a href="/sellers.html">Sellers</a>
-        <span aria-hidden="true"> • </span>
+        <span aria-hidden="true" class="sep"> • </span>
         <a class="btn" href="/concierge.html">Concierge</a>
       </nav>
     </header>
+
+    <!-- Breadcrumb header -->
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">›</span>
+      <a href="/sellers.html">Sellers</a>
+      <span class="sep">›</span>
+      <span>Pre Inspection Benefits</span>
+    </nav>
 
     <article>
       <h1>Pre inspection benefits for sellers</h1>
@@ -110,6 +129,10 @@
     </footer>
   </div>
 
-  <script>document.getElementById("y4").textContent=new Date().getFullYear()</script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
+  <!-- Sitewide AskSavvy launcher -->
+  <script src="/js/asksavvy.js" defer></script>
 </body>
 </html>
+
