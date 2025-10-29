@@ -24,7 +24,6 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
 
-  <!-- Inline styles copied to match sellers.html layout exactly -->
   <style>
     :root{
       --bg:#f7fbff;
@@ -40,7 +39,6 @@
       --grid-gap:18px;
       --nav-h:68px;
     }
-
     *{box-sizing:border-box}
     html,body{height:100%;max-width:100%;overflow-x:hidden}
     body{
@@ -54,12 +52,10 @@
       -webkit-text-size-adjust:100%;
       text-size-adjust:100%;
     }
-
     .container{max-width:1100px;margin:0 auto;padding:20px}
     .grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap)}
     @media(min-width:900px){.grid-2{grid-template-columns:1fr 1fr}}
     @media(min-width:1100px){.grid-3{grid-template-columns:repeat(3,1fr)}}
-
     .nav-wrap{
       position:sticky;top:0;z-index:30;background:rgba(255,255,255,.7);
       backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(0,0,0,.06);
@@ -69,22 +65,17 @@
       padding:calc(10px + env(safe-area-inset-top)) 0 10px 0;
       display:flex;align-items:center;justify-content:space-between;gap:14px
     }
-
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
     .brand img{height:44px;width:auto;border-radius:10px;box-shadow:var(--shadow)}
     .brand span{font-weight:700;font-size:1.05rem;color:var(--ink)}
     .links{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
     a{color:#0a63dd;text-decoration:none}
     a:hover{text-decoration:underline}
-
     .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 16px;
-      border:1px solid rgba(0,0,0,.08); background:#ffffff; color:var(--ink); font-weight:600;
-      box-shadow:var(--shadow)
-    }
+      border:1px solid rgba(0,0,0,.08); background:#ffffff; color:var(--ink); font-weight:600; box-shadow:var(--shadow)}
     .btn.primary{background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29;border:none}
     .btn.coral{background:linear-gradient(90deg, var(--accent-2), #ffb3a6); color:#3a0e0e;border:none}
     .btn.sky{background:linear-gradient(90deg, var(--accent-3), #9fd0ff); color:#0b2447;border:none}
-
     .hero{
       border-radius:24px; padding:28px; box-shadow:var(--shadow);
       background:
@@ -95,7 +86,6 @@
     }
     .hero h1{margin:6px 0 8px;font-size:2.1rem;letter-spacing:.2px}
     .hero p.lead{margin:0 0 14px;color:var(--muted)}
-
     .video-card{
       background:var(--card); border:1px solid rgba(0,0,0,.06); border-radius:var(--radius);
       box-shadow:var(--shadow); overflow:hidden
@@ -103,30 +93,25 @@
     .video-card header{padding:14px 16px;font-weight:600;border-bottom:1px solid rgba(0,0,0,.06)}
     .video-wrap{position:relative;aspect-ratio:16/9;background:#eef5ff}
     .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-
     .card{
       background:var(--card); border:1px solid rgba(0,0,0,.06); border-radius:var(--radius);
       padding:18px; box-shadow:var(--shadow)
     }
     .card h3{margin:0 0 8px}
     .note{font-size:.95rem;color:var(--muted);margin-top:8px}
-
     ol,ul{margin:10px 0 0;padding-left:18px}
     .list-clean{list-style:none;padding-left:0;margin:8px 0 0}
     .list-clean li{padding:8px 0;border-top:1px dashed rgba(0,0,0,.08)}
     .list-clean li:first-child{border-top:none}
-
     .crumbs{margin:10px 0 14px;font-size:.95rem;color:var(--muted)}
     .crumbs a{color:#0a63dd;text-decoration:none}
     .crumbs .sep{margin:0 6px}
-
     footer{margin:28px 0 30px;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     footer .links a{color:#0a63dd}
-
     :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:10px}
   </style>
 
-  <!-- Minimal FAQ schema to keep rich results while links live on their own pages later -->
+  <!-- Minimal FAQ schema -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -142,7 +127,7 @@
 
 <body class="buyers">
 
-  <!-- Sticky, padded header identical to sellers.html -->
+  <!-- Sticky header -->
   <div class="nav-wrap">
     <div class="container">
       <nav class="main" aria-label="Primary">
@@ -160,7 +145,7 @@
   </div>
 
   <div class="container">
-    <!-- Breadcrumbs like sellers.html -->
+    <!-- Breadcrumbs -->
     <nav class="crumbs" aria-label="Breadcrumb">
       <a href="/">Home</a><span class="sep" aria-hidden="true">›</span><span>Buyers</span>
     </nav>
@@ -176,27 +161,27 @@
     }
     </script>
 
-    <!-- Hero card with buffers and gradient -->
+    <!-- Hero -->
     <section class="hero hero-card">
       <h1>Buyer Resource Center</h1>
       <p class="lead">
         Learn how to search finance offer and close with confidence. When you are ready we can match you to a trusted Realtor with Home Match Concierge.
       </p>
       <div class="links" style="margin-top:10px;flex-wrap:wrap;gap:10px">
-        <a class="btn primary" href="#buyer-education">Buyer education</a>
-        <a class="btn sky" href="#be-fin">Start with financing</a>
+        <a class="btn primary" href="#be-fin">Start with financing</a>
+        <a class="btn sky" href="#be-shop">Shopping and offers</a>
         <a class="btn coral" href="/concierge.html">Get matched now</a>
       </div>
     </section>
 
-    <!-- Featured video and how matching works (same structure as sellers) -->
+    <!-- Featured video + how matching works -->
     <section class="grid grid-2" style="margin-top:18px" aria-labelledby="learnfast">
       <div class="video-card">
         <header id="learnfast">Learn fast</header>
         <div class="video-wrap" id="video-slot" aria-label="Featured buyer video"></div>
       </div>
 
-            <div class="card" style="display:flex;flex-direction:column;justify-content:center">
+      <div class="card" style="display:flex;flex-direction:column;justify-content:center">
         <div>
           <h3>How matching works</h3>
           <p>
@@ -207,97 +192,117 @@
           </div>
         </div>
       </div>
-
     </section>
 
-    <!-- Sellers-style link categories -->
-<section id="buyer-education" class="grid grid-3" style="margin-top:18px;scroll-margin-top:92px">
+    <!-- Reordered buyer education -->
+    <section class="grid grid-3" style="margin-top:18px">
 
-      <div class="card" id="be-top" style="scroll-margin-top: 92px;">
+      <!-- Top questions -->
+      <div class="card" id="be-top">
         <h3>Top buyer questions</h3>
         <ul>
-          <li><a href="#">How much house can I afford</a></li>
-          <li><a href="#">Should I get pre approval before I tour homes</a></li>
-          <li><a href="#">Which loan type is best for me</a></li>
-          <li><a href="#">What credit score do I need</a></li>
-          <li><a href="#">What are hidden costs for buyers</a></li>
+          <li><a href="/guides/how-much-house-can-i-afford.html">How much house can I afford</a></li>
+          <li><a href="/guides/preapproval-vs-prequalification.html">Should I get pre approval before I tour homes</a></li>
+          <li><a href="/guides/which-loan-type-is-best.html">Which loan type is best for me</a></li>
+          <li><a href="/guides/what-credit-score-do-i-need.html">What credit score do I need</a></li>
+          <li><a href="/guides/hidden-costs-buyers-should-expect.html">What hidden costs should I expect</a></li>
         </ul>
       </div>
 
+      <!-- Core guides -->
       <div class="card" id="be-core">
         <h3>Core guides</h3>
         <ul>
-          <li><a href="#">Credit score basics and quick wins</a></li>
-          <li><a href="#">Pre approval versus pre qualification</a></li>
-          <li><a href="#">FHA VA and conventional explained</a></li>
-          <li><a href="#">Down payment assistance and grants</a></li>
-          <li><a href="#">How much house can I afford</a></li>
-          <li><a href="#">Hidden costs buyers should expect</a></li>
-          <li><a href="#">How to choose the right agent</a></li>
+          <li><a href="/guides/buyer-credit-basics.html">Credit score basics and quick wins</a></li>
+          <li><a href="/guides/preapproval-vs-prequalification.html">Pre approval versus pre qualification</a></li>
+          <li><a href="/guides/which-loan-type-is-best.html">FHA VA and conventional explained</a></li>
+          <li><a href="/guides/down-payment-options-and-assistance.html">Down payment options and assistance</a></li>
+          <li><a href="/guides/how-much-house-can-i-afford.html">How much house can I afford</a></li>
+          <li><a href="/guides/hidden-costs-buyers-should-expect.html">Hidden costs buyers should expect</a></li>
+          <li><a href="/guides/how-to-choose-the-right-agent.html">How to choose the right agent</a></li>
         </ul>
       </div>
 
-      <div class="card" id="be-fin" style="scroll-margin-top: 92px;">
+      <!-- Financing and affordability -->
+      <div class="card" id="be-fin" style="scroll-margin-top:92px">
         <h3>💸 Financing and affordability</h3>
         <ul>
-          <li><a href="#">How much house can I afford</a></li>
-          <li><a href="#">What payment fits my budget</a></li>
-          <li><a href="#">What credit score do I need to buy a home</a></li>
-          <li><a href="#">Should I get pre approval before I tour homes</a></li>
-          <li><a href="#">Which loan type is best for me FHA VA or conventional</a></li>
-          <li><a href="#">Can I buy with zero down or assistance</a></li>
-          <li><a href="#">What are closing costs and who pays them</a></li>
-          <li><a href="#">What if mortgage rates change while I am house hunting</a></li>
-          <li><a href="#">How much should I set aside for repairs and maintenance</a></li>
+          <li><a href="/guides/how-much-house-can-i-afford.html">How much house can I afford</a></li>
+          <li><a href="/guides/what-credit-score-do-i-need.html">What credit score do I need to buy a home</a></li>
+          <li><a href="/guides/which-loan-type-is-best.html">Which loan type is best for me FHA VA or conventional</a></li>
+          <li><a href="/guides/down-payment-and-reserves.html">Down payment and reserves</a></li>
+          <li><a href="/guides/down-payment-options-and-assistance.html">Down payment assistance and grants</a></li>
+          <li><a href="/guides/property-taxes-and-insurance.html">Property taxes and insurance</a></li>
+          <li><a href="/guides/pmi-explained-and-how-to-remove-it.html">PMI explained and how to remove it</a></li>
+          <li><a href="/guides/mortgage-rate-buydowns-and-points.html">Rate buydowns and points</a></li>
+          <li><a href="/guides/rate-changes-while-house-hunting.html">What if mortgage rates change while house hunting</a></li>
+          <li><a href="/guides/set-aside-for-repairs-and-maintenance.html">Set aside for repairs and maintenance</a></li>
         </ul>
       </div>
 
-      <div class="card" id="be-process">
-        <h3>🧭 The buying process</h3>
+      <!-- Shopping & offers -->
+      <div class="card" id="be-shop">
+        <h3>🛒 Shopping and offers</h3>
         <ul>
-          <li><a href="#">How long does buying a home take</a></li>
-          <li><a href="#">What happens from offer to close</a></li>
-          <li><a href="#">What contingencies should I keep</a></li>
-          <li><a href="#">How do appraisals work</a></li>
-          <li><a href="#">What happens at closing</a></li>
+          <li><a href="/guides/how-to-read-a-listing-like-a-pro.html">How to read a listing like a pro</a></li>
+          <li><a href="/guides/touring-etiquette-and-what-to-look-for.html">Touring etiquette and what to look for</a></li>
+          <li><a href="/guides/open-house-vs-private-showings.html">Open house versus private showings</a></li>
+          <li><a href="/guides/making-an-offer-with-confidence.html">Making an offer with confidence</a></li>
+          <li><a href="/guides/what-contingencies-should-i-keep.html">What contingencies should I keep</a></li>
+          <li><a href="/guides/occupancy-and-rent-back-options.html">Occupancy and rent back options</a></li>
         </ul>
       </div>
 
-      <div class="card" id="be-rent">
-        <h3>🏠 Buy versus rent</h3>
+      <!-- Inspection & appraisal -->
+      <div class="card" id="be-inspect">
+        <h3>🔎 Inspection and appraisal</h3>
         <ul>
-          <li><a href="#">Is it better to buy or rent right now</a></li>
-          <li><a href="#">How to compare buying vs renting for my city</a></li>
-          <li><a href="#">How long should I plan to stay to break even</a></li>
+          <li><a href="/guides/home-inspection-basics-for-buyers.html">Home inspection basics for buyers</a></li>
+          <li><a href="/guides/appraisal-process-for-buyers.html">Appraisal process for buyers</a></li>
+          <li><a href="/guides/appraisal-gap-and-value-issues.html">Appraisal gap and value issues</a></li>
+          <li><a href="/guides/home-inspection-and-appraisal.html">Home inspection and appraisal together</a></li>
         </ul>
       </div>
 
+      <!-- Closing -->
+      <div class="card" id="be-close">
+        <h3>🧾 Closing</h3>
+        <ul>
+          <li><a href="/guides/understanding-escrow-and-title.html">Understanding escrow and title</a></li>
+          <li><a href="/guides/what-happens-at-closing.html">What happens at closing</a></li>
+          <li><a href="/guides/closing-day-checklist.html">Closing day checklist</a></li>
+          <li><a href="/guides/closing-costs-for-buyers.html">Closing costs for buyers</a></li>
+          <li><a href="/guides/hoa-and-condo-basics.html">HOA and condo basics</a></li>
+        </ul>
+      </div>
+
+      <!-- Working with Realtors -->
       <div class="card" id="be-realtors">
         <h3>🤝 Working with Realtors</h3>
         <ul>
-          <li><a href="#">How to choose the right agent</a></li>
-          <li><a href="#">What does a buyer’s agent do</a></li>
-          <li><a href="#">How are agents paid</a></li>
-          <li><a href="#">Can I work with multiple agents</a></li>
+          <li><a href="/guides/how-to-choose-the-right-agent.html">How to choose the right agent</a></li>
+          <li><a href="/guides/when-to-start-working-with-a-realtor.html">When to start working with a Realtor</a></li>
         </ul>
       </div>
 
-      <div class="card" id="be-condition">
-        <h3>🛠️ Home condition</h3>
+      <!-- Buy vs rent -->
+      <div class="card" id="be-rent">
+        <h3>🏠 Buy versus rent</h3>
         <ul>
-          <li><a href="#">Should I waive inspection or appraisal</a></li>
-          <li><a href="#">What should I look for at showings</a></li>
-          <li><a href="#">What repairs are normal after inspection</a></li>
+          <li><a href="/guides/buy-vs-rent-right-now.html">Buy vs rent right now</a></li>
+          <li><a href="/guides/new-construction-vs-resale.html">New construction vs resale</a></li>
+          <li><a href="/guides/first-time-buyer-programs.html">First-time buyer programs</a></li>
         </ul>
       </div>
 
+      <!-- Recommended reads -->
       <div class="card" id="be-reads">
         <h3>📚 Recommended reads</h3>
         <ul>
-          <li><a href="#">Credit score basics and quick wins</a></li>
-          <li><a href="#">Pre approval versus pre qualification</a></li>
-          <li><a href="#">Marketing plan basics</a></li>
-          <li><a href="#">How to review offers</a></li>
+          <li><a href="/guides/first-time-buyer-mistakes-to-avoid.html">First time buyer mistakes to avoid</a></li>
+          <li><a href="/guides/buyer-credit-basics.html">Buyer credit basics</a></li>
+          <li><a href="/guides/preapproval-vs-prequalification.html">Pre approval versus pre qualification</a></li>
+          <li><a href="/guides/how-much-house-can-i-afford.html">How much house can I afford</a></li>
         </ul>
       </div>
     </section>
@@ -331,6 +336,9 @@
     }
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
+
+  <!-- Guide Link Guard to hide any missing /guides links -->
+  <script src="/js/guide-link-guard.js" defer></script>
 
   <!-- Sitewide AskSavvy launcher -->
   <script src="/js/asksavvy.js" defer></script>

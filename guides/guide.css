@@ -131,3 +131,18 @@ footer a{ color:#b8c1ff }
   transition:width .15s ease;
 }
 
+/* ================= CTA helper line ================= */
+/* Used under Concierge buttons on guides. Keeps tone subtle and local. */
+.cta-note{
+  display:block;
+  margin-top:6px;
+  font-size:.9rem;
+  color:var(--muted);
+  opacity:.85;
+  line-height:1.4;
+  text-align:right; /* aligns neatly under button */
+  width:100%;       /* forces it below flex items */
+}
+
+
+

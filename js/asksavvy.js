@@ -191,3 +191,30 @@
     }
   } catch(_) {}
 })();
+/* ==================== Auto-inject CTA note on guide pages ==================== */
+document.addEventListener("DOMContentLoaded", () => {
+  const isBuyerGuide = window.location.pathname.includes("/buyers") || window.location.pathname.includes("/guides/") && document.querySelector("a[href='/buyers.html']");
+  const isSellerGuide = window.location.pathname.includes("/sellers") || window.location.pathname.includes("/guides/") && document.querySelector("a[href='/sellers.html']");
+  const conciergeButtons = document.querySelectorAll("a.btn.primary[href='/concierge.html']");
+
+  if (!conciergeButtons.length) return;
+
+  conciergeButtons.forEach(btn => {
+    // Avoid duplication
+    if (btn.parentElement.querySelector(".cta-note")) return;
+
+    const note = document.createElement("p");
+    note.className = "cta-note";
+
+    if (isSellerGuide) {
+      note.textContent = "Nearby homes like yours are getting strong interest";
+    } else if (isBuyerGuide) {
+      note.textContent = "Homes in your price range are moving fast right now";
+    } else {
+      return;
+    }
+
+    btn.insertAdjacentElement("afterend", note);
+  });
+});
+
