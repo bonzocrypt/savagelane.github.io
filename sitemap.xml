@@ -1,25 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Savage Lane Master Sitemap
-  Last updated: 2025-10-24
-  Purpose: references all HTML and video sitemaps, so crawlers discover every page and video.
-  Notes:
-  • Add new <url> entries here when you publish new pages.
-  • Keep lastmod in YYYY-MM-DD format for accurate recrawling.
-  • Update <sitemapindex> links only if you rename or relocate sitemap files.
--->
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!-- Savage Lane XML Sitemap -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core pages -->
+  <url>
+    <loc>https://savagelane.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://savagelane.com/buyers.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://savagelane.com/sellers.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://savagelane.com/concierge.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://savagelane.com/privacy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
 
-  <!-- HTML Pages Sitemap -->
-  <sitemap>
-    <loc>https://savagelane.com/sitemap-pages.xml</loc>
-    <lastmod>2025-10-24</lastmod>
-  </sitemap>
+  <!-- Buyer Guides -->
+  <url><loc>https://savagelane.com/guides/how-much-house-can-i-afford.html</loc></url>
+  <url><loc>https://savagelane.com/guides/preapproval-vs-prequalification.html</loc></url>
+  <url><loc>https://savagelane.com/guides/which-loan-type-is-best.html</loc></url>
+  <url><loc>https://savagelane.com/guides/what-credit-score-do-i-need.html</loc></url>
+  <url><loc>https://savagelane.com/guides/hidden-costs-buyers-should-expect.html</loc></url>
+  <url><loc>https://savagelane.com/guides/buyer-credit-basics.html</loc></url>
+  <url><loc>https://savagelane.com/guides/down-payment-options-and-assistance.html</loc></url>
+  <url><loc>https://savagelane.com/guides/how-to-choose-the-right-agent.html</loc></url>
+  <url><loc>https://savagelane.com/guides/down-payment-and-reserves.html</loc></url>
+  <url><loc>https://savagelane.com/guides/property-taxes-and-insurance.html</loc></url>
+  <url><loc>https://savagelane.com/guides/pmi-explained-and-how-to-remove-it.html</loc></url>
+  <url><loc>https://savagelane.com/guides/mortgage-rate-buydowns-and-points.html</loc></url>
+  <url><loc>https://savagelane.com/guides/rate-changes-while-house-hunting.html</loc></url>
+  <url><loc>https://savagelane.com/guides/set-aside-for-repairs-and-maintenance.html</loc></url>
+  <url><loc>https://savagelane.com/guides/how-to-read-a-listing-like-a-pro.html</loc></url>
+  <url><loc>https://savagelane.com/guides/touring-etiquette-and-what-to-look-for.html</loc></url>
+  <url><loc>https://savagelane.com/guides/open-house-vs-private-showings.html</loc></url>
+  <url><loc>https://savagelane.com/guides/making-an-offer-with-confidence.html</loc></url>
+  <url><loc>https://savagelane.com/guides/what-contingencies-should-i-keep.html</loc></url>
+  <url><loc>https://savagelane.com/guides/occupancy-and-rent-back-options.html</loc></url>
+  <url><loc>https://savagelane.com/guides/home-inspection-basics-for-buyers.html</loc></url>
+  <url><loc>https://savagelane.com/guides/appraisal-process-for-buyers.html</loc></url>
+  <url><loc>https://savagelane.com/guides/appraisal-gap-and-value-issues.html</loc></url>
+  <url><loc>https://savagelane.com/guides/home-inspection-and-appraisal.html</loc></url>
+  <url><loc>https://savagelane.com/guides/understanding-escrow-and-title.html</loc></url>
+  <url><loc>https://savagelane.com/guides/what-happens-at-closing.html</loc></url>
+  <url><loc>https://savagelane.com/guides/closing-day-checklist.html</loc></url>
+  <url><loc>https://savagelane.com/guides/closing-costs-for-buyers.html</loc></url>
+  <url><loc>https://savagelane.com/guides/hoa-and-condo-basics.html</loc></url>
+  <url><loc>https://savagelane.com/guides/when-to-start-working-with-a-realtor.html</loc></url>
+  <url><loc>https://savagelane.com/guides/buy-vs-rent-right-now.html</loc></url>
+  <url><loc>https://savagelane.com/guides/new-construction-vs-resale.html</loc></url>
+  <url><loc>https://savagelane.com/guides/first-time-buyer-programs.html</loc></url>
+  <url><loc>https://savagelane.com/guides/first-time-buyer-mistakes-to-avoid.html</loc></url>
 
-  <!-- Video Sitemap -->
-  <sitemap>
-    <loc>https://savagelane.com/videos-sitemap.xml</loc>
-    <lastmod>2025-10-24</lastmod>
-  </sitemap>
-
-</sitemapindex>
+  <!-- Seller Guides -->
+  <url><loc>https://savagelane.com/guides/how-to-price-your-home.html</loc></url>
+  <url><loc>https://savagelane.com/guides/preinspection-benefits-for-sellers.html</loc></url>
+  <url><loc>https://savagelane.com/guides/repairs-and-updates-that-pay-off.html</loc></url>
+  <url><loc>https://savagelane.com/guides/staging-checklist-for-sellers.html</loc></url>
+  <url><loc>https://savagelane.com/guides/photography-and-showing-prep.html</loc></url>
+  <url><loc>https://savagelane.com/guides/marketing-plan-basics.html</loc></url>
+  <url><loc>https://savagelane.com/guides/open-house-best-practices.html</loc></url>
+  <url><loc>https://savagelane.com/guides/fsbo-vs-agent.html</loc></url>
+  <url><loc>https://savagelane.com/guides/how-to-review-offers.html</loc></url>
+  <url><loc>https://savagelane.com/guides/appraisal-and-repairs-seller.html</loc></url>
+  <url><loc>https://savagelane.com/guides/closing-costs-for-sellers.html</loc></url>
+  <url><loc>https://savagelane.com/guides/closing-day-for-sellers.html</loc></url>
+  <url><loc>https://savagelane.com/guides/when-is-the-best-time-to-sell.html</loc></url>
+  <url><loc>https://savagelane.com/guides/pricing-strategies-in-hot-vs-cool-market.html</loc></url>
+  <url><loc>https://savagelane.com/guides/seasonal-selling-tips.html</loc></url>
+  <url><loc>https://savagelane.com/guides/seller-disclosures-basics.html</loc></url>
+  <url><loc>https://savagelane.com/guides/occupancy-and-possession-options.html</loc></url>
+  <url><loc>https://savagelane.com/guides/moving-checklist-for-sellers.html</loc></url>
+</urlset>

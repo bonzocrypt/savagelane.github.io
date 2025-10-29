@@ -193,28 +193,56 @@
 })();
 /* ==================== Auto-inject CTA note on guide pages ==================== */
 document.addEventListener("DOMContentLoaded", () => {
-  const isBuyerGuide = window.location.pathname.includes("/buyers") || window.location.pathname.includes("/guides/") && document.querySelector("a[href='/buyers.html']");
-  const isSellerGuide = window.location.pathname.includes("/sellers") || window.location.pathname.includes("/guides/") && document.querySelector("a[href='/sellers.html']");
-  const conciergeButtons = document.querySelectorAll("a.btn.primary[href='/concierge.html']");
+  // Determine Buyers vs Sellers from the page breadcrumbs
+  function getGuideContext() {
+    const crumbs = document.querySelector(".sl-breadcrumbs");
+    if (crumbs) {
+      if (crumbs.querySelector("a[href='/buyers.html']")) return "buyer";
+      if (crumbs.querySelector("a[href='/sellers.html']")) return "seller";
+    }
+    if (location.pathname.endsWith("/buyers.html")) return "buyer";
+    if (location.pathname.endsWith("/sellers.html")) return "seller";
+    return null;
+  }
 
+  const context = getGuideContext();
+  if (!context) return;
+
+  const conciergeButtons = document.querySelectorAll("a.btn.primary[href='/concierge.html']");
   if (!conciergeButtons.length) return;
 
-  conciergeButtons.forEach(btn => {
-    // Avoid duplication
-    if (btn.parentElement.querySelector(".cta-note")) return;
-
-    const note = document.createElement("p");
-    note.className = "cta-note";
-
-    if (isSellerGuide) {
-      note.textContent = "Nearby homes like yours are getting strong interest";
-    } else if (isBuyerGuide) {
-      note.textContent = "Homes in your price range are moving fast right now";
-    } else {
-      return;
+  conciergeButtons.forEach((btn) => {
+    // 1) Normalize a per-button wrapper that STACKS content vertically
+    let wrapper = btn.closest(".cta-wrap");
+    if (!wrapper) {
+      // Prefer an existing <p>, otherwise create a div
+      const host = btn.closest("p") || btn.parentElement;
+      // Create a dedicated wrapper and move the button inside it
+      wrapper = document.createElement("div");
+      wrapper.className = "cta-wrap";
+      wrapper.style.display = "inline-flex";       // keeps inline flow inside flex rows
+      wrapper.style.flexDirection = "column";      // stacks button then note
+      wrapper.style.alignItems = "flex-start";     // left aligned
+      wrapper.style.gap = "6px";
+      // Insert wrapper before the button, then move the button in
+      host.insertBefore(wrapper, btn);
+      wrapper.appendChild(btn);
     }
 
-    btn.insertAdjacentElement("afterend", note);
+    // 2) Prevent duplicates for this button
+    if (wrapper.querySelector(".cta-note")) return;
+
+    // 3) Build the note text per context
+    const note = document.createElement("span");
+    note.className = "cta-note";
+    note.textContent = (context === "seller")
+      ? "Nearby homes like yours are getting strong interest"
+      : "Homes in your price range are moving fast right now";
+
+    // 4) Ensure full-width line under the button even inside flex parents
+    note.style.display = "block";
+    note.style.margin = "0";
+
+    wrapper.appendChild(note);
   });
 });
-
