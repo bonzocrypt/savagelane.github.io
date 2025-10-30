@@ -1,59 +1,127 @@
 /* AskSavvy sitewide injector
-   Usage (next move): add <script src="/js/asksavvy.js" defer></script> before </body>.
-   The script injects a compact launcher + modal and wires up your Cloud Function endpoint.
+   Drop-in: <script src="/js/asksavvy.js" defer></script> before </body>.
+   Adds a branded floating chat bubble and a modal Q&A. No frameworks required.
 */
 (function () {
   const AS_ENDPOINT = "https://us-central1-savagelane-ai.cloudfunctions.net/realEstateAnswers";
-  const ID = (s) => document.getElementById(s);
 
   // Prevent double init
   if (window.__asksavvyLoaded) return;
   window.__asksavvyLoaded = true;
 
-  // --------- CSS (scoped and minimal) ----------
+  // ---------------- CSS ----------------
   const css = `
   .asv-hidden{display:none!important}
 
-  /* Add gentle bottom padding on small screens so FAB never covers content */
-  .asv-pad{ padding-bottom: 84px; }
-  @media (min-width: 900px){
-    .asv-pad{ padding-bottom: 0; }
-  }
+  /* Page padding so the FAB does not cover content on small screens */
+  .asv-pad{ padding-bottom: 92px; }
+  @media (min-width: 900px){ .asv-pad{ padding-bottom: 0; } }
 
+  /* Floating chat bubble */
   .asv-fab{
-    position:fixed; right:20px; bottom:20px; height:48px; max-width:56vw;
-    padding:0 12px; display:flex; gap:8px; align-items:center; border:0; cursor:pointer;
-    border-radius:9999px; background:#6d28d9; color:#fff; font-weight:700; font-size:14px; z-index:2147483647;
-    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border:0;
+    cursor:pointer;
+    border-radius:18px;
+    background:#6d28d9;
+    color:#fff;
+    font-weight:800;
+    font-size:15px;
+    line-height:1;
+    padding:12px 14px 12px 12px;
+    box-shadow:0 14px 32px rgba(0,0,0,.28);
+    z-index:2147483647;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
   }
-  .asv-fab:hover{ background:#5b21b6 }
-  .asv-fab__dot{ width:22px; height:22px; border-radius:9999px; background:#fff; color:#6d28d9; display:grid; place-items:center; font-weight:900 }
-  .asv-fab__label{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
-  .asv-fab__hint{ font-weight:600; opacity:.9; }
-  @media (max-width:480px){ .asv-fab{ height:44px; font-size:13px } .asv-fab__dot{ width:20px; height:20px } }
+  .asv-fab:hover{ background:#5b21b6; box-shadow:0 18px 40px rgba(0,0,0,.32) }
+  .asv-fab:active{ transform:scale(.98) }
 
+  /* Speech bubble tail */
+  .asv-fab::after{
+    content:"";
+    position:absolute;
+    right:16px;
+    bottom:-6px;
+    width:0;height:0;
+    border-left:8px solid transparent;
+    border-right:8px solid transparent;
+    border-top:8px solid #6d28d9;
+    transition:border-top-color .15s ease;
+  }
+  .asv-fab:hover::after{ border-top-color:#5b21b6 }
+
+  /* Optional dock to left */
+  .asv-left{ left:20px; right:auto; }
+  .asv-top{ top:20px; bottom:auto; }
+
+  /* Agent avatar circle */
+  .asv-agent{
+    width:28px; height:28px;
+    border-radius:9999px;
+    background:#fff;
+    color:#6d28d9;
+    display:grid; place-items:center;
+    font-size:18px; font-weight:900;
+    box-shadow:0 6px 16px rgba(0,0,0,.18);
+    flex:0 0 28px;
+  }
+
+  /* Label and small hint */
+  .asv-text{ display:flex; flex-direction:column; align-items:flex-start; }
+  .asv-title{ font-weight:900; letter-spacing:.2px }
+  .asv-hint{ font-weight:700; opacity:.9; font-size:12px; margin-top:2px }
+
+  /* Make the bubble narrower on very small screens */
+  @media (max-width:420px){
+    .asv-fab{ font-size:14px; padding:10px 12px 10px 10px }
+    .asv-agent{ width:26px; height:26px; font-size:16px }
+    .asv-hint{ display:none }
+  }
+
+  /* Backdrop and modal */
   .asv-backdrop{
     position:fixed; inset:0; background:rgba(0,0,0,.55);
     align-items:center; justify-content:center; padding:20px; z-index:2147483646;
   }
-  /* Backdrop visibility tied to ARIA — prevents intercepting clicks when closed */
   .asv-backdrop[aria-hidden="true"]{ display:none; }
   .asv-backdrop[aria-hidden="false"]{ display:flex; }
 
   .asv-modal{
-    width:min(100%,540px); max-height:90vh; background:#fff; color:#111; border-radius:16px; overflow:hidden;
-    box-shadow:0 18px 40px rgba(0,0,0,.25); display:flex; flex-direction:column
+    width:min(100%,560px);
+    max-height:90vh;
+    background:#fff; color:#111;
+    border-radius:16px; overflow:hidden;
+    box-shadow:0 18px 40px rgba(0,0,0,.28);
+    display:flex; flex-direction:column;
   }
-  .asv-head{ display:flex; align-items:center; justify-content:space-between; gap:8px; padding:12px 14px; background:#ede9fe; color:#4c1d95; font-weight:800 }
-  .asv-close{ appearance:none; background:#fff; border:0; border-radius:10px; padding:6px 10px; font-weight:700; cursor:pointer }
+  .asv-head{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    padding:12px 14px; background:#ede9fe; color:#4c1d95; font-weight:900;
+  }
+  .asv-close{
+    appearance:none; background:#fff; border:0; border-radius:10px;
+    padding:6px 10px; font-weight:800; cursor:pointer;
+  }
   .asv-body{ padding:14px; overflow:auto }
-  .asv-foot{ padding:10px 14px; background:#fafafa; color:#555; font-size:.92rem; border-top:1px solid #eee }
-  .asv-input{ width:100%; border:1px solid #ddd; border-radius:10px; padding:10px; margin:6px 0 10px; font-size:1rem; resize:vertical }
-  .asv-btn{ width:100%; background:#6d28d9; color:#fff; border:0; border-radius:10px; padding:10px 12px; font-weight:700; cursor:pointer }
+  .asv-foot{ padding:10px 14px; background:#fafafa; color:#555; font-size:.95rem; border-top:1px solid #eee }
+  .asv-input{
+    width:100%; border:1px solid #ddd; border-radius:10px; padding:10px; margin:6px 0 10px; font-size:1rem; resize:vertical
+  }
+  .asv-btn{
+    width:100%; background:#6d28d9; color:#fff; border:0; border-radius:10px; padding:10px 12px; font-weight:800; cursor:pointer
+  }
   .asv-btn[disabled]{ opacity:.6; cursor:not-allowed }
   .asv-progress{ height:6px; background:#e5e7eb; border-radius:9999px; overflow:hidden; margin-top:10px; display:none }
   .asv-progress > span{ display:block; height:100%; background:#8b5cf6; width:8%; transition:width .15s ease }
   .asv-result{ margin-top:12px; background:#f9fafb; border:1px solid #eee; border-radius:10px; padding:10px; font-size:.95rem; display:none }
+
+  /* Drag affordance cursor while dragging */
+  .asv-dragging{ cursor:grabbing!important }
   `;
 
   const style = document.createElement("style");
@@ -61,17 +129,20 @@
   style.textContent = css;
   document.head.appendChild(style);
 
-  // --------- Markup injection ----------
+  // ---------------- Markup ----------------
   const fab = document.createElement("button");
   fab.className = "asv-fab";
   fab.id = "asvFab";
   fab.type = "button";
   fab.setAttribute("aria-label", "Open AskSavvy");
-  fab.setAttribute("title", "AskSavvy: AI guide to buying and selling");
+  fab.setAttribute("title", "AskSavvy: Real estate questions");
+
+  // Realtor avatar with SOLD sign vibe using pure text and emoji
   fab.innerHTML = `
-    <span class="asv-fab__dot" aria-hidden="true">?</span>
-    <span class="asv-fab__label">
-      AskSavvy <span class="asv-fab__hint">• questions welcome</span>
+    <span class="asv-agent" aria-hidden="true">🏠</span>
+    <span class="asv-text">
+      <span class="asv-title">Real Estate Questions</span>
+      <span class="asv-hint">AskSavvy can help</span>
     </span>
   `;
 
@@ -91,8 +162,8 @@
       <button class="asv-close" id="asvClose" type="button" aria-label="Close">Close</button>
     </div>
     <div class="asv-body">
-      <label for="asvQ" style="font-weight:600;display:block;margin-bottom:6px">Ask a question</label>
-      <textarea id="asvQ" class="asv-input" rows="3" placeholder="Ask about buying or selling a home..."></textarea>
+      <label for="asvQ" style="font-weight:700;display:block;margin-bottom:6px">Ask a question</label>
+      <textarea id="asvQ" class="asv-input" rows="3" placeholder="Ask about buying or selling a home"></textarea>
       <button id="asvAsk" class="asv-btn" type="button">Ask</button>
       <div class="asv-progress" id="asvProg"><span id="asvProgBar"></span></div>
       <div class="asv-result" id="asvResult"></div>
@@ -105,11 +176,9 @@
 
   document.body.appendChild(fab);
   document.body.appendChild(backdrop);
-  // Add body padding so FAB won’t overlap important footer/content on small screens
   document.body.classList.add("asv-pad");
 
-
-  // --------- Behavior ----------
+  // ---------------- Modal behavior ----------------
   const closeBtn = modal.querySelector("#asvClose");
   const askBtn = modal.querySelector("#asvAsk");
   const input = modal.querySelector("#asvQ");
@@ -155,7 +224,6 @@
     result.style.display = "none";
     result.textContent = "";
 
-    // simple visual progress
     let pct = 8;
     const timer = setInterval(() => { pct = Math.min(100, pct + 3); bar.style.width = pct + "%"; }, 60);
 
@@ -180,69 +248,157 @@
     }
   });
 
-  // Optional: shrink label on very small screens after a delay so it doesn’t feel busy.
+  // ---------------- Smart placement and dragging ----------------
+
+  // Restore last position if the user dragged it
+  try {
+    const saved = JSON.parse(localStorage.getItem("asvPos") || "null");
+    if (saved && typeof saved.x === "number" && typeof saved.y === "number") {
+      // Switch to absolute left/top coords
+      fab.style.left = `${saved.x}px`;
+      fab.style.top = `${saved.y}px`;
+      fab.style.right = "auto";
+      fab.style.bottom = "auto";
+    }
+  } catch(_) {}
+
+  // Edge aware auto dock: if it overlaps the footer, move it to left bottom
+  try {
+    const footer = document.querySelector("footer");
+    if (footer && "IntersectionObserver" in window) {
+      const obs = new IntersectionObserver((entries) => {
+        const v = entries[0];
+        if (!v) return;
+        const rect = fab.getBoundingClientRect();
+        const overlap = v.isIntersecting && rect.bottom > v.boundingClientRect.top - 12;
+        if (overlap) {
+          // Dock left, keep bottom
+          fab.classList.add("asv-left");
+          fab.classList.remove("asv-top");
+        }
+      }, { root: null, threshold: 0, rootMargin: "0px 0px -20% 0px" });
+      obs.observe(footer);
+    }
+  } catch(_) {}
+
+  // Draggable FAB with bounds and persistence
+  (function makeDraggable(el){
+    let dragging = false;
+    let startX = 0, startY = 0;
+    let startLeft = 0, startTop = 0;
+
+    function onDown(e){
+      // Allow drag with left click or touch
+      const p = ("touches" in e) ? e.touches[0] : e;
+      dragging = true;
+      document.body.classList.add("asv-dragging");
+
+      const rect = el.getBoundingClientRect();
+      startLeft = rect.left;
+      startTop = rect.top;
+      startX = p.clientX;
+      startY = p.clientY;
+
+      // Switch to left/top positioning for free drag
+      el.style.left = `${startLeft}px`;
+      el.style.top = `${startTop}px`;
+      el.style.right = "auto";
+      el.style.bottom = "auto";
+
+      window.addEventListener("mousemove", onMove);
+      window.addEventListener("touchmove", onMove, { passive: false });
+      window.addEventListener("mouseup", onUp);
+      window.addEventListener("touchend", onUp);
+    }
+
+    function onMove(e){
+      if (!dragging) return;
+      if ("touches" in e) e.preventDefault();
+      const p = ("touches" in e) ? e.touches[0] : e;
+
+      const dx = p.clientX - startX;
+      const dy = p.clientY - startY;
+
+      let nextLeft = startLeft + dx;
+      let nextTop  = startTop + dy;
+
+      // Keep inside viewport
+      const w = el.offsetWidth;
+      const h = el.offsetHeight;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      nextLeft = Math.max(8, Math.min(vw - w - 8, nextLeft));
+      nextTop  = Math.max(8, Math.min(vh - h - 8, nextTop));
+
+      el.style.left = `${nextLeft}px`;
+      el.style.top  = `${nextTop}px`;
+    }
+
+    function onUp(){
+      if (!dragging) return;
+      dragging = false;
+      document.body.classList.remove("asv-dragging");
+
+      // Persist position
+      const rect = el.getBoundingClientRect();
+      try {
+        localStorage.setItem("asvPos", JSON.stringify({ x: Math.round(rect.left), y: Math.round(rect.top) }));
+      } catch(_) {}
+
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("touchmove", onMove);
+      window.removeEventListener("mouseup", onUp);
+      window.removeEventListener("touchend", onUp);
+    }
+
+    el.addEventListener("mousedown", onDown);
+    el.addEventListener("touchstart", onDown, { passive: true });
+  })(fab);
+
+  // Optional: reduce hint after a short delay on tiny screens
   try {
     const mq = window.matchMedia("(max-width: 420px)");
     if (mq.matches) {
       setTimeout(() => {
-        const hint = fab.querySelector(".asv-fab__hint");
+        const hint = fab.querySelector(".asv-hint");
         if (hint) hint.classList.add("asv-hidden");
       }, 4000);
     }
   } catch(_) {}
+
 })();
+
 /* ==================== Auto-inject CTA note on guide pages ==================== */
 document.addEventListener("DOMContentLoaded", () => {
-  // Determine Buyers vs Sellers from the page breadcrumbs
-  function getGuideContext() {
-    const crumbs = document.querySelector(".sl-breadcrumbs");
-    if (crumbs) {
-      if (crumbs.querySelector("a[href='/buyers.html']")) return "buyer";
-      if (crumbs.querySelector("a[href='/sellers.html']")) return "seller";
-    }
-    if (location.pathname.endsWith("/buyers.html")) return "buyer";
-    if (location.pathname.endsWith("/sellers.html")) return "seller";
-    return null;
-  }
-
-  const context = getGuideContext();
-  if (!context) return;
+  const isBuyerGuide = (window.location.pathname.includes("/buyers") ||
+    (window.location.pathname.includes("/guides/") && document.querySelector("a[href='/buyers.html']")));
+  const isSellerGuide = (window.location.pathname.includes("/sellers") ||
+    (window.location.pathname.includes("/guides/") && document.querySelector("a[href='/sellers.html']")));
 
   const conciergeButtons = document.querySelectorAll("a.btn.primary[href='/concierge.html']");
   if (!conciergeButtons.length) return;
 
   conciergeButtons.forEach((btn) => {
-    // 1) Normalize a per-button wrapper that STACKS content vertically
-    let wrapper = btn.closest(".cta-wrap");
-    if (!wrapper) {
-      // Prefer an existing <p>, otherwise create a div
-      const host = btn.closest("p") || btn.parentElement;
-      // Create a dedicated wrapper and move the button inside it
-      wrapper = document.createElement("div");
-      wrapper.className = "cta-wrap";
-      wrapper.style.display = "inline-flex";       // keeps inline flow inside flex rows
-      wrapper.style.flexDirection = "column";      // stacks button then note
-      wrapper.style.alignItems = "flex-start";     // left aligned
-      wrapper.style.gap = "6px";
-      // Insert wrapper before the button, then move the button in
-      host.insertBefore(wrapper, btn);
-      wrapper.appendChild(btn);
+    // Scope duplication check to the surrounding .panel
+    const panel = btn.closest(".panel") || document;
+    if (panel.querySelector(".cta-note")) return;
+
+    const note = document.createElement("p");
+    note.className = "cta-note";
+    note.style.display = "block";
+    note.style.margin = "6px 0 0";
+
+    if (isSellerGuide) {
+      note.textContent = "Nearby homes like yours are getting strong interest";
+    } else if (isBuyerGuide) {
+      note.textContent = "Homes in your price range are moving fast right now";
+    } else {
+      return;
     }
 
-    // 2) Prevent duplicates for this button
-    if (wrapper.querySelector(".cta-note")) return;
-
-    // 3) Build the note text per context
-    const note = document.createElement("span");
-    note.className = "cta-note";
-    note.textContent = (context === "seller")
-      ? "Nearby homes like yours are getting strong interest"
-      : "Homes in your price range are moving fast right now";
-
-    // 4) Ensure full-width line under the button even inside flex parents
-    note.style.display = "block";
-    note.style.margin = "0";
-
-    wrapper.appendChild(note);
+    // Insert the note on its own line directly under the button
+    const buttonWrapper = btn.closest("p") || btn.parentElement;
+    buttonWrapper.insertAdjacentElement("afterend", note);
   });
 });
