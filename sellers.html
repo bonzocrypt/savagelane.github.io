@@ -30,9 +30,9 @@
       --ink:#0b1b2b;
       --muted:#52637a;
       --card:#ffffff;
-      --accent:#2ec5b6; /* mint */
-      --accent-2:#ff7a7a; /* coral */
-      --accent-3:#5aa8ff; /* sky */
+      --accent:#2ec5b6;
+      --accent-2:#ff7a7a;
+      --accent-3:#5aa8ff;
       --ring:rgba(46,197,182,.24);
       --shadow:0 10px 25px rgba(0,0,0,.06);
       --radius:16px;
@@ -41,24 +41,23 @@
     }
 
     *{box-sizing:border-box}
-html,body{
-  height:100%;
-  max-width:100%;
-  overflow-x:hidden;
-}
-body{
-  margin:0;
-  color:var(--ink);
-  background:
-    radial-gradient(1200px 600px at 20% -10%, rgba(94,179,255,.25), transparent 60%),
-    radial-gradient(1000px 500px at 90% 0%, rgba(255,164,164,.22), transparent 60%),
-    linear-gradient(180deg,#f9fcff 0%,#f6fbff 40%,#f4fafc 100%);
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  line-height:1.6;
-  -webkit-text-size-adjust:100%;
-  text-size-adjust:100%;
-}
-
+    html,body{
+      height:100%;
+      max-width:100%;
+      overflow-x:hidden;
+    }
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(94,179,255,.25), transparent 60%),
+        radial-gradient(1000px 500px at 90% 0%, rgba(255,164,164,.22), transparent 60%),
+        linear-gradient(180deg,#f9fcff 0%,#f6fbff 40%,#f4fafc 100%);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      line-height:1.6;
+      -webkit-text-size-adjust:100%;
+      text-size-adjust:100%;
+    }
 
     .container{max-width:1100px;margin:0 auto;padding:20px}
     .grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap)}
@@ -69,12 +68,11 @@ body{
       position:sticky;top:0;z-index:30;background:rgba(255,255,255,.7);
       backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(0,0,0,.06);
     }
-nav.main{
-  min-height:var(--nav-h);
-  padding:calc(10px + env(safe-area-inset-top)) 0 10px 0;
-  display:flex;align-items:center;justify-content:space-between;gap:14px
-}
-
+    nav.main{
+      min-height:var(--nav-h);
+      padding:calc(10px + env(safe-area-inset-top)) 0 10px 0;
+      display:flex;align-items:center;justify-content:space-between;gap:14px
+    }
 
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
     .brand img{height:44px;width:auto;border-radius:10px;box-shadow:var(--shadow)}
@@ -132,7 +130,6 @@ nav.main{
     :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:10px}
   </style>
 
-  <!-- FAQ rich results -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -167,7 +164,6 @@ nav.main{
   }
   </script>
 
-  <!-- Organization schema -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -214,26 +210,27 @@ nav.main{
     }
     </script>
 
-<section class="hero hero-card">
-
+    <section class="hero hero-card">
       <h1>Seller Resource Center</h1>
       <p class="lead">
         Learn how to prepare price market and close. When you are ready we can match you to a trusted listing agent with Home Match Concierge.
       </p>
-      <div class="links" style="margin-top:10px;flex-wrap:wrap;gap:10px">
-        <a class="btn primary" href="#top-questions">Top seller questions</a>
-        <a class="btn sky" href="#core-guides">Core guides</a>
-        <a class="btn coral" href="/concierge.html">Get matched now</a>
-      </div>
+<div class="links" style="margin-top:10px;flex-wrap:wrap;gap:10px">
+  <a class="btn primary" href="#top-questions">Top seller questions</a>
+  <a class="btn sky" href="/sitemap.html">View all guides</a>
+  <a class="btn coral" href="/concierge.html">Get matched now</a>
+</div>
+
+
     </section>
- <!-- Featured video and how matching works (same structure as sellers) -->
+
     <section class="grid grid-2" style="margin-top:18px" aria-labelledby="learnfast">
       <div class="video-card">
         <header id="learnfast">Learn fast</header>
-        <div class="video-wrap" id="video-slot" aria-label="Featured buyer video"></div>
+        <div class="video-wrap" id="video-slot" aria-label="Featured seller video"></div>
       </div>
 
-            <div class="card" style="display:flex;flex-direction:column;justify-content:center">
+      <div class="card" style="display:flex;flex-direction:column;justify-content:center">
         <div>
           <h3>How matching works</h3>
           <p>
@@ -244,95 +241,76 @@ nav.main{
           </div>
         </div>
       </div>
-
-    </section>
-
-    <section id="top-questions" class="grid grid-2" style="margin-top:18px">
-      <div class="card">
-        <h3>Top seller questions</h3>
-        <ol>
-          <li>What is my home worth right now</li>
-          <li>Which repairs or updates are worth doing before listing</li>
-          <li>How do I price to attract strong offers</li>
-          <li>Do I need a pre listing inspection</li>
-          <li>How do I choose the right listing agent</li>
-        </ol>
-        <p class="note">Each topic below links to a short guide. At the end of every guide you can use Concierge to get matched.</p>
-      </div>
-
-      <div class="card">
-        <h3>Quick start choices</h3>
-        <div class="links" style="flex-wrap:wrap;gap:10px">
-          <a class="btn sky" href="#core-guides">Core guides</a>
-          <a class="btn coral" href="/concierge.html">Get matched now</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="core-guides" class="grid grid-3" style="margin-top:18px">
-      <div class="card">
-        <h3>Pricing and prep</h3>
-        <ul>
-          <li><a href="/guides/how-to-price-your-home.html">How to price your home</a></li>
-          <li><a href="/guides/preinspection-benefits-for-sellers.html">Pre inspection benefits for sellers</a></li>
-          <li><a href="/guides/repairs-and-updates-that-pay-off.html">Repairs and updates that pay off</a></li>
-          <li><a href="/guides/staging-checklist-for-sellers.html">Staging checklist for sellers</a></li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Listing and marketing</h3>
-        <ul>
-          <li><a href="/guides/photography-and-showing-prep.html">Photography and showing prep</a></li>
-          <li><a href="/guides/marketing-plan-basics.html">Marketing plan basics</a></li>
-          <li><a href="/guides/open-house-best-practices.html">Open house best practices</a></li>
-          <li><a href="/guides/fsbo-vs-agent.html">FSBO vs using an agent</a></li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Offers and closing</h3>
-        <ul>
-          <li><a href="/guides/how-to-review-offers.html">How to review offers</a></li>
-          <li><a href="/guides/appraisal-and-repairs-seller.html">Appraisal and repair requests for sellers</a></li>
-          <li><a href="/guides/closing-costs-for-sellers.html">Closing costs for sellers explained</a></li>
-          <li><a href="/guides/closing-day-for-sellers.html">Closing day checklist for sellers</a></li>
-        </ul>
-      </div>
-
-      <!-- New: Timing & market strategy -->
-      <div class="card">
-        <h3>Timing and market strategy</h3>
-        <ul>
-          <li><a href="/guides/when-is-the-best-time-to-sell.html">When is the best time to sell</a></li>
-          <li><a href="/guides/pricing-strategies-in-hot-vs-cool-market.html">Pricing strategies in hot vs cool markets</a></li>
-          <li><a href="/guides/seasonal-selling-tips.html">Seasonal selling tips</a></li>
-        </ul>
-      </div>
-
-      <!-- New: Legal and logistics -->
-      <div class="card">
-        <h3>Legal and logistics</h3>
-        <ul>
-          <li><a href="/guides/seller-disclosures-basics.html">Seller disclosures basics</a></li>
-          <li><a href="/guides/occupancy-and-possession-options.html">Occupancy and possession options</a></li>
-          <li><a href="/guides/moving-checklist-for-sellers.html">Moving checklist for sellers</a></li>
-        </ul>
-      </div>
     </section>
 
 
-    <section class="grid" aria-labelledby="recs" style="margin-top:18px">
-      <div class="card">
-        <h3 id="recs">Recommended reads</h3>
-        <ul style="padding-left:18px;margin:10px 0 0">
-          <li><a href="/guides/how-to-price-your-home.html">How to price your home</a></li>
-          <li><a href="/guides/preinspection-benefits-for-sellers.html">Pre inspection benefits for sellers</a></li>
-          <li><a href="/guides/marketing-plan-basics.html">Marketing plan basics</a></li>
-          <li><a href="/guides/how-to-review-offers.html">How to review offers</a></li>
-        </ul>
-      </div>
-    </section>
+   <section id="core-guides" class="grid grid-3" style="margin-top:18px">
+<div class="card" id="top-questions" style="scroll-margin-top:120px">
+  <h3>Top seller questions</h3>
+  <ul>
+    <li><a href="/guides/how-to-price-your-home.html">What is my home worth right now</a></li>
+    <li><a href="/guides/repairs-and-updates-that-pay-off.html">Which repairs or updates are worth doing before listing</a></li>
+    <li><a href="/guides/pricing-strategies-in-hot-vs-cool-market.html">How do I price to attract strong offers</a></li>
+    <li><a href="/guides/preinspection-benefits-for-sellers.html">Do I need a pre listing inspection</a></li>
+    <li><a href="/guides/how-to-choose-the-right-agent.html">How do I choose the right listing agent</a></li>
+  </ul>
+</div>
+
+
+  <div class="card">
+    <h3>Pricing and prep</h3>
+    <ul>
+      <li><a href="/guides/how-to-price-your-home.html">How to price your home</a></li>
+      <li><a href="/guides/preinspection-benefits-for-sellers.html">Pre inspection benefits for sellers</a></li>
+      <li><a href="/guides/repairs-and-updates-that-pay-off.html">Repairs and updates that pay off</a></li>
+      <li><a href="/guides/staging-checklist-for-sellers.html">Staging checklist for sellers</a></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Listing and marketing</h3>
+    <ul>
+      <li><a href="/guides/photography-and-showing-prep.html">Photography and showing prep</a></li>
+      <li><a href="/guides/marketing-plan-basics.html">Marketing plan basics</a></li>
+      <li><a href="/guides/open-house-best-practices.html">Open house best practices</a></li>
+      <li><a href="/guides/fsbo-vs-agent.html">FSBO vs using an agent</a></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Offers and closing</h3>
+    <ul>
+      <li><a href="/guides/how-to-review-offers.html">How to review offers</a></li>
+      <li><a href="/guides/appraisal-and-repairs-seller.html">Appraisal and repair requests for sellers</a></li>
+      <li><a href="/guides/closing-costs-for-sellers.html">Closing costs for sellers explained</a></li>
+      <li><a href="/guides/closing-day-for-sellers.html">Closing day checklist for sellers</a></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Timing and market strategy</h3>
+    <ul>
+      <li><a href="/guides/when-is-the-best-time-to-sell.html">When is the best time to sell</a></li>
+      <li><a href="/guides/pricing-strategies-in-hot-vs-cool-market.html">Pricing strategies in hot vs cool markets</a></li>
+      <li><a href="/guides/seasonal-selling-tips.html">Seasonal selling tips</a></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Legal and logistics</h3>
+    <ul>
+      <li><a href="/guides/seller-disclosures-basics.html">Seller disclosures basics</a></li>
+      <li><a href="/guides/occupancy-and-possession-options.html">Occupancy and possession options</a></li>
+      <li><a href="/guides/moving-checklist-for-sellers.html">Moving checklist for sellers</a></li>
+    </ul>
+  </div>
+</section>
+
+
+
+    <p style="text-align:center;margin:18px 0 4px">
+      <a class="btn sky" href="/sitemap.html#sellers">View all Seller Guides</a>
+    </p>
 
     <footer>
       <div>© <span id="y"></span> Savage Lane</div>
@@ -350,7 +328,7 @@ nav.main{
   </div>
 
   <script>
-   window.SL_FEATURED_VIDEO = "EbZmg86IL8U";
+    window.SL_FEATURED_VIDEO = "EbZmg86IL8U";
 
     const vid = window.SL_FEATURED_VIDEO;
     const el = document.getElementById("video-slot");
@@ -361,10 +339,8 @@ nav.main{
         '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
     }
     document.getElementById("y").textContent = new Date().getFullYear();
-</script>
+  </script>
 
-<!-- Sitewide AskSavvy launcher -->
-<script src="/js/asksavvy.js" defer></script>
+  <script src="/js/asksavvy.js" defer></script>
 </body>
 </html>
-

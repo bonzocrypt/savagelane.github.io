@@ -369,36 +369,5 @@
 
 })();
 
-/* ==================== Auto-inject CTA note on guide pages ==================== */
-document.addEventListener("DOMContentLoaded", () => {
-  const isBuyerGuide = (window.location.pathname.includes("/buyers") ||
-    (window.location.pathname.includes("/guides/") && document.querySelector("a[href='/buyers.html']")));
-  const isSellerGuide = (window.location.pathname.includes("/sellers") ||
-    (window.location.pathname.includes("/guides/") && document.querySelector("a[href='/sellers.html']")));
-
-  const conciergeButtons = document.querySelectorAll("a.btn.primary[href='/concierge.html']");
-  if (!conciergeButtons.length) return;
-
-  conciergeButtons.forEach((btn) => {
-    // Scope duplication check to the surrounding .panel
-    const panel = btn.closest(".panel") || document;
-    if (panel.querySelector(".cta-note")) return;
-
-    const note = document.createElement("p");
-    note.className = "cta-note";
-    note.style.display = "block";
-    note.style.margin = "6px 0 0";
-
-    if (isSellerGuide) {
-      note.textContent = "Nearby homes like yours are getting strong interest";
-    } else if (isBuyerGuide) {
-      note.textContent = "Homes in your price range are moving fast right now";
-    } else {
-      return;
-    }
-
-    // Insert the note on its own line directly under the button
-    const buttonWrapper = btn.closest("p") || btn.parentElement;
-    buttonWrapper.insertAdjacentElement("afterend", note);
-  });
-});
+// Auto CTA under concierge button removed on request
+// Guides will now show only the button that is in the HTML
