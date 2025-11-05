@@ -86,10 +86,15 @@ nav.main{
   display:flex; align-items:center; justify-content:space-between; gap:14px;
 }
 
-/* Brand (logo-only, larger and dominant on mobile/desktop) */
+/* Brand (logo-only, larger and dominant on mobile/desktop)
+   - We hide any brand text (span/h1)
+   - The image scales with viewport but capped for sanity
+*/
 .brand{display:flex; align-items:center; gap:12px; text-decoration:none; flex-shrink:0}
 .brand h1, .brand span{display:none !important}
+
 .brand img{
+  /* make the logo ~2 button-heights tall on phones and healthy on desktop */
   height:clamp(110px, 20vw, 150px);
   width:auto;
   border-radius:16px;
@@ -304,6 +309,7 @@ footer .links a{color:#0a63dd}
 html { scroll-behavior: smooth; }
 
 /* ===== Buyers page refinements (dropdown FAQ, compact hero) ===== */
+
 .hero.compact { padding: 22px 0 4px; }
 .hero.compact h1 { margin: 6px 0 6px; font-size: 2.1rem; }
 .hero.compact .lead { margin: 0 0 12px; }
@@ -424,34 +430,3 @@ body.sellers .nav-wrap{
 body.buyers .hero.compact{ padding:22px 0 4px; }
 body.buyers .hero.compact h1{ margin:6px 0 6px; font-size:2.1rem; }
 body.buyers .hero.compact .lead{ margin:0 0 12px; }
-
-/* === Portrait mobile: center the header buttons under the big logo === */
-@media (max-width: 700px) and (orientation: portrait){
-  /* Let header wrap so links can drop below the logo */
-  .nav, nav.main{ flex-wrap: wrap; align-items: flex-start; }
-
-  /* Make the button group a full-width row and center it */
-  .links{
-    width: 100%;
-    justify-content: center;
-    padding-top: 8px;
-    gap: 10px 12px; /* row/column gap */
-  }
-
-  /* Two compact chips on the first row… */
-  .links .btn.sky,
-  .links .btn.coral{
-    min-width: 44%;        /* Buyers / Sellers half-width chips */
-  }
-
-  /* …and concierge as a wide second-row chip */
-  .links .btn.primary{
-    min-width: min(92%, 560px);
-  }
-}
-
-/* Very small phones—stack all three centered */
-@media (max-width: 380px){
-  .links .btn.sky,
-  .links .btn.coral{ min-width: 92%; }
-}
