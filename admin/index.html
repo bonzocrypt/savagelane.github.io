@@ -86,9 +86,26 @@
       </div>
     </header>
 
-    <div class="panel">
-      <div class="muted">Checked pages: <code>/buyers.html</code> and <code>/sellers.html</code>. Also checks <code>/sitemap.html</code> if present.</div>
-    </div>
+<div class="panel">
+  <div class="muted">Checked pages: <code>/buyers.html</code> and <code>/sellers.html</code>. Also checks <code>/sitemap.html</code> if present.</div>
+  <hr style="border:0;border-top:1px solid #2a3147;margin:12px 0">
+  <h2 style="margin:0 0 6px;font-size:1.05rem">How to use this page</h2>
+  <ol class="muted" style="margin:8px 0 0;padding-left:18px">
+    <li>Click <b>Run scan</b> to populate the lists.</li>
+    <li>In <b>Unlinked guides</b>, click the <b>🟦 Buyers</b> or <b>🟥 Sellers</b> chip next to any guide you want to categorize.
+      <br><span style="opacity:.9">Tip: the chip “lights up” when selected. Click again to toggle off. Only one side can be active at a time.</span>
+    </li>
+    <li>Click <b>Export categories</b> to download a file named <code>guide-categories.json</code>.</li>
+    <li>Save that file to <code>/tools/guide-categories.json</code> in your repo (same level as <code>/tools/generate-guides.js</code>).</li>
+    <li>From your project root, run:
+      <pre style="background:#111827;border:1px solid #2a3147;border-radius:8px;padding:10px;overflow:auto;margin:8px 0 0"><code>npm run generate</code></pre>
+      This regenerates <code>/guides/index.html</code> and <code>/sitemap.html</code> with your new categories.
+    </li>
+    <li>Commit &amp; push your changes to publish.</li>
+  </ol>
+  <p class="muted" style="margin-top:10px">Optional: If <code>/tools/guide-categories.json</code> already exists, this page will load it on refresh so your past selections appear pre-lit.</p>
+</div>
+
 
     <div id="results" class="grid" aria-live="polite">
       <section class="panel">
