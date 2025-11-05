@@ -22,56 +22,22 @@
   <meta name="twitter:description" content="Free referral concierge for buyers and sellers. Get matched fast." />
   <meta name="twitter:image" content="https://savagelane.com/images/default-og.png" />
 
-  <!-- Fonts -->
+  <!-- Fonts (optional; global uses Inter too) -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
 
+  <!-- Global site styles -->
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <!-- Page-local styles only for the form/cards/hero (no header overrides) -->
   <style>
     :root{
-      --bg:#f7fbff;
-      --ink:#0b1b2b;
-      --muted:#52637a;
-      --card:#ffffff;
-      --accent:#2ec5b6;
-      --accent-2:#ff7a7a;
-      --accent-3:#5aa8ff;
-      --ring:rgba(46,197,182,.24);
-      --shadow:0 10px 25px rgba(0,0,0,.06);
-      --radius:16px;
-      --grid-gap:18px;
-      --nav-h:68px;
       --field-border:1px solid rgba(0,0,0,.10);
       --field-bg:#ffffff;
     }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;color:var(--ink);
-      background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(94,179,255,.25), transparent 60%),
-        radial-gradient(1000px 500px at 90% 0%, rgba(255,164,164,.22), transparent 60%),
-        linear-gradient(180deg,#f9fcff 0%,#f6fbff 40%,#f4fafc 100%);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6
-    }
-
     .container{max-width:1100px;margin:0 auto;padding:20px}
-    .grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap)}
-
-    /* Sticky nav */
-    .nav-wrap{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.7);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
-    nav.main{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:14px}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-    .brand img{height:44px;width:auto;border-radius:10px;box-shadow:var(--shadow)}
-    .brand span{font-weight:700;font-size:1.05rem;color:var(--ink)}
-    .links{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-    a{color:#0a63dd;text-decoration:none}
-    a:hover{text-decoration:underline}
-
-    /* Buttons */
-    .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 16px;border:1px solid rgba(0,0,0,.08);background:#ffffff;color:var(--ink);font-weight:600;box-shadow:var(--shadow)}
-    .btn.primary{background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29;border:none}
+    .grid{display:grid;grid-template-columns:1fr;gap:18px}
 
     /* Breadcrumb */
     .crumbs{margin:10px 0 14px;font-size:.95rem;color:var(--muted)}
@@ -79,18 +45,20 @@
     .crumbs .sep{margin:0 6px}
 
     /* Hero */
-    .hero{border-radius:24px;padding:28px;box-shadow:var(--shadow);
+    .hero{
+      border-radius:24px;padding:28px;box-shadow:var(--shadow);
       background:
         radial-gradient(1200px 500px at 0% 0%, rgba(94,179,255,.30), transparent 60%),
         radial-gradient(900px 450px at 100% 0%, rgba(255,164,164,.26), transparent 60%),
         linear-gradient(180deg,#ffffff 0%,#fbfeff 100%);
-      border:1px solid rgba(0,0,0,.06)}
+      border:1px solid rgba(0,0,0,.06)
+    }
     .hero h1{margin:6px 0 8px;font-size:2.1rem;letter-spacing:.2px}
     .hero p.lead{margin:0;color:var(--muted)}
     .hero img{width:100%;height:auto;border-radius:16px;border:1px solid rgba(0,0,0,.08);margin:0 0 12px}
 
     /* Card + form */
-    .card{background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
     .card h2{margin:0 0 8px}
     form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     label{font-size:.95rem;color:var(--muted)}
@@ -123,17 +91,6 @@
     .checkboxes{display:flex;flex-wrap:wrap;gap:10px}
     .checkboxes label{display:flex;align-items:center;gap:8px;border:var(--field-border);border-radius:12px;padding:8px 10px;background:#fff;cursor:pointer}
     .checkboxes input{width:auto}
-
-    /* Footer */
-    footer{margin:28px 0 30px;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    footer .links a{color:#0a63dd}
-
-    /* Focus */
-    :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:10px}
-    /* Inline status message */
-    .status{margin-top:10px;font-size:.95rem}
-    .status.ok{color:#065f46}
-    .status.err{color:#b00020}
   </style>
 
   <!-- Organization schema -->
@@ -150,17 +107,16 @@
 </head>
 
 <body>
-  <!-- Sticky nav -->
+  <!-- Sticky nav (matches global header structure/styles) -->
   <div class="nav-wrap">
-    <div class="container">
+    <div class="shell">
       <nav class="main" aria-label="Primary">
         <a class="brand" href="/" aria-label="Savage Lane Home">
           <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
-          <span>Savage Lane</span>
         </a>
         <div class="links">
-          <a href="/buyers.html">Buyers</a>
-          <a href="/sellers.html">Sellers</a>
+          <a class="btn sky" href="/buyers.html">Buyers</a>
+          <a class="btn coral" href="/sellers.html">Sellers</a>
           <a class="btn primary" href="/concierge.html" aria-current="page">Home Match Concierge</a>
         </div>
       </nav>
@@ -234,10 +190,9 @@
           </div>
 
           <div>
-<label for="zip">ZIP code <span class="hint">(optional)</span></label>
-<input id="zip" name="zip" inputmode="numeric" pattern="\d{5}" placeholder="Example 34202" autocomplete="postal-code" />
-<div id="zipErr" class="error">Enter a 5 digit ZIP</div>
-
+            <label for="zip">ZIP code <span class="hint">(optional)</span></label>
+            <input id="zip" name="zip" inputmode="numeric" pattern="\d{5}" placeholder="Example 34202" autocomplete="postal-code" />
+            <div id="zipErr" class="error">Enter a 5 digit ZIP</div>
           </div>
 
           <!-- Combined location -->
@@ -411,7 +366,6 @@
         });
         if(!res.ok) throw new Error('Submit failed');
         const json = await res.json().catch(()=>({}));
-        // Formspree usually returns { ok: true } for success when Accept is JSON
         if(json && json.ok === false) throw new Error('Submit failed');
         return true;
       }
@@ -425,13 +379,7 @@
 
         if(!validCity(city.value)){cityErr.classList.add('show');if(!blocked)city.focus();blocked=true;} else cityErr.classList.remove('show');
         if(!state.value){stateErr.classList.add('show');if(!blocked)state.focus();blocked=true;} else stateErr.classList.remove('show');
-        if(zip.value.trim() && !validZip(zip.value)){
-  zipErr.classList.add('show');
-  if(!blocked) zip.focus();
-  blocked = true;
-} else {
-  zipErr.classList.remove('show');
-}
+        if(zip.value.trim() && !validZip(zip.value)){ zipErr.classList.add('show'); if(!blocked) zip.focus(); blocked = true; } else { zipErr.classList.remove('show'); }
 
         if(!intent.value){intentErr.classList.add('show');if(!blocked)intent.focus();blocked=true;} else intentErr.classList.remove('show');
         if(!timeline.value){timelineErr.classList.add('show');if(!blocked)timeline.focus();blocked=true;} else timelineErr.classList.remove('show');
@@ -440,7 +388,7 @@
 
         const minVal=Number(minBudget.value||NaN);
         const maxVal=Number(maxBudget.value||NaN);
-        if(Number.isNaN(minVal)){minBudgetErr.classList.add('show');if(!blocked)minBudget.focus();blocked=true;} else minBudgetErr.classList.remove('show');
+        if(Number.isNaN(minVal)){minBudgetErr?.classList.add('show');if(!blocked)minBudget.focus();blocked=true;} else minBudgetErr?.classList.remove('show');
         if(Number.isNaN(maxVal) || maxVal<minVal){budgetErr.classList.add('show');if(!blocked)maxBudget.focus();blocked=true;} else budgetErr.classList.remove('show');
 
         if(!beds.value){bedsErr.classList.add('show');if(!blocked)beds.focus();blocked=true;} else bedsErr.classList.remove('show');
@@ -459,10 +407,8 @@
         try{
           const data = new FormData(form);
           await postToFormspree(data);
-          // Only redirect after verified success
           window.location.href = '/thanks.html';
         }catch(err){
-          // Show error and restore button so user can retry
           statusEl.textContent = 'There was a problem sending your request. Please try again in a moment.';
           statusEl.className = 'status err';
           submitBtn.classList.remove('loading');
@@ -473,5 +419,8 @@
       document.getElementById("y").textContent=new Date().getFullYear();
     })();
   </script>
+
+  <!-- Sitewide AskSavvy launcher -->
+  <script src="/js/asksavvy.js" defer></script>
 </body>
 </html>
