@@ -2,30 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Site Map | Savage Lane</title>
+  <title>Explore Guides | Savage Lane</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Explore all pages on Savage Lane including buyer guides, seller guides, and the Home Match Concierge referral program." />
-  <link rel="canonical" href="https://savagelane.com/sitemap.html" />
-  <meta name="robots" content="index,follow" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Site Map | Savage Lane" />
-  <meta property="og:description" content="Browse all Savage Lane resources and guides for buyers and sellers." />
+  <meta name="description" content="Explore buyer and seller guides, checklists, and how tos from Savage Lane." />
+  <link rel="canonical" href="https://savagelane.com/guides/index.html" />
+  <link rel="icon" href="/images/favicon.png" type="image/png" sizes="32x32" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://savagelane.com/sitemap.html" />
+  <meta property="og:title" content="Explore Guides | Savage Lane" />
+  <meta property="og:description" content="Browse every guide on Savage Lane and find quick answers." />
   <meta property="og:image" content="https://savagelane.com/images/default-og.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-
   <link rel="stylesheet" href="/css/style.css" />
   <style>
-    .hero{border-radius:24px;padding:28px;box-shadow:var(--shadow);background:linear-gradient(180deg,#fff 0%,#fbfeff 100%);border:1px solid rgba(0,0,0,.06)}
-    .grid{display:grid;grid-template-columns:1fr;gap:18px}
-    @media(min-width:1000px){.grid-2{grid-template-columns:1fr 1fr}}
+    .hero{border-radius:24px;padding:24px;box-shadow:var(--shadow);background:linear-gradient(180deg,#fff 0%,#fbfeff 100%);border:1px solid rgba(0,0,0,.06)}
+    .search{display:flex;gap:8px;margin-top:12px}
+    .search input{flex:1;padding:12px 14px;border-radius:12px;border:1px solid #dfe6ff;box-shadow:var(--shadow)}
     .card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+    .grid{display:grid;grid-template-columns:1fr;gap:18px}
+    @media(min-width:900px){.grid-2{grid-template-columns:1fr 1fr}}
     ul{list-style:none;margin:8px 0 0;padding-left:0}
     li{margin:6px 0}
-    .note{font-size:.95rem;color:var(--muted);margin-top:8px}
+    mark{background:rgba(255,235,59,.45);border-radius:4px;padding:0 2px}
   </style>
 </head>
 <body>
@@ -38,27 +34,25 @@
         <div class="links">
           <a class="btn sky" href="/buyers.html">Buyers</a>
           <a class="btn coral" href="/sellers.html">Sellers</a>
-          <a class="btn ghost" href="/guides/index.html">Explore</a>
           <a class="btn primary" href="/concierge.html">Home Match Concierge</a>
         </div>
       </nav>
     </div>
   </div>
 
-  <div class="container" style="max-width:1100px;margin:0 auto;padding:20px">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <a href="/">Home</a><span class="sep" aria-hidden="true">›</span><span>Site Map</span>
-    </nav>
-
+  <div class="shell" style="max-width:1100px;padding:20px">
     <section class="hero">
-      <h1>Site Map</h1>
-      <p class="meta">Browse all Savage Lane pages and guides. Last updated: November 2025.</p>
+      <h1>Explore all guides</h1>
+      <p class="muted" style="margin:6px 0 0">Smart, plain English answers for buyers and sellers. Start typing to filter — we match loosely on any word in the title.</p>
+      <div class="search">
+        <input id="q" type="search" placeholder="Search guides (buyers, appraisal, 1031, pre approval…)" aria-label="Search guides">
+      </div>
     </section>
 
     <section class="grid grid-2" style="margin-top:18px">
-      <div class="card" id="buyers">
+      <div class="card">
         <h2>Buyer guides</h2>
-        <ul>
+        <ul id="buyers-list">
           <li><a href="/guides/appraisal-gap-and-value-issues.html">Appraisal gap and value issues</a></li>
           <li><a href="/guides/appraisal-process-for-buyers.html">Appraisal process for buyers</a></li>
           <li><a href="/guides/buy-vs-rent-right-now.html">Buy vs rent right now</a></li>
@@ -95,9 +89,9 @@
         </ul>
       </div>
 
-      <div class="card" id="sellers">
+      <div class="card">
         <h2>Seller guides</h2>
-        <ul>
+        <ul id="sellers-list">
           <li><a href="/guides/appraisal-and-repairs-seller.html">Appraisal and repairs for sellers</a></li>
           <li><a href="/guides/closing-costs-for-sellers.html">Closing costs for sellers</a></li>
           <li><a href="/guides/closing-day-for-sellers.html">Closing day for sellers</a></li>
@@ -119,9 +113,9 @@
         </ul>
       </div>
 
-      <div class="card" style="grid-column:1/-1" id="other-guides">
+      <div class="card" style="grid-column:1/-1">
         <h2>Other guides</h2>
-        <ul>
+        <ul id="other-list">
           <li><a href="/guides/1031-exchange-basics.html">1031 exchange basics</a></li>
           <li><a href="/guides/condo-and-hoa-basics-for-buyers.html">Condo and HOA basics for buyers</a></li>
           <li><a href="/guides/contingencies-when-selling-explained.html">Contingencies when selling explained</a></li>
@@ -149,18 +143,6 @@
           <li><a href="/guides/what-to-expect-after-accepting-an-offer.html">What to expect after accepting an offer</a></li>
         </ul>
       </div>
-
-      <div class="card" style="grid-column:1/-1">
-        <h2>Core Pages</h2>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/buyers.html">Buyer Resource Center</a></li>
-          <li><a href="/sellers.html">Seller Resource Center</a></li>
-          <li><a href="/concierge.html">Home Match Concierge</a></li>
-          <li><a href="/privacy.html">Privacy Policy</a></li>
-          <li><a href="/sitemap.xml">XML Sitemap</a> <span class="note">(for search engines)</span></li>
-        </ul>
-      </div>
     </section>
   </div>
 
@@ -173,13 +155,46 @@
         <a href="/sellers.html">Sellers</a>
         <span aria-hidden="true"> • </span>
         <a href="/concierge.html">Concierge</a>
-        <span aria-hidden="true"> • </span>
-        <a href="/privacy.html">Privacy</a>
       </div>
     </div>
   </footer>
 
-  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const q = document.getElementById('q');
+
+    // Loose multi-term search across all lists; highlights matches
+    function filterList(ul, terms){
+      const items = ul.querySelectorAll('li');
+      items.forEach(li => {
+        const a = li.querySelector('a');
+        const text = a.textContent.toLowerCase();
+        const hit = terms.every(t => text.includes(t));
+        li.style.display = hit ? '' : 'none';
+
+        // highlight
+        a.innerHTML = a.textContent; // reset
+        if (terms.length && hit){
+          let html = a.textContent;
+          terms.forEach(t=>{
+// Escape regex specials and build a safe case-insensitive global matcher
+const escaped = t.replace(/[.*+?^${}()|[]\]/g, '\$&');
+const rx = new RegExp('(' + escaped + ')', 'ig');
+
+  html = html.replace(rx, '<mark>$1</mark>');
+          });
+          a.innerHTML = html;
+        }
+      });
+    }
+    q.addEventListener('input', () => {
+      const terms = q.value.trim().toLowerCase().split(/s+/).filter(Boolean);
+      ['buyers-list','sellers-list','other-list'].forEach(id=>{
+        const ul = document.getElementById(id);
+        if (ul) filterList(ul, terms);
+      });
+    });
+  </script>
   <script src="/js/asksavvy.js" defer></script>
 </body>
 </html>

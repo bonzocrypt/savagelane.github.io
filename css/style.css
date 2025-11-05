@@ -98,23 +98,124 @@ nav.main{
 /* Header links group */
 .links{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
 
-/* Buttons (unified) */
+/* Buttons (unified + animated chips) */
 .btn{
+  position:relative; isolation:isolate;
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
   padding:12px 16px; border-radius:12px;
-  border:1px solid rgba(0,0,0,.08);
+  border:1px solid rgba(0,0,0,.06);
   background:#ffffff; color:var(--ink); font-weight:600;
   box-shadow:var(--shadow);
   text-decoration:none;
-  transition:transform .15s ease, box-shadow .15s ease;
+  transform:translateY(0);
+  transition:
+    transform .18s cubic-bezier(.2,.8,.2,1),
+    box-shadow .18s ease,
+    filter .18s ease;
 }
-.btn:hover{transform:translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,.08)}
-.btn.primary{background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29; border:none}
-.btn.coral{background:linear-gradient(90deg, var(--accent-2), #ffb3a6); color:#3a0e0e; border:none}
-.btn.sky{background:linear-gradient(90deg, var(--accent-3), #9fd0ff); color:#0b2447; border:none}
-.btn.alt{background:var(--brand-2); color:#fff; border:none}     /* index alt */
-.btn.ghost{background:#eef3ff; color:#1f2a44; border:none}      /* index ghost */
-.btn.watch{background:#eef3ff; color:#1f2a44}                   /* index carousel */
+/* subtle hover lift and sharp active press */
+.btn:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.10) }
+.btn:active{ transform:translateY(0); box-shadow:0 6px 16px rgba(0,0,0,.10) }
+
+/* glossy sweep overlay */
+.btn::before{
+  content:""; position:absolute; inset:0; z-index:-1; border-radius:inherit;
+  background:
+    linear-gradient(100deg, rgba(255,255,255,.28) 15%, rgba(255,255,255,0) 45%) no-repeat 0 0 / 0% 100%;
+  transition:background-size .5s ease;
+}
+.btn:hover::before{ background-size:120% 100% }
+
+/* soft glow behind on focus/hover */
+.btn::after{
+  content:""; position:absolute; inset:-16px; z-index:-2; border-radius:24px;
+  background:radial-gradient(40% 50% at 50% 50%, rgba(46,197,182,.35), transparent 70%);
+  opacity:0; filter:blur(10px); transition:opacity .25s ease, filter .25s ease;
+}
+.btn:hover::after, .btn:focus-visible::after{ opacity:1; filter:blur(14px) }
+
+/* brand gradient variants */
+.btn.primary{ background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29; border:none }
+.btn.coral{ background:linear-gradient(90deg, var(--accent-2), #ffb3a6); color:#3a0e0e; border:none }
+.btn.sky{ background:linear-gradient(90deg, var(--accent-3), #9fd0ff); color:#0b2447; border:none }
+.btn.alt{ background:var(--brand-2); color:#fff; border:none }     /* index alt */
+.btn.ghost{ background:#eef3ff; color:#1f2a44; border:none }       /* index ghost */
+.btn.watch{ background:#eef3ff; color:#1f2a44 }                    /* index carousel */
+
+/* header chips: stronger active-page treatment with animated ring + pulse */
+.nav .links .btn,
+nav.main .links .btn{
+  box-shadow:0 8px 20px rgba(14,35,84,.10);
+
+  /* entrance animation */
+  opacity:0;
+  transform:translateY(-4px) scale(.98);
+  animation:sl-chip-enter .5s cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+/* stagger the entrance for header chips */
+.nav .links .btn:nth-child(1), nav.main .links .btn:nth-child(1){ animation-delay:.05s }
+.nav .links .btn:nth-child(2), nav.main .links .btn:nth-child(2){ animation-delay:.12s }
+.nav .links .btn:nth-child(3), nav.main .links .btn:nth-child(3){ animation-delay:.19s }
+.nav .links .btn:nth-child(4), nav.main .links .btn:nth-child(4){ animation-delay:.26s }
+
+/* entrance keyframes */
+@keyframes sl-chip-enter{
+  0%{ opacity:0; transform:translateY(-4px) scale(.98) }
+  100%{ opacity:1; transform:translateY(0) scale(1) }
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .nav .links .btn, nav.main .links .btn{
+    animation:none; opacity:1; transform:none;
+  }
+}
+
+
+/* Animated gradient ring around the active page chip */
+.nav .links a[aria-current="page"].btn,
+nav.main .links a[aria-current="page"].btn{
+  position:relative;
+  transform:translateY(-2px);
+  box-shadow:
+    0 14px 30px rgba(14,35,84,.14),
+    0 0 0 2px rgba(46,197,182,.22) inset;
+  isolation:isolate;
+}
+
+/* moving conic gradient border */
+.nav .links a[aria-current="page"].btn::before,
+nav.main .links a[aria-current="page"].btn::before{
+  content:""; position:absolute; inset:-2px; border-radius:14px; z-index:-1;
+  background:
+    conic-gradient(from 0deg,
+      rgba(46,197,182,.0) 0deg,
+      rgba(46,197,182,.45) 120deg,
+      rgba(90,168,255,.45) 240deg,
+      rgba(46,197,182,.0) 360deg);
+  filter:blur(8px);
+  animation:sl-chip-sweep 2.2s linear infinite;
+}
+
+/* soft breathing glow behind the active chip */
+.nav .links a[aria-current="page"].btn::after,
+nav.main .links a[aria-current="page"].btn::after{
+  content:""; position:absolute; inset:-14px; border-radius:22px; z-index:-2;
+  background:radial-gradient(40% 55% at 50% 50%, rgba(46,197,182,.32), transparent 70%);
+  animation:sl-chip-breathe 2.8s ease-in-out infinite;
+  pointer-events:none;
+}
+
+@keyframes sl-chip-sweep{
+  0%{ transform:rotate(0deg) }
+  100%{ transform:rotate(360deg) }
+}
+@keyframes sl-chip-breathe{
+  0%,100%{ opacity:.55; filter:blur(16px) }
+  50%{ opacity:.85; filter:blur(20px) }
+}
+
 
 /* Hero */
 .hero{

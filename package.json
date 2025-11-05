@@ -1,0 +1,18 @@
+{
+  "name": "savagelane",
+  "version": "1.0.1",
+  "description": "Savage Lane static site and referral guide library",
+  "type": "commonjs",
+  "scripts": {
+    "generate": "node tools/generate-guides.js",
+    "predeploy": "npm run generate",
+    "deploy": "git add . && git commit -m 'Site update' || echo 'No changes to commit' && git push"
+  },
+  "keywords": [
+    "real-estate",
+    "guides",
+    "referral",
+    "savage-lane"
+  ],
+  "license": "MIT"
+}
