@@ -62,7 +62,6 @@ a:hover{text-decoration:underline}
 
 /* Sticky header (works for both index and buyers/sellers) */
 .nav-wrap,
-/* Sticky header (buyers/index use .nav-wrap) */
 .nav-wrap{
   position:sticky; top:0; z-index:50;
   background:rgba(255,255,255,.8);
@@ -78,22 +77,32 @@ header.navbar{
   backdrop-filter:none;
 }
 
-
 /* Inner nav: support both ".nav" (index) and "nav.main" (buyers/sellers) */
 .nav,
 nav.main{
   min-height:var(--nav-h);
-  /* vertical padding only so container/shell controls side gutters */
   padding-block:10px;
-  /* safe-area top padding on iPhones with a notch */
   padding-top:calc(10px + env(safe-area-inset-top));
   display:flex; align-items:center; justify-content:space-between; gap:14px;
 }
 
-/* Brand */
-.brand{display:flex; align-items:center; gap:12px; text-decoration:none}
-.brand img{height:44px; width:auto; border-radius:10px; box-shadow:var(--shadow)}
-.brand h1, .brand span{margin:0; font-weight:800; letter-spacing:.2px; font-size:18px; color:var(--ink-strong)}
+/* Brand (logo-only, larger and dominant on mobile/desktop)
+   - We hide any brand text (span/h1)
+   - The image scales with viewport but capped for sanity
+*/
+.brand{display:flex; align-items:center; gap:12px; text-decoration:none; flex-shrink:0}
+.brand h1, .brand span{display:none !important}
+
+.brand img{
+  /* make the logo ~2 button-heights tall on phones and healthy on desktop */
+  height:clamp(110px, 20vw, 150px);
+  width:auto;
+  border-radius:16px;
+  box-shadow:0 8px 22px rgba(0,0,0,.25);
+  object-fit:contain;
+  transition:transform .3s ease;
+}
+.brand:hover img{ transform:scale(1.04) }
 
 /* Header links group */
 .links{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
@@ -113,7 +122,6 @@ nav.main{
     box-shadow .18s ease,
     filter .18s ease;
 }
-/* subtle hover lift and sharp active press */
 .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.10) }
 .btn:active{ transform:translateY(0); box-shadow:0 6px 16px rgba(0,0,0,.10) }
 
@@ -138,16 +146,14 @@ nav.main{
 .btn.primary{ background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29; border:none }
 .btn.coral{ background:linear-gradient(90deg, var(--accent-2), #ffb3a6); color:#3a0e0e; border:none }
 .btn.sky{ background:linear-gradient(90deg, var(--accent-3), #9fd0ff); color:#0b2447; border:none }
-.btn.alt{ background:var(--brand-2); color:#fff; border:none }     /* index alt */
-.btn.ghost{ background:#eef3ff; color:#1f2a44; border:none }       /* index ghost */
-.btn.watch{ background:#eef3ff; color:#1f2a44 }                    /* index carousel */
+.btn.alt{ background:var(--brand-2); color:#fff; border:none }
+.btn.ghost{ background:#eef3ff; color:#1f2a44; border:none }
+.btn.watch{ background:#eef3ff; color:#1f2a44 }
 
 /* header chips: stronger active-page treatment with animated ring + pulse */
 .nav .links .btn,
 nav.main .links .btn{
   box-shadow:0 8px 20px rgba(14,35,84,.10);
-
-  /* entrance animation */
   opacity:0;
   transform:translateY(-4px) scale(.98);
   animation:sl-chip-enter .5s cubic-bezier(.2,.9,.2,1) forwards;
@@ -159,7 +165,6 @@ nav.main .links .btn{
 .nav .links .btn:nth-child(3), nav.main .links .btn:nth-child(3){ animation-delay:.19s }
 .nav .links .btn:nth-child(4), nav.main .links .btn:nth-child(4){ animation-delay:.26s }
 
-/* entrance keyframes */
 @keyframes sl-chip-enter{
   0%{ opacity:0; transform:translateY(-4px) scale(.98) }
   100%{ opacity:1; transform:translateY(0) scale(1) }
@@ -171,7 +176,6 @@ nav.main .links .btn{
     animation:none; opacity:1; transform:none;
   }
 }
-
 
 /* Animated gradient ring around the active page chip */
 .nav .links a[aria-current="page"].btn,
@@ -207,15 +211,8 @@ nav.main .links a[aria-current="page"].btn::after{
   pointer-events:none;
 }
 
-@keyframes sl-chip-sweep{
-  0%{ transform:rotate(0deg) }
-  100%{ transform:rotate(360deg) }
-}
-@keyframes sl-chip-breathe{
-  0%,100%{ opacity:.55; filter:blur(16px) }
-  50%{ opacity:.85; filter:blur(20px) }
-}
-
+@keyframes sl-chip-sweep{ 0%{ transform:rotate(0deg) } 100%{ transform:rotate(360deg) } }
+@keyframes sl-chip-breathe{ 0%,100%{ opacity:.55; filter:blur(16px) } 50%{ opacity:.85; filter:blur(20px) } }
 
 /* Hero */
 .hero{
@@ -311,33 +308,27 @@ footer .links a{color:#0a63dd}
 /* Smooth scrolling for TOC chips and in-page links */
 html { scroll-behavior: smooth; }
 
-
 /* ===== Buyers page refinements (dropdown FAQ, compact hero) ===== */
 
-/* Compact hero spacing (matches your screenshot) */
 .hero.compact { padding: 22px 0 4px; }
 .hero.compact h1 { margin: 6px 0 6px; font-size: 2.1rem; }
 .hero.compact .lead { margin: 0 0 12px; }
 .hero-cta { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 10px; }
 
-/* Make the "How matching works" card narrower than the video on desktop */
 @media (min-width: 900px){
   .match-narrow{
     width: 100%;
-    max-width: 560px;        /* narrower than a typical 16:9 video in the same grid */
-    justify-self: end;       /* align to the right so it visually pairs with the video */
+    max-width: 560px;
+    justify-self: end;
   }
 }
 
-/* FAQ categories use <details> with the same card look */
 .faq { margin-top: 18px; }
 .faq h2 { margin: 0 0 8px; }
 .faq .note { color: var(--muted); }
 
-/* Category container already has .card in the HTML, so just style the toggles */
 .faq-cat { margin: 12px 0; }
 
-/* Category header */
 .faq-cat > summary{
   list-style: none;
   cursor: pointer;
@@ -352,7 +343,6 @@ html { scroll-behavior: smooth; }
 }
 .faq-cat[open] > summary::after{ transform: rotate(180deg); }
 
-/* Inner Q&A items */
 .qa { padding: 0 12px 12px 12px; }
 .qa-item{
   margin-top: 8px;
@@ -367,18 +357,15 @@ html { scroll-behavior: smooth; }
 .qa-item[open] > summary{ background:#f7fbff; }
 .qa-item > div{ padding: 0 14px 14px 14px; color: var(--ink); }
 
-/* Accessible focus ring consistent with your theme */
 .faq-cat > summary:focus-visible,
 .qa-item > summary:focus-visible{
   outline:3px solid var(--ring); outline-offset:2px; border-radius:12px;
 }
-/* Keep hero content stacked even when .hero becomes 2 columns at ≥980px */
 .hero .hero-content { grid-column: 1 / -1; }
-/* Optional: compact spacing */
 .hero.compact { padding: 22px 0 4px; }
 .hero.compact h1 { margin: 6px 0 6px; font-size: 2.1rem; }
 .hero.compact .lead { margin: 0 0 12px; }
-/* Topic chips (TOC above Buyer Education) */
+
 .toc-chips{
   display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 6px;
 }
@@ -392,7 +379,6 @@ html { scroll-behavior: smooth; }
 .chip.coral{ background:linear-gradient(90deg, var(--accent-2), #ffb3a6); color:#3a0e0e; border:none }
 .chip.sky{ background:linear-gradient(90deg, var(--accent-3), #9fd0ff); color:#0b2447; border:none }
 
-/* Compact expandable Q&As inside cards */
 .qalist{ list-style:none; padding-left:0; margin:10px 0 0; }
 .qalist li + li{ margin-top:6px; }
 .qa-snippet{ background:#fff; border:1px dashed rgba(0,0,0,.08); border-radius:12px; }
@@ -403,6 +389,7 @@ html { scroll-behavior: smooth; }
 .qa-snippet[open] > summary{ background:#f7fbff; }
 .qa-snippet > div{ padding:8px 12px 12px; color:var(--ink); }
 .qa-snippet a{ font-weight:600; }
+
 /* Sellers page header: keep non-sticky and transparent even with global CSS linked */
 body:has(link[rel="canonical"][href$="/sellers.html"]) .nav-wrap {
   position: static;
@@ -415,7 +402,6 @@ body:has(link[rel="canonical"][href$="/sellers.html"]) .nav-wrap {
    Page namespaces (safe)
    ========================= */
 
-/* Buyers page: keep sticky header look and correct in-page anchor offset */
 body.buyers .nav-wrap{
   position: sticky;
   top: 0;
@@ -444,4 +430,3 @@ body.sellers .nav-wrap{
 body.buyers .hero.compact{ padding:22px 0 4px; }
 body.buyers .hero.compact h1{ margin:6px 0 6px; font-size:2.1rem; }
 body.buyers .hero.compact .lead{ margin:0 0 12px; }
-
