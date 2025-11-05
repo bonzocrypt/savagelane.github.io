@@ -8,13 +8,12 @@
  *    - If found in buyers.html -> “Buyer guides”
  *    - If found in sellers.html -> “Seller guides”
  *    - Else -> “Other guides”
+ *    - NEW: Optional overrides via /tools/guide-categories.json (filenames only)
  * 4) Rebuilds /sitemap.html (full file) with three sections + “Core Pages”
  * 5) Rebuilds /guides/index.html (Explore) using the same sections and live search
  *
  * Usage:
  *   node tools/generate-guides.js
- *
- * Next step (separate move): I can wire this into an npm script and/or GitHub Action.
  */
 
 const fs = require('fs');
@@ -24,6 +23,29 @@ const ROOT = process.cwd();
 const GUIDES_DIR = path.join(ROOT, 'guides');
 const OUT_SITEMAP = path.join(ROOT, 'sitemap.html');
 const OUT_EXPLORE = path.join(ROOT, 'guides', 'index.html');
+
+/** Optional category overrides: /tools/guide-categories.json
+ * Shape:
+ * {
+ *   "buyers":  ["file-a.html","file-b.html"],
+ *   "sellers": ["file-c.html"]
+ * }
+ */
+function loadCategoryOverrides(rootDir) {
+  const mapPath = path.join(rootDir, 'tools', 'guide-categories.json');
+  const map = {};
+  try {
+    const raw = fs.readFileSync(mapPath, 'utf8');
+    const data = JSON.parse(raw);
+    (data.buyers || []).forEach(n => { if (n) map[String(n).trim()] = 'buyers'; });
+    (data.sellers || []).forEach(n => { if (n) map[String(n).trim()] = 'sellers'; });
+    const total = Object.keys(map).length;
+    console.log(`• Loaded overrides from tools/guide-categories.json (${total} entries)`);
+  } catch {
+    // optional file — ignore if missing/invalid
+  }
+  return map;
+}
 
 function read(file) {
   try { return fs.readFileSync(file, 'utf8'); } catch { return ''; }
@@ -81,21 +103,35 @@ const sellersHTML = read(path.join(ROOT, 'sellers.html'));
 const buyersLinks = collectLinks(buyersHTML);
 const sellersLinks = collectLinks(sellersHTML);
 
+// NEW: load optional overrides once
+const overrides = loadCategoryOverrides(ROOT);
+
 const files = listGuideFiles();
 
 // Build catalog
+let appliedOverrideCount = 0;
 const catalog = files.map(fname => {
   const filePath = path.join(GUIDES_DIR, fname);
   const html = read(filePath);
   const href = `/guides/${fname}`;
   const title = extractTitle(html, fname);
 
-  let category = 'other';
-  if (buyersLinks.has(href)) category = 'buyers';
-  if (sellersLinks.has(href)) category = category === 'buyers' ? 'other' : 'sellers'; // if on both, demote to other
+  // Start with override if present (match by filename only)
+  let category = overrides[fname] || 'other';
+  if (overrides[fname]) appliedOverrideCount++;
+
+  // Fallback auto-detect only if no override
+  if (category === 'other') {
+    if (buyersLinks.has(href)) category = 'buyers';
+    if (sellersLinks.has(href)) category = category === 'buyers' ? 'other' : 'sellers'; // if on both, demote to other
+  }
 
   return { href, title, category };
 });
+
+if (appliedOverrideCount) {
+  console.log(`• Applied overrides to ${appliedOverrideCount} guide(s)`);
+}
 
 // Split into sections
 const buyers = catalog.filter(x => x.category === 'buyers');
@@ -335,11 +371,10 @@ ${liList(others)}
         if (terms.length && hit){
           let html = a.textContent;
           terms.forEach(t=>{
-// Escape regex specials and build a safe case-insensitive global matcher
-const escaped = t.replace(/[\.\*\+\?\^\$\{\}\(\)\|\[\]\\]/g, '\\$&');
-const rx = new RegExp('(' + escaped + ')', 'ig');
-
-  html = html.replace(rx, '<mark>$1</mark>');
+            // Escape regex specials and build a safe case-insensitive global matcher
+            const escaped = t.replace(/[\.\*\+\?\^\$\{\}\(\)\|\[\]\\]/g, '\\$&');
+            const rx = new RegExp('(' + escaped + ')', 'ig');
+            html = html.replace(rx, '<mark>$1</mark>');
           });
           a.innerHTML = html;
         }
