@@ -77,25 +77,27 @@ header.navbar{
   backdrop-filter:none;
 }
 
-/* Inner nav: support both ".nav" (index) and "nav.main" (buyers/sellers) */
+/* =========================
+   Header layout
+   ========================= */
+
+/* CHANGED: keep one row, brand left, chips area next; we don't space-between */
 .nav,
 nav.main{
   min-height:var(--nav-h);
   padding-block:10px;
   padding-top:calc(10px + env(safe-area-inset-top));
-  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  display:flex; align-items:center; justify-content:flex-start; gap:14px; /* CHANGED */
+  flex-wrap:nowrap !important; /* CHANGED: prevent logo from jumping above chips */
 }
 
-/* Brand (logo-only, larger and dominant on mobile/desktop)
-   - We hide any brand text (span/h1)
-   - The image scales with viewport but capped for sanity
-*/
+/* Brand: logo-only (hide text) and keep it visually dominant */
 .brand{display:flex; align-items:center; gap:12px; text-decoration:none; flex-shrink:0}
 .brand h1, .brand span{display:none !important}
 
+/* CHANGED: ensure logo never looks smaller than chips, even on phones */
 .brand img{
-  /* make the logo ~2 button-heights tall on phones and healthy on desktop */
-  height:clamp(110px, 20vw, 150px);
+  height:clamp(100px, 18vw, 150px); /* CHANGED: higher floor than buttons */
   width:auto;
   border-radius:16px;
   box-shadow:0 8px 22px rgba(0,0,0,.25);
@@ -104,8 +106,14 @@ nav.main{
 }
 .brand:hover img{ transform:scale(1.04) }
 
-/* Header links group */
-.links{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+/* Links area (chips) lives to the right, can wrap, and centers in its zone */
+.links{
+  flex:1 1 auto;                           /* CHANGED: take remaining row space */
+  display:flex; align-items:center;
+  gap:14px; flex-wrap:wrap;
+  justify-content:center;                  /* CHANGED: center chips (big screens too) */
+  min-width:0;
+}
 
 /* Buttons (unified + animated chips) */
 .btn{
@@ -431,51 +439,22 @@ body.buyers .hero.compact{ padding:22px 0 4px; }
 body.buyers .hero.compact h1{ margin:6px 0 6px; font-size:2.1rem; }
 body.buyers .hero.compact .lead{ margin:0 0 12px; }
 
-/* === Header layout lock: logo left, buttons right — never stack === */
-.nav, nav.main{
-  /* ensure single row layout */
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;    /* brand first, links next */
-  gap:14px;
-  flex-wrap:nowrap !important;   /* prevent logo going above buttons */
-}
+/* =========================
+   Small device polish
+   ========================= */
 
-.brand{ flex:0 0 auto; }         /* logo never shrinks below its intrinsic width */
-
-/* Links area owns the remaining space on the right */
-.links{
-  flex:1 1 auto;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;                /* buttons can wrap within the right side */
-  justify-content:flex-end;      /* default: right align on wider screens */
-  min-width:0;                   /* avoid overflow quirks */
-}
-
-/* Keep the logo big, but not so big it forces a wrap */
-.brand img{
-  height: clamp(80px, 16vw, 120px);
-  width: auto;
-}
-
-/* Portrait phones: keep one row; center the buttons within the right zone */
-@media (max-width: 700px) and (orientation: portrait){
-  .nav, nav.main{ flex-wrap:nowrap !important; }   /* re-assert never stack */
+/* Keep one-row header, let chips wrap but stay centered in their right zone */
+@media (max-width: 700px){
+  .nav, nav.main{ flex-wrap:nowrap !important; }
   .links{
-    justify-content:center;       /* center the wrapped buttons in their area */
+    justify-content:center;   /* keep centered when they wrap */
     column-gap:12px; row-gap:10px;
   }
-  /* slightly temper logo so it doesn't crowd the chips */
-  .brand img{ height: clamp(68px, 14vw, 96px); }
-
-  /* let chips wrap nicely without blowing out the row */
   .links .btn{ flex:0 1 auto; }
 }
 
-/* Micro phones: give chips more width but keep them on the same row area */
+/* Ultra-narrow: allow two-per-line chips while staying centered */
 @media (max-width: 380px){
-  .links .btn{ flex-basis: calc(50% - 12px); }  /* two per line */
-  .links .btn.primary{ flex-basis: 100%; }      /* concierge full width under them */
+  .links .btn{ flex-basis: calc(50% - 12px); }
+  .links .btn.primary{ flex-basis:100%; }
 }
