@@ -128,124 +128,144 @@
     </footer>
   </div>
 
-  <script>
+   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
     const originBase = location.origin;
     const hubs = ["/buyers.html", "/sellers.html"];
-    const state = { buyers:new Set(), sellers:new Set() };
-    const el = (id)=>document.getElementById(id);
+    const el = (id) => document.getElementById(id);
+
+    function esc(s){ return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+    function listify(arr, badgesByPath){
+      if(!arr || !arr.length) return '<p class="muted">None</p>';
+      return '<ul>' + arr.map(p => {
+        const badges = (badgesByPath && badgesByPath[p]) ? ' ' + badgesByPath[p].map(b=>`<code class="badge">${esc(b)}</code>`).join(' ') : '';
+        return `<li><a href="${esc(p)}" target="_blank" rel="noopener">${esc(p)}</a>${badges}</li>`;
+      }).join('') + '</ul>';
+    }
 
     async function fetchDoc(path){
-      try{ const r=await fetch(path,{cache:"no-store"}); if(!r.ok)return null;
-        const h=await r.text(); return new DOMParser().parseFromString(h,"text/html");
-      }catch{return null;}
+      try{
+        const res = await fetch(path, { cache: "no-store" });
+        if(!res.ok) return null;
+        const html = await res.text();
+        return new DOMParser().parseFromString(html, "text/html");
+      }catch{ return null; }
+    }
+
+    async function fetchJSON(path){
+      try{
+        const res = await fetch(path, { cache: "no-store" });
+        if(!res.ok) return null;
+        return await res.json();
+      }catch{ return null; }
     }
 
     function extractGuideLinks(doc){
-      if(!doc)return[];
-      return Array.from(doc.querySelectorAll("a[href]")).map(a=>a.getAttribute("href")).map(h=>{
+      if(!doc) return [];
+      const hrefs = Array.from(doc.querySelectorAll("a[href]")).map(a => a.getAttribute("href"));
+      return hrefs.map(h => {
         try{
-          const u=new URL(h,originBase);
-          return (u.pathname.startsWith("/guides/")&&u.pathname.endsWith(".html"))?u.pathname:null;
-        }catch{return null;}
+          const u = new URL(h, originBase);
+          return u.pathname.startsWith("/guides/") && u.pathname.endsWith(".html") ? u.pathname : null;
+        }catch{ return null; }
       }).filter(Boolean);
     }
 
     async function headExists(path){
-      const url=new URL(path,originBase);
-      try{const r=await fetch(url,{method:"HEAD"});return r.ok;}catch{return false;}
-    }
-
-    function fileNameFromPath(p){ return p.split("/").pop(); }
-
-    function renderUnlinked(paths){
-      if(!paths||!paths.length)return"<p class='muted'>None</p>";
-      const items=paths
-        .filter(p=>p!="/guides/index.html")
-        .map(p=>{
-          const name=fileNameFromPath(p);
-          const buyerOn=state.buyers.has(name);
-          const sellerOn=state.sellers.has(name);
-          return `<li>
-            <div class="cat-row">
-              <a href="${p}" target="_blank">${p}</a>
-              <button class="cat-chip buyer ${buyerOn?"active":""}" data-f="${name}" data-cat="buyers">🟦 Buyers</button>
-              <button class="cat-chip seller ${sellerOn?"active":""}" data-f="${name}" data-cat="sellers">🟥 Sellers</button>
-            </div>
-          </li>`;
-        }).join("");
-      return "<ul>"+items+"</ul>";
-    }
-
-    function attachHandlers(){
-      document.getElementById("unlinked").addEventListener("click",e=>{
-        const btn=e.target.closest(".cat-chip");
-        if(!btn)return;
-        const fname=btn.dataset.f;
-        const cat=btn.dataset.cat;
-        const other=cat==="buyers"?"sellers":"buyers";
-
-        if(state[cat].has(fname)){
-          state[cat].delete(fname);
-          btn.classList.remove("active");
-        }else{
-          state[cat].add(fname);
-          state[other].delete(fname);
-          const row=btn.closest(".cat-row");
-          row.querySelectorAll(".cat-chip").forEach(b=>b.classList.remove("active"));
-          btn.classList.add("active");
+      const url = new URL(path, originBase).toString();
+      try{
+        let r = await fetch(url, { method: "HEAD", redirect: "follow", cache: "no-store" });
+        if(r.status === 405 || r.status === 501){
+          r = await fetch(url, { method: "GET", redirect: "follow", cache: "no-store", headers: { Accept: "text/html" } });
         }
-      });
+        return r.ok;
+      }catch{ return false; }
     }
 
-    function exportCategories(){
-      const json={
-        buyers:Array.from(state.buyers).sort(),
-        sellers:Array.from(state.sellers).sort()
-      };
-      const blob=new Blob([JSON.stringify(json,null,2)],{type:"application/json"});
-      const a=document.createElement("a");
-      a.href=URL.createObjectURL(blob);
-      a.download="guide-categories.json";
-      a.click();
-      URL.revokeObjectURL(a.href);
+    function toGuidePath(filename){
+      // normalize override filenames like "foo.html" -> "/guides/foo.html"
+      if(!filename) return null;
+      const clean = String(filename).trim();
+      if(!clean) return null;
+      return clean.startsWith('/guides/') ? clean : `/guides/${clean}`;
     }
 
     async function runScan(){
-      el("missing").innerHTML="<p class='muted'>Scanning…</p>";
-      el("working").innerHTML="<p class='muted'>Scanning…</p>";
-      el("unlinked").innerHTML="<p class='muted'>Scanning…</p>";
+      el("missing").innerHTML = '<p class="muted">Scanning…</p>';
+      el("working").innerHTML = '<p class="muted">Scanning…</p>';
+      el("unlinked").innerHTML = '<p class="muted">Scanning…</p>';
+      el("count-missing").textContent = "";
+      el("count-working").textContent = "";
+      el("count-unlinked").textContent = "";
+      el("sitemap-note").textContent = "This section uses sitemap and manual overrides when available.";
 
-      const hubDocs=await Promise.all(hubs.map(fetchDoc));
-      const hubLinks=[...new Set(hubDocs.flatMap(extractGuideLinks))];
+      // 1) gather from hubs (actual links present on Buyers/Sellers pages)
+      const hubDocs = await Promise.all(hubs.map(fetchDoc));
+      const hubLinks = new Set([...new Set(hubDocs.flatMap(extractGuideLinks))]); // Set for quick lookups
 
-      const siteDoc=await fetchDoc("/sitemap.html");
-      const siteLinks=siteDoc?[...new Set(extractGuideLinks(siteDoc))]:[];
+      // 2) gather from sitemap if present (complete inventory)
+      const siteDoc = await fetchDoc("/sitemap.html");
+      const siteLinksArr = siteDoc ? [...new Set(extractGuideLinks(siteDoc))] : [];
+      const siteLinks = new Set(siteLinksArr);
 
-      const hubChecks=Object.fromEntries(await Promise.all(hubLinks.map(async p=>[p,await headExists(p)])));
-      const missing=hubLinks.filter(p=>!hubChecks[p]);
-      const working=hubLinks.filter(p=>hubChecks[p]);
+      // 3) load overrides (buyers/sellers JSON) and convert to absolute guide paths
+      const overrides = await fetchJSON("/tools/guide-categories.json");
+      const buyersOverride = new Set((overrides?.buyers || []).map(toGuidePath).filter(Boolean));
+      const sellersOverride = new Set((overrides?.sellers || []).map(toGuidePath).filter(Boolean));
 
-      const siteChecks=Object.fromEntries(await Promise.all(siteLinks.map(async p=>[p,await headExists(p)])));
-      const unlinked=siteLinks.filter(p=>siteChecks[p]&&!hubLinks.includes(p));
+      // 4) merge: treat override assignments as “linked” for categorization purposes in this admin view
+      const buyersMerged = new Set([...hubLinks].filter(p=>p).filter(p=>p).filter(Boolean)); // start with hub links
+      const sellersMerged = new Set([...hubLinks].filter(Boolean)); // will prune below
 
-      el("missing").innerHTML=listify(missing);
-      el("working").innerHTML=listify(working);
-      el("unlinked").innerHTML=renderUnlinked(unlinked);
-      attachHandlers();
-      el("count-missing").textContent=`(${missing.length})`;
-      el("count-working").textContent=`(${working.length})`;
-      el("count-unlinked").textContent=`(${unlinked.length})`;
+      // split hubLinks to buyers/sellers by actually checking which hub contains them
+      // (recompute for accuracy)
+      const [buyersDoc, sellersDoc] = hubDocs;
+      const buyersOnPage = new Set(extractGuideLinks(buyersDoc));
+      const sellersOnPage = new Set(extractGuideLinks(sellersDoc));
+
+      const buyersSet = new Set([...buyersOnPage, ...buyersOverride]);
+      const sellersSet = new Set([...sellersOnPage, ...sellersOverride]);
+
+      // 5) existence checks for hub+override (what you manage) and full site
+      const managed = new Set([...buyersSet, ...sellersSet]); // everything considered categorized
+      const managedChecks = Object.fromEntries(await Promise.all([...managed].map(async p => [p, await headExists(p)])));
+
+      // report: links referenced in hubs but missing on disk
+      const hubOnly = new Set([...buyersOnPage, ...sellersOnPage]);
+      const hubMissing = [...hubOnly].filter(p => !managedChecks[p]); // if it’s on the page but 404
+
+      // working: links that exist among the hub references
+      const hubWorking = [...hubOnly].filter(p => managedChecks[p]);
+
+      // unlinked: in full site inventory but not categorized by either hub or overrides
+      const unlinked = [...siteLinks].filter(p => !buyersSet.has(p) && !sellersSet.has(p));
+
+      // 6) badge sources next to each path in lists
+      const badges = {};
+      const addBadge = (p, b) => { (badges[p] ||= []).push(b); };
+      buyersOnPage.forEach(p => addBadge(p, 'Hub: Buyers'));
+      sellersOnPage.forEach(p => addBadge(p, 'Hub: Sellers'));
+      buyersOverride.forEach(p => addBadge(p, 'JSON: Buyers'));
+      sellersOverride.forEach(p => addBadge(p, 'JSON: Sellers'));
+
+      // 7) update UI
+      el("missing").innerHTML = listify(hubMissing, badges);
+      el("working").innerHTML = listify(hubWorking, badges);
+      el("unlinked").innerHTML = siteDoc ? listify(unlinked) : '<p class="muted">No sitemap found so this section is skipped.</p>';
+
+      if(hubMissing.length) el("count-missing").textContent = `(${hubMissing.length})`;
+      if(hubWorking.length) el("count-working").textContent = `(${hubWorking.length})`;
+      if(siteDoc && unlinked.length) el("count-unlinked").textContent = `(${unlinked.length})`;
     }
 
-    function listify(arr){ if(!arr||!arr.length)return"<p class='muted'>None</p>"; return"<ul>"+arr.map(p=>`<li><a href='${p}' target='_blank'>${p}</a></li>`).join("")+"</ul>"; }
+    document.getElementById("run").addEventListener("click", runScan);
+    document.getElementById("print").addEventListener("click", () => window.print());
 
-    document.getElementById("run").onclick=runScan;
-    document.getElementById("print").onclick=()=>window.print();
-    document.getElementById("export").onclick=exportCategories;
-
+    // auto run on first load for convenience
     runScan();
   </script>
+
 </body>
 </html>
