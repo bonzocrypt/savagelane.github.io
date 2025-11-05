@@ -18,15 +18,14 @@
       --shadow:0 18px 40px rgba(0,0,0,.25);
       --radius:14px;
       --wrap:980px;
-      --good:#29d18a;
-      --warn:#ffd27d;
-      --bad:#ff9b9b;
+      --buyer:#1b3d8f;
+      --seller:#7f1d1d;
     }
     *{ box-sizing:border-box }
     body{
       margin:0; background:var(--bg); color:var(--text);
       font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; line-height:1.6;
-      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
     }
     .wrap{ max-width:var(--wrap); margin:0 auto; padding:24px 16px }
     header{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap }
@@ -39,10 +38,10 @@
       border-radius:var(--radius); padding:16px; margin:12px 0; box-shadow:var(--shadow);
     }
     .controls{ display:flex; gap:10px; align-items:center; flex-wrap:wrap }
-    .btn{
-      display:inline-flex; align-items:center; gap:8px; border-radius:10px; padding:10px 14px;
-      background:var(--accent); color:#fff; border:0; font-weight:700; cursor:pointer;
+    .btn{ display:inline-flex; align-items:center; gap:8px; border-radius:10px;
+      padding:10px 14px; font-weight:700; cursor:pointer; border:0;
     }
+    .btn.primary{ background:var(--accent); color:#fff }
     .btn.secondary{ background:#2b2f3a; border:1px solid #343a46; color:#fff; font-weight:600 }
     .btn.ghost{ background:#1b2236; border:1px solid #2a3147; color:#c9d4f0 }
     .grid{ display:grid; grid-template-columns:1fr; gap:16px }
@@ -53,26 +52,21 @@
     a{ color:#8ab4ff; text-decoration:none }
     a:hover{ text-decoration:underline }
     .ok{ color:#9fe29f }
-    .warn{ color:var(--warn) }
-    .err{ color:var(--bad) }
+    .warn{ color:#ffd27d }
+    .err{ color:#ff9b9b }
     footer{ margin-top:24px; color:var(--muted); display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap }
-    code.badge{
-      background:#111827; color:#e5e7eb; border:1px solid #1f2937; border-radius:8px;
-      padding:.2em .5em; font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
-    }
 
-    /* --- Categorizer controls --- */
+    /* Chips */
     .cat-row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap }
     .cat-chip{
       display:inline-flex; align-items:center; gap:6px;
-      border-radius:999px; padding:6px 10px; font-weight:700; cursor:pointer; border:1px solid #2a3147;
-      background:#121a2f; color:#c9d4f0;
+      border-radius:999px; padding:6px 10px; font-weight:700; cursor:pointer;
+      background:#1c2438; border:1px solid #2a3147; color:#c9d4f0;
+      transition:background .2s, box-shadow .2s;
     }
-    .cat-chip[aria-pressed="true"]{ box-shadow:0 0 0 2px rgba(255,255,255,.15) inset }
-    .cat-chip.buyer.active{ background:#1b3d8f; color:#e9f0ff; border-color:#24489e }
-    .cat-chip.seller.active{ background:#7f1d1d; color:#ffecec; border-color:#9a2a2a }
-    .cat-list a{ margin-right:8px }
-    .note{ color:var(--muted); font-size:.95rem }
+    .cat-chip:hover{ box-shadow:0 0 0 2px rgba(255,255,255,.15) inset }
+    .cat-chip.active.buyer{ background:var(--buyer); color:#e9f0ff; box-shadow:0 0 8px var(--buyer) inset }
+    .cat-chip.active.seller{ background:var(--seller); color:#ffecec; box-shadow:0 0 8px var(--seller) inset }
   </style>
 </head>
 <body>
@@ -86,41 +80,28 @@
         </div>
       </a>
       <div class="controls">
-        <button id="run" class="btn">Run scan</button>
-        <button id="export" class="btn ghost" title="Export buyers/sellers selections as JSON">Export categories</button>
+        <button id="run" class="btn primary">Run scan</button>
+        <button id="export" class="btn ghost">Export categories</button>
         <button id="print" class="btn secondary">Print or save</button>
       </div>
     </header>
 
     <div class="panel">
-      <div class="muted">Checked pages: <code class="badge">/buyers.html</code> and <code class="badge">/sellers.html</code>. Also tries <code class="badge">/sitemap.html</code> if present.</div>
-      <div class="note" id="ovr-note" style="margin-top:8px">Overrides file: <code class="badge">/tools/guide-categories.json</code> (loaded if present).</div>
-    </div>
-
-    <div class="panel">
-      <h2 style="margin:0 0 6px">Quick how it works</h2>
-      <ol class="note" style="margin:8px 0 0">
-        <li>Use the Buyers or Sellers chips next to any guide in “Existing guides not linked on hubs”.</li>
-        <li>Click <b>Export categories</b> to download <code>guide-categories.json</code>.</li>
-        <li>Place it at <code>/tools/guide-categories.json</code>, then run <code>npm run generate</code>.</li>
-      </ol>
+      <div class="muted">Checked pages: <code>/buyers.html</code> and <code>/sellers.html</code>. Also checks <code>/sitemap.html</code> if present.</div>
     </div>
 
     <div id="results" class="grid" aria-live="polite">
       <section class="panel">
-        <h2>Linked on hubs but missing <span id="count-missing" class="err"></span></h2>
-        <div id="missing">Run the scan to populate this list.</div>
+        <h2>Missing on site <span id="count-missing" class="err"></span></h2>
+        <div id="missing">Run the scan…</div>
       </section>
-
       <section class="panel">
-        <h2>Working links on hubs <span id="count-working" class="ok"></span></h2>
-        <div id="working">Run the scan to populate this list.</div>
+        <h2>Working on hubs <span id="count-working" class="ok"></span></h2>
+        <div id="working">Run the scan…</div>
       </section>
-
       <section class="panel" style="grid-column:1/-1">
-        <h2>Existing guides not linked on hubs <span id="count-unlinked" class="warn"></span></h2>
-        <p class="muted" id="sitemap-note">This section uses sitemap when available. Use the chips to categorize items.</p>
-        <div id="unlinked">Run the scan to populate this list.</div>
+        <h2>Unlinked guides <span id="count-unlinked" class="warn"></span></h2>
+        <div id="unlinked">Run the scan…</div>
       </section>
     </div>
 
@@ -135,186 +116,119 @@
 
     const originBase = location.origin;
     const hubs = ["/buyers.html", "/sellers.html"];
-    const el = (id) => document.getElementById(id);
-
-    function esc(s){ return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-
-    function listify(arr){
-      if(!arr || !arr.length) return '<p class="muted">None</p>';
-      return '<ul>' + arr.map(p => `<li><a href="${esc(p)}" target="_blank" rel="noopener">${esc(p)}</a></li>`).join('') + '</ul>';
-    }
+    const state = { buyers:new Set(), sellers:new Set() };
+    const el = (id)=>document.getElementById(id);
 
     async function fetchDoc(path){
-      try{
-        const res = await fetch(path, { cache: "no-store" });
-        if(!res.ok) return null;
-        const html = await res.text();
-        return new DOMParser().parseFromString(html, "text/html");
-      }catch{ return null; }
+      try{ const r=await fetch(path,{cache:"no-store"}); if(!r.ok)return null;
+        const h=await r.text(); return new DOMParser().parseFromString(h,"text/html");
+      }catch{return null;}
     }
 
     function extractGuideLinks(doc){
-      if(!doc) return [];
-      const hrefs = Array.from(doc.querySelectorAll("a[href]")).map(a => a.getAttribute("href"));
-      return hrefs.map(h => {
+      if(!doc)return[];
+      return Array.from(doc.querySelectorAll("a[href]")).map(a=>a.getAttribute("href")).map(h=>{
         try{
-          const u = new URL(h, originBase);
-          return u.pathname.startsWith("/guides/") && u.pathname.endsWith(".html") ? u.pathname : null;
-        }catch{ return null; }
+          const u=new URL(h,originBase);
+          return (u.pathname.startsWith("/guides/")&&u.pathname.endsWith(".html"))?u.pathname:null;
+        }catch{return null;}
       }).filter(Boolean);
     }
 
     async function headExists(path){
-      const url = new URL(path, originBase).toString();
-      try{
-        let r = await fetch(url, { method: "HEAD", redirect: "follow", cache: "no-store" });
-        if(r.status === 405 || r.status === 501){
-          r = await fetch(url, { method: "GET", redirect: "follow", cache: "no-store", headers: { Accept: "text/html" } });
-        }
-        return r.ok;
-      }catch{ return false; }
+      const url=new URL(path,originBase);
+      try{const r=await fetch(url,{method:"HEAD"});return r.ok;}catch{return false;}
     }
 
-    // --- Categorization state (preload /tools/guide-categories.json if present) ---
-    const state = {
-      buyers: new Set(),
-      sellers: new Set()
-    };
+    function fileNameFromPath(p){ return p.split("/").pop(); }
 
-    async function loadOverrides(){
-      try{
-        const res = await fetch('/tools/guide-categories.json', { cache:'no-store' });
-        if(!res.ok) return;
-        const json = await res.json();
-        (json.buyers || []).forEach(n => state.buyers.add(String(n).trim()));
-        (json.sellers || []).forEach(n => state.sellers.add(String(n).trim()));
-        document.getElementById('ovr-note').innerHTML =
-          'Overrides loaded from <code class="badge">/tools/guide-categories.json</code>.';
-      }catch{
-        // optional file, ignore
-      }
-    }
-
-    function fileNameFromPath(p){
-      try{ return p.split('/').pop(); }catch{ return p; }
-    }
-
-    function renderUnlinkedWithControls(paths){
-      if(!paths || !paths.length) return '<p class="muted">None</p>';
-      const items = paths.map(p => {
-        const name = fileNameFromPath(p);
-        const buyerActive = state.buyers.has(name);
-        const sellerActive = state.sellers.has(name);
-        return `
-          <li class="cat-list">
+    function renderUnlinked(paths){
+      if(!paths||!paths.length)return"<p class='muted'>None</p>";
+      const items=paths
+        .filter(p=>p!="/guides/index.html")
+        .map(p=>{
+          const name=fileNameFromPath(p);
+          const buyerOn=state.buyers.has(name);
+          const sellerOn=state.sellers.has(name);
+          return `<li>
             <div class="cat-row">
-              <a href="${esc(p)}" target="_blank" rel="noopener">${esc(p)}</a>
-              <button class="cat-chip buyer ${buyerActive ? 'active':''}" data-fname="${esc(name)}" data-cat="buyers" aria-pressed="${buyerActive}">🟦 Buyers</button>
-              <button class="cat-chip seller ${sellerActive ? 'active':''}" data-fname="${esc(name)}" data-cat="sellers" aria-pressed="${sellerActive}">🟥 Sellers</button>
+              <a href="${p}" target="_blank">${p}</a>
+              <button class="cat-chip buyer ${buyerOn?"active":""}" data-f="${name}" data-cat="buyers">🟦 Buyers</button>
+              <button class="cat-chip seller ${sellerOn?"active":""}" data-f="${name}" data-cat="sellers">🟥 Sellers</button>
             </div>
           </li>`;
-      }).join('');
-      return '<ul>'+items+'</ul>';
+        }).join("");
+      return "<ul>"+items+"</ul>";
     }
 
-    function toggleSelection(fname, cat){
-      const other = cat === 'buyers' ? 'sellers' : 'buyers';
-      // toggle pressed state
-      if(state[cat].has(fname)){
-        state[cat].delete(fname);
-      }else{
-        state[cat].add(fname);
-        state[other].delete(fname); // enforce one side only
-      }
-    }
+    function attachHandlers(){
+      document.getElementById("unlinked").addEventListener("click",e=>{
+        const btn=e.target.closest(".cat-chip");
+        if(!btn)return;
+        const fname=btn.dataset.f;
+        const cat=btn.dataset.cat;
+        const other=cat==="buyers"?"sellers":"buyers";
 
-    function attachControlHandlers(container){
-      container.addEventListener('click', (e)=>{
-        const btn = e.target.closest('.cat-chip');
-        if(!btn) return;
-        const fname = btn.getAttribute('data-fname');
-        const cat = btn.getAttribute('data-cat');
-        toggleSelection(fname, cat);
-
-        // update visual states for both chips in this row
-        const row = btn.closest('.cat-row');
-        const buyer = row.querySelector('.cat-chip.buyer');
-        const seller = row.querySelector('.cat-chip.seller');
-        const buyerOn = state.buyers.has(fname);
-        const sellerOn = state.sellers.has(fname);
-        buyer.classList.toggle('active', buyerOn);
-        seller.classList.toggle('active', sellerOn);
-        buyer.setAttribute('aria-pressed', buyerOn);
-        seller.setAttribute('aria-pressed', sellerOn);
+        if(state[cat].has(fname)){
+          state[cat].delete(fname);
+          btn.classList.remove("active");
+        }else{
+          state[cat].add(fname);
+          state[other].delete(fname);
+          const row=btn.closest(".cat-row");
+          row.querySelectorAll(".cat-chip").forEach(b=>b.classList.remove("active"));
+          btn.classList.add("active");
+        }
       });
     }
 
     function exportCategories(){
-      const payload = {
-        buyers: Array.from(state.buyers).sort(),
-        sellers: Array.from(state.sellers).sort()
+      const json={
+        buyers:Array.from(state.buyers).sort(),
+        sellers:Array.from(state.sellers).sort()
       };
-      const blob = new Blob([JSON.stringify(payload, null, 2)], { type:'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'guide-categories.json';
-      document.body.appendChild(a);
+      const blob=new Blob([JSON.stringify(json,null,2)],{type:"application/json"});
+      const a=document.createElement("a");
+      a.href=URL.createObjectURL(blob);
+      a.download="guide-categories.json";
       a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
+      URL.revokeObjectURL(a.href);
     }
 
     async function runScan(){
-      el("missing").innerHTML = '<p class="muted">Scanning…</p>';
-      el("working").innerHTML = '<p class="muted">Scanning…</p>';
-      el("unlinked").innerHTML = '<p class="muted">Scanning…</p>';
-      el("count-missing").textContent = "";
-      el("count-working").textContent = "";
-      el("count-unlinked").textContent = "";
-      el("sitemap-note").textContent = "This section uses sitemap when available. Use the chips to categorize items.";
+      el("missing").innerHTML="<p class='muted'>Scanning…</p>";
+      el("working").innerHTML="<p class='muted'>Scanning…</p>";
+      el("unlinked").innerHTML="<p class='muted'>Scanning…</p>";
 
-      // preload overrides once per session
-      await loadOverrides();
+      const hubDocs=await Promise.all(hubs.map(fetchDoc));
+      const hubLinks=[...new Set(hubDocs.flatMap(extractGuideLinks))];
 
-      // gather from hubs
-      const hubDocs = await Promise.all(hubs.map(fetchDoc));
-      const hubLinks = [...new Set(hubDocs.flatMap(extractGuideLinks))];
+      const siteDoc=await fetchDoc("/sitemap.html");
+      const siteLinks=siteDoc?[...new Set(extractGuideLinks(siteDoc))]:[];
 
-      // gather from sitemap if present
-      const siteDoc = await fetchDoc("/sitemap.html");
-      const siteLinks = siteDoc ? [...new Set(extractGuideLinks(siteDoc))] : [];
+      const hubChecks=Object.fromEntries(await Promise.all(hubLinks.map(async p=>[p,await headExists(p)])));
+      const missing=hubLinks.filter(p=>!hubChecks[p]);
+      const working=hubLinks.filter(p=>hubChecks[p]);
 
-      // check existence
-      const hubChecks = Object.fromEntries(await Promise.all(hubLinks.map(async p => [p, await headExists(p)])));
-      const missing = hubLinks.filter(p => !hubChecks[p]);
-      const working = hubLinks.filter(p => hubChecks[p]);
+      const siteChecks=Object.fromEntries(await Promise.all(siteLinks.map(async p=>[p,await headExists(p)])));
+      const unlinked=siteLinks.filter(p=>siteChecks[p]&&!hubLinks.includes(p));
 
-      const siteChecks = Object.fromEntries(await Promise.all(siteLinks.map(async p => [p, await headExists(p)])));
-      const unlinked = siteLinks.filter(p => siteChecks[p] && !hubLinks.includes(p));
-
-      // update UI (missing/working simple lists)
-      el("missing").innerHTML = listify(missing);
-      el("working").innerHTML = listify(working);
-
-      // unlinked with categorizer controls
-      el("unlinked").innerHTML = renderUnlinkedWithControls(unlinked);
-      attachControlHandlers(el("unlinked"));
-
-      if(missing.length) el("count-missing").textContent = `(${missing.length})`;
-      if(working.length) el("count-working").textContent = `(${working.length})`;
-      if(siteDoc && unlinked.length) el("count-unlinked").textContent = `(${unlinked.length})`;
+      el("missing").innerHTML=listify(missing);
+      el("working").innerHTML=listify(working);
+      el("unlinked").innerHTML=renderUnlinked(unlinked);
+      attachHandlers();
+      el("count-missing").textContent=`(${missing.length})`;
+      el("count-working").textContent=`(${working.length})`;
+      el("count-unlinked").textContent=`(${unlinked.length})`;
     }
 
-    document.getElementById("run").addEventListener("click", runScan);
-    document.getElementById("print").addEventListener("click", () => window.print());
-    document.getElementById("export").addEventListener("click", exportCategories);
+    function listify(arr){ if(!arr||!arr.length)return"<p class='muted'>None</p>"; return"<ul>"+arr.map(p=>`<li><a href='${p}' target='_blank'>${p}</a></li>`).join("")+"</ul>"; }
 
-    // auto run on first load for convenience
+    document.getElementById("run").onclick=runScan;
+    document.getElementById("print").onclick=()=>window.print();
+    document.getElementById("export").onclick=exportCategories;
+
     runScan();
   </script>
-
-  <!-- Sitewide AskSavvy launcher, optional on admin -->
-  <script src="/js/asksavvy.js" defer></script>
 </body>
 </html>
