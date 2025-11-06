@@ -256,7 +256,7 @@ nav.main .links a[aria-current="page"].btn::after{
 .thumb{position:relative; border-radius:10px; overflow:hidden}
 .thumb::before{content:""; display:block; padding-top:56%}
 .thumb img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
-.play{position:absolute; right:10px; bottom:10px; width:40px; height:40px; border-radius:50%; background:#fff; display:grid; place-items:center; box-shadow:0 6px 16px rgba(0,0,0,.18)}
+.play{position:absolute; right:10px; bottom:10px; width:40px; height:40px; border-radius:50%; background:#fff; display:grid; place-items:center; box-shadow:var(--shadow)}
 .play:after{content:""; display:block; border-left:11px solid #0b2447; border-top:7px solid transparent; border-bottom:7px solid transparent; margin-left:3px}
 
 /* Video wrappers (index + buyers/sellers embeds) */
@@ -457,4 +457,54 @@ body.buyers .hero.compact .lead{ margin:0 0 12px; }
 @media (max-width: 380px){
   .links .btn{ flex-basis: calc(50% - 12px); }
   .links .btn.primary{ flex-basis:100%; }
+}
+
+/* ========================================================================
+   OVERRIDES REQUESTED:
+   1) Remove glow/pulse from active (aria-current="page") header buttons
+      so Concierge (Home Match) has NO animation or glow.
+   2) Make left "accent walls" on guide panels subtler for readability.
+   ======================================================================== */
+
+/* 1) Kill active-chip glow/pulse sitewide (affects Concierge when active) */
+.nav .links a[aria-current="page"].btn,
+nav.main .links a[aria-current="page"].btn{
+  transform:none !important;
+  box-shadow:0 8px 20px rgba(14,35,84,.10) !important; /* normal, non-glow */
+}
+
+.nav .links a[aria-current="page"].btn::before,
+nav.main .links a[aria-current="page"].btn::before,
+.nav .links a[aria-current="page"].btn::after,
+nav.main .links a[aria-current="page"].btn::after{
+  content:none !important;
+  animation:none !important;
+  background:none !important;
+  filter:none !important;
+}
+
+/* Also guard against any custom .active class or focus glow */
+header nav .btn.active,
+header nav .btn:focus,
+header nav .btn::before,
+header nav .btn::after{
+  animation:none !important;
+  box-shadow:none !important;
+  filter:none !important;
+}
+
+/* 2) Subtle guide panel left accents (override bright stripes from guide.css)
+   - Remove gradient tints and heavy stripes
+   - Replace with thin, low-contrast border-left so text stays the star
+*/
+article .panel::before{ content:none !important; }
+article .panel{
+  background-image:none !important;
+  border-left-width:3px !important;
+}
+article .panel:nth-of-type(odd){
+  border-left-color:rgba(90,124,255,.18) !important;   /* softer violet */
+}
+article .panel:nth-of-type(even){
+  border-left-color:rgba(46,197,182,.18) !important;   /* softer teal */
 }
