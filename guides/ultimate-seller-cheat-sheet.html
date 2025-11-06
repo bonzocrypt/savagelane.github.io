@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The Ultimate Seller Cheat Sheet | Savage Lane</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Selling soon? Use this step-by-step seller roadmap with traffic-light buttons to guide you from pricing and prep to closing and moving day.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://savagelane.com/guides/ultimate-seller-cheat-sheet.html">
+
+  <!-- Icons -->
+  <link rel="icon" href="/images/favicon.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="The Ultimate Seller Cheat Sheet | Savage Lane">
+  <meta property="og:description" content="Get your free seller checklist — pricing, prep, showings, offers, and closing, all simplified. Make your next move smooth and stress-free.">
+  <meta property="og:url" content="https://savagelane.com/guides/ultimate-seller-cheat-sheet.html">
+  <meta property="og:image" content="https://savagelane.com/images/default-og.png">
+  <meta property="og:site_name" content="Savage Lane">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Ultimate Seller Cheat Sheet | Savage Lane">
+  <meta name="twitter:description" content="Step-by-step roadmap from prep to sold — with quick access guides in red, yellow, and green.">
+  <meta name="twitter:image" content="https://savagelane.com/images/default-og.png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/guides/guide.css">
+
+  <!-- Page-local styles: NO glow bars, solid blocks, traffic-light buttons, readable dark mode -->
+  <style>
+    :root{
+      --violet:#6E4CFF;
+      --ink:#0f172a;
+      --ink-weak:#334155;
+      --muted:#475569;
+      --danger:#B00000;   /* streetlight red */
+      --warning:#f59e0b;  /* yellow */
+      --success:#16a34a;  /* green */
+      --panel-bg:#ffffff;
+      --panel-br:#e2e8f0;
+      --page-bg:#ffffff;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --ink:#ffffff;
+        --ink-weak:#e2e8f0;
+        --muted:#cbd5e1;
+        --danger:#FF2B2B;   /* brighter on dark */
+        --panel-bg:#0f1530;
+        --panel-br:#1f2937;
+        --page-bg:#0b1020;
+      }
+    }
+    body{margin:0;background:var(--page-bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.65}
+    .wrap{max-width:980px;margin:auto;padding:24px}
+    header img{max-height:40px}
+    header nav .btn{padding:.4rem .75rem;border-radius:.6rem;border:2px solid transparent;font-weight:700;text-decoration:none}
+
+    /* --- Nuke any left glow/stripe coming from guide.css --- */
+    .panel{
+      position:relative;
+      background:var(--panel-bg) !important;
+      border:2px solid var(--panel-br) !important;
+      border-left-color:var(--panel-br) !important;
+      border-left-width:2px !important;
+      border-radius:12px !important;
+      padding:12px 14px !important;
+      box-shadow:none !important;
+      background-image:none !important;
+      filter:none !important;
+      overflow:hidden;
+    }
+    .panel::before,
+    .panel::after,
+    .sl-breadcrumbs.panel::before,
+    .sl-breadcrumbs.panel::after,
+    .step.panel::before,
+    .step.panel::after,
+    .cta.panel::before,
+    .cta.panel::after{ content:none !important; display:none !important; }
+
+    .sl-breadcrumbs{padding:10px 14px}
+
+    /* Headline + lede */
+    h1{margin:.2rem 0 .6rem}
+    .lede{color:var(--ink-weak)}
+
+    /* Step blocks */
+    .sl-steps{display:grid;gap:16px}
+    .step.panel{padding:16px}
+    .step-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:8px}
+    .step-num{
+      flex:0 0 44px;width:44px;height:44px;border-radius:10px;
+      background:var(--warning); /* yellow like buyer page */
+      color:#111827;
+      display:grid;place-items:center;
+      font-weight:800;font-size:1.05rem
+    }
+    .step h2{margin:0}
+    .step p{margin:.4rem 0 .6rem}
+
+    /* Traffic-light buttons (left→right: red, yellow, green) */
+    .btnrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .btn{display:inline-block;padding:.55rem .9rem;border-radius:.6rem;border:2px solid transparent;font-weight:700;text-decoration:none;line-height:1}
+    .btn:focus{outline:2px solid #000;outline-offset:2px}
+    .btn.danger{background:var(--danger);color:#fff}
+    .btn.warning{background:var(--warning);color:#111827}
+    .btn.success{background:var(--success);color:#fff}
+    .btn:hover{filter:brightness(.95)}
+
+    footer{margin-top:24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted)}
+    footer nav a{color:inherit;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a href="/"><img src="/images/savage-lane-logo.png" alt="Savage Lane logo"></a>
+      <nav aria-label="Primary">
+        <a href="/buyers.html">Buyers</a>
+        <span class="sep">|</span>
+        <a href="/sellers.html">Sellers</a>
+        <span class="sep">|</span>
+        <a href="/concierge.html" class="btn success">Concierge</a>
+      </nav>
+    </header>
+
+    <nav class="sl-breadcrumbs panel" aria-label="Breadcrumb">
+      <ol style="list-style:none;display:flex;gap:8px;flex-wrap:wrap;margin:0;padding:0;color:var(--muted)">
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true">›</li>
+        <li><a href="/sellers.html">Sellers</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page">The Ultimate Seller Cheat Sheet</li>
+      </ol>
+    </nav>
+
+    <article>
+      <h1>The Ultimate Seller Cheat Sheet</h1>
+      <p class="panel lede" style="margin-top:12px">
+        Selling soon? Get our free seller checklist — pricing, prep, and the exact timeline from “For Sale” to “Sold.”  
+        ⚡ Make your next move smooth and stress-free. Follow each step below and use the red, yellow, and green buttons to jump to helpful guides (🔴 learn → 🟡 plan → 🟢 act).
+      </p>
+
+      <div class="sl-steps">
+        <!-- STEP 1 -->
+        <section class="step panel">
+          <div class="step-header">
+            <div class="step-num">1</div>
+            <div>
+              <h2>Plan your sale & set your timeline</h2>
+              <p>Start with your goals and timing. Determine if you’ll buy first, sell first, or do both together.</p>
+            </div>
+          </div>
+          <div class="btnrow">
+            <a class="btn danger"  href="/guides/when-to-start-working-with-a-realtor.html">When to hire an agent</a>
+            <a class="btn warning" href="/guides/hidden-costs-home-sellers-forget.html">Hidden costs sellers forget</a>
+            <a class="btn success" href="/guides/seller-timeline-from-listing-to-closing.html">Seller timeline</a>
+          </div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="step panel">
+          <div class="step-header">
+            <div class="step-num">2</div>
+            <div>
+              <h2>Prep & price your home</h2>
+              <p>Focus on simple updates that deliver the best return. Pricing smartly gets you noticed faster.</p>
+            </div>
+          </div>
+          <div class="btnrow">
+            <a class="btn danger"  href="/guides/home-staging-basics-for-sellers.html">Home staging basics</a>
+            <a class="btn warning" href="/guides/pricing-strategies-for-sellers.html">Pricing strategies</a>
+            <a class="btn success" href="/guides/photography-and-listing-prep.html">Photography & prep</a>
+          </div>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="step panel">
+          <div class="step-header">
+            <div class="step-num">3</div>
+            <div>
+              <h2>Showings & open houses</h2>
+              <p>Keep it spotless, flexible, and inviting. Make buyers feel welcome and avoid deal-killing distractions.</p>
+            </div>
+          </div>
+          <div class="btnrow">
+            <a class="btn danger"  href="/guides/seller-showing-etiquette.html">Showing etiquette</a>
+            <a class="btn warning" href="/guides/open-house-checklist.html">Open house checklist</a>
+            <a class="btn success" href="/guides/how-to-handle-feedback.html">Handling buyer feedback</a>
+          </div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="step panel">
+          <div class="step-header">
+            <div class="step-num">4</div>
+            <div>
+              <h2>Review & negotiate offers</h2>
+              <p>Compare more than price — contingencies, financing, and timing all matter. Choose confidently.</p>
+            </div>
+          </div>
+          <div class="btnrow">
+            <a class="btn danger"  href="/guides/how-to-read-an-offer.html">How to read an offer</a>
+            <a class="btn warning" href="/guides/appraisal-gap-and-value-issues.html">Appraisal gaps</a>
+            <a class="btn success" href="/guides/negotiating-offers-like-a-pro.html">Negotiate like a pro</a>
+          </div>
+        </section>
+
+        <!-- STEP 5 -->
+        <section class="step panel">
+          <div class="step-header">
+            <div class="step-num">5</div>
+            <div>
+              <h2>Inspection, appraisal, & repair requests</h2>
+              <p>Stay calm and flexible — most issues can be solved with minor repairs or credits. Know your limits.</p>
+            </div>
+          </div>
+          <div class="btnrow">
+            <a class="btn danger"  href="/guides/home-inspection-and-appraisal.html">Inspection & appraisal</a>
+            <a class="btn warning" href="/guides/repair-requests-and-negotiations.html">Repair negotiations</a>
+            <a class="btn success" href="/guides/when-to-offer-closing-cost-credits.html">Closing cost credits</a>
+          </div>
+        </section>
+
+        <!-- STEP 6 -->
+        <section class="step panel">
+          <div class="step-header">
+            <div class="step-num">6</div>
+            <div>
+              <h2>Closing & moving out</h2>
+              <p>Sign documents, hand over keys, and confirm funds arrive safely. Celebrate your next chapter!</p>
+            </div>
+          </div>
+          <div class="btnrow">
+            <a class="btn danger"  href="/guides/what-happens-at-closing.html">What happens at closing</a>
+            <a class="btn warning" href="/guides/seller-closing-costs-explained.html">Seller closing costs</a>
+            <a class="btn success" href="/guides/moving-checklist-for-sellers.html">Moving checklist</a>
+          </div>
+        </section>
+      </div>
+
+      <aside class="panel" style="margin-top:16px">
+        <h2 style="margin:0 0 6px">Want a pricing opinion from a top agent?</h2>
+        <p style="margin:0 0 10px;color:var(--ink)">Our Home Match Concierge can connect you with a trusted Realtor who specializes in homes like yours — no pressure, no spam.</p>
+        <p style="margin:0"><a class="btn success" href="/concierge.html">Request your match →</a></p>
+      </aside>
+    </article>
+
+    <footer>
+      <div>© <span id="year"></span> Savage Lane. All rights reserved.</div>
+      <nav aria-label="Footer">
+        <a href="/buyers.html">Buyers</a>
+        <span aria-hidden="true">|</span>
+        <a href="/sellers.html">Sellers</a>
+        <span aria-hidden="true">|</span>
+        <a href="/privacy.html">Privacy</a>
+      </nav>
+    </footer>
+  </div>
+
+  <script>document.getElementById("year").textContent=new Date().getFullYear()</script>
+  <script src="/js/asksavvy.js" defer></script>
+</body>
+</html>
