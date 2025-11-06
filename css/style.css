@@ -459,6 +459,13 @@ body.buyers .hero.compact .lead{ margin:0 0 12px; }
   .links .btn.primary{ flex-basis:100%; }
 }
 
+/* Hide breadcrumbs on Buyers and Sellers top-level pages */
+body.buyers .crumbs,
+body.sellers .crumbs {
+  display: none !important;
+}
+
+
 /* ========================================================================
    OVERRIDES REQUESTED:
    1) Remove glow/pulse from active (aria-current="page") header buttons
