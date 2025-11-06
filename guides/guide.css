@@ -14,10 +14,15 @@
 
   --ring: rgba(90,124,255,.45);
   --border:#1f2937;
-  --shadow:0 18px 40px rgba(0,0,0,.25);
+  --shadow:0 10px 28px rgba(0,0,0,.18); /* toned down from 0 18px 40px */
 
   --wrap:900px;          /* max content width */
   --radius:14px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
 }
 
 /* Base */
@@ -41,11 +46,12 @@ header{
   display:flex; justify-content:space-between; align-items:center;
   gap:14px; margin-bottom:16px;
 }
-header img{ height:56px; width:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.25) }
+header img{ height:56px; width:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.22) }
 header nav{ display:flex; align-items:center; flex-wrap:wrap; gap:10px }
 header nav .sep{ opacity:.6 }
 @media (max-width:640px){
   header{ flex-direction:column; align-items:flex-start }
+  header img{ height:48px; }
 }
 
 /* Links */
@@ -63,8 +69,9 @@ a:hover{ text-decoration:underline }
 
 /* Article */
 article{ margin-top:10px }
-h1{ font-size:2rem; margin:8px 0 12px; line-height:1.2 }
-h2{ margin:18px 0 8px; font-size:1.25rem }
+/* clamp headings for nicer small-screen scale */
+h1{ font-size:clamp(1.6rem, 3.8vw, 2rem); margin:8px 0 12px; line-height:1.2 }
+h2{ margin:18px 0 8px; font-size:clamp(1.05rem, 2.6vw, 1.25rem) }
 p{ color:#cfd6e6; margin:0 0 12px }
 
 /* Panels / callouts */
@@ -74,7 +81,7 @@ p{ color:#cfd6e6; margin:0 0 12px }
   border-radius:var(--radius);
   padding:18px;
   margin:12px 0;
-  box-shadow:0 8px 24px rgba(0,0,0,.18);
+  box-shadow:var(--shadow); /* softer */
 }
 
 /* Lists and text elements */
@@ -114,7 +121,7 @@ footer a{ color:#b8c1ff }
 
 /* Small devices */
 @media (max-width:480px){
-  h1{ font-size:1.7rem }
+  h1{ font-size:clamp(1.4rem, 6vw, 1.7rem) }
 }
 
 /* ================= Reading progress bar (inert until markup exists) ================ */
@@ -161,8 +168,15 @@ footer a{ color:#b8c1ff }
   border: 1px solid rgba(255,255,255,.08);
   background:
     linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
-  box-shadow: 0 14px 32px rgba(0,0,0,.22);
+  box-shadow: 0 10px 28px rgba(0,0,0,.18); /* softer */
   padding: 16px;
+}
+
+/* Breadcrumbs: allow horizontal scroll instead of squishing */
+.sl-breadcrumbs{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  white-space:nowrap;
 }
 
 /* Alternating left accent stripe + subtle background tint
@@ -177,20 +191,20 @@ article .panel::before{
   pointer-events: none;
 }
 
-/* Odd panels: violet accent on left */
+/* Odd panels: violet accent on left — reduced intensity */
 article .panel:nth-of-type(odd){
   background:
-    linear-gradient(90deg, rgba(90,124,255,.12) 0%, rgba(90,124,255,0) 20%),
+    linear-gradient(90deg, rgba(90,124,255,.08) 0%, rgba(90,124,255,0) 18%),
     linear-gradient(180deg, var(--sl-muted-bg), transparent);
-  border-left: 6px solid var(--sl-accent-a);
+  border-left: 4px solid var(--sl-accent-a); /* was 6px */
 }
 
-/* Even panels: teal accent on left */
+/* Even panels: teal accent on left — reduced intensity */
 article .panel:nth-of-type(even){
   background:
-    linear-gradient(90deg, rgba(46,197,182,.12) 0%, rgba(46,197,182,0) 20%),
+    linear-gradient(90deg, rgba(46,197,182,.08) 0%, rgba(46,197,182,0) 18%),
     linear-gradient(180deg, var(--sl-muted-bg), transparent);
-  border-left: 6px solid var(--sl-accent-b);
+  border-left: 4px solid var(--sl-accent-b); /* was 6px */
 }
 
 /* Headings inside panels: a touch tighter with subtle underline */
@@ -235,7 +249,7 @@ article .panel ul[data-checks] > li::before{
    Older guides won’t need HTML changes; leaving here for future flexibility */
 .callout{
   border: 1px solid rgba(255,255,255,.10);
-  border-left-width: 6px;
+  border-left-width: 4px; /* was 6px */
   border-radius: 14px;
   padding: 14px 16px;
   background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.00));
@@ -249,18 +263,18 @@ article .panel ul[data-checks] > li::before{
 .cta-wrap{ display:inline-flex; flex-direction:column; align-items:flex-start; gap:6px }
 .cta-note{ display:block; margin:0 }
 
-/* Small screens: widen left stripe feel without overwhelming text */
+/* Small screens: make stripes even subtler and reduce left border width */
 @media (max-width: 540px){
   article .panel:nth-of-type(odd){
     background:
-      linear-gradient(90deg, rgba(90,124,255,.16) 0%, rgba(90,124,255,0) 28%),
+      linear-gradient(90deg, rgba(90,124,255,.06) 0%, rgba(90,124,255,0) 26%),
       linear-gradient(180deg, var(--sl-muted-bg), transparent);
+    border-left-width: 3px; /* was 4px */
   }
   article .panel:nth-of-type(even){
     background:
-      linear-gradient(90deg, rgba(46,197,182,.16) 0%, rgba(46,197,182,0) 28%),
+      linear-gradient(90deg, rgba(46,197,182,.06) 0%, rgba(46,197,182,0) 26%),
       linear-gradient(180deg, var(--sl-muted-bg), transparent);
+    border-left-width: 3px; /* was 4px */
   }
 }
-
-
