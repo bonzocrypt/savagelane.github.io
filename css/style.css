@@ -515,3 +515,6 @@ article .panel:nth-of-type(odd){
 article .panel:nth-of-type(even){
   border-left-color:rgba(46,197,182,.18) !important;   /* softer teal */
 }
+/* CTA mount visibility */
+.cta-mount { display: none; }
+.cta-mount.loaded { display: block; }
