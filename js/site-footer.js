@@ -14,7 +14,7 @@
     + '    <span aria-hidden="true"> • </span>'
     + '    <a href="/sitemap.html">Site Map</a>'
     + '    <span aria-hidden="true"> • </span>'
-    + '    <a href="/concierge.html">Get a Realtor</a>'
++ '    <a href="/realtor.html">Get a Realtor</a>'
     + '    <span aria-hidden="true"> • </span>'
     + '    <a href="/about.html">About</a>'
     + '  </div>'
