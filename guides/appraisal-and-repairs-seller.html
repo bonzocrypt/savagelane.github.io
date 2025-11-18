@@ -28,7 +28,8 @@
   <meta name="twitter:image" content="https://savagelane.com/images/default-og.png">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/guides/guide.css">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/guides/guide.css">
   <style>
     .accent{border-left:4px solid #5a7cff;padding:14px 16px;border-radius:10px;margin:12px 0;background:var(--panel,#0f172a)}
     .checklist{border-left:4px solid #22c55e;padding:14px 16px;border-radius:10px;margin:12px 0;background:var(--panel,#0f172a)}
@@ -112,14 +113,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </article>
 
     <!-- Footer -->
-    <footer>
-      <div>© <span id="year"></span> Savage Lane. All rights reserved.</div>
-      <nav aria-label="Footer">
-        <a href="/buyers.html">Buyers</a><span aria-hidden="true">|</span>
-        <a href="/sellers.html">Sellers</a><span aria-hidden="true">|</span>
-        <a href="/privacy.html">Privacy</a>
-      </nav>
-    </footer>
+    <footer id="site-footer"></footer>
   </div>
 
   <!-- JSON-LD Breadcrumbs -->
@@ -130,8 +124,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     {"@type":"ListItem","position":3,"name":"Appraisal and Repairs for Sellers","item":"https://savagelane.com/guides/appraisal-and-repairs-seller.html"}]}
   </script>
 
-  <script>document.getElementById("year").textContent=new Date().getFullYear();</script>
   <script src="/js/cta-loader.js" defer></script>
+<script src="/js/site-footer.js" defer></script>
 <script src="/js/asksavvy.js" defer></script>
 </body>
 </html>

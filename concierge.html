@@ -22,7 +22,7 @@
   <meta name="twitter:description" content="Free referral concierge for buyers and sellers. Get matched fast." />
   <meta name="twitter:image" content="https://savagelane.com/images/default-og.png" />
 
-  <!-- Fonts (optional; global uses Inter too) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
@@ -30,7 +30,7 @@
   <!-- Global site styles -->
   <link rel="stylesheet" href="/css/style.css" />
 
-  <!-- Page-local styles only for the form/cards/hero (no header overrides) -->
+  <!-- Page-local styles -->
   <style>
     :root{
       --field-border:1px solid rgba(0,0,0,.10);
@@ -39,12 +39,10 @@
     .container{max-width:1100px;margin:0 auto;padding:20px}
     .grid{display:grid;grid-template-columns:1fr;gap:18px}
 
-    /* Breadcrumb */
     .crumbs{margin:10px 0 14px;font-size:.95rem;color:var(--muted)}
     .crumbs a{color:#0a63dd;text-decoration:none}
     .crumbs .sep{margin:0 6px}
 
-    /* Hero */
     .hero{
       border-radius:24px;padding:28px;box-shadow:var(--shadow);
       background:
@@ -57,7 +55,6 @@
     .hero p.lead{margin:0;color:var(--muted)}
     .hero img{width:100%;height:auto;border-radius:16px;border:1px solid rgba(0,0,0,.08);margin:0 0 12px}
 
-    /* Card + form */
     .card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
     .card h2{margin:0 0 8px}
     form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -73,7 +70,7 @@
       color:#052b29;font-weight:700;cursor:pointer;box-shadow:var(--shadow);position:relative;transition:transform .08s ease
     }
     button[type="submit"]:active{transform:translateY(1px)}
-    /* Loading state */
+
     .loading{pointer-events:none;opacity:.85}
     .loading .btn-text{visibility:hidden}
     .loading::after{
@@ -104,13 +101,14 @@
     "sameAs":[]
   }
   </script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-P2K745NG');</script>
-<!-- End Google Tag Manager -->
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P2K745NG');</script>
+  <!-- End Google Tag Manager -->
 
 </head>
 
@@ -120,27 +118,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Sticky nav (matches global header structure/styles) -->
-  <div class="nav-wrap">
-    <div class="shell">
-      <nav class="main" aria-label="Primary">
-        <a class="brand" href="/" aria-label="Savage Lane Home">
-          <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
-        </a>
-        <div class="links">
-          <a class="btn sky" href="/buyers.html">Buyers</a>
-          <a class="btn coral" href="/sellers.html">Sellers</a>
-          <a class="btn primary" href="/concierge.html" aria-current="page">Home Match Concierge</a>
-        </div>
-      </nav>
-    </div>
-  </div>
+  <!-- Shared sticky header -->
+  <header class="nav-wrap" id="site-header" aria-label="Main"></header>
 
   <div class="container">
     <!-- Breadcrumbs -->
     <nav class="crumbs" aria-label="Breadcrumb">
       <a href="/">Home</a><span class="sep" aria-hidden="true">›</span><span>Concierge</span>
     </nav>
+
+    <!-- Breadcrumb JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://savagelane.com/"},
+        {"@type":"ListItem","position":2,"name":"Home Match Concierge","item":"https://savagelane.com/concierge.html"}
+      ]
+    }
+    </script>
 
     <!-- Hero -->
     <section class="hero">
@@ -286,7 +283,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
 
           <div class="full">
-            <label for="referredBy">How did you find us? <span class="hint">(optional)</span></label>
+            <label for="referredBy">How did you find us <span class="hint">(optional)</span></label>
             <input id="referredBy" name="referredBy" placeholder="Enter the person’s name if applicable" />
           </div>
 
@@ -306,19 +303,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <footer>
-      <div>© <span id="y"></span> Savage Lane</div>
-      <div class="links">
-        <a href="/buyers.html">Buyers</a>
-        <span aria-hidden="true"> • </span>
-        <a href="/sellers.html">Sellers</a>
-        <span aria-hidden="true"> • </span>
-        <a href="/privacy.html">Privacy</a>
-      </div>
-      <div class="note" style="flex-basis:100%">
-        Disclosure Savage Lane participates solely as a referral associate through the Coldwell Banker Realty Referral Network. We do not list show or negotiate property. Matches are made to licensed professionals in your market through the brokerage referral program where permitted by law.
-      </div>
-    </footer>
+    <!-- Shared footer mount -->
+    <footer id="site-footer"></footer>
   </div>
 
   <!-- Scripts -->
@@ -409,7 +395,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         if(blocked){ e.preventDefault(); return; }
 
-        // Build combined location and show loading state
         buildLocation();
         e.preventDefault();
         submitBtn.classList.add('loading');
@@ -428,12 +413,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           submitBtn.removeAttribute('aria-busy');
         }
       });
-
-      document.getElementById("y").textContent=new Date().getFullYear();
     })();
   </script>
 
-  <!-- Sitewide AskSavvy launcher -->
+  <script src="/js/site-header.js" defer></script>
+  <script src="/js/site-footer.js" defer></script>
   <script src="/js/asksavvy.js" defer></script>
 </body>
 </html>

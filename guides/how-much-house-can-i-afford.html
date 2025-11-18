@@ -28,7 +28,10 @@
   <meta name="twitter:image" content="https://savagelane.com/images/default-og.png">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/guides/guide.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/guides/guide.css">
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -114,8 +117,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </ul>
       </section>
 
-            <section class="panel">
-        <div class="cta-mount"></div> <h2>Keep learning</h2>
+      <section class="panel">
+        <div class="cta-mount"></div>
+        <h2>Keep learning</h2>
         <ul>
           <li><a href="/guides/hidden-costs-buyers-should-expect.html">Hidden costs buyers should expect</a></li>
           <li><a href="/guides/which-loan-type-is-best.html">Which loan type is best for me</a></li>
@@ -123,19 +127,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </ul>
       </section>
     </article>
-
-    <!-- Footer -->
-    <footer>
-      <div>© <span id="year"></span> Savage Lane. All rights reserved.</div>
-      <nav aria-label="Footer">
-        <a href="/buyers.html">Buyers</a>
-        <span aria-hidden="true">|</span>
-        <a href="/sellers.html">Sellers</a>
-        <span aria-hidden="true">|</span>
-        <a href="/privacy.html">Privacy</a>
-      </nav>
-    </footer>
   </div>
+
+  <!-- Shared footer mount -->
+  <footer id="site-footer"></footer>
 
   <!-- JSON-LD: BreadcrumbList -->
   <script type="application/ld+json">
@@ -175,11 +170,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
   </script>
 
-  <!-- Minimal script for dynamic year -->
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-
-  <!-- Sitewide AskSavvy launcher -->
+  <!-- Sitewide CTA + AskSavvy -->
   <script src="/js/cta-loader.js" defer></script>
+<script src="/js/site-footer.js" defer></script>
 <script src="/js/asksavvy.js" defer></script>
 </body>
 </html>
