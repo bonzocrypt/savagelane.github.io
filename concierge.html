@@ -9,12 +9,14 @@
   <meta name="robots" content="index,follow" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
 
+  <!-- Open Graph -->
   <meta property="og:title" content="Home Match Concierge | Savage Lane" />
   <meta property="og:description" content="Free referral concierge connecting buyers and sellers with proven local Realtors." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://savagelane.com/concierge.html" />
   <meta property="og:image" content="https://savagelane.com/images/default-og.png" />
 
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Home Match Concierge | Savage Lane" />
   <meta name="twitter:description" content="Free referral concierge for buyers and sellers. Get matched fast." />
@@ -22,132 +24,183 @@
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+
+  <!-- Global site styles -->
   <link rel="stylesheet" href="/css/style.css" />
 
   <style>
     .container{max-width:760px;margin:0 auto;padding:20px}
-    .hero{border-radius:24px;padding:20px;text-align:center}
-    .hero img{width:100%;border-radius:16px;margin-bottom:12px}
-    .hero h1{font-size:2rem;margin-bottom:6px}
+    .crumbs{margin:10px 0 14px;font-size:.95rem;color:var(--muted)}
+    .crumbs a{color:#0a63dd;text-decoration:none}
+    .crumbs .sep{margin:0 6px}
+
+    .hero{
+      border-radius:24px;
+      padding:20px;
+      text-align:center;
+      box-shadow:var(--shadow);
+      background:
+        radial-gradient(1200px 500px at 0% 0%, rgba(94,179,255,.30), transparent 60%),
+        radial-gradient(900px 450px at 100% 0%, rgba(255,164,164,.26), transparent 60%),
+        linear-gradient(180deg,#ffffff 0%,#fbfeff 100%);
+      border:1px solid rgba(0,0,0,.06);
+    }
+    .hero img{width:100%;border-radius:16px;border:1px solid rgba(0,0,0,.08);margin-bottom:12px}
+    .hero h1{font-size:2rem;margin:0 0 6px}
     .hero p{color:var(--muted);margin:0 0 10px}
 
     .card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+    .card h2{margin-top:0;margin-bottom:6px}
+    .card .trust{font-size:.9rem;color:var(--muted);margin:0 0 10px}
+
     form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     label{font-size:.9rem;color:var(--muted)}
-    input,textarea,select{
-      width:100%;padding:12px;border-radius:12px;
+    input,textarea{
+      width:100%;
+      padding:12px;
+      border-radius:12px;
       border:1px solid rgba(0,0,0,.10);
       background:#fff;
     }
-    textarea{grid-column:1 / -1}
+    textarea{grid-column:1 / -1;min-height:110px}
     .full{grid-column:1 / -1}
-    button[type=submit]{
-      padding:12px;border-radius:12px;border:0;
+    button[type="submit"]{
+      padding:12px 16px;
+      border-radius:12px;
+      border:0;
       background:linear-gradient(90deg,var(--accent),#77e3d8);
-      color:#052b29;font-weight:700;cursor:pointer
+      color:#052b29;
+      font-weight:700;
+      cursor:pointer;
     }
-    .error{color:#ff3b3b;font-size:.85rem;display:none}
+    .error{color:#ff3b3b;font-size:.85rem;display:none;margin-top:4px}
     .error.show{display:block}
+    .status{margin-top:6px;font-size:.9rem}
+    .status.err{color:#b91c1c}
+    .status.ok{color:#166534}
   </style>
+
+  <!-- Organization schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Savage Lane",
+    "url":"https://savagelane.com/",
+    "logo":"https://savagelane.com/images/savage-lane-logo.png",
+    "sameAs":[]
+  }
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P2K745NG');</script>
+  <!-- End Google Tag Manager -->
 </head>
 
 <body>
-  <header class="nav-wrap" id="site-header"></header>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2K745NG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <header class="nav-wrap" id="site-header" aria-label="Main"></header>
 
   <div class="container">
 
-    <section class="hero">
-      <img src="/images/home-match-banner.png" alt="Home Match Concierge banner">
-      <h1>Tell me what you need</h1>
-      <p>I will connect you with the right licensed Realtor for your market. No pressure. No fees.</p>
-    </section>
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep" aria-hidden="true">›</span><span>Concierge</span>
+    </nav>
+
+<section class="hero">
+  <img src="/images/home-match-banner.png" alt="Home Match Concierge banner">
+  <p>I will connect you with a licensed Realtor who fits your goals. No fees. No pressure.</p>
+</section>
+
 
     <section style="margin-top:18px">
       <div class="card">
         <h2>Request your match</h2>
+        <p class="trust">Share the basics and I will send your match details by email. Your info is only used for this introduction.</p>
 
         <form id="matchForm" action="https://formspree.io/f/mpwbaprj" method="POST" novalidate>
-
-          <input class="hp" type="text" name="_subject_line" tabindex="-1" autocomplete="off" />
-
           <div class="full">
-            <label>Your name</label>
-            <input id="name" name="name" required>
+            <label for="name">Your name</label>
+            <input id="name" name="name" required autocomplete="name">
             <div id="nameErr" class="error">Enter your name</div>
           </div>
 
           <div class="full">
-            <label>Email</label>
-            <input id="email" type="email" name="email" required>
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" required autocomplete="email">
             <div id="emailErr" class="error">Enter a valid email</div>
           </div>
 
           <div class="full">
-            <label>Phone (optional, text or call)</label>
-            <input id="phone" name="phone" placeholder="Example 5551234567">
-            <div id="phoneErr" class="error">Enter a valid phone number</div>
+            <label for="phone">Phone (optional, text or call)</label>
+            <input id="phone" name="phone" placeholder="Example 5551234567" autocomplete="tel">
           </div>
 
           <div class="full">
-            <label>Buying or selling</label>
-            <select id="intent" name="intent" required>
-              <option value="">Choose one</option>
-              <option>Buying</option>
-              <option>Selling</option>
-              <option>Both</option>
-            </select>
-            <div id="intentErr" class="error">Choose buying, selling, or both</div>
-          </div>
-
-          <div class="full">
-            <label>Comments <span class="hint">(optional)</span></label>
-            <textarea id="comments" name="comments" rows="4" placeholder="Tell me what you are looking for"></textarea>
+            <label for="comments">Comments (optional)</label>
+            <textarea id="comments" name="comments" placeholder="Share anything helpful about your plans"></textarea>
           </div>
 
           <div class="full">
             <button type="submit" id="submitBtn"><span class="btn-text">Request my match</span></button>
-            <div id="status" class="status"></div>
+            <div id="status" class="status" aria-live="polite"></div>
           </div>
         </form>
       </div>
     </section>
 
     <footer id="site-footer"></footer>
-
   </div>
 
   <script>
     (function () {
       const form = document.getElementById('matchForm');
       const nameEl = document.getElementById('name');
-      const email = document.getElementById('email');
-      const phone = document.getElementById('phone');
-      const intent = document.getElementById('intent');
+      const emailEl = document.getElementById('email');
 
       const nameErr = document.getElementById('nameErr');
       const emailErr = document.getElementById('emailErr');
-      const phoneErr = document.getElementById('phoneErr');
-      const intentErr = document.getElementById('intentErr');
 
       const statusEl = document.getElementById('status');
       const submitBtn = document.getElementById('submitBtn');
 
-      function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());}
-      function validPhone(v){if(!v.trim()) return true; return v.replace(/\D/g,'').length>=10;}
+      function validEmail(v){
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v || '').trim());
+      }
 
       form.addEventListener('submit', async function(e){
         let blocked = false;
 
-        if(!nameEl.value.trim()){nameErr.classList.add('show');blocked=true;} else nameErr.classList.remove('show');
-        if(!validEmail(email.value)){emailErr.classList.add('show');blocked=true;} else emailErr.classList.remove('show');
-        if(!validPhone(phone.value)){phoneErr.classList.add('show');blocked=true;} else phoneErr.classList.remove('show');
-        if(!intent.value){intentErr.classList.add('show');blocked=true;} else intentErr.classList.remove('show');
+        if(!nameEl.value.trim()){
+          nameErr.classList.add('show');
+          blocked = true;
+        } else {
+          nameErr.classList.remove('show');
+        }
 
-        if(blocked){ e.preventDefault(); return; }
+        if(!validEmail(emailEl.value)){
+          emailErr.classList.add('show');
+          blocked = true;
+        } else {
+          emailErr.classList.remove('show');
+        }
+
+        if(blocked){
+          e.preventDefault();
+          return;
+        }
 
         e.preventDefault();
-        submitBtn.classList.add('loading');
         statusEl.textContent = 'Sending your request...';
+        statusEl.className = 'status';
 
         try{
           const data = new FormData(form);
@@ -157,19 +210,21 @@
             headers: { 'Accept':'application/json' }
           });
 
-          if(!res.ok) throw new Error();
-          window.location.href = '/thanks.html';
+          if(!res.ok){
+            throw new Error('Submit failed');
+          }
 
+          window.location.href = '/thanks.html';
         }catch(err){
-          statusEl.textContent = 'There was a problem sending your request.';
-          submitBtn.classList.remove('loading');
+          statusEl.textContent = 'There was a problem sending your request. Please try again.';
+          statusEl.className = 'status err';
         }
       });
     })();
   </script>
 
+  <script src="/js/site-header.js" defer></script>
   <script src="/js/site-footer.js" defer></script>
   <script src="/js/asksavvy.js" defer></script>
-
 </body>
 </html>
