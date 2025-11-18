@@ -381,44 +381,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- Scripts -->
-  <script>
-    (function () {
-      var form = document.getElementById('matchForm');
-      var city = document.getElementById('city');
-      var state = document.getElementById('state');
-      var zip = document.getElementById('zip'); // may be undefined, that is fine
-      var locationHidden = document.getElementById('location');
-      var submitBtn = document.getElementById('submitBtn');
-      var statusEl = document.getElementById('status');
+<script>
+(function () {
+  const form = document.getElementById('matchForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const statusEl = document.getElementById('status');
 
-      function buildLocation() {
-        var parts = [];
-        if (city && city.value.trim()) parts.push(city.value.trim());
-        if (state && state.value) parts.push(state.value.trim());
-        if (zip && zip.value.trim()) parts.push(zip.value.trim());
-        if (locationHidden) locationHidden.value = parts.join(', ');
-      }
+  const city = document.getElementById('city');
+  const state = document.getElementById('state');
+  const zip = document.getElementById('zip');
+  const locationHidden = document.getElementById('location');
 
-      if (form) {
-        form.addEventListener('submit', function () {
-          buildLocation();
-          if (submitBtn) {
-            submitBtn.classList.add('loading');
-            submitBtn.setAttribute('aria-busy', 'true');
-          }
-          if (statusEl) {
-            statusEl.textContent = 'Sending your request...';
-            statusEl.className = 'status';
-          }
-        });
-      }
+  function buildLocation() {
+    const parts = [];
+    if (city && city.value.trim()) parts.push(city.value.trim());
+    if (state && state.value) parts.push(state.value.trim());
+    if (zip && zip.value.trim()) parts.push(zip.value.trim());
+    locationHidden.value = parts.join(', ');
+  }
 
-      var ySpan = document.getElementById("y");
-      if (ySpan) {
-        ySpan.textContent = new Date().getFullYear();
-      }
-    })();
-  </script>
+  async function postToFormspree(data) {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (!res.ok) throw new Error('Submit failed');
+    const json = await res.json().catch(() => ({}));
+    if (json && json.ok === false) throw new Error('Submit failed');
+
+    return true;
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    buildLocation();
+
+    submitBtn.classList.add('loading');
+    submitBtn.setAttribute('aria-busy', 'true');
+    statusEl.textContent = 'Sending your request...';
+    statusEl.className = 'status';
+
+    try {
+      const data = new FormData(form);
+      await postToFormspree(data);
+      window.location.href = '/thanks.html';
+    } catch (err) {
+      statusEl.textContent = 'There was a problem sending your request. Please try again.';
+      statusEl.className = 'status err';
+      submitBtn.classList.remove('loading');
+      submitBtn.removeAttribute('aria-busy');
+    }
+  });
+
+  const ySpan = document.getElementById("y");
+  if (ySpan) ySpan.textContent = new Date().getFullYear();
+})();
+</script>
+
 
   <!-- Sitewide AskSavvy launcher -->
   <script src="/js/asksavvy.js" defer></script>
