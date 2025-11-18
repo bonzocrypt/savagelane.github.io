@@ -4,445 +4,172 @@
   <meta charset="utf-8" />
   <title>Home Match Concierge | Savage Lane</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Tell us where you are buying or selling and we will introduce you to a proven local Realtor. No fees, no pressure, and you decide if you want to work with them." />
+  <meta name="description" content="Free referral concierge for buyers and sellers. Tell me what you need and I will connect you with a proven licensed Realtor in your market." />
   <link rel="canonical" href="https://savagelane.com/concierge.html" />
   <meta name="robots" content="index,follow" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Home Match Concierge | Savage Lane" />
-  <meta property="og:description" content="Free, low pressure concierge that connects buyers and sellers with proven local Realtors." />
+  <meta property="og:description" content="Free referral concierge connecting buyers and sellers with proven local Realtors." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://savagelane.com/concierge.html" />
   <meta property="og:image" content="https://savagelane.com/images/default-og.png" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Home Match Concierge | Savage Lane" />
-  <meta name="twitter:description" content="Tell us where you are moving and we will send you a top local Realtor match. No fees, no pressure." />
+  <meta name="twitter:description" content="Free referral concierge for buyers and sellers. Get matched fast." />
   <meta name="twitter:image" content="https://savagelane.com/images/default-og.png" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
-
-  <!-- Global site styles -->
   <link rel="stylesheet" href="/css/style.css" />
 
-  <!-- Page-local styles -->
   <style>
-    :root{
-      --field-border:1px solid rgba(0,0,0,.10);
-      --field-bg:#ffffff;
-    }
+    .container{max-width:760px;margin:0 auto;padding:20px}
+    .hero{border-radius:24px;padding:20px;text-align:center}
+    .hero img{width:100%;border-radius:16px;margin-bottom:12px}
+    .hero h1{font-size:2rem;margin-bottom:6px}
+    .hero p{color:var(--muted);margin:0 0 10px}
 
-    .container{max-width:1100px;margin:0 auto;padding:20px}
-
-    /* Breadcrumb */
-    .crumbs{margin:10px 0 14px;font-size:.95rem;color:var(--muted)}
-    .crumbs a{color:#0a63dd;text-decoration:none}
-    .crumbs .sep{margin:0 6px}
-
-    /* Hero block */
-    .hero{
-      max-width:760px;
-      margin:0 auto 22px auto;
-      border-radius:24px;
-      padding:22px 22px 20px;
-      box-shadow:var(--shadow);
-      background:
-        radial-gradient(900px 400px at 0% 0%, rgba(94,179,255,.22), transparent 60%),
-        radial-gradient(700px 350px at 100% 0%, rgba(255,164,164,.22), transparent 60%),
-        linear-gradient(180deg,#ffffff 0%,#fbfeff 100%);
-      border:1px solid rgba(0,0,0,.06);
-      text-align:left;
+    .card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+    form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    label{font-size:.9rem;color:var(--muted)}
+    input,textarea,select{
+      width:100%;padding:12px;border-radius:12px;
+      border:1px solid rgba(0,0,0,.10);
+      background:#fff;
     }
-    .hero img{
-      display:block;
-      margin:0 auto 14px auto;
-      max-width:100%;
-      height:auto;
-      border-radius:16px;
-      border:1px solid rgba(0,0,0,.08);
-    }
-    .hero h1{
-      margin:2px 0 6px;
-      font-size:2rem;
-      letter-spacing:.15px;
-    }
-    .hero p.lead{
-      margin:0 0 10px;
-      color:var(--muted);
-    }
-    .hero ul{
-      margin:8px 0 0;
-      padding-left:18px;
-      color:var(--muted);
-      font-size:.95rem;
-    }
-
-    /* Layout for form section */
-    .grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:18px;
-    }
-
-    .card{
-      max-width:760px;
-      margin:0 auto;
-      background:#ffffff;
-      border:1px solid rgba(0,0,0,.06);
-      border-radius:16px;
-      padding:18px 18px 16px;
-      box-shadow:var(--shadow);
-    }
-    .card h2{
-      margin:0 0 6px;
-    }
-    .card p{
-      margin:0 0 10px;
-      color:var(--muted);
-      font-size:.95rem;
-    }
-
-    /* Form */
-    form{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-top:8px;
-    }
-    label{
-      font-size:.95rem;
-      color:var(--muted);
-      display:block;
-      margin-bottom:4px;
-    }
-    input,select,textarea{
-      width:100%;
-      padding:11px 12px;
-      border-radius:12px;
-      border:var(--field-border);
-      background:var(--field-bg);
-      color:var(--ink);
-      box-shadow:0 1px 0 rgba(0,0,0,.02) inset;
-      font:inherit;
-    }
-    textarea{
-      resize:vertical;
-      min-height:86px;
-    }
+    textarea{grid-column:1 / -1}
     .full{grid-column:1 / -1}
-    .hint{font-size:.85rem;color:var(--muted);margin-left:4px}
-
-    button[type="submit"]{
-      padding:12px 18px;
-      border:0;
-      border-radius:12px;
+    button[type=submit]{
+      padding:12px;border-radius:12px;border:0;
       background:linear-gradient(90deg,var(--accent),#77e3d8);
-      color:#052b29;
-      font-weight:700;
-      cursor:pointer;
-      box-shadow:var(--shadow);
-      position:relative;
-      transition:transform .08s ease;
+      color:#052b29;font-weight:700;cursor:pointer
     }
-    button[type="submit"]:active{transform:translateY(1px)}
-
-    .loading{pointer-events:none;opacity:.88}
-    .loading .btn-text{visibility:hidden}
-    .loading::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      margin:auto;
-      width:18px;
-      height:18px;
-      border-radius:50%;
-      border:3px solid rgba(5,43,41,.18);
-      border-top-color:#052b29;
-      animation:spin 1s linear infinite;
-    }
-    @keyframes spin{to{transform:rotate(360deg)}}
-
-    .legal{
-      font-size:.9rem;
-      color:var(--muted);
-      margin-top:6px;
-    }
-    .status{
-      font-size:.9rem;
-      margin-top:6px;
-    }
-    .status.err{color:#c8102e}
-    .sr-only{
-      position:absolute;
-      width:1px;
-      height:1px;
-      padding:0;
-      margin:-1px;
-      overflow:hidden;
-      clip:rect(0,0,0,0);
-      white-space:nowrap;
-      border:0;
-    }
-    .hp{display:none !important}
-
-    .trust-row{
-      margin-top:8px;
-      font-size:.9rem;
-      color:var(--muted);
-    }
-    .trust-row strong{
-      font-weight:600;
-      color:var(--ink);
-    }
-
-    @media (max-width:640px){
-      form{grid-template-columns:1fr}
-    }
+    .error{color:#ff3b3b;font-size:.85rem;display:none}
+    .error.show{display:block}
   </style>
-
-  <!-- Organization schema -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"Savage Lane",
-    "url":"https://savagelane.com/",
-    "logo":"https://savagelane.com/images/savage-lane-logo.png",
-    "sameAs":[]
-  }
-  </script>
-
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-P2K745NG');</script>
-  <!-- End Google Tag Manager -->
 </head>
 
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2K745NG"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-  <!-- Sticky nav using global style -->
-  <div class="nav-wrap">
-    <div class="shell">
-      <nav class="main" aria-label="Primary">
-        <a class="brand" href="/" aria-label="Savage Lane Home">
-          <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
-        </a>
-        <div class="links">
-          <a class="btn sky" href="/buyers.html">Buyers</a>
-          <a class="btn coral" href="/sellers.html">Sellers</a>
-          <a class="btn primary" href="/concierge.html" aria-current="page">Home Match Concierge</a>
-        </div>
-      </nav>
-    </div>
-  </div>
+  <header class="nav-wrap" id="site-header"></header>
 
   <div class="container">
-    <!-- Breadcrumbs -->
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <a href="/">Home</a><span class="sep" aria-hidden="true">›</span><span>Concierge</span>
-    </nav>
 
-    <!-- Hero -->
     <section class="hero">
       <img src="/images/home-match-banner.png" alt="Home Match Concierge banner">
-      <h1>Tell me where you are moving</h1>
-      <p class="lead">
-        Share a few basic details and I will introduce you to a proven local Realtor who fits your plans.
-      </p>
-      <ul>
-        <li>Only experienced local agents in good standing</li>
-        <li>No fees and no pressure conversations</li>
-        <li>You choose if and how you want to work with them</li>
-      </ul>
+      <h1>Tell me what you need</h1>
+      <p>I will connect you with the right licensed Realtor for your market. No pressure. No fees.</p>
     </section>
 
-    <!-- Form card -->
-    <section class="grid" style="margin-top:16px">
-      <div class="card" aria-labelledby="matchform">
-        <h2 id="matchform">Request your local match</h2>
-        <p>
-          This is the fast, simple version. Name, email, and city are all that is required. Everything else just helps with the match.
-        </p>
+    <section style="margin-top:18px">
+      <div class="card">
+        <h2>Request your match</h2>
 
         <form id="matchForm" action="https://formspree.io/f/mpwbaprj" method="POST" novalidate>
-          <!-- spam honeypot -->
-          <input class="hp" type="text" name="_subject_line" tabindex="-1" autocomplete="off">
+
+          <input class="hp" type="text" name="_subject_line" tabindex="-1" autocomplete="off" />
 
           <div class="full">
-            <label for="name">Your name</label>
-            <input id="name" name="name" required autocomplete="name">
+            <label>Your name</label>
+            <input id="name" name="name" required>
+            <div id="nameErr" class="error">Enter your name</div>
           </div>
 
-          <div>
-            <label for="email">Email</label>
-            <input id="email" type="email" name="email" required autocomplete="email">
+          <div class="full">
+            <label>Email</label>
+            <input id="email" type="email" name="email" required>
+            <div id="emailErr" class="error">Enter a valid email</div>
           </div>
 
-          <div>
-            <label for="city">City</label>
-            <input id="city" name="city" required autocomplete="address-level2" placeholder="Example Lakewood Ranch">
+          <div class="full">
+            <label>Phone (optional, text or call)</label>
+            <input id="phone" name="phone" placeholder="Example 5551234567">
+            <div id="phoneErr" class="error">Enter a valid phone number</div>
           </div>
 
-          <div>
-            <label for="state">State <span class="hint">(optional)</span></label>
-            <select id="state" name="state" autocomplete="address-level1">
-              <option value="">Select state</option>
-              <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option>
-              <option>CO</option><option>CT</option><option>DE</option><option>DC</option><option>FL</option>
-              <option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option>
-              <option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option>
-              <option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option>
-              <option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option>
-              <option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option>
-              <option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option>
-              <option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option>
-              <option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="intent">Buying or selling <span class="hint">(optional)</span></label>
-            <select id="intent" name="intent">
+          <div class="full">
+            <label>Buying or selling</label>
+            <select id="intent" name="intent" required>
               <option value="">Choose one</option>
               <option>Buying</option>
               <option>Selling</option>
               <option>Both</option>
             </select>
-          </div>
-
-          <div>
-            <label for="timeline">Timeline <span class="hint">(optional)</span></label>
-            <select id="timeline" name="timeline">
-              <option value="">Select</option>
-              <option>Now</option>
-              <option>One to three months</option>
-              <option>Three to six months</option>
-              <option>Six plus months</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="phone">Phone <span class="hint">(optional, text or call)</span></label>
-            <input id="phone" name="phone" autocomplete="tel" placeholder="Only if you want them to call or text">
+            <div id="intentErr" class="error">Choose buying, selling, or both</div>
           </div>
 
           <div class="full">
-            <label for="comments">Anything else that would help <span class="hint">(optional)</span></label>
-            <textarea id="comments" name="comments" rows="4" placeholder="Example first time buyer, moving for work, needs pool home, price range, or any curveballs."></textarea>
+            <label>Comments <span class="hint">(optional)</span></label>
+            <textarea id="comments" name="comments" rows="4" placeholder="Tell me what you are looking for"></textarea>
           </div>
 
-          <!-- Combined location for your own routing, not visible -->
-          <input type="hidden" id="location" name="location">
-
-          <div class="full" style="margin-top:6px">
-            <button type="submit" id="submitBtn">
-              <span class="btn-text">Request my match</span>
-            </button>
-            <div id="status" class="status" aria-live="polite"></div>
-
-            <p class="legal">
-              No fees and no sales pressure. Your info is used only to introduce you to one or more recommended local Realtors through my brokerage referral program. I do not sell your details to lead companies.
-            </p>
-            <p class="trust-row">
-              <strong>What happens next:</strong> I review your request, register it with the brokerage referral network, and a licensed local Realtor reaches out on your terms.
-            </p>
+          <div class="full">
+            <button type="submit" id="submitBtn"><span class="btn-text">Request my match</span></button>
+            <div id="status" class="status"></div>
           </div>
         </form>
       </div>
     </section>
 
-    <!-- Footer matches home footer style -->
-    <footer>
-      <div class="shell" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px">
-        <div>© <span id="y"></span> Savage Lane. All rights reserved.</div>
-        <div>
-          <a href="/privacy.html">Privacy</a>
-          <span aria-hidden="true"> • </span>
-          <a href="/sitemap.html">Site Map</a>
-          <span aria-hidden="true"> • </span>
-          <a href="/realtor.html">Get a Realtor</a>
-          <span aria-hidden="true"> • </span>
-          <a href="/about.html">About</a>
-        </div>
-      </div>
-    </footer>
+    <footer id="site-footer"></footer>
+
   </div>
 
-  <!-- Scripts -->
-<script>
-(function () {
-  const form = document.getElementById('matchForm');
-  const submitBtn = document.getElementById('submitBtn');
-  const statusEl = document.getElementById('status');
+  <script>
+    (function () {
+      const form = document.getElementById('matchForm');
+      const nameEl = document.getElementById('name');
+      const email = document.getElementById('email');
+      const phone = document.getElementById('phone');
+      const intent = document.getElementById('intent');
 
-  const city = document.getElementById('city');
-  const state = document.getElementById('state');
-  const zip = document.getElementById('zip');
-  const locationHidden = document.getElementById('location');
+      const nameErr = document.getElementById('nameErr');
+      const emailErr = document.getElementById('emailErr');
+      const phoneErr = document.getElementById('phoneErr');
+      const intentErr = document.getElementById('intentErr');
 
-  function buildLocation() {
-    const parts = [];
-    if (city && city.value.trim()) parts.push(city.value.trim());
-    if (state && state.value) parts.push(state.value.trim());
-    if (zip && zip.value.trim()) parts.push(zip.value.trim());
-    locationHidden.value = parts.join(', ');
-  }
+      const statusEl = document.getElementById('status');
+      const submitBtn = document.getElementById('submitBtn');
 
-  async function postToFormspree(data) {
-    const res = await fetch(form.action, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    });
+      function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());}
+      function validPhone(v){if(!v.trim()) return true; return v.replace(/\D/g,'').length>=10;}
 
-    if (!res.ok) throw new Error('Submit failed');
-    const json = await res.json().catch(() => ({}));
-    if (json && json.ok === false) throw new Error('Submit failed');
+      form.addEventListener('submit', async function(e){
+        let blocked = false;
 
-    return true;
-  }
+        if(!nameEl.value.trim()){nameErr.classList.add('show');blocked=true;} else nameErr.classList.remove('show');
+        if(!validEmail(email.value)){emailErr.classList.add('show');blocked=true;} else emailErr.classList.remove('show');
+        if(!validPhone(phone.value)){phoneErr.classList.add('show');blocked=true;} else phoneErr.classList.remove('show');
+        if(!intent.value){intentErr.classList.add('show');blocked=true;} else intentErr.classList.remove('show');
 
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
+        if(blocked){ e.preventDefault(); return; }
 
-    buildLocation();
+        e.preventDefault();
+        submitBtn.classList.add('loading');
+        statusEl.textContent = 'Sending your request...';
 
-    submitBtn.classList.add('loading');
-    submitBtn.setAttribute('aria-busy', 'true');
-    statusEl.textContent = 'Sending your request...';
-    statusEl.className = 'status';
+        try{
+          const data = new FormData(form);
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept':'application/json' }
+          });
 
-    try {
-      const data = new FormData(form);
-      await postToFormspree(data);
-      window.location.href = '/thanks.html';
-    } catch (err) {
-      statusEl.textContent = 'There was a problem sending your request. Please try again.';
-      statusEl.className = 'status err';
-      submitBtn.classList.remove('loading');
-      submitBtn.removeAttribute('aria-busy');
-    }
-  });
+          if(!res.ok) throw new Error();
+          window.location.href = '/thanks.html';
 
-  const ySpan = document.getElementById("y");
-  if (ySpan) ySpan.textContent = new Date().getFullYear();
-})();
-</script>
+        }catch(err){
+          statusEl.textContent = 'There was a problem sending your request.';
+          submitBtn.classList.remove('loading');
+        }
+      });
+    })();
+  </script>
 
-
-  <!-- Sitewide AskSavvy launcher -->
+  <script src="/js/site-footer.js" defer></script>
   <script src="/js/asksavvy.js" defer></script>
+
 </body>
 </html>
