@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Savage Lane Guide Inventory Report</title>
+  <title>Savage Lane Admin Link Check</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <link rel="icon" href="/images/favicon.png" type="image/png" sizes="32x32">
@@ -57,28 +57,16 @@
       padding:.2em .5em; font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
     }
   </style>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-P2K745NG');</script>
-<!-- End Google Tag Manager -->
-
 </head>
-<body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2K745NG"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
+<body>
   <div class="wrap">
     <header>
       <a class="brand" href="/" aria-label="Savage Lane Home">
         <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
         <div>
-          <h1>Guide inventory report</h1>
-          <p class="muted">Scan Buyers and Sellers hubs for guide links, check each file, and list what is missing or unlinked.</p>
+          <h1>Admin link check</h1>
+          <p class="muted">Checks the concierge and policy pages for broken internal links.</p>
         </div>
       </a>
       <div class="controls">
@@ -88,30 +76,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </header>
 
     <div class="panel">
-      <div class="muted">Checked pages: <code class="badge">/buyers.html</code> and <code class="badge">/sellers.html</code>. Also tries <code class="badge">/sitemap.html</code> if present.</div>
+      <div class="muted">
+        Checked pages:
+        <code class="badge">/</code>,
+        <code class="badge">/concierge.html</code>,
+        <code class="badge">/privacy.html</code>,
+        <code class="badge">/contact.html</code>,
+        <code class="badge">/thanks.html</code>,
+        <code class="badge">/sitemap.html</code>
+      </div>
     </div>
 
     <div id="results" class="grid" aria-live="polite">
       <section class="panel">
-        <h2>Linked on hubs but missing <span id="count-missing" class="err"></span></h2>
-        <div id="missing">Run the scan to populate this list.</div>
+        <h2>Broken internal links <span id="count-broken" class="err"></span></h2>
+        <div id="broken">Run the scan to populate this list.</div>
       </section>
 
       <section class="panel">
-        <h2>Working links on hubs <span id="count-working" class="ok"></span></h2>
+        <h2>Working internal links <span id="count-working" class="ok"></span></h2>
         <div id="working">Run the scan to populate this list.</div>
-      </section>
-
-      <section class="panel" style="grid-column:1/-1">
-        <h2>Existing guides not linked on hubs <span id="count-unlinked" class="warn"></span></h2>
-        <p class="muted" id="sitemap-note">This section uses sitemap when available.</p>
-        <div id="unlinked">Run the scan to populate this list.</div>
       </section>
     </div>
 
     <footer>
       <div>© <span id="y"></span> Savage Lane</div>
-      <div class="muted">Private admin report only</div>
+      <div class="muted">Admin only</div>
     </footer>
   </div>
 
@@ -119,13 +109,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById("y").textContent = new Date().getFullYear();
 
     const originBase = location.origin;
-    const hubs = ["/buyers.html", "/sellers.html"];
+    const pagesToScan = ["/", "/concierge.html", "/privacy.html", "/contact.html", "/thanks.html", "/sitemap.html"];
     const el = (id) => document.getElementById(id);
 
     function esc(s){ return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
     function listify(arr){
       if(!arr || !arr.length) return '<p class="muted">None</p>';
-      return '<ul>' + arr.map(p => `<li><a href="${esc(p)}" target="_blank" rel="noopener">${esc(p)}</a></li>`).join('') + '</ul>';
+      return '<ul>' + arr.map(item => {
+        const href = typeof item === "string" ? item : item.href;
+        const from = typeof item === "string" ? "" : item.from;
+        const label = from ? `${from} → ${href}` : href;
+        return `<li><a href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a></li>`;
+      }).join('') + '</ul>';
     }
 
     async function fetchDoc(path){
@@ -137,13 +133,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }catch{ return null; }
     }
 
-    function extractGuideLinks(doc){
+    function extractInternalLinks(doc){
       if(!doc) return [];
       const hrefs = Array.from(doc.querySelectorAll("a[href]")).map(a => a.getAttribute("href"));
       return hrefs.map(h => {
         try{
           const u = new URL(h, originBase);
-          return u.pathname.startsWith("/guides/") && u.pathname.endsWith(".html") ? u.pathname : null;
+          if(u.origin !== originBase) return null;
+          if(!u.pathname.startsWith("/")) return null;
+          if(u.pathname.startsWith("/admin/")) return null;
+          if(u.pathname.startsWith("/tools/")) return null;
+          return u.pathname + (u.search || "") + (u.hash || "");
         }catch{ return null; }
       }).filter(Boolean);
     }
@@ -160,48 +160,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 
     async function runScan(){
-      el("missing").innerHTML = '<p class="muted">Scanning…</p>';
+      el("broken").innerHTML = '<p class="muted">Scanning…</p>';
       el("working").innerHTML = '<p class="muted">Scanning…</p>';
-      el("unlinked").innerHTML = '<p class="muted">Scanning…</p>';
-      el("count-missing").textContent = "";
+      el("count-broken").textContent = "";
       el("count-working").textContent = "";
-      el("count-unlinked").textContent = "";
-      el("sitemap-note").textContent = "This section uses sitemap when available.";
 
-      // gather from hubs
-      const hubDocs = await Promise.all(hubs.map(fetchDoc));
-      const hubLinks = [...new Set(hubDocs.flatMap(extractGuideLinks))];
+      const docs = await Promise.all(pagesToScan.map(fetchDoc));
 
-      // gather from sitemap if present
-      const siteDoc = await fetchDoc("/sitemap.html");
-      const siteLinks = siteDoc ? [...new Set(extractGuideLinks(siteDoc))] : [];
+      const linkPairs = [];
+      for(let i=0;i<pagesToScan.length;i++){
+        const from = pagesToScan[i];
+        const links = extractInternalLinks(docs[i]);
+        for(const href of links){
+          linkPairs.push({ from, href });
+        }
+      }
 
-      // check existence
-      const hubChecks = Object.fromEntries(await Promise.all(hubLinks.map(async p => [p, await headExists(p)])));
-      const missing = hubLinks.filter(p => !hubChecks[p]);
-      const working = hubLinks.filter(p => hubChecks[p]);
+      const uniqueTargets = [...new Set(linkPairs.map(x => x.href))];
+      const existsMap = Object.fromEntries(await Promise.all(uniqueTargets.map(async p => [p, await headExists(p)])));
 
-      const siteChecks = Object.fromEntries(await Promise.all(siteLinks.map(async p => [p, await headExists(p)])));
-      const unlinked = siteLinks.filter(p => siteChecks[p] && !hubLinks.includes(p));
+      const broken = linkPairs.filter(x => !existsMap[x.href]).map(x => ({ from:x.from, href:x.href }));
+      const working = uniqueTargets.filter(p => existsMap[p]).sort();
 
-      // update UI
-      el("missing").innerHTML = listify(missing);
+      el("broken").innerHTML = listify(broken.map(x => ({ from:x.from, href:x.href })));
       el("working").innerHTML = listify(working);
-      el("unlinked").innerHTML = siteDoc ? listify(unlinked) : '<p class="muted">No sitemap found so this section is skipped.</p>';
 
-      if(missing.length) el("count-missing").textContent = `(${missing.length})`;
+      if(broken.length) el("count-broken").textContent = `(${broken.length})`;
       if(working.length) el("count-working").textContent = `(${working.length})`;
-      if(siteDoc && unlinked.length) el("count-unlinked").textContent = `(${unlinked.length})`;
     }
 
     document.getElementById("run").addEventListener("click", runScan);
     document.getElementById("print").addEventListener("click", () => window.print());
 
-    // auto run on first load for convenience
     runScan();
   </script>
-
-  <!-- Sitewide AskSavvy launcher, optional on admin -->
-  <script src="/js/asksavvy.js" defer></script>
 </body>
 </html>

@@ -8,7 +8,8 @@
  *    - If found in buyers.html -> “Buyer guides”
  *    - If found in sellers.html -> “Seller guides”
  *    - Else -> “Other guides”
- *    - NEW: Optional overrides via /tools/guide-categories.json (filenames only)
+ *    - Optional overrides via /tools/guide-categories.json (filenames only)
+ *    - Optional excludes via /tools/guide-categories.json (exclude array, filenames only)
  * 4) Rebuilds /sitemap.html (full file) with three sections + “Core Pages”
  * 5) Rebuilds /guides/index.html (Explore) using the same sections and live search
  *
@@ -16,139 +17,194 @@
  *   node tools/generate-guides.js
  */
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 const ROOT = process.cwd();
-const GUIDES_DIR = path.join(ROOT, 'guides');
-const OUT_SITEMAP = path.join(ROOT, 'sitemap.html');
-const OUT_EXPLORE = path.join(ROOT, 'guides', 'index.html');
+const GUIDES_DIR = path.join(ROOT, "guides");
+const OUT_SITEMAP = path.join(ROOT, "sitemap.html");
+const OUT_EXPLORE = path.join(ROOT, "guides", "index.html");
 
-/** Optional category overrides: /tools/guide-categories.json
+function guidesDirExists() {
+  try {
+    return fs.existsSync(GUIDES_DIR) && fs.statSync(GUIDES_DIR).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
+
+/**
+ * Optional configuration: /tools/guide-categories.json
  * Shape:
  * {
  *   "buyers":  ["file-a.html","file-b.html"],
- *   "sellers": ["file-c.html"]
+ *   "sellers": ["file-c.html"],
+ *   "exclude": ["file-x.html","file-y.html"]
  * }
  */
-function loadCategoryOverrides(rootDir) {
-  const mapPath = path.join(rootDir, 'tools', 'guide-categories.json');
-  const map = {};
+function loadGuideConfig(rootDir) {
+  const configPath = path.join(rootDir, "tools", "guide-categories.json");
+
+  const categoryMap = {};
+  const excludeSet = new Set();
+
   try {
-    const raw = fs.readFileSync(mapPath, 'utf8');
+    const raw = fs.readFileSync(configPath, "utf8");
     const data = JSON.parse(raw);
-    (data.buyers || []).forEach(n => { if (n) map[String(n).trim()] = 'buyers'; });
-    (data.sellers || []).forEach(n => { if (n) map[String(n).trim()] = 'sellers'; });
-    const total = Object.keys(map).length;
-    console.log(`• Loaded overrides from tools/guide-categories.json (${total} entries)`);
+
+    (data.buyers || []).forEach((n) => {
+      const k = String(n || "").trim();
+      if (k) categoryMap[k] = "buyers";
+    });
+
+    (data.sellers || []).forEach((n) => {
+      const k = String(n || "").trim();
+      if (k) categoryMap[k] = "sellers";
+    });
+
+    (data.exclude || []).forEach((n) => {
+      const k = String(n || "").trim();
+      if (k) excludeSet.add(k);
+    });
+
+    const totalCats = Object.keys(categoryMap).length;
+    const totalEx = excludeSet.size;
+
+    console.log(`• Loaded tools/guide-categories.json (categories:${totalCats} exclude:${totalEx})`);
   } catch {
-    // optional file — ignore if missing/invalid
+    // optional file, ignore if missing or invalid
   }
-  return map;
+
+  return { categoryMap, excludeSet };
 }
 
 function read(file) {
-  try { return fs.readFileSync(file, 'utf8'); } catch { return ''; }
-}
-function write(file, content) {
-  fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, content, 'utf8');
+  try {
+    return fs.readFileSync(file, "utf8");
+  } catch {
+    return "";
+  }
 }
 
-function listGuideFiles() {
-  const all = fs.readdirSync(GUIDES_DIR, { withFileTypes: true })
-    .filter(d => d.isFile())
-    .map(d => d.name)
-    .filter(n =>
-      n.endsWith('.html') &&
-      n !== 'index.html' &&
-      n !== 'guide.css' &&
-      !n.startsWith('_') &&
-      !n.includes('template')
-    );
+function write(file, content) {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, content, "utf8");
+}
+
+function listGuideFiles(excludeSet) {
+  if (!guidesDirExists()) return [];
+
+  const all = fs
+    .readdirSync(GUIDES_DIR, { withFileTypes: true })
+
+    .filter((d) => d.isFile())
+    .map((d) => d.name)
+    .filter((n) => {
+      if (!n.endsWith(".html")) return false;
+      if (n === "index.html") return false;
+      if (n === "guide.css") return false;
+      if (n.startsWith("_")) return false;
+      if (n.includes("template")) return false;
+      if (excludeSet && excludeSet.has(n)) return false;
+      return true;
+    });
+
   return all.sort((a, b) => a.localeCompare(b));
 }
 
 function extractTitle(html, fallback) {
-  // Prefer <h1>, then <title>, else fallback
   const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
   if (h1 && h1[1]) return cleanText(h1[1]);
 
   const t = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
-  if (t && t[1]) return cleanText(t[1]).replace(/\s*\|\s*Savage Lane\s*$/i, '');
+  if (t && t[1]) return cleanText(t[1]).replace(/\s*\|\s*Savage Lane\s*$/i, "");
 
-  return fallback.replace(/[-_]/g, ' ').replace(/\.html$/i, '').trim();
+  return fallback.replace(/[-_]/g, " ").replace(/\.html$/i, "").trim();
 }
 
 function cleanText(s) {
-  return s
-    .replace(/<[^>]+>/g, '')
-    .replace(/\s+/g, ' ')
-    .trim();
+  return s.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 }
 
 function collectLinks(html) {
   const links = new Set();
   const rx = /href="([^"]+)"/gi;
   let m;
-  while ((m = rx.exec(html))) {
-    links.add(m[1]);
-  }
+  while ((m = rx.exec(html))) links.add(m[1]);
   return links;
 }
 
-// Load buyers/sellers to detect categorization
-const buyersHTML = read(path.join(ROOT, 'buyers.html'));
-const sellersHTML = read(path.join(ROOT, 'sellers.html'));
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  }[c]));
+}
+
+function liList(items) {
+  return items
+    .map((x) => `          <li><a href="${x.href}">${escapeHtml(x.title)}</a></li>`)
+    .join("\n");
+}
+
+const buyersHTML = read(path.join(ROOT, "buyers.html"));
+const sellersHTML = read(path.join(ROOT, "sellers.html"));
 const buyersLinks = collectLinks(buyersHTML);
 const sellersLinks = collectLinks(sellersHTML);
 
-// NEW: load optional overrides once
-const overrides = loadCategoryOverrides(ROOT);
+const { categoryMap, excludeSet } = loadGuideConfig(ROOT);
 
-const files = listGuideFiles();
+const files = listGuideFiles(excludeSet);
 
-// Build catalog
 let appliedOverrideCount = 0;
-const catalog = files.map(fname => {
+
+const catalog = files.map((fname) => {
   const filePath = path.join(GUIDES_DIR, fname);
   const html = read(filePath);
   const href = `/guides/${fname}`;
   const title = extractTitle(html, fname);
 
-  // Start with override if present (match by filename only)
-  let category = overrides[fname] || 'other';
-  if (overrides[fname]) appliedOverrideCount++;
+  let category = categoryMap[fname] || "other";
+  if (categoryMap[fname]) appliedOverrideCount++;
 
-  // Fallback auto-detect only if no override
-  if (category === 'other') {
-    if (buyersLinks.has(href)) category = 'buyers';
-    if (sellersLinks.has(href)) category = category === 'buyers' ? 'other' : 'sellers'; // if on both, demote to other
+  if (category === "other") {
+    const onBuyers = buyersLinks.has(href);
+    const onSellers = sellersLinks.has(href);
+
+    if (onBuyers && !onSellers) category = "buyers";
+    else if (onSellers && !onBuyers) category = "sellers";
+    else category = "other";
   }
 
   return { href, title, category };
 });
 
-if (appliedOverrideCount) {
-  console.log(`• Applied overrides to ${appliedOverrideCount} guide(s)`);
-}
+if (appliedOverrideCount) console.log(`• Applied category overrides to ${appliedOverrideCount} guide(s)`);
+if (excludeSet.size) console.log(`• Excluded ${excludeSet.size} guide(s) via config`);
 
-// Split into sections
-const buyers = catalog.filter(x => x.category === 'buyers');
-const sellers = catalog.filter(x => x.category === 'sellers');
-const others = catalog.filter(x => x.category === 'other');
+const buyers = catalog.filter((x) => x.category === "buyers");
+const sellers = catalog.filter((x) => x.category === "sellers");
+const others = catalog.filter((x) => x.category === "other");
 
-// Render helpers
-function liList(items) {
-  return items.map(x => `          <li><a href="${x.href}">${escapeHtml(x.title)}</a></li>`).join('\n');
-}
-function escapeHtml(s) {
-  return s.replace(/[&<>"']/g, c => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-  }[c]));
-}
-const now = new Date();
-const updated = now.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+const updated = new Date().toLocaleString("en-US", { month: "long", year: "numeric" });
+
+/*
+  Canonical choice:
+  Keep /concierge.html as the single indexed intake page.
+  Do not list /realtor.html here, it should be an alias or redirect to avoid duplicate indexing.
+*/
+const CORE_PAGES = [
+  { href: "/", label: "Home" },
+  { href: "/buyers.html", label: "Buyer Resource Center" },
+  { href: "/sellers.html", label: "Seller Resource Center" },
+  { href: "/concierge.html", label: "Home Match Concierge" },
+  { href: "/privacy.html", label: "Privacy Policy" },
+  { href: "/sitemap.xml", label: "XML Sitemap", note: "(for search engines)" },
+];
 
 // ===================== Render sitemap.html =====================
 const sitemapHTML = `<!doctype html>
@@ -162,7 +218,6 @@ const sitemapHTML = `<!doctype html>
   <meta name="robots" content="index,follow" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Site Map | Savage Lane" />
   <meta property="og:description" content="Browse all Savage Lane resources and guides for buyers and sellers." />
   <meta property="og:type" content="website" />
@@ -209,13 +264,17 @@ const sitemapHTML = `<!doctype html>
     </section>
 
     <section class="grid grid-2" style="margin-top:18px">
+      ${catalog.length ? `
       <div class="card" id="buyers">
         <h2>Buyer guides</h2>
         <ul>
 ${liList(buyers)}
         </ul>
       </div>
+      ` : ``}
 
+
+      ${catalog.length ? `
       <div class="card" id="sellers">
         <h2>Seller guides</h2>
         <ul>
@@ -229,16 +288,16 @@ ${liList(sellers)}
 ${liList(others)}
         </ul>
       </div>
+      ` : ``}
+
 
       <div class="card" style="grid-column:1/-1">
         <h2>Core Pages</h2>
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/buyers.html">Buyer Resource Center</a></li>
-          <li><a href="/sellers.html">Seller Resource Center</a></li>
-          <li><a href="/concierge.html">Home Match Concierge</a></li>
-          <li><a href="/privacy.html">Privacy Policy</a></li>
-          <li><a href="/sitemap.xml">XML Sitemap</a> <span class="note">(for search engines)</span></li>
+${CORE_PAGES.map(p => {
+  if (p.note) return `          <li><a href="${p.href}">${escapeHtml(p.label)}</a> <span class="note">${escapeHtml(p.note)}</span></li>`;
+  return `          <li><a href="${p.href}">${escapeHtml(p.label)}</a></li>`;
+}).join("\n")}
         </ul>
       </div>
     </section>
@@ -310,7 +369,7 @@ const exploreHTML = `<!doctype html>
   <div class="shell" style="max-width:1100px;padding:20px">
     <section class="hero">
       <h1>Explore all guides</h1>
-      <p class="muted" style="margin:6px 0 0">Smart, plain English answers for buyers and sellers. Start typing to filter — we match loosely on any word in the title.</p>
+      <p class="muted" style="margin:6px 0 0">Smart, plain English answers for buyers and sellers. Start typing to filter. We match on any word in the title.</p>
       <div class="search">
         <input id="q" type="search" placeholder="Search guides (buyers, appraisal, 1031, pre approval…)" aria-label="Search guides">
       </div>
@@ -357,7 +416,6 @@ ${liList(others)}
     document.getElementById('y').textContent = new Date().getFullYear();
     const q = document.getElementById('q');
 
-    // Loose multi-term search across all lists; highlights matches
     function filterList(ul, terms){
       const items = ul.querySelectorAll('li');
       items.forEach(li => {
@@ -366,13 +424,11 @@ ${liList(others)}
         const hit = terms.every(t => text.includes(t));
         li.style.display = hit ? '' : 'none';
 
-        // highlight
-        a.innerHTML = a.textContent; // reset
+        a.innerHTML = a.textContent;
         if (terms.length && hit){
           let html = a.textContent;
           terms.forEach(t=>{
-            // Escape regex specials and build a safe case-insensitive global matcher
-            const escaped = t.replace(/[\.\*\+\?\^\$\{\}\(\)\|\[\]\\]/g, '\\$&');
+            const escaped = t.replace(/[\\.\\*\\+\\?\\^\\$\\{\\}\\(\\)\\|\\[\\]\\\\]/g, '\\\\$&');
             const rx = new RegExp('(' + escaped + ')', 'ig');
             html = html.replace(rx, '<mark>$1</mark>');
           });
@@ -380,22 +436,28 @@ ${liList(others)}
         }
       });
     }
+
     q.addEventListener('input', () => {
-      const terms = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      const terms = q.value.trim().toLowerCase().split(/\\s+/).filter(Boolean);
       ['buyers-list','sellers-list','other-list'].forEach(id=>{
         const ul = document.getElementById(id);
         if (ul) filterList(ul, terms);
       });
     });
   </script>
+
   <script src="/js/asksavvy.js" defer></script>
 </body>
 </html>`;
 
-// Write files
 write(OUT_SITEMAP, sitemapHTML);
-write(OUT_EXPLORE, exploreHTML);
-
 console.log(`✓ Generated ${path.relative(ROOT, OUT_SITEMAP)}`);
-console.log(`✓ Generated ${path.relative(ROOT, OUT_EXPLORE)}`);
+
+if (guidesDirExists()) {
+  write(OUT_EXPLORE, exploreHTML);
+  console.log(`✓ Generated ${path.relative(ROOT, OUT_EXPLORE)}`);
+} else {
+  console.log("• Skipped guides/index.html because /guides does not exist");
+}
+
 console.log(`Guides found: ${catalog.length} (buyers:${buyers.length} sellers:${sellers.length} other:${others.length})`);

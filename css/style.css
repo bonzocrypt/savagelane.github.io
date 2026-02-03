@@ -518,3 +518,14 @@ article .panel:nth-of-type(even){
 /* CTA mount visibility */
 .cta-mount { display: none; }
 .cta-mount.loaded { display: block; }
+.hero-header {
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-header img {
+  width: 100%;
+  height: clamp(180px, 28vw, 320px);
+  object-fit: cover;
+  display: block;
+}

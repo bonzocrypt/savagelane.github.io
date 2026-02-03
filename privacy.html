@@ -1,265 +1,139 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Privacy Policy | Savage Lane Home Match Concierge</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Privacy policy for Savage Lane Home Match Concierge. Learn what we collect, how it is used, and your choices." />
-  <link rel="canonical" href="https://savagelane.com/privacy.html" />
-  <meta name="robots" content="index, follow" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
+  <meta charset="utf-8">
+  <title>Privacy Policy | Savage Lane</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Privacy Policy | Savage Lane Home Match Concierge" />
-  <meta property="og:description" content="Privacy policy for Savage Lane Home Match Concierge. Learn what we collect, how it is used, and your choices." />
-  <meta property="og:image" content="https://savagelane.com/images/default-og.png" />
-  <meta property="og:url" content="https://savagelane.com/privacy.html" />
+  <link rel="icon" href="/images/favicon.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Privacy Policy | Savage Lane Home Match Concierge" />
-  <meta name="twitter:description" content="Privacy policy for Savage Lane Home Match Concierge. Learn what we collect, how it is used, and your choices." />
-  <meta name="twitter:image" content="https://savagelane.com/images/default-og.png" />
+  <meta name="description" content="Privacy policy for Savage Lane. Learn what we collect, how it is used, and your choices." />
+  <link rel="canonical" href="https://savagelane.com/privacy.html">
+  <meta name="robots" content="index,follow">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Privacy Policy | Savage Lane">
+  <meta property="og:description" content="Privacy policy for Savage Lane. Learn what we collect, how it is used, and your choices.">
+  <meta property="og:image" content="https://savagelane.com/images/default-og.png">
+  <meta property="og:url" content="https://savagelane.com/privacy.html">
 
-  <style>
-    :root{
-      --bg:#f7fbff;
-      --ink:#0b1b2b;
-      --muted:#52637a;
-      --card:#ffffff;
-      --accent:#2ec5b6;
-      --accent-2:#ff7a7a;
-      --accent-3:#5aa8ff;
-      --ring:rgba(46,197,182,.24);
-      --shadow:0 10px 25px rgba(0,0,0,.06);
-      --radius:16px;
-      --grid-gap:18px;
-      --nav-h:68px;
-    }
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy Policy | Savage Lane">
+  <meta name="twitter:description" content="Privacy policy for Savage Lane. Learn what we collect, how it is used, and your choices.">
+  <meta name="twitter:image" content="https://savagelane.com/images/default-og.png">
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;color:var(--ink);
-      background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(94,179,255,.25), transparent 60%),
-        radial-gradient(1000px 500px at 90% 0%, rgba(255,164,164,.22), transparent 60%),
-        linear-gradient(180deg,#f9fcff 0%,#f6fbff 40%,#f4fafc 100%);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7
-    }
+  <link rel="stylesheet" href="/css/style.css">
 
-    .container{max-width:1100px;margin:0 auto;padding:20px}
-    .grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap)}
-
-    /* Sticky nav */
-    .nav-wrap{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.7);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
-    nav.main{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:14px}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-    .brand img{height:44px;width:auto;border-radius:10px;box-shadow:var(--shadow)}
-    .brand span{font-weight:700;font-size:1.05rem;color:var(--ink)}
-    .links{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-    a{color:#0a63dd;text-decoration:none}
-    a:hover{text-decoration:underline}
-
-    /* Breadcrumb */
-    .crumbs{margin:10px 0 14px;font-size:.95rem;color:var(--muted)}
-    .crumbs a{color:#0a63dd;text-decoration:none}
-    .crumbs .sep{margin:0 6px}
-
-    /* Hero */
-    .hero{
-      border-radius:24px;padding:28px;box-shadow:var(--shadow);
-      background:
-        radial-gradient(1200px 500px at 0% 0%, rgba(94,179,255,.30), transparent 60%),
-        radial-gradient(900px 450px at 100% 0%, rgba(255,164,164,.26), transparent 60%),
-        linear-gradient(180deg,#ffffff 0%,#fbfeff 100%);
-      border:1px solid rgba(0,0,0,.06)
-    }
-    .hero h1{margin:6px 0 8px;font-size:2.1rem;letter-spacing:.2px}
-    .metaRow{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:.95rem;margin:4px 0 6px}
-
-    /* Card/content */
-    .card{background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
-    .card h2{font-size:1.25rem;margin:22px 0 10px}
-    .card p,.card li{color:#244056}
-    .btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-
-    /* Buttons */
-    .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 16px;border:1px solid rgba(0,0,0,.08);background:#ffffff;color:var(--ink);font-weight:600;box-shadow:var(--shadow)}
-    .btn.primary{background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29;border:none}
-    .btn.ghost{background:#fff}
-
-    /* Footer */
-    footer{margin:28px 0 30px;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    footer .links a{color:#0a63dd}
-
-    /* Focus */
-    :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:10px}
-  </style>
-
-  <!-- Organization schema -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"Savage Lane | Home Match Concierge",
-    "url":"https://savagelane.com/",
-    "logo":"https://savagelane.com/images/savage-lane-logo.png",
-    "sameAs":[]
-  }
+  <script>
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),
+      dl=l!='dataLayer' ? '&l='+l : '';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P2K745NG');
   </script>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-P2K745NG');</script>
-  <!-- End Google Tag Manager -->
-
 </head>
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2K745NG"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2K745NG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
 
-  <!-- Sticky nav -->
-  <div class="nav-wrap">
-    <div class="container">
-      <nav class="main" aria-label="Primary">
-        <a class="brand" href="/" aria-label="Savage Lane Home">
-          <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
-          <span>Savage Lane</span>
-        </a>
-        <div class="links">
-          <a href="/buyers.html">Buyers</a>
-          <a href="/sellers.html">Sellers</a>
-          <a class="btn primary" href="/concierge.html">Home Match Concierge</a>
-        </div>
-      </nav>
+  <header class="hero-header">
+    <img
+      src="/images/savage-lane-referral-concierge-header.png"
+      alt="Savage Lane Referral Concierge"
+    >
+  </header>
+
+  <main>
+    <div class="shell" style="max-width:1100px;margin:0 auto;padding:20px">
+      <article class="panel">
+        <h1>Privacy Policy</h1>
+
+        <p class="muted" style="margin:8px 0 18px">
+          Effective date: <span id="effective"></span>
+        </p>
+
+        <p>
+          This Privacy Policy explains what information Savage Lane collects, how it is used, and the choices you have.
+          Savage Lane is a referral introduction website. No real estate services or representation are provided through this website.
+          If you request an introduction, your information may be shared with an appropriate licensed real estate professional for brokerage services.
+        </p>
+
+        <h2>Information we collect</h2>
+        <ul>
+          <li><strong>Contact details</strong> such as your name, email, and phone when you submit the referral request form</li>
+          <li><strong>Request details</strong> such as location, timeframe, and basic preferences you choose to share in the form</li>
+          <li><strong>Technical data</strong> such as IP address, device information, and browser data for security and site performance</li>
+        </ul>
+
+        <h2>How we use information</h2>
+        <ul>
+          <li>To process and confirm your referral request</li>
+          <li>To place a referral through the brokerage referral program and connect you with a licensed professional</li>
+          <li>To improve site reliability and protect against misuse</li>
+        </ul>
+
+        <h2>Sharing</h2>
+        <p>
+          We share your information only as needed to process your referral request and connect you with the assigned licensed professional.
+          We do not sell your personal information.
+        </p>
+
+        <h2>Retention</h2>
+        <p>
+          We keep information as long as needed to service your request and meet recordkeeping obligations required by applicable policies and law.
+        </p>
+
+        <h2>Your choices</h2>
+        <ul>
+          <li>You can request access, correction, or deletion of your information, subject to legal and contractual limits</li>
+          <li>You can withdraw your request before a referral is placed</li>
+        </ul>
+
+        <h2>Security</h2>
+        <p>
+          We use reasonable safeguards to protect information.
+          No method of transmission or storage is fully secure, but we work to protect data and review safeguards over time.
+        </p>
+
+        <h2>Form submissions</h2>
+        <p>
+          Referral requests may be collected using a form service.
+          Information you submit is transmitted to us so we can process your request and place the referral.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          For privacy questions or requests, email <strong>privacy@savagelane.com</strong>.
+          If you submitted a referral request, you can also respond to any confirmation message you received.
+        </p>
+
+        <p class="muted" style="margin:18px 0 0">
+          Disclosure: Savage Lane is an independent referral introduction website and is not operated by Coldwell Banker Realty.
+          As a Referral Agent, I do not provide real estate advice, negotiate, or participate in any part of a real estate transaction beyond making the referral introduction.
+          All real estate services are provided by a licensed real estate sales agent.
+        </p>
+      </article>
     </div>
-  </div>
+  </main>
 
-  <div class="container">
-    <!-- Breadcrumbs -->
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <a href="/">Home</a><span class="sep" aria-hidden="true">›</span><span>Privacy</span>
-    </nav>
+  <footer id="site-footer"></footer>
 
-    <!-- Hero -->
-    <section class="hero">
-      <h1>Privacy Policy</h1>
-      <div class="metaRow">
-        <div>Effective date: <span id="effective"></span></div>
-      </div>
-      <div class="btnrow">
-        <a class="btn primary" href="/index.html">Return to Home</a>
-        <a class="btn ghost" href="/thanks.html">View Thank You Page</a>
-      </div>
-    </section>
-
-    <!-- Content -->
-    <section class="card" style="margin-top:18px">
-      <p>
-        Savage Lane Home Match Concierge respects your privacy. This page explains what we collect, how we use it, and the choices you have. Savage Lane participates solely as a referral associate through the Coldwell Banker Realty Referral Network. We operate strictly in a referral only capacity and do not perform brokerage services. We do not list, show, or negotiate real estate. Matches are made to licensed professionals in your market through the brokerage referral program, where permitted by law. All referrals are placed under the Independent Contractor Agreement and related brokerage policies and addenda.
-      </p>
-
-      <h2>Information we collect</h2>
-      <ul>
-        <li><strong>Contact details</strong>, such as your name, email, and phone, when you submit the form.</li>
-        <li><strong>Home goals</strong>, such as city, price range, and timing, that you share in the form.</li>
-        <li><strong>Technical data</strong> that your browser provides, such as IP address and user agent, for security and site performance.</li>
-      </ul>
-
-      <h2>How we use information</h2>
-      <ul>
-        <li>To respond to your request and confirm details for your referral.</li>
-        <li>To place a referral through the Coldwell Banker Realty Referral Network and connect you with a qualified licensed real estate professional.</li>
-        <li>To improve our site and safeguard against fraud or misuse.</li>
-      </ul>
-
-      <h2>Sharing</h2>
-      <p>
-        We share your information only as needed to process your referral through the Coldwell Banker Realty Referral Network and to connect you with the assigned professional. We do not sell your personal information.
-      </p>
-
-      <h2>Retention</h2>
-      <p>
-        We keep your information for as long as needed to service your request and meet our obligations, including recordkeeping required by the referral network and applicable policies.
-      </p>
-
-      <h2>Your choices</h2>
-      <ul>
-        <li>You can request access, correction, or deletion of your information, subject to legal and contractual limits.</li>
-        <li>You can contact us to update your preferences or withdraw your request before a referral is placed.</li>
-      </ul>
-
-      <h2>Security</h2>
-      <p>
-        We use reasonable safeguards to protect your information. No method of transmission or storage is fully secure, but we work to protect your data and review safeguards over time.
-      </p>
-
-      <h2>Form submissions</h2>
-      <p>
-        Our contact form is powered by Formspree. Form content you submit is transmitted to us so we can respond. For questions about how Formspree processes data, review their documentation.
-      </p>
-
-      <h2>Referral and brokerage disclosure</h2>
-      <p>
-        Savage Lane participates solely as a referral associate through the Coldwell Banker Realty Referral Network. We operate strictly in a referral only capacity. After you submit a request, we register your information with our brokerage referral program so an assigned licensed sales professional can contact you regarding your real estate needs. We do not list, show, or negotiate property. Matches are made to licensed professionals in your market through the brokerage referral program, where permitted by law.
-      </p>
-      <p>
-        Savage Lane does not provide legal, tax, or financial advice. Any real estate services are provided exclusively by the licensed real estate professionals to whom your request is referred, under their brokerage and local law. Your decision to work with any referred professional is entirely your choice.
-      </p>
-
-      <h2>Contact</h2>
-      <p>
-        To ask questions or exercise a privacy right, reply to your confirmation email or reach us through the contact form on the home page.
-      </p>
-
-      <div class="note" style="margin-top:10px">
-        Equal Housing Opportunity. Savage Lane Home Match Concierge is a referral concierge with the Coldwell Banker Realty Referral Network and operates only in a referral capacity. This is not a solicitation for listing or buyer representation and not an offer of brokerage services. Matches are made to licensed professionals in your market through the brokerage referral program where permitted by law.
-      </div>
-    </section>
-  </div>
-
-  <footer>
-    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <div>© <span id="year"></span> Savage Lane</div>
-      <div class="links">
-        <a href="/buyers.html">Buyers</a>
-        <span aria-hidden="true"> • </span>
-        <a href="/concierge.html">Get a Realtor</a>
-        <span aria-hidden="true"> • </span>
-        <a href="/privacy.html" aria-current="page">Privacy</a>
-        <span aria-hidden="true"> • </span>
-        <a href="/about.html">About</a>
-      </div>
-    </div>
-  </footer>
+  <script src="/js/site-footer.js" defer></script>
 
   <script>
     const now = new Date();
-    const yearEl = document.getElementById("year");
-    if (yearEl) {
-      yearEl.textContent = now.getFullYear();
-    }
     const effectiveEl = document.getElementById("effective");
     if (effectiveEl) {
-      effectiveEl.textContent = now.toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-      });
+      effectiveEl.textContent = now.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
     }
   </script>
 </body>
 </html>
-
