@@ -1,37 +1,14 @@
 name: Generate Guides & Sitemap
 
 on:
-  push:
-    branches: [ main, master ]
-    paths:
-      - "guides/**"
-      - "buyers.html"
-      - "sellers.html"
-      - "tools/generate-guides.js"
   workflow_dispatch: {}
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  disabled:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Run generator
-        run: node tools/generate-guides.js
-
-      - name: Commit changes (if any)
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore: auto-generate sitemap.html and guides/index.html"
-          file_pattern: |
-            sitemap.html
-            guides/index.html
+      - name: Disabled
+        run: echo "Guide and sitemap auto generation is disabled."

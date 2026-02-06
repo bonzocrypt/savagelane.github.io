@@ -8,12 +8,12 @@
   <link rel="icon" href="/images/favicon.png" type="image/png" sizes="32x32">
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
-  <meta name="description" content="Site map for Savage Lane. Browse the core referral concierge pages and policy pages." />
+  <meta name="description" content="Site map for Savage Lane. Browse the core referral concierge and policy pages." />
   <link rel="canonical" href="https://savagelane.com/sitemap.html">
   <meta name="robots" content="index,follow">
 
   <meta property="og:title" content="Site Map | Savage Lane">
-  <meta property="og:description" content="Site map for Savage Lane. Browse the core referral concierge pages and policy pages.">
+  <meta property="og:description" content="Site map for Savage Lane. Browse the core referral concierge and policy pages.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://savagelane.com/sitemap.html">
   <meta property="og:image" content="https://savagelane.com/images/default-og.png">
@@ -38,20 +38,21 @@
 
 <body>
   <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2K745NG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2K745NG"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
 
   <header class="hero-header">
     <img
       src="/images/savage-lane-referral-concierge-header.png"
-      alt="Savage Lane Referral Concierge"
-    >
+      alt="Savage Lane Referral Concierge">
   </header>
 
   <main>
     <div class="shell" style="max-width:1100px;margin:0 auto;padding:20px">
       <article class="panel">
         <h1>Site Map</h1>
+
         <p class="muted" style="margin:8px 0 18px">
           Browse Savage Lane core pages. Last updated: <span id="updated"></span>
         </p>
@@ -61,9 +62,8 @@
           <li><a href="/">Home</a></li>
           <li><a href="/concierge.html">Home Match Concierge</a></li>
           <li><a href="/about.html">About</a></li>
-          <li><a href="/privacy.html">Privacy</a></li>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
         </ul>
-
 
         <h2>Search engines</h2>
         <ul>
@@ -71,9 +71,11 @@
         </ul>
 
         <p class="muted" style="margin:18px 0 0">
-          Disclosure: Savage Lane is an independent referral introduction website and is not operated by Coldwell Banker Realty.
-          As a Referral Agent, I do not provide real estate advice, negotiate, or participate in any part of a real estate transaction beyond making the referral introduction.
-          All real estate services are provided by a licensed real estate sales agent.
+          Disclosure: Savage Lane is an independent referral introduction website and is not
+          operated by Coldwell Banker Realty Referral Network. Savage Lane does not provide
+          real estate advice, representation, negotiation, or transaction services.
+          Referral introductions are made through the brokerage referral program to licensed
+          real estate sales associates where permitted by law.
         </p>
       </article>
     </div>
@@ -87,7 +89,10 @@
     const now = new Date();
     const updatedEl = document.getElementById("updated");
     if (updatedEl) {
-      updatedEl.textContent = now.toLocaleDateString(undefined, { year: "numeric", month: "long" });
+      updatedEl.textContent = now.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long"
+      });
     }
   </script>
 </body>

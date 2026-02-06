@@ -14,8 +14,9 @@
     + '    <span aria-hidden="true"> • </span>'
     + '    <a href="/sitemap.html">Site Map</a>'
     + '    <span aria-hidden="true"> • </span>'
-+ '    <a href="/realtor.html">Get a Realtor</a>'
-    + '    <span aria-hidden="true"> • </span>'
++ '    <a href="/concierge.html">Home Match Concierge</a>'
++ '    <span aria-hidden="true"> • </span>'
+
     + '    <a href="/about.html">About</a>'
     + '  </div>'
     + '</div>';

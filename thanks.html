@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <title>Thank You | Savage Lane Home Match Concierge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Thanks for reaching out. A trusted Coldwell Banker Realtor will contact you soon to help with your home goals." />
+
+  <meta name="description" content="Thanks for reaching out. Your request was received. A licensed Coldwell Banker Realtor will contact you to discuss your request." />
   <link rel="canonical" href="https://savagelane.com/thanks.html" />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
@@ -12,14 +13,14 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Thank You | Savage Lane Home Match Concierge" />
-  <meta property="og:description" content="Thanks for reaching out. A trusted Coldwell Banker Realtor will contact you soon to help with your home goals." />
+  <meta property="og:description" content="Thanks for reaching out. Your request was received. A licensed Coldwell Banker Realtor will contact you to discuss your request." />
   <meta property="og:image" content="https://savagelane.com/images/default-og.png" />
   <meta property="og:url" content="https://savagelane.com/thanks.html" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Thank You | Savage Lane Home Match Concierge" />
-  <meta name="twitter:description" content="Thanks for reaching out. A trusted Coldwell Banker Realtor will contact you soon to help with your home goals." />
+  <meta name="twitter:description" content="Thanks for reaching out. Your request was received. A licensed Coldwell Banker Realtor will contact you to discuss your request." />
   <meta name="twitter:image" content="https://savagelane.com/images/default-og.png" />
 
   <!-- Fonts -->
@@ -34,15 +35,11 @@
       --muted:#52637a;
       --card:#ffffff;
       --accent:#2ec5b6;
-      --accent-2:#ff7a7a;
-      --accent-3:#5aa8ff;
       --ring:rgba(46,197,182,.24);
       --shadow:0 10px 25px rgba(0,0,0,.06);
       --radius:16px;
-      --grid-gap:18px;
       --nav-h:68px;
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -51,153 +48,103 @@
         radial-gradient(1200px 600px at 20% -10%, rgba(94,179,255,.25), transparent 60%),
         radial-gradient(1000px 500px at 90% 0%, rgba(255,164,164,.22), transparent 60%),
         linear-gradient(180deg,#f9fcff 0%,#f6fbff 40%,#f4fafc 100%);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      line-height:1.6
     }
-
     .container{max-width:1100px;margin:0 auto;padding:20px}
     .center{display:grid;place-items:center}
-    .hero{
-      border-radius:24px;padding:28px;box-shadow:var(--shadow);
-      background:
-        radial-gradient(1200px 500px at 0% 0%, rgba(94,179,255,.30), transparent 60%),
-        radial-gradient(900px 450px at 100% 0%, rgba(255,164,164,.26), transparent 60%),
-        linear-gradient(180deg,#ffffff 0%,#fbfeff 100%);
-      border:1px solid rgba(0,0,0,.06)
-    }
-    .hero h1{margin:6px 0 8px;font-size:2.1rem;letter-spacing:.2px}
+    .hero{border-radius:24px;padding:28px;box-shadow:var(--shadow);background:#fff;border:1px solid rgba(0,0,0,.06)}
+    .hero h1{margin:6px 0 8px;font-size:2.1rem}
     .hero p.lead{margin:0 0 14px;color:var(--muted)}
-
-    /* Sticky nav */
-    .nav-wrap{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.7);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
+    .nav-wrap{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.7);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
     nav.main{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:14px}
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-    .brand img{height:44px;width:auto;border-radius:10px;box-shadow:var(--shadow)}
-    .brand span{font-weight:700;font-size:1.05rem;color:var(--ink)}
+    .brand img{height:44px;border-radius:10px;box-shadow:var(--shadow)}
+    .brand span{font-weight:700;color:var(--ink)}
     .links{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-    a{color:#0a63dd;text-decoration:none}
-    a:hover{text-decoration:underline}
-
-    /* Card */
     .card{background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);text-align:center}
     .note{font-size:.95rem;color:var(--muted);margin-top:8px}
-
-    /* Buttons */
-    .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 16px;border:1px solid rgba(0,0,0,.08);background:#ffffff;color:var(--ink);font-weight:600;box-shadow:var(--shadow)}
-    .btn.primary{background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29;border:none}
-    .btn.ghost{background:#fff}
-
-    /* Check graphic */
-    .checkWrap{width:86px;height:86px;margin:0 auto 12px auto;position:relative}
-    .ring{position:absolute;inset:0;border-radius:50%;background:radial-gradient(closest-side, rgba(46,197,182,.25), transparent 70%);animation:pulse 1800ms ease-out infinite}
-    .check{width:86px;height:86px;display:block;margin:0 auto}
-    .check circle{fill:none;stroke:rgba(0,0,0,.12);stroke-width:2.5}
-    .check path{fill:none;stroke:#15a07f;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:48;stroke-dashoffset:48;animation:draw 700ms ease-out 250ms forwards;filter:drop-shadow(0 2px 6px rgba(21,160,127,.35))}
-
-    /* Footer */
-    footer{margin:28px 0 30px;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    footer .links a{color:#0a63dd}
-
-    /* Animations */
-    @keyframes draw{to{stroke-dashoffset:0}}
-    @keyframes pulse{0%{opacity:0;transform:scale(.85)}40%{opacity:.7;transform:scale(1)}100%{opacity:0;transform:scale(1.15)}}
-
-    /* Focus */
-    :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:10px}
+    .btn{display:inline-flex;align-items:center;border-radius:12px;padding:12px 16px;border:1px solid rgba(0,0,0,.08);background:#fff;font-weight:600}
+    .btn.primary{background:linear-gradient(90deg, var(--accent), #77e3d8);border:none}
+    footer{margin:28px 0;color:var(--muted);font-size:.95rem}
   </style>
 
-  <!-- Organization schema -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"Savage Lane",
-    "url":"https://savagelane.com/",
-    "logo":"https://savagelane.com/images/savage-lane-logo.png",
-    "sameAs":[]
-  }
+  <script>
+  (function(w,d,s,l,i){
+    w[l]=w[l]||[];
+    w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+    var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';
+    j.async=true;
+    j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+    f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P2K745NG');
   </script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-P2K745NG');</script>
-<!-- End Google Tag Manager -->
-
 </head>
 
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2K745NG"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2K745NG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 
-  <!-- Sticky nav -->
-  <div class="nav-wrap">
-    <div class="container">
-      <nav class="main" aria-label="Primary">
-        <a class="brand" href="/" aria-label="Savage Lane Home">
-          <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
-          <span>Savage Lane</span>
-        </a>
-        <div class="links">
-          <a href="/buyers.html">Buyers</a>
-          <a href="/sellers.html">Sellers</a>
-          <a class="btn primary" href="/concierge.html">Home Match Concierge</a>
-        </div>
-      </nav>
-    </div>
-  </div>
-
-  <div class="container center" style="min-height:calc(100vh - var(--nav-h) - 120px)">
-    <section class="hero" style="max-width:760px;width:100%">
-      <div class="card" role="status" aria-live="polite">
-        <div class="checkWrap" aria-hidden="true">
-          <div class="ring"></div>
-          <svg class="check" viewBox="0 0 64 64" aria-hidden="true">
-            <circle cx="32" cy="32" r="29"></circle>
-            <path d="M18 33 L28 43 L47 23"></path>
-          </svg>
-        </div>
-
-        <h1>Thank you for your request</h1>
-        <p class="lead">
-      Your request has been received. A trusted Coldwell Banker Realtor will contact you soon to discuss your next move.
-        </p>
-
-        <div class="links" style="margin-top:12px;justify-content:center;gap:10px;display:flex;flex-wrap:wrap">
-          <a class="btn primary" href="/index.html" aria-label="Return to Home">Return to Home</a>
-          <a class="btn ghost" href="/privacy.html" aria-label="View Privacy Policy">Privacy Policy</a>
-        </div>
-
-        <p class="note" style="margin-top:14px">
-          If you have anything to add, reply to the confirmation email and we will include it for the match.
-        </p>
-
-        <div class="note" style="margin-top:14px">
-          Disclosure Savage Lane participates solely as a referral associate through the Coldwell Banker Realty Referral Network. We do not list show or negotiate property. Matches are made to licensed professionals in your market through the brokerage referral program where permitted by law.
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <footer>
-    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <div>© <span id="y"></span> Savage Lane</div>
+<div class="nav-wrap">
+  <div class="container">
+    <nav class="main">
+      <a class="brand" href="/">
+        <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
+        <span>Savage Lane</span>
+      </a>
       <div class="links">
-        <a href="/buyers.html">Buyers</a>
-        <span aria-hidden="true"> • </span>
-        <a href="/sellers.html">Sellers</a>
-        <span aria-hidden="true"> • </span>
-        <a href="/concierge.html">Concierge</a>
-        <span aria-hidden="true"> • </span>
         <a href="/privacy.html">Privacy</a>
+        <a href="/sitemap.html">Site Map</a>
+        <a class="btn primary" href="/concierge.html">Home Match Concierge</a>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<div class="container center" style="min-height:calc(100vh - 180px)">
+  <section class="hero" style="max-width:760px;width:100%">
+    <div class="card" role="status" aria-live="polite">
+      <h1>Thank you for your request</h1>
+      <p class="lead">
+        Your request has been received. A licensed Coldwell Banker Realtor will contact you to discuss your request.
+      </p>
+
+      <div class="links" style="justify-content:center">
+        <a class="btn primary" href="/">Return to Home</a>
+        <a class="btn ghost" href="/privacy.html">Privacy Policy</a>
+      </div>
+
+      <p class="note">
+        If you have anything to add, reply to the confirmation email and we will include it with your request.
+      </p>
+
+      <div class="note">
+        Disclosure: Savage Lane participates solely as a referral associate through the Coldwell Banker Realty Referral Network.
+        We do not list, show, negotiate, or provide real estate services.
       </div>
     </div>
-  </footer>
+  </section>
+</div>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <div>© <span id="y"></span> Savage Lane</div>
+    <div class="links">
+      <a href="/concierge.html">Home Match Concierge</a>
+      <span> • </span>
+      <a href="/privacy.html">Privacy</a>
+      <span> • </span>
+      <a href="/sitemap.html">Site Map</a>
+      <span> • </span>
+      <a href="/about.html">About</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>

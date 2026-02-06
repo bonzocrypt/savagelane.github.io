@@ -1,106 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Savage Lane RSS Change Feed
-  Purpose: Let search engines & feed readers detect new/updated content quickly.
-  How to update:
-    • When you publish/edit a page, add (or move to top) an <item> with:
-        - <title>Readable title</title>
-        - <link>Canonical URL</link>
-        - <guid isPermaLink="true">Same as link (or a stable ID)</guid>
-        - <pubDate>RFC-2822 date (e.g., Fri, 24 Oct 2025 14:00:00 GMT)</pubDate>
-        - <description><![CDATA[Short summary]]></description>
-    • Keep the most recent items at the top. Aim for the latest 10–20 entries.
+  Purpose: Signal site freshness when real pages are published.
+  Status: No active feed items. Items will be added only for live URLs.
 -->
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Savage Lane — Updates</title>
+    <title>Savage Lane Updates</title>
     <link>https://savagelane.com/</link>
     <atom:link href="https://savagelane.com/feed.xml" rel="self" type="application/rss+xml" />
-    <description>New and updated guides, tools, and resources from Savage Lane Home Match Concierge.</description>
+    <description>Updates from Savage Lane Home Match Concierge.</description>
     <language>en-US</language>
-    <lastBuildDate>Fri, 24 Oct 2025 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 06 Feb 2026 00:00:00 GMT</lastBuildDate>
     <ttl>180</ttl>
 
-    <!-- Latest items (most recent first) -->
-    <item>
-      <title>Video Library — Curated Buyer & Seller Videos</title>
-      <link>https://savagelane.com/videos.html</link>
-      <guid isPermaLink="true">https://savagelane.com/videos.html</guid>
-      <pubDate>Fri, 24 Oct 2025 12:00:00 GMT</pubDate>
-      <description><![CDATA[Bite-sized explainers for buyers and sellers: first-time buyer tips, loan types, pre-listing inspection, FSBO pitfalls, and why working with an agent matters.]]></description>
-    </item>
-
-    <item>
-      <title>Buyer Resource Center — Refreshed Layout & FAQs</title>
-      <link>https://savagelane.com/buyers.html</link>
-      <guid isPermaLink="true">https://savagelane.com/buyers.html</guid>
-      <pubDate>Fri, 24 Oct 2025 11:45:00 GMT</pubDate>
-      <description><![CDATA[Clear, step-by-step guidance for buyers including credit basics, pre-approval, affordability, inspections, and closing.]]></description>
-    </item>
-
-    <item>
-      <title>Seller Resource Center — Refreshed Layout & FAQs</title>
-      <link>https://savagelane.com/sellers.html</link>
-      <guid isPermaLink="true">https://savagelane.com/sellers.html</guid>
-      <pubDate>Fri, 24 Oct 2025 11:40:00 GMT</pubDate>
-      <description><![CDATA[Everything sellers need to prepare, price, market, and close confidently, plus why partnering with a pro matters.]]></description>
-    </item>
-
-    <item>
-      <title>How Much House Can I Afford?</title>
-      <link>https://savagelane.com/guides/how-much-house-can-i-afford.html</link>
-      <guid isPermaLink="true">https://savagelane.com/guides/how-much-house-can-i-afford.html</guid>
-      <pubDate>Fri, 24 Oct 2025 11:30:00 GMT</pubDate>
-      <description><![CDATA[Understand DTI, down payments, and monthly budgeting before you shop.]]></description>
-    </item>
-
-    <item>
-      <title>FHA vs. Conventional vs. VA vs. USDA Loans — Explained</title>
-      <link>https://savagelane.com/guides/loan-types-fha-va-conventional.html</link>
-      <guid isPermaLink="true">https://savagelane.com/guides/loan-types-fha-va-conventional.html</guid>
-      <pubDate>Fri, 24 Oct 2025 11:25:00 GMT</pubDate>
-      <description><![CDATA[Compare common mortgage types, eligibility, and tradeoffs so you can choose confidently with your lender.]]></description>
-    </item>
-
-    <item>
-      <title>Buyer Credit Basics — Quick Wins</title>
-      <link>https://savagelane.com/guides/buyer-credit-basics.html</link>
-      <guid isPermaLink="true">https://savagelane.com/guides/buyer-credit-basics.html</guid>
-      <pubDate>Fri, 24 Oct 2025 11:20:00 GMT</pubDate>
-      <description><![CDATA[Practical tips to strengthen your credit profile before pre-approval.]]></description>
-    </item>
-
-    <item>
-      <title>Pre-Approval vs. Pre-Qualification</title>
-      <link>https://savagelane.com/guides/preapproval-vs-prequalification.html</link>
-      <guid isPermaLink="true">https://savagelane.com/guides/preapproval-vs-prequalification.html</guid>
-      <pubDate>Fri, 24 Oct 2025 11:15:00 GMT</pubDate>
-      <description><![CDATA[Know the difference and why sellers care — be offer-ready.]]></description>
-    </item>
-
-    <item>
-      <title>What Updates Add the Most Value Before Selling</title>
-      <link>https://savagelane.com/guides/repairs-and-updates-that-pay-off.html</link>
-      <guid isPermaLink="true">https://savagelane.com/guides/repairs-and-updates-that-pay-off.html</guid>
-      <pubDate>Fri, 24 Oct 2025 11:10:00 GMT</pubDate>
-      <description><![CDATA[High-impact, cost-effective improvements guided by market realities.]]></description>
-    </item>
-
-    <item>
-      <title>Benefits of a Pre-Listing Inspection</title>
-      <link>https://savagelane.com/guides/preinspection-benefits-for-sellers.html</link>
-      <guid isPermaLink="true">https://savagelane.com/guides/preinspection-benefits-for-sellers.html</guid>
-      <pubDate>Fri, 24 Oct 2025 11:05:00 GMT</pubDate>
-      <description><![CDATA[Reduce renegotiations, price confidently, and smooth your sale.]]></description>
-    </item>
-
-    <item>
-      <title>Why You Shouldn’t Sell Your Home Yourself (FSBO Pitfalls)</title>
-      <link>https://savagelane.com/guides/fsbo-vs-agent.html</link>
-      <guid isPermaLink="true">https://savagelane.com/guides/fsbo-vs-agent.html</guid>
-      <pubDate>Fri, 24 Oct 2025 11:00:00 GMT</pubDate>
-      <description><![CDATA[Legal exposure, pricing mistakes, limited reach — here’s why a pro pays.]]></description>
-    </item>
+    <!--
+      No items intentionally.
+      Add <item> entries only for pages that exist and are indexable.
+    -->
 
   </channel>
 </rss>
