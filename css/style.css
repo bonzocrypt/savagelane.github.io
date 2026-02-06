@@ -1,10 +1,9 @@
 /* ==========================================================================
-   Savage Lane — Global Styles (shared across all pages)
+   Savage Lane global styles (shared across all pages)
    ========================================================================== */
 
 /* Theme tokens */
 :root{
-  /* Palette */
   --bg:#f7fbff;
   --bg-grad1:#f6f9ff;
   --bg-grad2:#e9f2ff;
@@ -14,15 +13,13 @@
   --ink-strong:#0c1222;
   --muted:#52637a;
 
-  /* Brand accents */
-  --brand:#5a7cff;        /* primary blue (index) */
-  --brand-2:#ff6f61;      /* coral (index) */
+  --brand:#5a7cff;
+  --brand-2:#ff6f61;
 
-  --accent:#2ec5b6;       /* mint (buyers/sellers) */
-  --accent-2:#ff7a7a;     /* coral */
-  --accent-3:#5aa8ff;     /* sky */
+  --accent:#2ec5b6;
+  --accent-2:#ff7a7a;
+  --accent-3:#5aa8ff;
 
-  /* Layout */
   --radius:16px;
   --radius-lg:24px;
   --shadow:0 10px 25px rgba(14,35,84,.08);
@@ -47,7 +44,6 @@ body{
     radial-gradient(1200px 600px at 20% -10%, rgba(94,179,255,.20), transparent 60%),
     radial-gradient(1000px 500px at 90% 0%, rgba(255,164,164,.18), transparent 60%),
     linear-gradient(180deg,var(--bg-grad1) 0%,var(--bg-grad2) 60%, #edf3ff 100%);
-  /* iOS Safari quirks */
   -webkit-text-size-adjust:100%;
   text-size-adjust:100%;
 }
@@ -60,8 +56,7 @@ a:hover{text-decoration:underline}
 .container{max-width:1100px;margin:0 auto;padding:20px}
 .shell{max-width:1200px;margin:0 auto;padding:0 20px}
 
-/* Sticky header (works for both index and buyers/sellers) */
-.nav-wrap,
+/* Sticky header */
 .nav-wrap{
   position:sticky; top:0; z-index:50;
   background:rgba(255,255,255,.8);
@@ -69,7 +64,6 @@ a:hover{text-decoration:underline}
   border-bottom:1px solid #e6ecff;
 }
 
-/* Preserve legacy seller header look */
 header.navbar{
   position:static;
   background:transparent;
@@ -77,27 +71,21 @@ header.navbar{
   backdrop-filter:none;
 }
 
-/* =========================
-   Header layout
-   ========================= */
-
-/* CHANGED: keep one row, brand left, chips area next; we don't space-between */
+/* Header layout */
 .nav,
 nav.main{
   min-height:var(--nav-h);
   padding-block:10px;
   padding-top:calc(10px + env(safe-area-inset-top));
-  display:flex; align-items:center; justify-content:flex-start; gap:14px; /* CHANGED */
-  flex-wrap:nowrap !important; /* CHANGED: prevent logo from jumping above chips */
+  display:flex; align-items:center; justify-content:flex-start; gap:14px;
+  flex-wrap:nowrap !important;
 }
 
-/* Brand: logo-only (hide text) and keep it visually dominant */
 .brand{display:flex; align-items:center; gap:12px; text-decoration:none; flex-shrink:0}
 .brand h1, .brand span{display:none !important}
 
-/* CHANGED: ensure logo never looks smaller than chips, even on phones */
 .brand img{
-  height:clamp(100px, 18vw, 150px); /* CHANGED: higher floor than buttons */
+  height:clamp(100px, 18vw, 150px);
   width:auto;
   border-radius:16px;
   box-shadow:0 8px 22px rgba(0,0,0,.25);
@@ -106,16 +94,15 @@ nav.main{
 }
 .brand:hover img{ transform:scale(1.04) }
 
-/* Links area (chips) lives to the right, can wrap, and centers in its zone */
 .links{
-  flex:1 1 auto;                           /* CHANGED: take remaining row space */
+  flex:1 1 auto;
   display:flex; align-items:center;
   gap:14px; flex-wrap:wrap;
-  justify-content:center;                  /* CHANGED: center chips (big screens too) */
+  justify-content:center;
   min-width:0;
 }
 
-/* Buttons (unified + animated chips) */
+/* Buttons */
 .btn{
   position:relative; isolation:isolate;
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
@@ -133,94 +120,11 @@ nav.main{
 .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.10) }
 .btn:active{ transform:translateY(0); box-shadow:0 6px 16px rgba(0,0,0,.10) }
 
-/* glossy sweep overlay */
-.btn::before{
-  content:""; position:absolute; inset:0; z-index:-1; border-radius:inherit;
-  background:
-    linear-gradient(100deg, rgba(255,255,255,.28) 15%, rgba(255,255,255,0) 45%) no-repeat 0 0 / 0% 100%;
-  transition:background-size .5s ease;
-}
-.btn:hover::before{ background-size:120% 100% }
-
-/* soft glow behind on focus/hover */
-.btn::after{
-  content:""; position:absolute; inset:-16px; z-index:-2; border-radius:24px;
-  background:radial-gradient(40% 50% at 50% 50%, rgba(46,197,182,.35), transparent 70%);
-  opacity:0; filter:blur(10px); transition:opacity .25s ease, filter .25s ease;
-}
-.btn:hover::after, .btn:focus-visible::after{ opacity:1; filter:blur(14px) }
-
-/* brand gradient variants */
 .btn.primary{ background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29; border:none }
 .btn.coral{ background:linear-gradient(90deg, var(--accent-2), #ffb3a6); color:#3a0e0e; border:none }
 .btn.sky{ background:linear-gradient(90deg, var(--accent-3), #9fd0ff); color:#0b2447; border:none }
 .btn.alt{ background:var(--brand-2); color:#fff; border:none }
 .btn.ghost{ background:#eef3ff; color:#1f2a44; border:none }
-.btn.watch{ background:#eef3ff; color:#1f2a44 }
-
-/* header chips: stronger active-page treatment with animated ring + pulse */
-.nav .links .btn,
-nav.main .links .btn{
-  box-shadow:0 8px 20px rgba(14,35,84,.10);
-  opacity:0;
-  transform:translateY(-4px) scale(.98);
-  animation:sl-chip-enter .5s cubic-bezier(.2,.9,.2,1) forwards;
-}
-
-/* stagger the entrance for header chips */
-.nav .links .btn:nth-child(1), nav.main .links .btn:nth-child(1){ animation-delay:.05s }
-.nav .links .btn:nth-child(2), nav.main .links .btn:nth-child(2){ animation-delay:.12s }
-.nav .links .btn:nth-child(3), nav.main .links .btn:nth-child(3){ animation-delay:.19s }
-.nav .links .btn:nth-child(4), nav.main .links .btn:nth-child(4){ animation-delay:.26s }
-
-@keyframes sl-chip-enter{
-  0%{ opacity:0; transform:translateY(-4px) scale(.98) }
-  100%{ opacity:1; transform:translateY(0) scale(1) }
-}
-
-/* respect reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .nav .links .btn, nav.main .links .btn{
-    animation:none; opacity:1; transform:none;
-  }
-}
-
-/* Animated gradient ring around the active page chip */
-.nav .links a[aria-current="page"].btn,
-nav.main .links a[aria-current="page"].btn{
-  position:relative;
-  transform:translateY(-2px);
-  box-shadow:
-    0 14px 30px rgba(14,35,84,.14),
-    0 0 0 2px rgba(46,197,182,.22) inset;
-  isolation:isolate;
-}
-
-/* moving conic gradient border */
-.nav .links a[aria-current="page"].btn::before,
-nav.main .links a[aria-current="page"].btn::before{
-  content:""; position:absolute; inset:-2px; border-radius:14px; z-index:-1;
-  background:
-    conic-gradient(from 0deg,
-      rgba(46,197,182,.0) 0deg,
-      rgba(46,197,182,.45) 120deg,
-      rgba(90,168,255,.45) 240deg,
-      rgba(46,197,182,.0) 360deg);
-  filter:blur(8px);
-  animation:sl-chip-sweep 2.2s linear infinite;
-}
-
-/* soft breathing glow behind the active chip */
-.nav .links a[aria-current="page"].btn::after,
-nav.main .links a[aria-current="page"].btn::after{
-  content:""; position:absolute; inset:-14px; border-radius:22px; z-index:-2;
-  background:radial-gradient(40% 55% at 50% 50%, rgba(46,197,182,.32), transparent 70%);
-  animation:sl-chip-breathe 2.8s ease-in-out infinite;
-  pointer-events:none;
-}
-
-@keyframes sl-chip-sweep{ 0%{ transform:rotate(0deg) } 100%{ transform:rotate(360deg) } }
-@keyframes sl-chip-breathe{ 0%,100%{ opacity:.55; filter:blur(16px) } 50%{ opacity:.85; filter:blur(20px) } }
 
 /* Hero */
 .hero{
@@ -245,34 +149,12 @@ nav.main .links a[aria-current="page"].btn::after{
 @media(min-width:900px){ .grid.two{grid-template-columns:1fr 1fr} .grid.three{grid-template-columns:1fr 1fr 1fr} }
 .grid-2{display:grid; grid-template-columns:1fr; gap:var(--grid-gap)}
 @media(min-width:900px){ .grid-2{grid-template-columns:1fr 1fr} }
-.grid-3{display:grid; grid-template-columns:1fr; gap:var(--grid-gap)}
-@media(min-width:1100px){ .grid-3{grid-template-columns:repeat(3,1fr)} }
 
-/* Carousel (index) */
-.carousel{background:var(--panel); border:1px solid #e6ecff; border-radius:18px; box-shadow:var(--shadow); padding:16px}
-.carousel h3{margin:0 0 8px}
-.scroller{display:flex; gap:12px; overflow-x:auto; padding-bottom:2px; scroll-snap-type:x mandatory}
-.card{min-width:260px}
-.thumb{position:relative; border-radius:10px; overflow:hidden}
-.thumb::before{content:""; display:block; padding-top:56%}
-.thumb img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
-.play{position:absolute; right:10px; bottom:10px; width:40px; height:40px; border-radius:50%; background:#fff; display:grid; place-items:center; box-shadow:var(--shadow)}
-.play:after{content:""; display:block; border-left:11px solid #0b2447; border-top:7px solid transparent; border-bottom:7px solid transparent; margin-left:3px}
-
-/* Video wrappers (index + buyers/sellers embeds) */
+/* Video containers */
 .video-wrap{position:relative; aspect-ratio:16/9; background:#000; border:1px solid #e6ecff; border-radius:18px; overflow:hidden; box-shadow:var(--shadow)}
 .video-wrap > iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
 
-/* YouTube poster button (index) */
-.yt-ph{appearance:none; border:0; background:#000; padding:0; cursor:pointer; position:relative; width:100%; height:100%}
-.yt-ph img{width:100%; height:100%; object-fit:cover; display:block}
-.yt-ph .play{
-  position:absolute; inset:auto auto 16px 16px; width:64px; height:64px; border-radius:50%;
-  background:#fff; display:grid; place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.35)
-}
-.yt-ph .play::after{content:""; border-left:18px solid #0b2447; border-top:12px solid transparent; border-bottom:12px solid transparent; margin-left:4px}
-
-/* Lists / typographic utilities */
+/* Typography helpers */
 ol,ul{margin:10px 0 0; padding-left:18px}
 .list-clean{list-style:none; padding-left:0; margin:8px 0 0}
 .list-clean li{padding:8px 0; border-top:1px dashed rgba(0,0,0,.08)}
@@ -291,238 +173,33 @@ footer .links a{color:#0a63dd}
 /* Focus ring */
 :focus-visible{outline:3px solid var(--ring); outline-offset:2px; border-radius:10px}
 
-/* Responsive polish (shared) */
+/* Responsive polish */
 @media (max-width: 768px){
   .title, .subtitle, .cta-row{ text-align:center }
-  .hero-points{ grid-template-columns:1fr }
 }
 
-/* --- Fix: index video carousel card layout --- */
-.carousel .card{
-  min-width:260px;
-  background:#fff;
-  border:1px solid #e6ecff;
-  border-radius:14px;
-  box-shadow:var(--shadow);
-  padding:10px;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-/* Anchor offset so category headers are visible below the sticky nav */
-#buyer-education .card { scroll-margin-top: calc(var(--nav-h) + 24px); }
-
-/* Smooth scrolling for TOC chips and in-page links */
-html { scroll-behavior: smooth; }
-
-/* ===== Buyers page refinements (dropdown FAQ, compact hero) ===== */
-
-.hero.compact { padding: 22px 0 4px; }
-.hero.compact h1 { margin: 6px 0 6px; font-size: 2.1rem; }
-.hero.compact .lead { margin: 0 0 12px; }
-.hero-cta { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 10px; }
-
-@media (min-width: 900px){
-  .match-narrow{
-    width: 100%;
-    max-width: 560px;
-    justify-self: end;
-  }
-}
-
-.faq { margin-top: 18px; }
-.faq h2 { margin: 0 0 8px; }
-.faq .note { color: var(--muted); }
-
-.faq-cat { margin: 12px 0; }
-
-.faq-cat > summary{
-  list-style: none;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: space-between;
-  font-weight: 700;
-  padding: 12px 14px;
-  border-radius: var(--radius);
-}
-.faq-cat > summary::-webkit-details-marker{ display:none; }
-.faq-cat > summary::after{
-  content:"▾"; opacity:.85; transform: rotate(0deg); transition: transform .2s ease;
-}
-.faq-cat[open] > summary::after{ transform: rotate(180deg); }
-
-.qa { padding: 0 12px 12px 12px; }
-.qa-item{
-  margin-top: 8px;
-  border:1px dashed rgba(0,0,0,.08);
-  border-radius: 12px;
-  background:#fff;
-}
-.qa-item > summary{
-  list-style:none; cursor:pointer; padding:12px 14px; font-weight:600; border-radius:12px;
-}
-.qa-item > summary::-webkit-details-marker{ display:none; }
-.qa-item[open] > summary{ background:#f7fbff; }
-.qa-item > div{ padding: 0 14px 14px 14px; color: var(--ink); }
-
-.faq-cat > summary:focus-visible,
-.qa-item > summary:focus-visible{
-  outline:3px solid var(--ring); outline-offset:2px; border-radius:12px;
-}
-.hero .hero-content { grid-column: 1 / -1; }
-.hero.compact { padding: 22px 0 4px; }
-.hero.compact h1 { margin: 6px 0 6px; font-size: 2.1rem; }
-.hero.compact .lead { margin: 0 0 12px; }
-
-.toc-chips{
-  display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 6px;
-}
-.chip{
-  display:inline-flex; align-items:center; gap:6px;
-  padding:8px 12px; border-radius:999px; font-weight:600; font-size:.95rem;
-  background:#eef3ff; color:#1f2a44; border:1px solid #e6ecff; text-decoration:none;
-}
-.chip:hover{ text-decoration:none; transform:translateY(-1px); box-shadow:var(--shadow); }
-.chip.mint{ background:linear-gradient(90deg, var(--accent), #77e3d8); color:#052b29; border:none }
-.chip.coral{ background:linear-gradient(90deg, var(--accent-2), #ffb3a6); color:#3a0e0e; border:none }
-.chip.sky{ background:linear-gradient(90deg, var(--accent-3), #9fd0ff); color:#0b2447; border:none }
-
-.qalist{ list-style:none; padding-left:0; margin:10px 0 0; }
-.qalist li + li{ margin-top:6px; }
-.qa-snippet{ background:#fff; border:1px dashed rgba(0,0,0,.08); border-radius:12px; }
-.qa-snippet > summary{
-  cursor:pointer; padding:10px 12px; font-weight:600; list-style:none; border-radius:12px;
-}
-.qa-snippet > summary::-webkit-details-marker{ display:none; }
-.qa-snippet[open] > summary{ background:#f7fbff; }
-.qa-snippet > div{ padding:8px 12px 12px; color:var(--ink); }
-.qa-snippet a{ font-weight:600; }
-
-/* Sellers page header: keep non-sticky and transparent even with global CSS linked */
-body:has(link[rel="canonical"][href$="/sellers.html"]) .nav-wrap {
-  position: static;
-  background: transparent;
-  border: 0;
-  backdrop-filter: none;
-}
-
-/* =========================
-   Page namespaces (safe)
-   ========================= */
-
-body.buyers .nav-wrap{
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(255,255,255,.8);
-  backdrop-filter: saturate(150%) blur(8px);
-  border-bottom: 1px solid #e6ecff;
-}
-
-/* Ensure category headers are not hidden under sticky nav on buyers page */
-body.buyers #buyer-education .card,
-body.buyers #top-questions,
-body.buyers #core-guides{
-  scroll-margin-top: calc(var(--nav-h) + 24px);
-}
-
-/* Sellers page: explicitly non-sticky, transparent header */
-body.sellers .nav-wrap{
-  position: static;
-  background: transparent;
-  border: 0;
-  backdrop-filter: none;
-}
-
-/* Optional: keep buyers’ compact hero scoped so index hero is untouched */
-body.buyers .hero.compact{ padding:22px 0 4px; }
-body.buyers .hero.compact h1{ margin:6px 0 6px; font-size:2.1rem; }
-body.buyers .hero.compact .lead{ margin:0 0 12px; }
-
-/* =========================
-   Small device polish
-   ========================= */
-
-/* Keep one-row header, let chips wrap but stay centered in their right zone */
-@media (max-width: 700px){
-  .nav, nav.main{ flex-wrap:nowrap !important; }
-  .links{
-    justify-content:center;   /* keep centered when they wrap */
-    column-gap:12px; row-gap:10px;
-  }
-  .links .btn{ flex:0 1 auto; }
-}
-
-/* Ultra-narrow: allow two-per-line chips while staying centered */
-@media (max-width: 380px){
-  .links .btn{ flex-basis: calc(50% - 12px); }
-  .links .btn.primary{ flex-basis:100%; }
-}
-
-/* Hide breadcrumbs on Buyers and Sellers top-level pages */
-body.buyers .crumbs,
-body.sellers .crumbs {
-  display: none !important;
-}
-
-
-/* ========================================================================
-   OVERRIDES REQUESTED:
-   1) Remove glow/pulse from active (aria-current="page") header buttons
-      so Concierge (Home Match) has NO animation or glow.
-   2) Make left "accent walls" on guide panels subtler for readability.
-   ======================================================================== */
-
-/* 1) Kill active-chip glow/pulse sitewide (affects Concierge when active) */
-.nav .links a[aria-current="page"].btn,
-nav.main .links a[aria-current="page"].btn{
-  transform:none !important;
-  box-shadow:0 8px 20px rgba(14,35,84,.10) !important; /* normal, non-glow */
-}
-
-.nav .links a[aria-current="page"].btn::before,
-nav.main .links a[aria-current="page"].btn::before,
-.nav .links a[aria-current="page"].btn::after,
-nav.main .links a[aria-current="page"].btn::after{
-  content:none !important;
-  animation:none !important;
-  background:none !important;
-  filter:none !important;
-}
-
-/* Also guard against any custom .active class or focus glow */
-header nav .btn.active,
-header nav .btn:focus,
-header nav .btn::before,
-header nav .btn::after{
-  animation:none !important;
-  box-shadow:none !important;
-  filter:none !important;
-}
-
-/* 2) Subtle guide panel left accents (override bright stripes from guide.css)
-   - Remove gradient tints and heavy stripes
-   - Replace with thin, low-contrast border-left so text stays the star
-*/
+/* Panel accent overrides */
 article .panel::before{ content:none !important; }
 article .panel{
   background-image:none !important;
   border-left-width:3px !important;
 }
 article .panel:nth-of-type(odd){
-  border-left-color:rgba(90,124,255,.18) !important;   /* softer violet */
+  border-left-color:rgba(90,124,255,.18) !important;
 }
 article .panel:nth-of-type(even){
-  border-left-color:rgba(46,197,182,.18) !important;   /* softer teal */
+  border-left-color:rgba(46,197,182,.18) !important;
 }
+
 /* CTA mount visibility */
 .cta-mount { display: none; }
 .cta-mount.loaded { display: block; }
+
+/* Hero header image */
 .hero-header {
   width: 100%;
   overflow: hidden;
 }
-
 .hero-header img {
   width: 100%;
   height: clamp(180px, 28vw, 320px);

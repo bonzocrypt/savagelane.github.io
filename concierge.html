@@ -8,19 +8,19 @@
   <link rel="icon" href="/images/favicon.png" type="image/png" sizes="32x32">
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
-  <meta name="description" content="Referral concierge for buyers and sellers. Share your city and timing and get introduced to a licensed local real estate professional in your market." />
+  <meta name="description" content="Request a referral introduction to a licensed local real estate professional. Share your location and timeline and we will place the referral through the Coldwell Banker Realty Referral Network." />
   <link rel="canonical" href="https://savagelane.com/concierge.html" />
   <meta name="robots" content="index,follow" />
 
   <meta property="og:title" content="Home Match Concierge | Savage Lane" />
-  <meta property="og:description" content="Referral concierge that introduces buyers and sellers to licensed local real estate professionals." />
+  <meta property="og:description" content="Request a referral introduction to a licensed local real estate professional through the Coldwell Banker Realty Referral Network." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://savagelane.com/concierge.html" />
   <meta property="og:image" content="https://savagelane.com/images/default-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Home Match Concierge | Savage Lane" />
-  <meta name="twitter:description" content="Referral concierge for buyers and sellers. Get introduced fast." />
+  <meta name="twitter:description" content="Request a referral introduction to a licensed local real estate professional." />
   <meta name="twitter:image" content="https://savagelane.com/images/default-og.png" />
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +48,7 @@
       border:1px solid rgba(0,0,0,.06)
     }
     .hero h1{margin:10px 0 8px;font-size:2.1rem;letter-spacing:.2px}
-    .hero p.lead{margin:0;color:var(--muted);font-size:1rem;line-height:1.6}
+    .hero p.lead{margin:0;color:var(--muted);font-size:1rem;line-height:1.6;white-space:pre-line}
     .hero img{
       width:100%;
       height:auto;
@@ -139,7 +139,7 @@
     "@type":"WebPage",
     "name":"Home Match Concierge",
     "url":"https://savagelane.com/concierge.html",
-    "description":"Referral concierge for buyers and sellers. Share your city and timing and get introduced to a licensed local real estate professional in your market.",
+    "description":"Request a referral introduction to a licensed local real estate professional. Share your location and timeline and we will place the referral through the Coldwell Banker Realty Referral Network.",
     "isPartOf":{
       "@type":"WebSite",
       "name":"Savage Lane",
@@ -183,22 +183,20 @@
   <main>
     <div class="container">
       <section class="hero">
-             <img src="/images/CBconnections.jpg" alt="Coldwell Banker Realty Referral Network creative">
-      <p class="lead">
-        We will place a referral introduction through the brokerage referral program and connect you with an appropriate licensed real estate professional.
+        <img src="/images/CBconnections.jpg" alt="Coldwell Banker Realty Referral Network creative">
+        <p class="lead">
+We place referral introductions through the brokerage referral program and connect you with an appropriate licensed real estate professional.
 Daniel Belliveau is a licensed Referral Agent with Coldwell Banker Realty Referral Network.
 Savage Lane is an independent referral introduction website and is not operated by Coldwell Banker Realty Referral Network.
 
-        No advice, negotiation, or transaction participation is provided through this site.
-        All real estate services are provided by a licensed real estate sales agent.
-      </p>
-
-
+No advice, negotiation, or transaction participation is provided through this site.
+All real estate services are provided by a licensed real estate professional.
+        </p>
       </section>
 
       <section class="grid" style="margin-top:18px">
         <div class="card" aria-labelledby="matchform" style="max-width:760px;margin:0 auto">
-          <h2 id="matchform">Request your match</h2>
+          <h2 id="matchform">Request a referral</h2>
 
           <form id="matchForm" action="https://formspree.io/f/mldpyljb" method="POST" novalidate>
             <input class="hp" type="text" name="_subject_line" tabindex="-1" autocomplete="off" />
@@ -254,14 +252,15 @@ Savage Lane is an independent referral introduction website and is not operated 
             <input type="hidden" id="location" name="location" />
 
             <div>
-              <label for="intent">Buying or selling</label>
+              <label for="intent">Intent</label>
               <select id="intent" name="intent" required>
                 <option value="">Choose one</option>
                 <option>Buying</option>
                 <option>Selling</option>
                 <option>Both</option>
+                <option>Renting</option>
               </select>
-              <div id="intentErr" class="error">Choose buying selling or both</div>
+              <div id="intentErr" class="error">Choose an option</div>
             </div>
 
             <div>
@@ -334,15 +333,15 @@ Savage Lane is an independent referral introduction website and is not operated 
 
             <div class="full">
               <label for="comments">Additional comments <span class="hint">(optional)</span></label>
-              <textarea id="comments" name="comments" rows="4" placeholder="Anything else that would help your match"></textarea>
+              <textarea id="comments" name="comments" rows="4" placeholder="Anything else that would help the referral" ></textarea>
             </div>
 
             <div class="full" style="margin-top:4px">
-              <button type="submit" id="submitBtn"><span class="btn-text">Request my match</span></button>
+              <button type="submit" id="submitBtn"><span class="btn-text">Submit request</span></button>
               <div id="status" class="status" aria-live="polite"></div>
               <p class="legal">
                 Your request will be placed through the Coldwell Banker Realty Referral Network, and a licensed real estate professional affiliated with Coldwell Banker may contact you to discuss your request.
-  </p>
+              </p>
             </div>
           </form>
         </div>

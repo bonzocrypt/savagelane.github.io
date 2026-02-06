@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Savage Lane Guide Inventory Report</title>
+  <title>Savage Lane Admin Status</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <link rel="icon" href="/images/favicon.png" type="image/png" sizes="32x32">
@@ -18,8 +18,6 @@
       --shadow:0 18px 40px rgba(0,0,0,.25);
       --radius:14px;
       --wrap:980px;
-      --buyer:#1b3d8f;
-      --seller:#7f1d1d;
     }
     *{ box-sizing:border-box }
     body{
@@ -37,295 +35,72 @@
       background:var(--panel); border:1px solid var(--border);
       border-radius:var(--radius); padding:16px; margin:12px 0; box-shadow:var(--shadow);
     }
-    .controls{ display:flex; gap:10px; align-items:center; flex-wrap:wrap }
     .btn{ display:inline-flex; align-items:center; gap:8px; border-radius:10px;
       padding:10px 14px; font-weight:700; cursor:pointer; border:0;
     }
-    .btn.primary{ background:var(--accent); color:#fff }
-    .btn.secondary{ background:#2b2f3a; border:1px solid #343a46; color:#fff; font-weight:600 }
-    .btn.ghost{ background:#1b2236; border:1px solid #2a3147; color:#c9d4f0 }
-    .grid{ display:grid; grid-template-columns:1fr; gap:16px }
-    @media(min-width:900px){ .grid{ grid-template-columns:1fr 1fr } }
-    section h2{ margin:0 0 8px; font-size:1.1rem }
-    ul{ margin:8px 0 0; padding-left:18px }
-    li{ margin:6px 0 }
-    a{ color:#8ab4ff; text-decoration:none }
-    a:hover{ text-decoration:underline }
-    .ok{ color:#9fe29f }
-    .warn{ color:#ffd27d }
-    .err{ color:#ff9b9b }
+    .btn.primary{ background:var(--accent); color:#fff; text-decoration:none }
     footer{ margin-top:24px; color:var(--muted); display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap }
-
-    /* Chips */
-    .cat-row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap }
-    .cat-chip{
-      display:inline-flex; align-items:center; gap:6px;
-      border-radius:999px; padding:6px 10px; font-weight:700; cursor:pointer;
-      background:#1c2438; border:1px solid #2a3147; color:#c9d4f0;
-      transition:background .2s, box-shadow .2s;
-    }
-    .cat-chip:hover{ box-shadow:0 0 0 2px rgba(255,255,255,.15) inset }
-    .cat-chip.active.buyer{ background:var(--buyer); color:#e9f0ff; box-shadow:0 0 8px var(--buyer) inset }
-    .cat-chip.active.seller{ background:var(--seller); color:#ffecec; box-shadow:0 0 8px var(--seller) inset }
+    code{ background:#111827; border:1px solid #2a3147; border-radius:8px; padding:2px 6px }
   </style>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-P2K745NG');</script>
-<!-- End Google Tag Manager -->
 
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),
+      dl=l!='dataLayer' ? '&l='+l : '';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P2K745NG');
+  </script>
+  <!-- End Google Tag Manager -->
 </head>
+
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2K745NG"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2K745NG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <div class="wrap">
     <header>
       <a class="brand" href="/" aria-label="Savage Lane Home">
         <img src="/images/savage-lane-logo.png" alt="Savage Lane logo">
         <div>
-          <h1>Guide inventory report</h1>
-          <p class="muted">Scan Buyers and Sellers hubs for guide links, check each file, and list what is missing or unlinked.</p>
+          <h1>Admin status</h1>
+          <p class="muted">Private admin page only</p>
         </div>
       </a>
-      <div class="controls">
-        <button id="run" class="btn primary">Run scan</button>
-        <button id="export" class="btn ghost">Export categories</button>
-        <button id="print" class="btn secondary">Print or save</button>
-      </div>
+      <a class="btn primary" href="/concierge.html">Open concierge</a>
     </header>
 
-<div class="panel">
-  <div class="muted">Checked pages: <code>/buyers.html</code> and <code>/sellers.html</code>. Also checks <code>/sitemap.html</code> if present.</div>
-  <hr style="border:0;border-top:1px solid #2a3147;margin:12px 0">
-  <h2 style="margin:0 0 6px;font-size:1.05rem">How to use this page</h2>
-  <ol class="muted" style="margin:8px 0 0;padding-left:18px">
-    <li>Click <b>Run scan</b> to populate the lists.</li>
-    <li>In <b>Unlinked guides</b>, click the <b>🟦 Buyers</b> or <b>🟥 Sellers</b> chip next to any guide you want to categorize.
-      <br><span style="opacity:.9">Tip: the chip “lights up” when selected. Click again to toggle off. Only one side can be active at a time.</span>
-    </li>
-    <li>Click <b>Export categories</b> to download a file named <code>guide-categories.json</code>.</li>
-    <li>Save that file to <code>/tools/guide-categories.json</code> in your repo (same level as <code>/tools/generate-guides.js</code>).</li>
-    <li>From your project root, run:
-      <pre style="background:#111827;border:1px solid #2a3147;border-radius:8px;padding:10px;overflow:auto;margin:8px 0 0"><code>npm run generate</code></pre>
-      This regenerates <code>/guides/index.html</code> and <code>/sitemap.html</code> with your new categories.
-    </li>
-    <li>Commit &amp; push your changes to publish.</li>
-  </ol>
-  <p class="muted" style="margin-top:10px">Optional: If <code>/tools/guide-categories.json</code> already exists, this page will load it on refresh so your past selections appear pre-lit.</p>
-</div>
-
-
-    <div id="results" class="grid" aria-live="polite">
-      <section class="panel">
-        <h2>Missing on site <span id="count-missing" class="err"></span></h2>
-        <div id="missing">Run the scan…</div>
-      </section>
-      <section class="panel">
-        <h2>Working on hubs <span id="count-working" class="ok"></span></h2>
-        <div id="working">Run the scan…</div>
-      </section>
-      <section class="panel" style="grid-column:1/-1">
-        <h2>Unlinked guides <span id="count-unlinked" class="warn"></span></h2>
-        <div id="unlinked">Run the scan…</div>
-      </section>
+    <div class="panel">
+      <h2 style="margin:0 0 8px;font-size:1.1rem">Guide tooling is disabled</h2>
+      <p class="muted" style="margin:0">
+        This site operates in referral only mode.
+        Guide generation and guide inventory workflows are intentionally disabled to prevent publishing noncompliant content.
+      </p>
+      <p class="muted" style="margin:10px 0 0">
+        If you see any stale references to removed pages, remove them from the source files and redeploy.
+      </p>
+      <p class="muted" style="margin:10px 0 0">
+        Disabled script: <code>/tools/generate-guides.js</code>
+      </p>
     </div>
 
     <footer>
       <div>© <span id="y"></span> Savage Lane</div>
-      <div class="muted">Private admin report only</div>
+      <div class="muted">Noindex nofollow</div>
     </footer>
   </div>
 
-     <script>
-    (function(){
-      // Utilities
-      function byId(id){ return document.getElementById(id); }
-      function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]); }); }
-      function listify(arr, badgesByPath){
-        if(!arr || !arr.length) return '<p class="muted">None</p>';
-        return '<ul>' + arr.map(function(p){
-          var badges = '';
-          if(badgesByPath && badgesByPath[p]){
-            badges = ' ' + badgesByPath[p].map(function(b){ return '<code class="badge">' + esc(b) + '</code>'; }).join(' ');
-          }
-          return '<li><a href="' + esc(p) + '" target="_blank" rel="noopener">' + esc(p) + '</a>' + badges + '</li>';
-        }).join('') + '</ul>';
-      }
-      function extractGuideLinks(doc){
-        if(!doc) return [];
-        var nodes = doc.querySelectorAll('a[href]');
-        var out = [];
-        for(var i=0;i<nodes.length;i++){
-          var h = nodes[i].getAttribute('href');
-          try{
-            var u = new URL(h, location.origin);
-            if(u.pathname.indexOf('/guides/') === 0 && u.pathname.slice(-5) === '.html'){
-              out.push(u.pathname);
-            }
-          }catch(e){}
-        }
-        return out;
-      }
-      function toGuidePath(filename){
-        if(!filename) return null;
-        var clean = String(filename).trim();
-        if(!clean) return null;
-        return clean.indexOf('/guides/') === 0 ? clean : '/guides/' + clean;
-      }
-      function headExists(path){
-        var url = new URL(path, location.origin).toString();
-        return fetch(url, { method:'HEAD', redirect:'follow', cache:'no-store' })
-          .then(function(r){
-            if(r.status === 405 || r.status === 501){
-              return fetch(url, { method:'GET', redirect:'follow', cache:'no-store', headers:{ Accept:'text/html' } })
-                .then(function(r2){ return r2.ok; })
-                .catch(function(){ return false; });
-            }
-            return r.ok;
-          })
-          .catch(function(){ return false; });
-      }
-
-      // Init footer year (non-blocking)
-      var y = byId('y');
-      if(y) y.textContent = new Date().getFullYear();
-
-      // Core scan
-      function runScan(){
-        // UI: set scanning placeholders
-        var missingEl = byId('missing');
-        var workingEl = byId('working');
-        var unlinkedEl = byId('unlinked');
-        var cm = byId('count-missing');
-        var cw = byId('count-working');
-        var cu = byId('count-unlinked');
-        var note = byId('sitemap-note');
-
-        function setScanning(){
-          if(missingEl) missingEl.innerHTML = '<p class="muted">Scanning…</p>';
-          if(workingEl) workingEl.innerHTML = '<p class="muted">Scanning…</p>';
-          if(unlinkedEl) unlinkedEl.innerHTML = '<p class="muted">Scanning…</p>';
-          if(cm) cm.textContent = '';
-          if(cw) cw.textContent = '';
-          if(cu) cu.textContent = '';
-          if(note) note.textContent = 'This section uses sitemap and manual overrides when available.';
-        }
-        setScanning();
-
-        // safe helpers
-        function safeFetchDoc(path){
-          return fetch(path, { cache:'no-store' })
-            .then(function(res){ if(!res.ok) return null; return res.text(); })
-            .then(function(html){ return html ? (new DOMParser()).parseFromString(html, 'text/html') : null; })
-            .catch(function(){ return null; });
-        }
-        function safeFetchJSON(path){
-          return fetch(path, { cache:'no-store' })
-            .then(function(res){ if(!res.ok) return null; return res.json(); })
-            .catch(function(){ return null; });
-        }
-
-        // Execute
-        Promise.all([ safeFetchDoc('/buyers.html'), safeFetchDoc('/sellers.html') ])
-          .then(function(hubDocs){
-            var buyersDoc = hubDocs[0];
-            var sellersDoc = hubDocs[1];
-
-            var buyersOnPage = new Set(extractGuideLinks(buyersDoc));
-            var sellersOnPage = new Set(extractGuideLinks(sellersDoc));
-
-            return Promise.all([
-              safeFetchDoc('/sitemap.html'),
-              safeFetchJSON('/tools/guide-categories.json')
-            ]).then(function(pair){
-              var siteDoc = pair[0];
-              var overrides = pair[1] || {};
-              var buyersOverrideArr = Array.isArray(overrides.buyers) ? overrides.buyers : [];
-              var sellersOverrideArr = Array.isArray(overrides.sellers) ? overrides.sellers : [];
-              var buyersOverride = new Set(buyersOverrideArr.map(toGuidePath).filter(Boolean));
-              var sellersOverride = new Set(sellersOverrideArr.map(toGuidePath).filter(Boolean));
-
-              var siteLinks = siteDoc ? new Set(Array.from(new Set(extractGuideLinks(siteDoc)))) : new Set();
-
-              var buyersSet = new Set([].concat(Array.from(buyersOnPage), Array.from(buyersOverride)));
-              var sellersSet = new Set([].concat(Array.from(sellersOnPage), Array.from(sellersOverride)));
-              var hubOnly = new Set([].concat(Array.from(buyersOnPage), Array.from(sellersOnPage)));
-
-              var managed = new Set([].concat(Array.from(buyersSet), Array.from(sellersSet)));
-
-              // existence checks only for those referenced by hubs (to compute missing/working)
-              return Promise.all(Array.from(hubOnly).map(function(p){
-                return headExists(p).then(function(ok){ return [p, ok]; });
-              })).then(function(hubPairs){
-                var managedChecks = {};
-                for(var i=0;i<hubPairs.length;i++){ managedChecks[hubPairs[i][0]] = hubPairs[i][1]; }
-
-                var hubMissing = Array.from(hubOnly).filter(function(p){ return !managedChecks[p]; });
-                var hubWorking = Array.from(hubOnly).filter(function(p){ return managedChecks[p]; });
-
-                var unlinked = Array.from(siteLinks).filter(function(p){ return !buyersSet.has(p) && !sellersSet.has(p); });
-
-                // badges
-                var badges = {};
-                function addBadge(p, b){
-                  if(!badges[p]) badges[p] = [];
-                  badges[p].push(b);
-                }
-                buyersOnPage.forEach(function(p){ addBadge(p, 'Hub: Buyers'); });
-                sellersOnPage.forEach(function(p){ addBadge(p, 'Hub: Sellers'); });
-                buyersOverride.forEach(function(p){ addBadge(p, 'JSON: Buyers'); });
-                sellersOverride.forEach(function(p){ addBadge(p, 'JSON: Sellers'); });
-
-                // update UI safely
-                if(missingEl) missingEl.innerHTML = listify(hubMissing, badges);
-                if(workingEl) workingEl.innerHTML = listify(hubWorking, badges);
-                if(unlinkedEl) unlinkedEl.innerHTML = siteDoc ? listify(unlinked, badges) : '<p class="muted">No sitemap found so this section is skipped.</p>';
-                if(cm && hubMissing.length) cm.textContent = '(' + hubMissing.length + ')';
-                if(cw && hubWorking.length) cw.textContent = '(' + hubWorking.length + ')';
-                if(cu && siteDoc && unlinked.length) cu.textContent = '(' + unlinked.length + ')';
-              });
-            });
-          })
-          .catch(function(err){
-            // Hard-fail fallback so the UI doesn't get stuck
-            if(missingEl) missingEl.innerHTML = '<p class="muted">Scan failed.</p>';
-            if(workingEl) workingEl.innerHTML = '<p class="muted">Scan failed.</p>';
-            if(unlinkedEl) unlinkedEl.innerHTML = '<p class="muted">Scan failed.</p>';
-            console.error('Admin scan error:', err);
-          });
-      }
-
-      // Wire buttons (never block UI)
-      var runBtn = byId('run');
-      var printBtn = byId('print');
-      if(runBtn){
-        runBtn.addEventListener('click', function(e){ e.preventDefault(); runScan(); });
-      }
-      if(printBtn){
-        printBtn.addEventListener('click', function(e){ e.preventDefault(); window.print(); });
-      }
-
-      // Auto run once (with a failsafe timeout to re-enable UI text if something stalls)
-      runScan();
-      setTimeout(function(){
-        var stillScanning =
-          /Scanning…/.test((byId('missing')||{}).textContent || '') &&
-          /Scanning…/.test((byId('working')||{}).textContent || '') &&
-          /Scanning…/.test((byId('unlinked')||{}).textContent || '');
-        if(stillScanning){
-          // show a gentle nudge instead of locking the page
-          var m = byId('missing'); if(m) m.innerHTML = '<p class="muted">Could not complete scan. Click “Run scan” to try again.</p>';
-          var w = byId('working'); if(w) w.innerHTML = '<p class="muted">Could not complete scan. Click “Run scan” to try again.</p>';
-          var u = byId('unlinked'); if(u) u.innerHTML = '<p class="muted">Could not complete scan. Click “Run scan” to try again.</p>';
-        }
-      }, 6000);
-    })();
+  <script>
+    var y = document.getElementById('y');
+    if (y) y.textContent = new Date().getFullYear();
   </script>
-
 </body>
 </html>
