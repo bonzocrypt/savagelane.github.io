@@ -2,70 +2,270 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Savage Lane</title>
+  <title>Savage Lane | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="icon" href="/images/favicon.png" type="image/png" sizes="32x32">
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
-  <meta name="description" content="Savage Lane">
+  <meta name="description" content="Savage Lane portfolio featuring digital projects including Vault My Bag and Event Pricing.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://savagelane.com/">
 
-  <meta property="og:title" content="Savage Lane">
-  <meta property="og:description" content="Savage Lane">
+  <meta property="og:title" content="Savage Lane | Portfolio">
+  <meta property="og:description" content="Explore featured Savage Lane projects including Vault My Bag and Event Pricing.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://savagelane.com/">
   <meta property="og:image" content="https://savagelane.com/images/default-og.png">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Savage Lane">
-  <meta name="twitter:description" content="Savage Lane">
+  <meta name="twitter:title" content="Savage Lane | Portfolio">
+  <meta name="twitter:description" content="Explore featured Savage Lane projects including Vault My Bag and Event Pricing.">
   <meta name="twitter:image" content="https://savagelane.com/images/default-og.png">
 
   <style>
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:#0f1115;
-      color:#ffffff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:100vh;
-      text-align:center;
+    :root {
+      --bg: #0b0d12;
+      --panel: rgba(255,255,255,0.05);
+      --panel-border: rgba(255,255,255,0.1);
+      --text: #ffffff;
+      --muted: #a8b0bd;
+      --soft: #7e8794;
+      --accent: #d6b36a;
+      --accent-2: #f4e0b0;
+      --shadow: 0 24px 70px rgba(0,0,0,0.45);
+      --radius: 22px;
+      --max: 1160px;
     }
 
-    .container{
-      max-width:600px;
-      padding:30px;
+    * {
+      box-sizing: border-box;
     }
 
-    h1{
-      font-size:48px;
-      margin:0 0 10px 0;
-      line-height:1.1;
+    html {
+      scroll-behavior: smooth;
     }
 
-    p{
-      font-size:18px;
-      color:#b8b8b8;
-      margin:0;
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(214,179,106,0.12), transparent 32%),
+        linear-gradient(180deg, #0b0d12 0%, #11151d 100%);
+      color: var(--text);
+      min-height: 100vh;
     }
 
-    footer{
-      margin-top:40px;
-      font-size:14px;
-      color:#777;
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: 100%;
+      padding: 56px 24px 40px;
+    }
+
+    .hero {
+      max-width: var(--max);
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(214,179,106,0.25);
+      border-radius: 999px;
+      color: var(--accent-2);
+      background: rgba(214,179,106,0.08);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin: 0 0 16px;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: clamp(18px, 2.4vw, 22px);
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .portfolio-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--panel-border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      min-height: 320px;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(214,179,106,0.35);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+    }
+
+    .card-link {
+      display: block;
+      height: 100%;
+      padding: 32px;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--accent-2);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .arrow {
+      font-size: 24px;
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: clamp(28px, 3vw, 38px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .pill {
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #d8dde6;
+      font-size: 14px;
+    }
+
+    .footer {
+      max-width: var(--max);
+      margin: 36px auto 0;
+      text-align: center;
+      font-size: 14px;
+      color: var(--soft);
+    }
+
+    @media (max-width: 820px) {
+      .page {
+        padding: 36px 18px 28px;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 0;
+      }
+
+      .card-link {
+        padding: 26px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Savage Lane</h1>
-    <p>A place for ideas, projects, and future experiments.</p>
-    <footer>© 2026 Savage Lane</footer>
-  </div>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">Savage Lane Portfolio</div>
+      <h1>Digital products built with strategy, design, and execution.</h1>
+      <p>
+        Savage Lane is a portfolio hub for original web projects focused on real utility, polished presentation, and scalable product thinking.
+      </p>
+    </section>
+
+    <section class="portfolio-grid" aria-label="Featured projects">
+      <article class="card">
+        <a class="card-link" href="https://vaultmybag.com/" target="_blank" rel="noopener noreferrer">
+          <div class="card-top">
+            <span class="tag">Featured Project</span>
+            <span class="arrow">↗</span>
+          </div>
+          <h2>Vault My Bag</h2>
+          <p>
+            A luxury handbag platform built to help collectors organize inventory, track details, manage images, and gain deeper insight into value, ownership, and resale potential.
+          </p>
+          <div class="highlights">
+            <span class="pill">Luxury inventory</span>
+            <span class="pill">Resale insights</span>
+            <span class="pill">Private collections</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="card">
+        <a class="card-link" href="https://eventpricing.com/" target="_blank" rel="noopener noreferrer">
+          <div class="card-top">
+            <span class="tag">Featured Project</span>
+            <span class="arrow">↗</span>
+          </div>
+          <h2>Event Pricing</h2>
+          <p>
+            An event discovery and ticket intelligence platform designed to surface what is happening, compare demand, and make it easier to evaluate live event opportunities with better timing.
+          </p>
+          <div class="highlights">
+            <span class="pill">Event discovery</span>
+            <span class="pill">Ticket intelligence</span>
+            <span class="pill">Market driven data</span>
+          </div>
+        </a>
+      </article>
+    </section>
+
+    <footer class="footer">© 2026 Savage Lane</footer>
+  </main>
 </body>
 </html>
