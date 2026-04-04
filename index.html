@@ -167,10 +167,57 @@
     }
 
     .card p {
-      margin: 0 0 28px;
+      margin: 0 0 24px;
       color: var(--muted);
       font-size: 17px;
       line-height: 1.75;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin: 0 0 24px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(214,179,106,0.28);
+      background: rgba(214,179,106,0.08);
+      color: var(--accent-2);
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .project-link:hover {
+      background: rgba(214,179,106,0.14);
+      border-color: rgba(214,179,106,0.42);
+      transform: translateY(-1px);
+    }
+
+    .play-badge-link {
+      display: inline-flex;
+      align-items: center;
+      line-height: 0;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .play-badge-link:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
+    .play-badge {
+      display: block;
+      height: 44px;
+      width: auto;
     }
 
     .highlights {
@@ -213,6 +260,14 @@
       .card-link {
         padding: 26px;
       }
+
+      .project-links {
+        align-items: flex-start;
+      }
+
+      .play-badge {
+        height: 42px;
+      }
     }
   </style>
 </head>
@@ -227,79 +282,94 @@
       </p>
     </section>
 
-<section class="portfolio-grid" aria-label="Featured projects">
-  <article class="card">
-    <a class="card-link" href="https://vaultmybag.com/" target="_blank" rel="noopener noreferrer">
-      <div class="card-top">
-        <span class="tag">Featured Project</span>
-        <span class="arrow">↗</span>
-      </div>
-      <h2>Vault My Bag</h2>
-      <p>
-        A luxury handbag platform built to help collectors organize inventory, track details, manage images, and gain deeper insight into value, ownership, and resale potential.
-      </p>
-      <div class="highlights">
-        <span class="pill">Luxury inventory</span>
-        <span class="pill">Resale insights</span>
-        <span class="pill">Private collections</span>
-      </div>
-    </a>
-  </article>
+    <section class="portfolio-grid" aria-label="Featured projects">
+      <article class="card">
+        <div class="card-link">
+          <div class="card-top">
+            <span class="tag">Featured Project</span>
+            <span class="arrow">↗</span>
+          </div>
+          <h2>Vault My Bag</h2>
+          <p>
+            A luxury handbag platform built to help collectors organize inventory, track details, manage images, and gain deeper insight into value, ownership, and resale potential.
+          </p>
+          <div class="project-links">
+            <a class="project-link" href="https://vaultmybag.com/" target="_blank" rel="noopener noreferrer">Visit Website</a>
+          </div>
+          <div class="highlights">
+            <span class="pill">Luxury inventory</span>
+            <span class="pill">Resale insights</span>
+            <span class="pill">Private collections</span>
+          </div>
+        </div>
+      </article>
 
-  <article class="card">
-    <a class="card-link" href="https://eventpricing.com/" target="_blank" rel="noopener noreferrer">
-      <div class="card-top">
-        <span class="tag">Featured Project</span>
-        <span class="arrow">↗</span>
-      </div>
-      <h2>Event Pricing</h2>
-      <p>
-        An event discovery and ticket intelligence platform designed to surface what is happening, compare demand, and make it easier to evaluate live event opportunities with better timing.
-      </p>
-      <div class="highlights">
-        <span class="pill">Event discovery</span>
-        <span class="pill">Ticket intelligence</span>
-        <span class="pill">Market driven data</span>
-      </div>
-    </a>
-  </article>
+      <article class="card">
+        <div class="card-link">
+          <div class="card-top">
+            <span class="tag">Featured Project</span>
+            <span class="arrow">↗</span>
+          </div>
+          <h2>Event Pricing</h2>
+          <p>
+            An event discovery and ticket intelligence platform designed to surface what is happening, compare demand, and make it easier to evaluate live event opportunities with better timing.
+          </p>
+          <div class="project-links">
+            <a class="project-link" href="https://eventpricing.com/" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            <a class="play-badge-link" href="https://play.google.com/store/apps/details?id=com.eventpricing.app" target="_blank" rel="noopener noreferrer" aria-label="Get Event Pricing on Google Play">
+              <img class="play-badge" src="/images/google-play-badge.png" alt="Get it on Google Play">
+            </a>
+          </div>
+          <div class="highlights">
+            <span class="pill">Event discovery</span>
+            <span class="pill">Ticket intelligence</span>
+            <span class="pill">Market driven data</span>
+          </div>
+        </div>
+      </article>
 
-  <article class="card">
-    <a class="card-link" href="https://smartdogautomation.com/" target="_blank" rel="noopener noreferrer">
-      <div class="card-top">
-        <span class="tag">Featured Project</span>
-        <span class="arrow">↗</span>
-      </div>
-      <h2>Smart Dog Automation</h2>
-      <p>
-        A local business growth site focused on helping pet groomers improve their online presence, capture more leads, automate follow up, and turn more website visitors into booked appointments.
-      </p>
-      <div class="highlights">
-        <span class="pill">Local service sales</span>
-        <span class="pill">Lead automation</span>
-        <span class="pill">Pet groomer focus</span>
-      </div>
-    </a>
-  </article>
+      <article class="card">
+        <div class="card-link">
+          <div class="card-top">
+            <span class="tag">Featured Project</span>
+            <span class="arrow">↗</span>
+          </div>
+          <h2>Smart Dog Automation</h2>
+          <p>
+            A local business growth site focused on helping pet groomers improve their online presence, capture more leads, automate follow up, and turn more website visitors into booked appointments.
+          </p>
+          <div class="project-links">
+            <a class="project-link" href="https://smartdogautomation.com/" target="_blank" rel="noopener noreferrer">Visit Website</a>
+          </div>
+          <div class="highlights">
+            <span class="pill">Local service sales</span>
+            <span class="pill">Lead automation</span>
+            <span class="pill">Pet groomer focus</span>
+          </div>
+        </div>
+      </article>
 
-  <article class="card">
-    <a class="card-link" href="https://therecycleroom.com/" target="_blank" rel="noopener noreferrer">
-      <div class="card-top">
-        <span class="tag">Featured Project</span>
-        <span class="arrow">↗</span>
-      </div>
-      <h2>The Recycle Room</h2>
-<p>
-  A premium resale and consignment website built to help people sell higher value items through a polished, trust focused experience without handling listings, buyers, or shipping on their own.
-</p>
-      <div class="highlights">
-        <span class="pill">Business website</span>
-        <span class="pill">Brand presence</span>
-        <span class="pill">Customer focused</span>
-      </div>
-    </a>
-  </article>
-</section>
+      <article class="card">
+        <div class="card-link">
+          <div class="card-top">
+            <span class="tag">Featured Project</span>
+            <span class="arrow">↗</span>
+          </div>
+          <h2>The Recycle Room</h2>
+          <p>
+            A premium resale and consignment website built to help people sell higher value items through a polished, trust focused experience without handling listings, buyers, or shipping on their own.
+          </p>
+          <div class="project-links">
+            <a class="project-link" href="https://therecycleroom.com/" target="_blank" rel="noopener noreferrer">Visit Website</a>
+          </div>
+          <div class="highlights">
+            <span class="pill">Business website</span>
+            <span class="pill">Brand presence</span>
+            <span class="pill">Customer focused</span>
+          </div>
+        </div>
+      </article>
+    </section>
 
     <footer class="footer">© 2026 Savage Lane</footer>
   </main>
