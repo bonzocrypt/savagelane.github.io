@@ -53,15 +53,13 @@
       scroll-behavior: smooth;
     }
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(214,179,106,0.12), transparent 32%),
-        linear-gradient(180deg, #0b0d12 0%, #11151d 100%);
-      color: var(--text);
-      min-height: 100vh;
-    }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #000000;
+  color: var(--text);
+  min-height: 100vh;
+}
 
     a {
       color: inherit;
@@ -153,6 +151,109 @@
       display: block;
       height: 100%;
       padding: 32px;
+    }
+
+    .image-only-card {
+      border: none;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .image-only-card .card-link {
+      padding: 0;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000000;
+    }
+
+    .project-card-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .event-card {
+      border: none;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .event-card .card-link {
+      padding: 0;
+      position: relative;
+      aspect-ratio: 16 / 9;
+      display: block;
+      background: #000000;
+    }
+
+    .event-card .project-card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .smartdog-card {
+      border: none;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .smartdog-card .card-link {
+      padding: 0;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000000;
+    }
+
+    .smartdog-card .project-card-image {
+      width: 88%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .recycle-card {
+      border: none;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .recycle-card .card-link {
+      padding: 0;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000000;
+    }
+
+    .recycle-card .project-card-image {
+      width: 88%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .event-main-link {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 18%;
+      z-index: 2;
+    }
+
+    .event-play-link {
+      position: absolute;
+      left: 36%;
+      width: 28%;
+      bottom: 6%;
+      height: 14%;
+      z-index: 3;
+      border-radius: 16px;
     }
 
     .card-top {
@@ -313,99 +414,69 @@
           height="630"
         >
       </div>
-
-      <h1>Digital products built with strategy, design, and execution.</h1>
-      <p>
-        Savage Lane is a portfolio hub for original web projects focused on real utility, polished presentation, and scalable product thinking.
-      </p>
     </section>
 
     <section class="portfolio-grid" aria-label="Featured projects">
-      <article class="card">
+      <article class="card image-only-card">
+        <a class="card-link" href="https://vaultmybag.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Vault My Bag">
+          <img
+            class="project-card-image"
+            src="/images/vaultmybag_card.png"
+            alt="Vault My Bag luxury inventory and handbag collection management"
+            width="1200"
+            height="900"
+          >
+        </a>
+      </article>
+
+      <article class="card event-card">
         <div class="card-link">
-          <div class="card-top">
-            <span class="tag">Featured Project</span>
-            <span class="arrow">↗</span>
-          </div>
-          <h2>Vault My Bag</h2>
-          <p>
-            A luxury handbag platform built to help collectors organize inventory, track details, manage images, and gain deeper insight into value, ownership, and resale potential.
-          </p>
-          <div class="project-links">
-            <a class="project-link" href="https://vaultmybag.com/" target="_blank" rel="noopener noreferrer">Visit Website</a>
-          </div>
-          <div class="highlights">
-            <span class="pill">Luxury inventory</span>
-            <span class="pill">Resale insights</span>
-            <span class="pill">Private collections</span>
-          </div>
+          <img
+            class="project-card-image"
+            src="/images/eventpricing_card.png"
+            alt="Event Pricing helps users discover live events, save favorites, and get presale alerts"
+            width="1200"
+            height="900"
+          >
+          <a
+            class="event-main-link"
+            href="https://eventpricing.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit Event Pricing website"
+          ></a>
+          <a
+            class="event-play-link"
+            href="https://play.google.com/store/apps/details?id=com.eventpricing.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Get Event Pricing on Google Play"
+          ></a>
         </div>
       </article>
 
-      <article class="card">
-        <div class="card-link">
-          <div class="card-top">
-            <span class="tag">Featured Project</span>
-            <span class="arrow">↗</span>
-          </div>
-          <h2>Event Pricing</h2>
-          <p>
-            An event discovery and ticket intelligence platform designed to surface what is happening, compare demand, and make it easier to evaluate live event opportunities with better timing.
-          </p>
-          <div class="project-links">
-            <a class="project-link" href="https://eventpricing.com/" target="_blank" rel="noopener noreferrer">Visit Website</a>
-            <a class="play-badge-link" href="https://play.google.com/store/apps/details?id=com.eventpricing.app" target="_blank" rel="noopener noreferrer" aria-label="Get Event Pricing on Google Play">
-              <img class="play-badge" src="/images/google-play-badge.png" alt="Get it on Google Play">
-            </a>
-          </div>
-          <div class="highlights">
-            <span class="pill">Event discovery</span>
-            <span class="pill">Ticket intelligence</span>
-            <span class="pill">Market driven data</span>
-          </div>
-        </div>
+      <article class="card recycle-card">
+        <a class="card-link" href="https://therecycleroom.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit The Recycle Room">
+          <img
+            class="project-card-image"
+            src="/images/recycleroom_card.png"
+            alt="The Recycle Room premium resale and consignment for higher value items"
+            width="1672"
+            height="941"
+          >
+        </a>
       </article>
 
-      <article class="card">
-        <div class="card-link">
-          <div class="card-top">
-            <span class="tag">Featured Project</span>
-            <span class="arrow">↗</span>
-          </div>
-          <h2>Smart Dog Automation</h2>
-          <p>
-            A local business growth site focused on helping pet groomers improve their online presence, capture more leads, automate follow up, and turn more website visitors into booked appointments.
-          </p>
-          <div class="project-links">
-            <a class="project-link" href="https://smartdogautomation.com/" target="_blank" rel="noopener noreferrer">Visit Website</a>
-          </div>
-          <div class="highlights">
-            <span class="pill">Local service sales</span>
-            <span class="pill">Lead automation</span>
-            <span class="pill">Pet groomer focus</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-link">
-          <div class="card-top">
-            <span class="tag">Featured Project</span>
-            <span class="arrow">↗</span>
-          </div>
-          <h2>The Recycle Room</h2>
-          <p>
-            A premium resale and consignment website built to help people sell higher value items through a polished, trust focused experience without handling listings, buyers, or shipping on their own.
-          </p>
-          <div class="project-links">
-            <a class="project-link" href="https://therecycleroom.com/" target="_blank" rel="noopener noreferrer">Visit Website</a>
-          </div>
-          <div class="highlights">
-            <span class="pill">Business website</span>
-            <span class="pill">Brand presence</span>
-            <span class="pill">Customer focused</span>
-          </div>
-        </div>
+      <article class="card smartdog-card">
+        <a class="card-link" href="https://smartdogautomation.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Smart Dog Automation">
+          <img
+            class="project-card-image"
+            src="/images/smartdogautomation_card.png"
+            alt="Smart Dog Automation websites, automation, and growth tools for pet groomers"
+            width="1672"
+            height="941"
+          >
+        </a>
       </article>
     </section>
 
