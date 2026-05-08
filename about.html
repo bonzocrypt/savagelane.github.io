@@ -2,87 +2,615 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>About | Savage Lane</title>
+  <title>About Dan Belliveau | Savage Lane</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="About Dan Belliveau, the builder behind Savage Lane. Digital product builder with experience in web apps, Firebase systems, SEO, admin dashboards, automation workflows, trading platforms, financial technology, crypto, and investment workflows.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#07080c">
+  <link rel="canonical" href="https://savagelane.com/about.html">
 
   <link rel="icon" href="/images/favicon.png" type="image/png" sizes="32x32">
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
-  <meta name="description" content="Savage Lane provides referral introductions to licensed real estate professionals through a concierge intake process." />
-  <link rel="canonical" href="https://savagelane.com/about.html">
-  <meta name="robots" content="index,follow">
-
-  <meta property="og:title" content="About | Savage Lane">
-  <meta property="og:description" content="Savage Lane provides referral introductions to licensed real estate professionals through a concierge intake process.">
-  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Savage Lane">
+  <meta property="og:title" content="About Dan Belliveau | Savage Lane">
+  <meta property="og:description" content="Dan Belliveau builds practical websites, apps, Firebase systems, SEO infrastructure, admin tools, and automation workflows through Savage Lane.">
+  <meta property="og:type" content="profile">
   <meta property="og:url" content="https://savagelane.com/about.html">
-  <meta property="og:image" content="https://savagelane.com/images/default-og.png">
+  <meta property="og:image" content="https://savagelane.com/images/savagelane_header.png">
+  <meta property="og:image:secure_url" content="https://savagelane.com/images/savagelane_header.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="Savage Lane digital product portfolio by Dan Belliveau">
 
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About Dan Belliveau | Savage Lane">
+  <meta name="twitter:description" content="Digital product builder focused on websites, apps, Firebase systems, SEO, admin tools, automation workflows, and product execution.">
+  <meta name="twitter:image" content="https://savagelane.com/images/savagelane_header.png">
 
-  <link rel="stylesheet" href="/css/style.css">
-
-  <script>
-    (function(w,d,s,l,i){
-      w[l]=w[l]||[];
-      w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
-      var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),
-      dl=l!='dataLayer' ? '&l='+l : '';
-      j.async=true;
-      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-      f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-P2K745NG');
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "https://savagelane.com/#dan-belliveau",
+      "name": "Dan Belliveau",
+      "url": "https://savagelane.com/about.html",
+"knowsAbout": [
+        "Web application development",
+        "Firebase",
+        "Firestore",
+        "Firebase Functions",
+        "SEO",
+        "Mobile app publishing",
+        "Automation workflows",
+        "AI assisted tools",
+        "Admin dashboards",
+        "Financial technology",
+        "Trading platforms",
+        "Investment workflows",
+        "Crypto and digital assets",
+        "Product development"
+      ],
+      "description": "Dan Belliveau is the builder behind Savage Lane, a digital product portfolio focused on practical websites, apps, backend systems, SEO infrastructure, admin tools, and automation workflows."
+    }
   </script>
+
+  <style>
+    :root {
+      --bg: #07080c;
+      --panel: rgba(255, 255, 255, 0.065);
+      --panel-strong: rgba(255, 255, 255, 0.095);
+      --border: rgba(255, 255, 255, 0.125);
+      --text: #ffffff;
+      --muted: #abb4c3;
+      --soft: #788292;
+      --accent: #d6b36a;
+      --accent-2: #f4e0b0;
+      --blue: #8ad7ff;
+      --shadow: 0 26px 90px rgba(0, 0, 0, 0.52);
+      --max: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(214, 179, 106, 0.18), transparent 30%),
+        radial-gradient(circle at 78% 14%, rgba(138, 215, 255, 0.13), transparent 28%),
+        linear-gradient(180deg, #07080c 0%, #090c12 48%, #050507 100%);
+      color: var(--text);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.82), transparent 74%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(7, 8, 12, 0.84);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand strong {
+      font-size: 15px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      color: var(--soft);
+      font-size: 12px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-2);
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 56px 22px 78px;
+    }
+
+    .hero {
+      overflow: hidden;
+      border-radius: 34px;
+      border: 1px solid rgba(214, 179, 106, 0.24);
+      background:
+        radial-gradient(circle at 16% 14%, rgba(214, 179, 106, 0.18), transparent 31%),
+        radial-gradient(circle at 82% 18%, rgba(138, 215, 255, 0.14), transparent 28%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.038));
+      box-shadow: var(--shadow);
+      padding: 48px;
+      margin-bottom: 26px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 34px;
+      padding: 8px 13px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(214, 179, 106, 0.28);
+      border-radius: 999px;
+      color: var(--accent-2);
+      background: rgba(214, 179, 106, 0.09);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 860px;
+      margin: 0 0 18px;
+      font-size: clamp(42px, 6.2vw, 76px);
+      line-height: 0.96;
+      letter-spacing: -0.058em;
+    }
+
+    .hero p {
+      max-width: 840px;
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.66;
+    }
+
+    .hero p strong {
+      color: #ffffff;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 14px;
+      font-weight: 850;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .button-primary {
+      color: #15110a;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-color: rgba(244, 224, 176, 0.52);
+    }
+
+    .button-secondary {
+      color: var(--accent-2);
+      background: rgba(214, 179, 106, 0.09);
+      border-color: rgba(214, 179, 106, 0.3);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(244, 224, 176, 0.58);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.78fr);
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, var(--panel-strong), rgba(255, 255, 255, 0.035)),
+        rgba(255, 255, 255, 0.025);
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.27);
+      border-radius: 28px;
+      padding: 28px;
+    }
+
+    .panel h2 {
+      margin: 0 0 16px;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
+
+    .panel h3 {
+      margin: 0 0 9px;
+      font-size: 20px;
+      letter-spacing: -0.025em;
+    }
+
+    .panel p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.72;
+    }
+
+    .panel p strong {
+      color: #ffffff;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 11px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .timeline li {
+      padding: 14px;
+      border-radius: 17px;
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .timeline strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #ffffff;
+      font-size: 14.5px;
+    }
+
+    .timeline span {
+      display: block;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.52;
+    }
+
+    .skill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 16px;
+    }
+
+    .tech-item {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.085);
+      color: #d8dde6;
+      font-size: 12.5px;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .proof-card {
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, var(--panel-strong), rgba(255, 255, 255, 0.035)),
+        rgba(255, 255, 255, 0.025);
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.27);
+    }
+
+    .proof-card strong {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--accent-2);
+      font-size: 12.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .proof-card p {
+      margin: 0;
+      color: #dfe6f1;
+      font-size: 15px;
+      line-height: 1.62;
+    }
+
+    .cta {
+      overflow: hidden;
+      padding: 36px 28px;
+      border-radius: 30px;
+      border: 1px solid rgba(214, 179, 106, 0.26);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(214, 179, 106, 0.16), transparent 32%),
+        radial-gradient(circle at 80% 0%, rgba(138, 215, 255, 0.12), transparent 30%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035));
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .cta h2 {
+      max-width: 780px;
+      margin: 0 auto 14px;
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .cta p {
+      max-width: 760px;
+      margin: 0 auto 22px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 22px 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--soft);
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-2);
+    }
+
+    @media (max-width: 900px) {
+      .content-grid,
+      .proof-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      main {
+        padding-top: 34px;
+      }
+
+      .hero {
+        padding: 30px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding: 28px 14px 58px;
+      }
+
+      .hero,
+      .panel,
+      .cta {
+        padding: 22px;
+        border-radius: 24px;
+      }
+
+      h1 {
+        font-size: clamp(40px, 13vw, 58px);
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2K745NG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
+  <div class="page">
+    <header class="nav" aria-label="Primary navigation">
+      <div class="nav-inner">
+        <a class="brand" href="/">
+          <strong>Savage Lane</strong>
+          <span>Digital product portfolio</span>
+        </a>
 
-  <header class="hero-header">
-    <img
-      src="/images/savage-lane-referral-concierge-header.png"
-      alt="Savage Lane Referral Concierge"
-    >
-  </header>
+        <nav class="nav-links" aria-label="Page sections">
+          <a href="/">Home</a>
+          <a href="/#work">Work</a>
+          <a href="/#services">Services</a>
+          <a href="/sitemap.html">Sitemap</a>
+          <a href="mailto:danbevo@gmail.com?subject=Savage%20Lane%20Project%20Inquiry">Contact</a>
+        </nav>
+      </div>
+    </header>
 
-  <main>
-    <div class="shell" style="max-width:1100px;margin:0 auto;padding:20px">
-      <article class="panel">
-        <h1>About Savage Lane</h1>
-
+    <main>
+      <section class="hero" aria-label="About Dan Belliveau">
+        <span class="eyebrow">About Dan</span>
+        <h1>Builder, systems thinker, and product operator.</h1>
         <p>
-          Savage Lane is a real estate referral concierge. If you want to buy, sell, or rent, this site helps you request an introduction to an appropriate licensed real estate professional in your area.
+          <strong>Dan Belliveau is the builder behind Savage Lane.</strong> He creates practical websites, web apps, backend systems, admin tools, SEO infrastructure, automation workflows, and AI assisted business systems.
         </p>
-
-        <h2>About me</h2>
-
         <p>
-          I am a licensed real estate Referral Agent with nearly 2 decades of experience in finance and over 7 years affiliated with the Coldwell Banker Realty Referral Network. Over the years I have learned what clients care about most, clear expectations, fast communication, and working with a professional who follows the rules and does the job the right way.
+          The work is shaped by 17+ years in financial technology and trading operations, plus hands on experience building live digital products from idea to launch.
         </p>
 
+        <div class="hero-actions">
+          <a class="button button-primary" href="/#work">View featured builds</a>
+          <a class="button button-secondary" href="mailto:danbevo@gmail.com?subject=Savage%20Lane%20Project%20Inquiry">Start a project inquiry</a>
+        </div>
+      </section>
+
+      <section class="content-grid" aria-label="Background and experience">
+        <article class="panel">
+          <h2>Why Savage Lane is different</h2>
+          <p>
+            A useful product is not just a homepage. It is the structure behind the screen: the data model, user flow, backend logic, admin process, SEO foundation, permissions, form handling, and edge case cleanup.
+          </p>
+          <p>
+            Before building Savage Lane projects, Dan spent more than 17 years at Fidelity Investments across trading, Active Trader services, platform product development, equities, options, margin, client support, compliance driven operations, and trading technology.
+          </p>
+          <p>
+            That background creates a different kind of builder mindset. Speed matters. Accuracy matters. Workflow design matters. Risk awareness matters. Products need to be clean enough for users and structured enough for the business behind them.
+          </p>
+          <p>
+            Savage Lane brings that mindset into websites, web apps, Firebase systems, automation workflows, crypto and investment workflow logic, admin dashboards, and search focused digital products.
+          </p>
+        </article>
+
+        <aside class="panel" aria-label="Professional background highlights">
+          <span class="eyebrow">Background</span>
+          <ul class="timeline">
+            <li>
+              <strong>Fidelity Investments</strong>
+              <span>17+ years across trading, Active Trader Services, product development, equities, options, margin, regulatory awareness, platform releases, and client escalation workflows.</span>
+            </li>
+            <li>
+              <strong>Active Trader product development</strong>
+              <span>Worked across Marketing, Sales, Learning and Development, Design, Development, Legal, Compliance, and Technology teams to support trading platform improvements.</span>
+            </li>
+            <li>
+              <strong>Technical troubleshooting</strong>
+              <span>Hands on support experience through smart home installation, in person tech support, and practical problem solving for nontechnical users.</span>
+            </li>
+            <li>
+              <strong>Business operations</strong>
+              <span>Experience with management, sales, marketing, staffing, customer service, project development, local service workflows, and product execution.</span>
+            </li>
+          </ul>
+
+          <div class="skill-cloud" aria-label="Background skills">
+            <span class="tech-item">Financial technology</span>
+            <span class="tech-item">Trading platforms</span>
+            <span class="tech-item">Equities</span>
+            <span class="tech-item">Options</span>
+            <span class="tech-item">Margin workflows</span>
+            <span class="tech-item">Compliance awareness</span>
+            <span class="tech-item">Crypto</span>
+            <span class="tech-item">Digital assets</span>
+            <span class="tech-item">Product development</span>
+            <span class="tech-item">Technical support</span>
+            <span class="tech-item">Business operations</span>
+            <span class="tech-item">Automation logic</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="proof-grid" aria-label="What Dan builds">
+        <article class="proof-card">
+          <strong>Product systems</strong>
+          <p>Web apps, service websites, intake systems, marketplaces, admin workflows, dashboards, and mobile app launch support.</p>
+        </article>
+
+        <article class="proof-card">
+          <strong>Backend structure</strong>
+          <p>Firebase Authentication, Firestore, Storage, Cloud Functions, BigQuery, form handling, permissions, review queues, and publishing flows.</p>
+        </article>
+
+        <article class="proof-card">
+          <strong>Search and automation</strong>
+          <p>SEO metadata, structured data, sitemaps, internal links, AI assisted workflows, repeatable processes, and operational cleanup.</p>
+        </article>
+      </section>
+
+      <section class="cta" aria-label="Contact Savage Lane">
+        <span class="eyebrow">Available for select builds</span>
+        <h2>Need something more useful than a standard website?</h2>
         <p>
-          Savage Lane exists for 1 purpose, to make it simple to get connected with a licensed local real estate professional through a straightforward intake and referral introduction process.
+          Savage Lane is built to show what Dan can create: practical digital products with clean positioning, real infrastructure, technical depth, and business logic behind the screen.
         </p>
 
-        <h2>What you can expect here</h2>
-        <ul>
-          <li>A simple way to request a referral introduction</li>
-          <li>Clear disclosures about my role as a Referral Agent</li>
-          <li>No transaction participation beyond making the referral introduction</li>
-        </ul>
+        <div class="cta-actions">
+          <a class="button button-primary" href="mailto:danbevo@gmail.com?subject=Savage%20Lane%20Project%20Inquiry">Start a project inquiry</a>
+          <a class="button button-secondary" href="/#work">Review the builds</a>
+        </div>
+      </section>
+    </main>
 
-        <p class="muted" style="margin:12px 0 0">
-          Disclosure: Daniel Belliveau is a licensed Referral Agent with the Coldwell Banker Realty Referral Network. Savage Lane is an independent referral introduction website and is not operated by Coldwell Banker Realty Referral Network. As a Referral Agent, Daniel Belliveau does not provide real estate advice, representation, negotiation, or participate in any part of a real estate transaction beyond making the referral introduction. All real estate services are provided by licensed real estate professionals through their own brokerages.
-        </p>
-      </article>
-    </div>
-  </main>
-
-  <footer id="site-footer"></footer>
-
-  <script src="/js/site-footer.js" defer></script>
+    <footer class="footer">
+      <div>© 2026 Savage Lane. Digital product portfolio by Dan Belliveau.</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/#work">Work</a>
+        <a href="/#services">Services</a>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
+

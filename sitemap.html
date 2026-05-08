@@ -2,97 +2,448 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Site Map | Savage Lane</title>
+  <title>Sitemap | Savage Lane</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sitemap for Savage Lane, Dan Belliveau's digital product portfolio featuring websites, apps, Firebase systems, SEO work, admin tools, and automation workflows.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#07080c">
+  <link rel="canonical" href="https://savagelane.com/sitemap.html">
 
   <link rel="icon" href="/images/favicon.png" type="image/png" sizes="32x32">
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
-  <meta name="description" content="Site map for Savage Lane. Browse the core referral concierge and policy pages." />
-  <link rel="canonical" href="https://savagelane.com/sitemap.html">
-  <meta name="robots" content="index,follow">
-
-  <meta property="og:title" content="Site Map | Savage Lane">
-  <meta property="og:description" content="Site map for Savage Lane. Browse the core referral concierge and policy pages.">
+  <meta property="og:site_name" content="Savage Lane">
+  <meta property="og:title" content="Sitemap | Savage Lane">
+  <meta property="og:description" content="Explore Savage Lane pages, featured builds, portfolio projects, services, and contact links.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://savagelane.com/sitemap.html">
-  <meta property="og:image" content="https://savagelane.com/images/default-og.png">
+  <meta property="og:image" content="https://savagelane.com/images/savagelane_header.png">
+  <meta property="og:image:secure_url" content="https://savagelane.com/images/savagelane_header.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="Savage Lane digital product portfolio sitemap">
 
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sitemap | Savage Lane">
+  <meta name="twitter:description" content="Explore Savage Lane pages, featured builds, portfolio projects, services, and contact links.">
+  <meta name="twitter:image" content="https://savagelane.com/images/savagelane_header.png">
 
-  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    :root {
+      --bg: #07080c;
+      --panel: rgba(255, 255, 255, 0.065);
+      --panel-strong: rgba(255, 255, 255, 0.095);
+      --border: rgba(255, 255, 255, 0.125);
+      --text: #ffffff;
+      --muted: #abb4c3;
+      --soft: #788292;
+      --accent: #d6b36a;
+      --accent-2: #f4e0b0;
+      --blue: #8ad7ff;
+      --shadow: 0 26px 90px rgba(0, 0, 0, 0.52);
+      --max: 1040px;
+    }
 
-  <script>
-    (function(w,d,s,l,i){
-      w[l]=w[l]||[];
-      w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
-      var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),
-      dl=l!='dataLayer' ? '&l='+l : '';
-      j.async=true;
-      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-      f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-P2K745NG');
-  </script>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(214, 179, 106, 0.18), transparent 30%),
+        radial-gradient(circle at 78% 14%, rgba(138, 215, 255, 0.13), transparent 28%),
+        linear-gradient(180deg, #07080c 0%, #090c12 48%, #050507 100%);
+      color: var(--text);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.82), transparent 74%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(7, 8, 12, 0.84);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand strong {
+      font-size: 15px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      color: var(--soft);
+      font-size: 12px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-2);
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 56px 22px 78px;
+    }
+
+    .hero {
+      overflow: hidden;
+      border-radius: 34px;
+      border: 1px solid rgba(214, 179, 106, 0.24);
+      background:
+        radial-gradient(circle at 16% 14%, rgba(214, 179, 106, 0.18), transparent 31%),
+        radial-gradient(circle at 82% 18%, rgba(138, 215, 255, 0.14), transparent 28%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.038));
+      box-shadow: var(--shadow);
+      padding: 44px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 34px;
+      padding: 8px 13px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(214, 179, 106, 0.28);
+      border-radius: 999px;
+      color: var(--accent-2);
+      background: rgba(214, 179, 106, 0.09);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin: 0 0 14px;
+      font-size: clamp(42px, 6vw, 70px);
+      line-height: 0.96;
+      letter-spacing: -0.058em;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.68;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .panel {
+      padding: 24px;
+      border-radius: 26px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, var(--panel-strong), rgba(255, 255, 255, 0.035)),
+        rgba(255, 255, 255, 0.025);
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.27);
+    }
+
+    .panel h2 {
+      margin: 0 0 14px;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: -0.035em;
+    }
+
+    .link-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .link-list a {
+      display: block;
+      padding: 13px 14px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      color: #ffffff;
+      font-weight: 750;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .link-list a:hover {
+      transform: translateY(-1px);
+      border-color: rgba(214, 179, 106, 0.36);
+    }
+
+    .link-list span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13.5px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 22px 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--soft);
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-2);
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      main {
+        padding-top: 34px;
+      }
+
+      .hero {
+        padding: 30px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding: 28px 14px 58px;
+      }
+
+      .hero,
+      .panel {
+        padding: 22px;
+        border-radius: 24px;
+      }
+
+      h1 {
+        font-size: clamp(40px, 13vw, 58px);
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2K745NG"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
+  <div class="page">
+    <header class="nav" aria-label="Primary navigation">
+      <div class="nav-inner">
+        <a class="brand" href="/">
+          <strong>Savage Lane</strong>
+          <span>Digital product portfolio</span>
+        </a>
 
-  <header class="hero-header">
-    <img
-      src="/images/savage-lane-referral-concierge-header.png"
-      alt="Savage Lane Referral Concierge">
-  </header>
+        <nav class="nav-links" aria-label="Page sections">
+          <a href="/">Home</a>
+          <a href="/about.html">About</a>
+          <a href="/#work">Work</a>
+          <a href="/#services">Services</a>
+          <a href="/privacy.html">Privacy</a>
+        </nav>
+      </div>
+    </header>
 
-  <main>
-    <div class="shell" style="max-width:1100px;margin:0 auto;padding:20px">
-      <article class="panel">
-        <h1>Site Map</h1>
-
-        <p class="muted" style="margin:8px 0 18px">
-          Browse Savage Lane core pages. Last updated: <span id="updated"></span>
+    <main>
+      <section class="hero" aria-label="Savage Lane sitemap">
+        <span class="eyebrow">Sitemap</span>
+        <h1>Explore Savage Lane.</h1>
+        <p>
+          Use this page to jump to the main Savage Lane pages, featured builds, services, and project links.
         </p>
+      </section>
 
-        <h2>Core pages</h2>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/concierge.html">Home Match Concierge</a></li>
-          <li><a href="/about.html">About</a></li>
-          <li><a href="/privacy.html">Privacy Policy</a></li>
-        </ul>
+      <section class="grid" aria-label="Sitemap links">
+        <article class="panel">
+          <h2>Main pages</h2>
+          <ul class="link-list">
+            <li>
+              <a href="/">
+                Home
+                <span>Digital product portfolio, featured builds, services, and contact links.</span>
+              </a>
+            </li>
+            <li>
+              <a href="/about.html">
+                About Dan
+                <span>Background, financial technology experience, technical skills, and product builder positioning.</span>
+              </a>
+            </li>
+            <li>
+              <a href="/privacy.html">
+                Privacy Policy
+                <span>How Savage Lane handles project inquiries, technical data, analytics, and privacy requests.</span>
+              </a>
+            </li>
+          </ul>
+        </article>
 
-        <h2>Search engines</h2>
-        <ul>
-          <li><a href="/sitemap.xml">XML Sitemap</a></li>
-        </ul>
+        <article class="panel">
+          <h2>Featured builds</h2>
+          <ul class="link-list">
+            <li>
+              <a href="https://vaultmybag.com/" target="_blank" rel="noopener noreferrer">
+                VaultMyBag
+                <span>Luxury handbag inventory platform with Firebase, private sharing, analytics, and AI pricing tools.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://eventpricing.com/" target="_blank" rel="noopener noreferrer">
+                EventPricing
+                <span>Event discovery platform with ingestion, SEO event pages, admin review tools, and Android app work.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://therecycleroom.com/" target="_blank" rel="noopener noreferrer">
+                The Recycle Room
+                <span>Premium resale intake site with Firebase forms, photo submissions, SEO, and contact workflows.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://smartdogautomation.com/" target="_blank" rel="noopener noreferrer">
+                SmartDogAutomation
+                <span>Automation command center concept for lead capture, follow ups, reminders, review requests, and AI workflow rules.</span>
+              </a>
+            </li>
+          </ul>
+        </article>
 
-              <p class="muted" style="margin:18px 0 0">
-          Disclosure: Savage Lane is an independent referral introduction website and is not operated by Coldwell Banker Realty Referral Network.
-          Savage Lane does not provide real estate advice, representation, negotiation, or brokerage services.
-          Referral introductions may be placed through the Coldwell Banker Realty Referral Network to a licensed real estate professional.
-        </p>
+        <article class="panel">
+          <h2>Portfolio sections</h2>
+          <ul class="link-list">
+            <li>
+              <a href="/#work">
+                Featured work
+                <span>Homepage portfolio cards showing project architecture, tech stacks, and public links.</span>
+              </a>
+            </li>
+            <li>
+              <a href="/#about">
+                About section
+                <span>Short homepage summary of Dan's background and systems approach.</span>
+              </a>
+            </li>
+            <li>
+              <a href="/#services">
+                Services
+                <span>Business websites, Firebase web apps, admin dashboards, SEO cleanup, automation workflows, and app launch support.</span>
+              </a>
+            </li>
+            <li>
+              <a href="/#process">
+                Process
+                <span>How Savage Lane approaches product strategy, systems design, edge cases, and launch improvement.</span>
+              </a>
+            </li>
+          </ul>
+        </article>
 
-      </article>
-    </div>
-  </main>
+        <article class="panel">
+          <h2>Contact and profiles</h2>
+          <ul class="link-list">
+            <li>
+              <a href="mailto:danbevo@gmail.com?subject=Savage%20Lane%20Project%20Inquiry">
+                Start a project inquiry
+                <span>Contact Dan about a website, app, dashboard, automation flow, SEO cleanup, or technical build.</span>
+              </a>
+            </li></ul>
+        </article>
+      </section>
+    </main>
 
-  <footer id="site-footer"></footer>
-
-  <script src="/js/site-footer.js" defer></script>
-
-  <script>
-    const now = new Date();
-    const updatedEl = document.getElementById("updated");
-    if (updatedEl) {
-      updatedEl.textContent = now.toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "long"
-      });
-    }
-  </script>
+    <footer class="footer">
+      <div>© 2026 Savage Lane. Digital product portfolio by Dan Belliveau.</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:danbevo@gmail.com?subject=Savage%20Lane%20Project%20Inquiry">Contact</a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
+
