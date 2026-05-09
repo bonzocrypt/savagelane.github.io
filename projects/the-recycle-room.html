@@ -1,0 +1,1113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The Recycle Room Case Study | Savage Lane</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="Case study for The Recycle Room by Savage Lane. A premium resale and consignment website built around seller intake, photo submissions, trust, and clean luxury positioning.">
+  <link rel="canonical" href="https://savagelane.com/projects/the-recycle-room.html">
+  <meta name="robots" content="index,follow">
+
+  <meta property="og:title" content="The Recycle Room Case Study | Savage Lane">
+  <meta property="og:description" content="A premium resale and consignment case study focused on seller intake, trust, photo submissions, and luxury brand positioning.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://savagelane.com/projects/the-recycle-room.html">
+  <meta property="og:image" content="https://savagelane.com/images/recycleroom_logo_or_homepage.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Recycle Room Case Study | Savage Lane">
+  <meta name="twitter:description" content="A premium resale and consignment website case study by Savage Lane.">
+  <meta name="twitter:image" content="https://savagelane.com/images/recycleroom_logo_or_homepage.png">
+
+  <link rel="icon" href="/images/default-og.png" type="image/png">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <style>
+    :root {
+      --rr-bg: #f4ede4;
+      --rr-bg-2: #efe4d6;
+      --rr-panel: rgba(255, 250, 244, 0.82);
+      --rr-panel-strong: rgba(255, 248, 239, 0.94);
+      --rr-line: rgba(84, 57, 32, 0.14);
+      --rr-line-strong: rgba(84, 57, 32, 0.22);
+      --rr-text: #2e241d;
+      --rr-text-soft: #5d4b3d;
+      --rr-accent: #9a7349;
+      --rr-accent-strong: #7e5a36;
+      --rr-shadow: 0 28px 80px rgba(79, 53, 32, 0.12);
+      --rr-radius-xl: 34px;
+      --rr-radius-lg: 26px;
+      --rr-radius-md: 18px;
+      --rr-max: 1240px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--rr-text);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(205, 174, 133, 0.18), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(205, 174, 133, 0.12), transparent 32%),
+        linear-gradient(180deg, #f7f1e9 0%, #f2e7d9 100%);
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image:
+        linear-gradient(rgba(110, 86, 60, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(110, 86, 60, 0.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.65), transparent 90%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .rr-shell {
+      width: min(var(--rr-max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .rr-topbar-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(247, 241, 233, 0.7);
+      border-bottom: 1px solid rgba(84, 57, 32, 0.08);
+    }
+
+    .rr-topbar {
+      width: min(var(--rr-max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 14px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .rr-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .rr-brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #a9845a, #6d4b2d);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .rr-brand-copy {
+      min-width: 0;
+    }
+
+    .rr-brand-copy strong {
+      display: block;
+      font-size: 0.95rem;
+      line-height: 1.1;
+      letter-spacing: 0.04em;
+    }
+
+    .rr-brand-copy span {
+      display: block;
+      color: var(--rr-text-soft);
+      font-size: 0.78rem;
+      line-height: 1.2;
+    }
+
+    .rr-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px;
+      border: 1px solid var(--rr-line);
+      background: rgba(255, 251, 246, 0.7);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(71, 49, 31, 0.08);
+    }
+
+    .rr-nav a {
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--rr-text-soft);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .rr-nav a:hover {
+      background: rgba(157, 119, 79, 0.12);
+      color: var(--rr-text);
+    }
+
+    .rr-home-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--rr-line-strong);
+      background: rgba(255, 251, 246, 0.85);
+      font-weight: 800;
+      font-size: 0.88rem;
+      box-shadow: 0 10px 30px rgba(71, 49, 31, 0.08);
+      white-space: nowrap;
+    }
+
+    .rr-home-link:hover {
+      background: #fff;
+    }
+
+    .rr-page {
+      padding: 34px 0 90px;
+    }
+
+    .rr-section {
+      margin-top: 32px;
+    }
+
+    .rr-card {
+      background: var(--rr-panel);
+      border: 1px solid var(--rr-line);
+      border-radius: var(--rr-radius-xl);
+      box-shadow: var(--rr-shadow);
+      overflow: hidden;
+    }
+
+    .rr-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 28px;
+      padding: 28px;
+      align-items: stretch;
+      background:
+        linear-gradient(135deg, rgba(250, 243, 236, 0.94), rgba(239, 228, 214, 0.92));
+    }
+
+    .rr-hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .rr-kicker {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(126, 90, 54, 0.16);
+      background: rgba(255, 251, 246, 0.74);
+      color: var(--rr-accent-strong);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .rr-hero h1,
+    .rr-section-title h2,
+    .rr-proof-title h2,
+    .rr-bottom-title h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 0.94;
+      color: #2d2119;
+    }
+
+    .rr-hero h1 {
+      font-size: clamp(3.1rem, 5vw, 5.6rem);
+      max-width: 9ch;
+    }
+
+    .rr-hero p {
+      margin: 0;
+      max-width: 63ch;
+      font-size: 1.18rem;
+      color: var(--rr-text-soft);
+    }
+
+    .rr-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .rr-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(126, 90, 54, 0.16);
+      background: rgba(255, 251, 246, 0.78);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #4d3a2c;
+    }
+
+    .rr-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 6px;
+    }
+
+    .rr-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .rr-button:hover {
+      transform: translateY(-1px);
+    }
+
+    .rr-button-primary {
+      color: #fff;
+      background: linear-gradient(135deg, #a27b4f, #755131);
+      box-shadow: 0 14px 28px rgba(112, 77, 46, 0.22);
+    }
+
+    .rr-button-secondary {
+      color: #4b392b;
+      background: rgba(255, 251, 246, 0.86);
+      border: 1px solid rgba(126, 90, 54, 0.18);
+    }
+
+    .rr-hero-visual {
+      display: grid;
+      align-items: stretch;
+      min-width: 0;
+    }
+
+    .rr-visual-frame {
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 18px;
+      height: 100%;
+      padding: 18px;
+      border-radius: 28px;
+      border: 1px solid rgba(126, 90, 54, 0.12);
+      background: rgba(255, 250, 244, 0.68);
+    }
+
+    .rr-visual-image {
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid rgba(126, 90, 54, 0.12);
+      background: #ede1d3;
+      min-height: 260px;
+    }
+
+    .rr-visual-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .rr-visual-notes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .rr-mini-note {
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(126, 90, 54, 0.12);
+      background: rgba(255, 251, 246, 0.82);
+    }
+
+    .rr-mini-note span {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--rr-accent);
+    }
+
+    .rr-mini-note strong {
+      display: block;
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+
+    .rr-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .rr-stat {
+      padding: 22px 20px;
+      border-radius: 24px;
+      border: 1px solid var(--rr-line);
+      background: rgba(255, 250, 244, 0.74);
+      box-shadow: 0 14px 34px rgba(92, 61, 38, 0.08);
+    }
+
+    .rr-stat strong {
+      display: block;
+      font-size: 2rem;
+      line-height: 1;
+      margin-bottom: 8px;
+      color: #36281f;
+    }
+
+    .rr-stat span {
+      display: block;
+      color: var(--rr-text-soft);
+      font-size: 0.98rem;
+    }
+
+    .rr-section-title,
+    .rr-proof-title,
+    .rr-bottom-title {
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 26px;
+      text-align: center;
+    }
+
+    .rr-section-title h2,
+    .rr-proof-title h2,
+    .rr-bottom-title h2 {
+      font-size: clamp(2.45rem, 3.35vw, 4.1rem);
+      max-width: 15ch;
+      margin: 0 auto;
+    }
+
+    .rr-section-title p,
+    .rr-proof-title p,
+    .rr-bottom-title p {
+      margin: 0 auto;
+      font-size: 1.06rem;
+      color: var(--rr-text-soft);
+      max-width: 68ch;
+      text-align: center;
+    }
+
+    .rr-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .rr-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .rr-panel {
+      padding: 24px;
+      border-radius: 28px;
+      border: 1px solid var(--rr-line);
+      background: var(--rr-panel-strong);
+      box-shadow: 0 16px 40px rgba(95, 64, 40, 0.08);
+    }
+
+    .rr-panel h3 {
+      margin: 0 0 10px;
+      font-size: 1.45rem;
+      line-height: 1.08;
+      color: #2f231b;
+    }
+
+    .rr-panel p {
+      margin: 0;
+      color: var(--rr-text-soft);
+      font-size: 1rem;
+    }
+
+    .rr-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .rr-list-item {
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(126, 90, 54, 0.14);
+      background: rgba(255, 252, 248, 0.82);
+      color: #4b392b;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .rr-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .rr-chip {
+      padding: 8px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(126, 90, 54, 0.14);
+      background: rgba(255, 252, 248, 0.82);
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: #5d4736;
+    }
+
+    .rr-flow {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .rr-feature-image {
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid var(--rr-line);
+      background: rgba(255, 250, 244, 0.78);
+      box-shadow: 0 18px 44px rgba(95, 64, 40, 0.1);
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rr-feature-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex: 1;
+    }
+
+    .rr-feature-caption {
+      padding: 18px 20px 22px;
+      border-top: 1px solid var(--rr-line);
+      background: rgba(255, 251, 246, 0.88);
+    }
+
+    .rr-feature-caption span {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--rr-accent);
+    }
+
+    .rr-feature-caption h3 {
+      margin: 0 0 10px;
+      font-size: 1.7rem;
+      line-height: 1.05;
+    }
+
+    .rr-feature-caption p {
+      margin: 0;
+      color: var(--rr-text-soft);
+    }
+
+    .rr-proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .rr-proof-card {
+      padding: 22px;
+      border-radius: 28px;
+      border: 1px solid var(--rr-line);
+      background: rgba(255, 250, 244, 0.78);
+      box-shadow: 0 16px 40px rgba(95, 64, 40, 0.08);
+    }
+
+    .rr-proof-card span {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--rr-accent);
+    }
+
+    .rr-proof-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.4rem;
+      line-height: 1.08;
+      color: #2f231b;
+    }
+
+    .rr-proof-card p {
+      margin: 0;
+      color: var(--rr-text-soft);
+    }
+
+    .rr-claims-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .rr-cta {
+      margin-top: 32px;
+      padding: 32px;
+      border-radius: 34px;
+      border: 1px solid var(--rr-line);
+      background:
+        linear-gradient(135deg, rgba(254, 249, 242, 0.96), rgba(241, 230, 217, 0.94));
+      box-shadow: 0 24px 70px rgba(95, 64, 40, 0.12);
+      text-align: center;
+    }
+
+    .rr-cta .rr-kicker {
+      margin: 0 auto 16px;
+    }
+
+    .rr-cta h2 {
+      margin: 0 auto 14px;
+      max-width: 14ch;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.4rem, 4vw, 4.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #2d2119;
+    }
+
+    .rr-cta p {
+      margin: 0 auto;
+      max-width: 70ch;
+      color: var(--rr-text-soft);
+      font-size: 1.08rem;
+    }
+
+    .rr-cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .rr-footer {
+      max-width: var(--rr-max);
+      margin: 34px auto 0;
+      padding: 28px 0 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--rr-text-soft);
+      font-size: 14px;
+      border-top: 1px solid rgba(126, 90, 54, 0.16);
+    }
+
+    .rr-footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .rr-footer-links a {
+      color: var(--rr-text-soft);
+    }
+
+    .rr-footer-links a:hover {
+      color: var(--rr-accent-strong);
+    }
+
+    @media (max-width: 1120px) {
+      .rr-hero,
+      .rr-section-title,
+      .rr-proof-title,
+      .rr-bottom-title,
+      .rr-flow,
+      .rr-grid-2,
+      .rr-grid-3,
+      .rr-proof-grid,
+      .rr-claims-grid,
+      .rr-stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rr-visual-notes {
+        grid-template-columns: 1fr;
+      }
+
+      .rr-proof-card,
+      .rr-panel,
+      .rr-stat {
+        min-height: auto;
+      }
+
+      .rr-section-title h2,
+      .rr-proof-title h2,
+      .rr-bottom-title h2 {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .rr-topbar {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .rr-nav {
+        order: 3;
+      }
+
+      .rr-hero h1 {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .rr-shell,
+      .rr-topbar {
+        width: min(var(--rr-max), calc(100% - 20px));
+      }
+
+      .rr-page {
+        padding: 20px 0 70px;
+      }
+
+      .rr-hero,
+      .rr-cta,
+      .rr-panel,
+      .rr-proof-card,
+      .rr-stat {
+        padding: 20px;
+      }
+
+      .rr-hero {
+        gap: 20px;
+      }
+
+      .rr-button,
+      .rr-home-link,
+      .rr-nav a,
+      .rr-pill {
+        min-height: 42px;
+      }
+
+      .rr-hero p,
+      .rr-section-title p,
+      .rr-proof-title p,
+      .rr-bottom-title p,
+      .rr-cta p {
+        font-size: 1rem;
+      }
+
+      .rr-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "The Recycle Room Case Study",
+      "url": "https://savagelane.com/projects/the-recycle-room.html",
+      "image": "https://savagelane.com/images/recycleroom_logo_or_homepage.png",
+      "description": "A case study by Savage Lane for The Recycle Room, a premium resale and consignment website focused on seller intake, trust, photo submissions, and luxury positioning.",
+      "author": {
+        "@type": "Person",
+        "name": "Dan Belliveau"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Savage Lane",
+        "url": "https://savagelane.com/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="rr-topbar-wrap">
+    <div class="rr-topbar">
+      <a class="rr-brand" href="/">
+        <span class="rr-brand-mark">TR</span>
+        <span class="rr-brand-copy">
+          <strong>THE RECYCLE ROOM</strong>
+          <span>Case study by Savage Lane</span>
+        </span>
+      </a>
+
+      <nav class="rr-nav" aria-label="Section navigation">
+        <a href="#overview">Overview</a>
+        <a href="#build">Build</a>
+        <a href="#proof">Proof</a>
+      </nav>
+
+      <a class="rr-home-link" href="/">Savage Lane</a>
+    </div>
+  </header>
+
+  <main class="rr-page">
+    <div class="rr-shell">
+      <section id="overview" class="rr-card rr-hero">
+        <div class="rr-hero-copy">
+          <div class="rr-kicker">Premium resale and consignment website</div>
+
+          <h1>A polished resale site built for trust, intake, and better leads.</h1>
+
+          <p>
+            The Recycle Room is a premium resale and consignment website built to turn local seller interest into a clean intake flow. The product combines luxury presentation, accepted item guidance, photo submission support, and trust focused positioning so sellers know what to send and how to start.
+          </p>
+
+          <div class="rr-pills">
+            <span class="rr-pill">Luxury resale positioning</span>
+            <span class="rr-pill">Seller intake flow</span>
+            <span class="rr-pill">Photo submissions</span>
+            <span class="rr-pill">Trust focused UX</span>
+          </div>
+
+          <div class="rr-hero-actions">
+            <a class="rr-button rr-button-primary" href="#build">See what was built</a>
+            <a class="rr-button rr-button-secondary" href="/">Back to Savage Lane</a>
+          </div>
+        </div>
+
+        <div class="rr-hero-visual">
+          <div class="rr-visual-frame">
+            <div class="rr-visual-image">
+              <img
+                src="/images/recycleroom_logo_or_homepage.png"
+                alt="The Recycle Room premium resale and consignment visual"
+                width="1672"
+                height="941"
+              >
+            </div>
+
+            <div class="rr-visual-notes">
+              <div class="rr-mini-note">
+                <span>Seller intent</span>
+                <strong>Make the first step feel easy and high trust.</strong>
+              </div>
+
+              <div class="rr-mini-note">
+                <span>Business use</span>
+                <strong>Turn submissions into qualified resale conversations.</strong>
+              </div>
+
+              <div class="rr-mini-note">
+                <span>Brand standard</span>
+                <strong>Premium, calm, clean, and more boutique than generic.</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="rr-stat-grid rr-section">
+        <div class="rr-stat">
+          <strong>Luxury</strong>
+          <span>Brand language designed to feel curated and premium</span>
+        </div>
+
+        <div class="rr-stat">
+          <strong>Intake</strong>
+          <span>Clear first step for sellers with photo and inquiry flow</span>
+        </div>
+
+        <div class="rr-stat">
+          <strong>Trust</strong>
+          <span>Accepted item guidance, process content, and buyer clarity</span>
+        </div>
+
+        <div class="rr-stat">
+          <strong>Live</strong>
+          <span>Structured website built to support real inquiries and reviews</span>
+        </div>
+      </section>
+
+      <section id="build" class="rr-section">
+        <div class="rr-section-title">
+          <h2>What was built behind the polished resale experience.</h2>
+          <p>
+            This is more than a pretty homepage. The site has to explain the offer, qualify the seller, support submissions, and keep the brand feeling elevated from first click to first inquiry.
+          </p>
+        </div>
+
+        <div class="rr-grid-2">
+          <article class="rr-panel">
+            <h3>Product system</h3>
+            <p>
+              The Recycle Room is structured around a practical seller journey: understand what the business accepts, feel confident about the process, submit an inquiry, and send enough detail to start a real review.
+            </p>
+
+            <div class="rr-list">
+              <div class="rr-list-item">Homepage positioning built for premium resale rather than generic consignment copy</div>
+              <div class="rr-list-item">Seller intake pathways that help visitors move from interest to submission</div>
+              <div class="rr-list-item">Accepted item guidance to reduce low quality or irrelevant inquiries</div>
+              <div class="rr-list-item">Photo submission support so intake starts with usable item detail</div>
+              <div class="rr-list-item">FAQ and process framing designed to reduce hesitation and confusion</div>
+            </div>
+          </article>
+
+          <article class="rr-panel">
+            <h3>Technical foundation</h3>
+            <p>
+              The stack supports a lightweight, service focused site with reliable form handling, clean routing, responsive layout, and the SEO basics needed for a brand that wants to be found locally and presented professionally.
+            </p>
+
+            <div class="rr-list">
+              <div class="rr-list-item">Responsive HTML, CSS, and JavaScript for clean browsing across devices</div>
+              <div class="rr-list-item">Firebase Hosting and Cloud Functions support for form and submission flows</div>
+              <div class="rr-list-item">Structured page content with metadata, social sharing support, and sitemap coverage</div>
+              <div class="rr-list-item">Submission handling designed around real intake rather than passive brochure content</div>
+              <div class="rr-list-item">Brand safe luxury presentation without turning the site into clutter</div>
+            </div>
+
+            <div class="rr-chip-row">
+              <span class="rr-chip">HTML</span>
+              <span class="rr-chip">CSS</span>
+              <span class="rr-chip">JavaScript</span>
+              <span class="rr-chip">Firebase Hosting</span>
+              <span class="rr-chip">Cloud Functions</span>
+              <span class="rr-chip">Forms</span>
+              <span class="rr-chip">Photo submissions</span>
+              <span class="rr-chip">SEO</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="rr-section">
+        <div class="rr-section-title">
+          <h2>Where the case study gets practical.</h2>
+          <p>
+            The real value is in the intake logic. The Recycle Room has to look premium, but it also has to help the business collect the right seller information, set expectations, and start qualified conversations.
+          </p>
+        </div>
+
+        <div class="rr-flow">
+          <article class="rr-panel">
+            <h3>Seller intake flow</h3>
+            <p>
+              The intake experience is built to help a seller move from browsing into a serious inquiry without friction. That means clearer guidance, fewer vague steps, and a stronger sense of what happens next.
+            </p>
+
+            <div class="rr-list">
+              <div class="rr-list-item">Process content explains how submissions work and what the business reviews</div>
+              <div class="rr-list-item">Photo support encourages sellers to provide useful visual detail from the start</div>
+              <div class="rr-list-item">Contact and intake flows help turn interest into actionable submissions</div>
+              <div class="rr-list-item">Accepted item framing reduces mismatch between visitor expectations and business focus</div>
+              <div class="rr-list-item">Luxury tone helps the service feel curated rather than transactional</div>
+            </div>
+          </article>
+
+          <article class="rr-feature-image">
+            <img
+              src="/images/recycleroom_brand_intake.png"
+              alt="Luxury resale intake and shipment workflow for The Recycle Room"
+              width="1536"
+              height="1024"
+            >
+            <div class="rr-feature-caption">
+              <span>Brand and intake alignment</span>
+              <h3>Luxury tone with a service structure underneath</h3>
+              <p>
+                The site is designed to feel editorial and premium while still supporting inquiries, process clarity, and a clean resale intake journey.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="rr-section">
+        <div class="rr-grid-3">
+          <article class="rr-panel">
+            <h3>What the business needs from the site</h3>
+            <p>
+              A site like this has to do more than look expensive. It needs to attract the right type of seller, communicate the value of the service, and make intake feel organized.
+            </p>
+
+            <div class="rr-list">
+              <div class="rr-list-item">Premium positioning that feels credible</div>
+              <div class="rr-list-item">Clear explanation of what the service is for</div>
+              <div class="rr-list-item">Inquiry pathways that encourage quality outreach</div>
+            </div>
+          </article>
+
+          <article class="rr-panel">
+            <h3>Why the brand feel matters</h3>
+            <p>
+              In resale, trust is a conversion tool. A stronger visual system helps the service feel selective, careful, and established, which supports both seller confidence and perceived value.
+            </p>
+
+            <div class="rr-list">
+              <div class="rr-list-item">Soft neutrals and muted gold create calm premium energy</div>
+              <div class="rr-list-item">Cleaner layouts feel more boutique and less disposable</div>
+              <div class="rr-list-item">Better presentation supports stronger first impressions</div>
+            </div>
+          </article>
+
+          <article class="rr-panel">
+            <h3>Operational logic underneath</h3>
+            <p>
+              The site supports a basic business workflow: attract the seller, collect the inquiry, review the details, and continue the conversation with better information already in hand.
+            </p>
+
+            <div class="rr-list">
+              <div class="rr-list-item">Submissions provide a more useful starting point for review</div>
+              <div class="rr-list-item">Process content reduces repetitive explanation work</div>
+              <div class="rr-list-item">Cleaner intake helps the business spend time on better leads</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="proof" class="rr-section">
+        <div class="rr-proof-title">
+          <h2>What this project proves.</h2>
+          <p>
+            The Recycle Room shows that Savage Lane can build service websites that feel branded and high end while still being structured around real intake logic, cleaner submissions, and business usability.
+          </p>
+        </div>
+
+        <div class="rr-proof-grid">
+          <article class="rr-proof-card">
+            <span>Positioning</span>
+            <h3>Luxury resale without generic clutter</h3>
+            <p>
+              The site presents the business in a way that feels curated and intentional rather than like a generic template trying to sell everything at once.
+            </p>
+          </article>
+
+          <article class="rr-proof-card">
+            <span>Lead quality</span>
+            <h3>Better seller guidance leads to better inquiries</h3>
+            <p>
+              The strongest service sites qualify the visitor before they submit. This build leans into process clarity so outreach starts with better context.
+            </p>
+          </article>
+
+          <article class="rr-proof-card">
+            <span>Execution</span>
+            <h3>Brand, intake, and infrastructure can work together</h3>
+            <p>
+              The design is premium, but the real point is that presentation and operational usefulness were built to support the same outcome.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="rr-section">
+        <div class="rr-bottom-title">
+          <h2>Public claim boundaries.</h2>
+          <p>
+            This case study is strongest when it stays precise. The value is in positioning, intake clarity, and better service structure, not in making exaggerated claims.
+          </p>
+        </div>
+
+        <div class="rr-claims-grid">
+          <article class="rr-panel">
+            <h3>Safe public claims</h3>
+            <div class="rr-list">
+              <div class="rr-list-item">Premium resale and consignment website positioning</div>
+              <div class="rr-list-item">Seller intake, process explanation, and submission support</div>
+              <div class="rr-list-item">Photo submission flow and contact infrastructure</div>
+              <div class="rr-list-item">Responsive design with SEO friendly structure</div>
+              <div class="rr-list-item">A stronger luxury presentation for a service based business</div>
+            </div>
+          </article>
+
+          <article class="rr-panel">
+            <h3>Claims to avoid</h3>
+            <div class="rr-list">
+              <div class="rr-list-item">Do not imply guaranteed resale prices or guaranteed acceptance</div>
+              <div class="rr-list-item">Do not imply affiliation with outside luxury brands shown in general examples</div>
+              <div class="rr-list-item">Do not claim marketplace scale features that are not actually part of the build</div>
+              <div class="rr-list-item">Do not present the site as a full authentication authority unless that is explicitly true</div>
+              <div class="rr-list-item">Do not overstate automation if the workflow is primarily service driven</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="rr-cta rr-section">
+        <div class="rr-kicker">Built for real service businesses</div>
+        <h2>Need a polished website that actually helps your business work better?</h2>
+        <p>
+          Savage Lane builds sites that do more than look nice. If your business needs stronger positioning, clearer intake, better submission flow, or a more premium digital presence, I can build a product around that goal.
+        </p>
+
+        <div class="rr-cta-actions">
+          <a class="rr-button rr-button-primary" href="/#contact">Start a project</a>
+          <a class="rr-button rr-button-secondary" href="/">Back to Savage Lane</a>
+        </div>
+      </section>
+
+      <footer class="rr-footer">
+        <div>© 2026 Savage Lane. Digital product portfolio by Dan Belliveau.</div>
+        <div class="rr-footer-links">
+          <a href="/">Home</a>
+          <a href="/#work">Work</a>
+          <a href="/about.html">About</a>
+          <a href="/sitemap.html">Sitemap</a>
+          <a href="/privacy.html">Privacy</a>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("rr-year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

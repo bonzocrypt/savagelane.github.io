@@ -1,0 +1,1272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Smartdog Automation Case Study | Savage Lane</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Smartdog Automation case study by Savage Lane. A workflow automation concept for service businesses built around lead capture, missed call follow up, appointment reminders, review requests, AI workflow rules, reporting, and business process design.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#07110f">
+  <link rel="canonical" href="https://savagelane.com/projects/smartdogautomation.html">
+
+  <link rel="icon" href="/images/favicon.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+  <meta property="og:site_name" content="Savage Lane">
+  <meta property="og:title" content="Smartdog Automation Case Study | Savage Lane">
+  <meta property="og:description" content="A workflow automation case study for service businesses built around lead capture, missed call follow up, reminders, review requests, AI rules, logs, and reporting.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://savagelane.com/projects/smartdogautomation.html">
+  <meta property="og:image" content="https://savagelane.com/images/smartdogautomation_case_study_card.png">
+  <meta property="og:image:secure_url" content="https://savagelane.com/images/smartdogautomation_case_study_card.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="Smartdog Automation workflow command center case study">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Smartdog Automation Case Study | Savage Lane">
+  <meta name="twitter:description" content="A workflow automation case study for lead capture, follow ups, reminders, review requests, AI workflow rules, and reporting.">
+  <meta name="twitter:image" content="https://savagelane.com/images/smartdogautomation_case_study_card.png">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Smartdog Automation Case Study",
+      "url": "https://savagelane.com/projects/smartdogautomation.html",
+      "creator": {
+        "@type": "Person",
+        "name": "Dan Belliveau"
+      },
+      "publisher": {
+        "@type": "WebSite",
+        "name": "Savage Lane",
+        "url": "https://savagelane.com/"
+      },
+      "about": [
+        "Workflow automation",
+        "Lead capture",
+        "Missed call follow up",
+        "Appointment reminders",
+        "Review requests",
+        "AI workflow rules",
+        "Business process automation",
+        "Reporting dashboard"
+      ]
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg: #07110f;
+      --bg-2: #0a1715;
+      --panel: rgba(255, 255, 255, 0.07);
+      --panel-strong: rgba(255, 255, 255, 0.105);
+      --line: rgba(255, 255, 255, 0.14);
+      --line-strong: rgba(122, 255, 205, 0.28);
+      --text: #f7fff9;
+      --muted: #b6c9c1;
+      --soft: #7d928b;
+      --green: #79ffd0;
+      --green-2: #baffea;
+      --amber: #f5c86c;
+      --amber-2: #ffe5a8;
+      --blue: #7fc8ff;
+      --danger: #ff8c8c;
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.48);
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(121, 255, 208, 0.16), transparent 30%),
+        radial-gradient(circle at 88% 10%, rgba(245, 200, 108, 0.14), transparent 28%),
+        radial-gradient(circle at 50% 92%, rgba(127, 200, 255, 0.10), transparent 36%),
+        linear-gradient(180deg, #07110f 0%, #0a1715 52%, #050807 100%);
+      color: var(--text);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.64;
+      background-image:
+        linear-gradient(rgba(121, 255, 208, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(121, 255, 208, 0.045) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.82), transparent 78%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(7, 17, 15, 0.84);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      min-height: 74px;
+      margin: 0 auto;
+      padding: 14px 22px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      width: fit-content;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      color: #06110e;
+      background: linear-gradient(135deg, var(--green), var(--amber));
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: 0.05em;
+      box-shadow: 0 12px 28px rgba(121, 255, 208, 0.16);
+    }
+
+    .brand-copy strong {
+      display: block;
+      color: var(--text);
+      font-size: 14px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .brand-copy span {
+      display: block;
+      margin-top: 2px;
+      color: var(--soft);
+      font-size: 12px;
+    }
+
+    .pill-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.055);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
+    }
+
+    .pill-nav a {
+      padding: 11px 16px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .pill-nav a:hover {
+      color: var(--green-2);
+      background: rgba(121, 255, 208, 0.09);
+    }
+
+    .nav-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .round-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(121, 255, 208, 0.18);
+      background: rgba(121, 255, 208, 0.08);
+      color: var(--green-2);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 58px 22px 84px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.93fr) minmax(410px, 1.07fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 18px;
+    }
+
+    .hero-copy,
+    .command-center,
+    .panel,
+    .proof-card,
+    .cta {
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, var(--panel-strong), rgba(255, 255, 255, 0.035)),
+        rgba(255, 255, 255, 0.025);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 620px;
+      height: 100%;
+      padding: 44px;
+      border-radius: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -110px auto;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(121, 255, 208, 0.22), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      min-height: 34px;
+      align-items: center;
+      padding: 8px 13px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(121, 255, 208, 0.24);
+      border-radius: 999px;
+      color: var(--green-2);
+      background: rgba(121, 255, 208, 0.08);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0 0 18px;
+      color: var(--text);
+      font-size: clamp(48px, 7vw, 86px);
+      line-height: 0.9;
+      letter-spacing: -0.065em;
+    }
+
+    .hero-copy p {
+      max-width: 700px;
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.67;
+    }
+
+    .hero-copy p strong {
+      color: #ffffff;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 8px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hero-tags li {
+      min-height: 38px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(121, 255, 208, 0.16);
+      background: rgba(121, 255, 208, 0.07);
+      color: #dcfff3;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 19px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 14px;
+      font-weight: 900;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: #06110e;
+      background: linear-gradient(135deg, var(--green), var(--amber-2));
+      border-color: rgba(186, 255, 234, 0.45);
+      box-shadow: 0 18px 34px rgba(121, 255, 208, 0.12);
+    }
+
+    .button-secondary {
+      color: var(--green-2);
+      background: rgba(121, 255, 208, 0.07);
+      border-color: rgba(121, 255, 208, 0.22);
+    }
+
+    .command-center {
+      min-height: 620px;
+      border-radius: 36px;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .screen {
+      height: 100%;
+      min-height: 580px;
+      border-radius: 28px;
+      border: 1px solid rgba(121, 255, 208, 0.15);
+      background:
+        radial-gradient(circle at 22% 16%, rgba(121, 255, 208, 0.18), transparent 30%),
+        radial-gradient(circle at 80% 18%, rgba(245, 200, 108, 0.13), transparent 27%),
+        linear-gradient(180deg, rgba(6, 16, 14, 0.96), rgba(5, 8, 7, 0.96));
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .screen-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .window-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    .screen-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green-2);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .screen-status::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 18px rgba(121, 255, 208, 0.9);
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 14px;
+      padding: 18px;
+    }
+
+    .metric-stack {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .metric {
+      padding: 17px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .metric span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--soft);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .metric strong {
+      display: block;
+      color: #ffffff;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .metric p {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .pipeline {
+      display: grid;
+      gap: 11px;
+      align-content: start;
+    }
+
+    .pipeline-card {
+      position: relative;
+      padding: 16px 16px 16px 46px;
+      border-radius: 20px;
+      border: 1px solid rgba(121, 255, 208, 0.14);
+      background: rgba(121, 255, 208, 0.055);
+    }
+
+    .pipeline-card::before {
+      content: "";
+      position: absolute;
+      left: 17px;
+      top: 18px;
+      width: 13px;
+      height: 13px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 18px rgba(121, 255, 208, 0.55);
+    }
+
+    .pipeline-card:nth-child(2)::before {
+      background: var(--amber);
+      box-shadow: 0 0 18px rgba(245, 200, 108, 0.55);
+    }
+
+    .pipeline-card:nth-child(3)::before {
+      background: var(--blue);
+      box-shadow: 0 0 18px rgba(127, 200, 255, 0.55);
+    }
+
+    .pipeline-card:nth-child(4)::before {
+      background: var(--danger);
+      box-shadow: 0 0 18px rgba(255, 140, 140, 0.45);
+    }
+
+    .pipeline-card strong {
+      display: block;
+      color: #ffffff;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .pipeline-card span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .screen-image {
+      margin: 0 18px 18px;
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #020403;
+    }
+
+    .screen-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: top center;
+    }
+
+    .section {
+      margin-top: 18px;
+    }
+
+    .section-title {
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 14px;
+      align-items: start;
+      margin: 34px 0 22px;
+      text-align: center;
+    }
+
+    .section-title h2 {
+      max-width: 820px;
+      margin: 0 auto;
+      color: var(--text);
+      font-size: clamp(36px, 5vw, 62px);
+      line-height: 0.96;
+      letter-spacing: -0.055em;
+    }
+
+    .section-title p {
+      max-width: 820px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .grid-2,
+    .grid-3 {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .panel {
+      border-radius: 28px;
+      padding: 28px;
+    }
+
+    .panel h3 {
+      margin: 0 0 12px;
+      color: #ffffff;
+      font-size: 24px;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    .panel p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      padding: 13px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(0, 0, 0, 0.18);
+      color: #dfece8;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .list strong {
+      color: #ffffff;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tech-item {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(121, 255, 208, 0.13);
+      background: rgba(121, 255, 208, 0.06);
+      color: #dffff5;
+      font-size: 12.5px;
+      font-weight: 750;
+    }
+
+    .workflow-map {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .workflow-step {
+      min-height: 180px;
+      padding: 19px;
+      border-radius: 24px;
+      border: 1px solid rgba(121, 255, 208, 0.14);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(121, 255, 208, 0.13), transparent 42%),
+        rgba(255, 255, 255, 0.05);
+    }
+
+    .workflow-step span {
+      display: inline-flex;
+      margin-bottom: 14px;
+      color: var(--amber-2);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .workflow-step strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #ffffff;
+      font-size: 18px;
+      line-height: 1.15;
+    }
+
+    .workflow-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .proof-card {
+      border-radius: 26px;
+      padding: 24px;
+    }
+
+    .proof-card span {
+      display: inline-flex;
+      margin-bottom: 12px;
+      color: var(--green-2);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .proof-card h3 {
+      margin: 0 0 10px;
+      color: #ffffff;
+      font-size: 25px;
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+    }
+
+    .proof-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.65;
+    }
+
+    .cta {
+      margin-top: 18px;
+      overflow: hidden;
+      padding: 42px 30px;
+      border-radius: 34px;
+      border-color: rgba(121, 255, 208, 0.2);
+      background:
+        radial-gradient(circle at 16% 20%, rgba(121, 255, 208, 0.17), transparent 32%),
+        radial-gradient(circle at 86% 4%, rgba(245, 200, 108, 0.15), transparent 28%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035));
+      text-align: center;
+    }
+
+    .cta h2 {
+      max-width: 850px;
+      margin: 0 auto 14px;
+      color: #ffffff;
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .cta p {
+      max-width: 760px;
+      margin: 0 auto 24px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.68;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 22px 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--soft);
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--green-2);
+    }
+
+    @media (max-width: 1080px) {
+      .hero,
+      .section-title,
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .command-center {
+        min-height: auto;
+      }
+
+      .workflow-map {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-inner {
+        grid-template-columns: 1fr auto;
+      }
+
+      .pill-nav {
+        display: none;
+      }
+
+      .nav-actions {
+        justify-content: flex-end;
+      }
+
+      main {
+        padding-top: 34px;
+      }
+
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-inner {
+        min-height: 66px;
+        padding: 12px 16px;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 13px;
+      }
+
+      .brand-copy strong {
+        font-size: 12.5px;
+      }
+
+      .brand-copy span {
+        font-size: 11.5px;
+      }
+
+      .round-link {
+        display: none;
+      }
+
+      main {
+        padding: 28px 14px 60px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .command-center,
+      .screen,
+      .panel,
+      .proof-card,
+      .cta {
+        border-radius: 24px;
+      }
+
+      .hero-copy,
+      .panel,
+      .proof-card,
+      .cta {
+        padding: 22px;
+      }
+
+      .command-center {
+        padding: 14px;
+      }
+
+      .screen-top,
+      .dashboard {
+        padding: 14px;
+      }
+
+      .screen-image {
+        margin: 0 14px 14px;
+      }
+
+      h1 {
+        font-size: clamp(42px, 14vw, 64px);
+      }
+
+      .hero-copy p,
+      .section-title p,
+      .cta p {
+        font-size: 16px;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .workflow-map {
+        grid-template-columns: 1fr;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="nav" aria-label="Smartdog Automation case study navigation">
+      <div class="nav-inner">
+        <a class="brand" href="/">
+          <span class="brand-mark">SD</span>
+          <span class="brand-copy">
+            <strong>Smartdog Automation</strong>
+            <span>Workflow systems by Savage Lane</span>
+          </span>
+        </a>
+
+        <nav class="pill-nav" aria-label="Page sections">
+          <a href="#system">System</a>
+          <a href="#workflow">Workflow</a>
+          <a href="#proof">Proof</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a class="round-link" href="/">Savage Lane</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Smartdog Automation case study">
+        <div class="hero-copy">
+          <span class="eyebrow">Automation command center</span>
+          <h1>Follow up faster without turning your business into chaos.</h1>
+
+          <p>
+            <strong>Smartdog Automation</strong> is a workflow automation concept for service businesses that need faster lead response, missed call follow up, appointment reminders, review requests, activity logs, and practical AI assisted task handling.
+          </p>
+
+          <p>
+            The case study is about building a system that feels operational, not gimmicky. Every piece is framed around a real business question: what happened, what should trigger next, who needs to be notified, and what proof should be logged?
+          </p>
+
+          <ul class="hero-tags" aria-label="Smartdog Automation product themes">
+            <li>Lead capture</li>
+            <li>Missed call follow up</li>
+            <li>Reminder logic</li>
+            <li>Review requests</li>
+            <li>Workflow logs</li>
+          </ul>
+
+          <div class="actions">
+            <a class="button button-primary" href="https://smartdogautomation.com/" target="_blank" rel="noopener noreferrer">Visit Smartdog Automation</a>
+            <a class="button button-secondary" href="/#work">Back to portfolio</a>
+          </div>
+        </div>
+
+        <aside class="command-center" aria-label="Smartdog Automation command center preview">
+          <div class="screen">
+            <div class="screen-top">
+              <div class="window-dots" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="screen-status">Automation live</div>
+            </div>
+
+            <div class="dashboard">
+              <div class="metric-stack">
+                <div class="metric">
+                  <span>New leads</span>
+                  <strong>24</strong>
+                  <p>Form, call, and contact events routed into one reviewable queue.</p>
+                </div>
+
+                <div class="metric">
+                  <span>Open follow ups</span>
+                  <strong>11</strong>
+                  <p>Missed calls and stale inquiries stay visible instead of disappearing.</p>
+                </div>
+
+                <div class="metric">
+                  <span>Reviews requested</span>
+                  <strong>38</strong>
+                  <p>Post service timing can trigger review asks without relying on memory.</p>
+                </div>
+              </div>
+
+              <div class="pipeline">
+                <div class="pipeline-card">
+                  <strong>Lead captured</strong>
+                  <span>Website inquiry enters the workflow with source, service type, and urgency.</span>
+                </div>
+
+                <div class="pipeline-card">
+                  <strong>Missed call detected</strong>
+                  <span>Follow up task is created so the business can respond while intent is still warm.</span>
+                </div>
+
+                <div class="pipeline-card">
+                  <strong>Reminder scheduled</strong>
+                  <span>Appointment messaging can be queued around timing, status, and customer context.</span>
+                </div>
+
+                <div class="pipeline-card">
+                  <strong>Activity logged</strong>
+                  <span>Every trigger, message, rule, and decision can be reviewed instead of guessed.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="screen-image">
+              <img
+                src="/images/smartdogautomation_case_study_card.png"
+                alt="Smartdog Automation dashboard and workflow case study graphic"
+                width="1672"
+                height="941"
+              >
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="system" class="section" aria-label="Smartdog Automation system overview">
+        <div class="section-title">
+          <h2>What was built behind the automation concept.</h2>
+          <p>
+            Smartdog Automation is positioned as a practical operating layer for service businesses. The value is not a chatbot. The value is turning repeated customer communication into visible, repeatable workflows.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="panel">
+            <h3>Product system</h3>
+            <p>
+              The product is structured around the moments where local service businesses usually lose time or lose leads: missed calls, slow replies, unclear next steps, manual reminders, late review requests, and scattered activity history.
+            </p>
+
+            <ul class="list">
+              <li><strong>Lead capture:</strong> collect inquiries from forms, calls, and contact requests</li>
+              <li><strong>Follow up logic:</strong> create response paths for missed calls and new leads</li>
+              <li><strong>Reminder flows:</strong> support appointment and service timing workflows</li>
+              <li><strong>Review requests:</strong> trigger post service review asks at the right moment</li>
+              <li><strong>Activity logs:</strong> keep workflow actions visible for business review</li>
+            </ul>
+          </article>
+
+          <article class="panel">
+            <h3>Technical direction</h3>
+            <p>
+              The case study demonstrates workflow architecture, prompt structure, notification logic, automation design, reporting concepts, and admin friendly process thinking.
+            </p>
+
+            <ul class="list">
+              <li>Structured workflow modules instead of loose one off scripts</li>
+              <li>Trigger based automation logic for repeatable business tasks</li>
+              <li>AI assisted response support with business rules around it</li>
+              <li>CRM style pipeline thinking for leads, tasks, and outcomes</li>
+              <li>Reporting views that make automation easier to audit</li>
+            </ul>
+
+            <div class="tech-list" aria-label="Smartdog Automation technology and workflow terms">
+              <span class="tech-item">AI Workflows</span>
+              <span class="tech-item">Prompt Architecture</span>
+              <span class="tech-item">Automation Logic</span>
+              <span class="tech-item">Lead Capture</span>
+              <span class="tech-item">Notifications</span>
+              <span class="tech-item">Review Requests</span>
+              <span class="tech-item">Reporting</span>
+              <span class="tech-item">Business Rules</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="workflow" class="section" aria-label="Smartdog Automation workflow map">
+        <div class="section-title">
+          <h2>Where the automation gets practical.</h2>
+          <p>
+            A business does not need another dashboard that looks busy. It needs a workflow that captures the important event, assigns the next action, triggers the right message, and creates a record of what happened.
+          </p>
+        </div>
+
+        <div class="workflow-map">
+          <article class="workflow-step">
+            <span>01</span>
+            <strong>Capture the intent</strong>
+            <p>Website forms, missed calls, and contact requests become trackable events instead of scattered signals.</p>
+          </article>
+
+          <article class="workflow-step">
+            <span>02</span>
+            <strong>Classify the trigger</strong>
+            <p>The workflow identifies whether the business needs a lead reply, reminder, review request, or internal task.</p>
+          </article>
+
+          <article class="workflow-step">
+            <span>03</span>
+            <strong>Apply the rule</strong>
+            <p>Rules determine timing, message type, notification path, and whether AI assisted support is appropriate.</p>
+          </article>
+
+          <article class="workflow-step">
+            <span>04</span>
+            <strong>Send or queue</strong>
+            <p>The system can support follow up timing, task queues, reminders, and review request workflows.</p>
+          </article>
+
+          <article class="workflow-step">
+            <span>05</span>
+            <strong>Log the outcome</strong>
+            <p>Actions need a review trail so the business can see what happened and improve the workflow over time.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Smartdog Automation detail sections">
+        <div class="grid-3">
+          <article class="panel">
+            <h3>Who it is for</h3>
+            <p>
+              Smartdog Automation is best suited for service businesses where responsiveness matters and repeated customer communication creates daily operational drag.
+            </p>
+
+            <ul class="list">
+              <li>Home service companies</li>
+              <li>Appointment based businesses</li>
+              <li>Local service operators</li>
+              <li>Small teams without dedicated admin staff</li>
+            </ul>
+          </article>
+
+          <article class="panel">
+            <h3>Why it matters</h3>
+            <p>
+              The businesses that need automation most often do not need more complexity. They need fewer missed opportunities and a cleaner way to know what should happen next.
+            </p>
+
+            <ul class="list">
+              <li>Respond faster to warm leads</li>
+              <li>Reduce manual follow up gaps</li>
+              <li>Keep reminders from depending on memory</li>
+              <li>Make review requests part of the process</li>
+            </ul>
+          </article>
+
+          <article class="panel">
+            <h3>Brand position</h3>
+            <p>
+              The brand should feel smart, loyal, and operational. The dog reference works when it supports reliability and follow through, not when it turns the product into a cartoon.
+            </p>
+
+            <ul class="list">
+              <li>Reliable workflow assistant</li>
+              <li>Practical business automation</li>
+              <li>Service business command center</li>
+              <li>AI support with rules and logs</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="proof" class="section" aria-label="Smartdog Automation proof points">
+        <div class="section-title">
+          <h2>What this project proves.</h2>
+          <p>
+            Smartdog Automation shows that Savage Lane can shape an automation idea into a business system with workflow structure, clear product positioning, practical AI use, and a case study that does not overclaim.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="proof-card">
+            <span>Workflow thinking</span>
+            <h3>Automation starts with process.</h3>
+            <p>
+              The strongest automation products are built around triggers, decisions, rules, tasks, logs, and outcomes.
+            </p>
+          </article>
+
+          <article class="proof-card">
+            <span>AI positioning</span>
+            <h3>AI is support, not the product.</h3>
+            <p>
+              The AI layer is framed as assistance inside a controlled workflow, not a magic replacement for business judgment.
+            </p>
+          </article>
+
+          <article class="proof-card">
+            <span>Business use</span>
+            <h3>Follow up needs structure.</h3>
+            <p>
+              Missed calls, reminders, lead response, and review requests are small tasks that become expensive when they are inconsistent.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Smartdog Automation claim boundaries">
+        <div class="grid-2">
+          <article class="panel">
+            <h3>Safe public claims</h3>
+            <ul class="list">
+              <li>Workflow automation concept for service businesses</li>
+              <li>Lead capture, missed call follow up, reminders, and review request logic</li>
+              <li>AI assisted workflow planning and response support</li>
+              <li>Reporting and automation log concepts</li>
+              <li>Business process design for repeated communication tasks</li>
+            </ul>
+          </article>
+
+          <article class="panel">
+            <h3>Claims to avoid</h3>
+            <ul class="list">
+              <li>Do not claim guaranteed leads or guaranteed revenue growth</li>
+              <li>Do not imply live third party integrations unless they are actually connected</li>
+              <li>Do not present AI as a replacement for business judgment</li>
+              <li>Do not claim fully autonomous customer handling without human review controls</li>
+              <li>Do not make industry specific promises that are not proven by the product</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="cta" aria-label="Build something similar">
+        <span class="eyebrow">Build something similar</span>
+        <h2>Need a workflow system that captures leads, follows up, and keeps operations moving?</h2>
+        <p>
+          Savage Lane can help turn repeated business tasks into structured automation workflows with intake, rules, notifications, reporting, and AI assisted execution.
+        </p>
+
+        <div class="cta-actions">
+          <a class="button button-primary" href="mailto:danbevo@gmail.com?subject=Project%20Inquiry%20Similar%20to%20Smartdog%20Automation">Start a project inquiry</a>
+          <a class="button button-secondary" href="/">Back to Savage Lane</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>© 2026 Savage Lane. Digital product portfolio by Dan Belliveau.</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/#work">Work</a>
+        <a href="/about.html">About</a>
+        <a href="/sitemap.html">Sitemap</a>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
