@@ -304,6 +304,22 @@ img { max-width: 100%; }
   font-weight: 850;
 }
 
+.hud-rapid {
+  display: none;
+  color: #8ad7ff;
+}
+
+.hud-rapid.is-on {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hud-rapid b {
+  color: #c8f4ff;
+  font-weight: 850;
+}
+
 .hud-center {
   text-align: center;
   font-size: 11px;

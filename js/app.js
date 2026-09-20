@@ -27,10 +27,17 @@
       missionEl.textContent = state.level.name;
       const bombsEl = document.getElementById("hud-bombs");
       const bombBtn = document.getElementById("ctrl-bomb");
+      const rapidWrap = document.getElementById("hud-rapid-wrap");
+      const rapidEl = document.getElementById("hud-rapid");
       if (bombsEl) bombsEl.textContent = String(state.heldBombs || 0);
       if (bombBtn) {
         bombBtn.classList.toggle("is-empty", !state.heldBombs);
         bombBtn.textContent = "BOMB " + (state.heldBombs || 0);
+      }
+      if (rapidWrap && rapidEl) {
+        const ms = (state.player && state.player.rapid) || 0;
+        rapidWrap.classList.toggle("is-on", ms > 0);
+        rapidEl.textContent = (ms / 1000).toFixed(1);
       }
     },
     onWin: function (state) {

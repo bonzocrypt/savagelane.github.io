@@ -59,6 +59,12 @@
       frames: [
         ["00011000","00111100","00011000","01111110","11111111","11111111","01111110","00111100"]
       ]
+    },
+    rapid: {
+      color: "#8ad7ff",
+      frames: [
+        ["00001000","00011000","00111110","01111000","00011110","00001100","00111000","00010000"]
+      ]
     }
   };
 
@@ -229,7 +235,7 @@
         stepAcc: 0,
         frame: 0,
         frameAcc: 0,
-        player: { x: worldW / 2 - ship.w / 2, y: 0, w: ship.w, h: ship.h, cooldown: 0, iframe: 0 },
+        player: { x: worldW / 2 - ship.w / 2, y: 0, w: ship.w, h: ship.h, cooldown: 0, iframe: 0, rapid: 0 },
         shots: [],
         enemyShots: [],
         pickups: [],
@@ -287,8 +293,10 @@
       floater(inv.x, inv.y, "+" + pts);
       tone(320, 0.09);
       if (Math.random() < state.level.pickupChance) {
-        const dim = spriteDim("bomb");
+        const kind = Math.random() < 0.55 ? "bomb" : "rapid";
+        const dim = spriteDim(kind);
         state.pickups.push({
+          kind: kind,
           x: inv.x + inv.w / 2 - dim.w / 2,
           y: inv.y,
           w: dim.w,
@@ -302,19 +310,41 @@
     function firePlayer() {
       if (!state || state.status !== "playing") return;
       if (state.player.cooldown > 0) return;
+      const rapid = state.player.rapid > 0;
+      const maxShots = rapid ? Math.max(3, state.level.maxPlayerShots) : state.level.maxPlayerShots;
       const current = state.shots.filter(function (s) { return s.kind === "shot"; }).length;
-      if (current >= state.level.maxPlayerShots) return;
+      if (current >= maxShots) return;
       state.shots.push({
         x: state.player.x + state.player.w / 2 - 1.5,
         y: state.player.y - 8,
-        vy: -280,
-        w: 3,
-        h: 11,
+        vy: rapid ? -380 : -280,
+        w: rapid ? 3 : 3,
+        h: rapid ? 13 : 11,
         kind: "shot",
+        rapid: rapid,
         struck: []
       });
-      state.player.cooldown = state.level.cooldown;
-      tone(620, 0.05, "square", 0.028);
+      state.player.cooldown = rapid ? 70 : state.level.cooldown;
+      tone(rapid ? 760 : 620, 0.04, "square", rapid ? 0.022 : 0.028);
+    }
+
+    function collectPickup(item, labelX, labelY) {
+      item.y = worldH + 40;
+      if (item.kind === "rapid") {
+        state.player.rapid = 6000;
+        floater(labelX, labelY, "RAPID");
+        tone(880, 0.12, "triangle");
+        tone(1180, 0.1, "square", 0.03);
+        return;
+      }
+      if (state.heldBombs < MAX_BOMBS) {
+        state.heldBombs += 1;
+        floater(labelX, labelY, "BOMB");
+        tone(740, 0.1, "triangle");
+      } else {
+        state.score += 50;
+        floater(labelX, labelY, "+50");
+      }
     }
 
     function launchRocket(x, y) {
@@ -353,15 +383,7 @@
       for (let i = state.pickups.length - 1; i >= 0; i--) {
         const item = state.pickups[i];
         if (x >= item.x - pad && x <= item.x + item.w + pad && y >= item.y - pad && y <= item.y + item.h + pad) {
-          item.y = worldH + 40;
-          if (state.heldBombs < MAX_BOMBS) {
-            state.heldBombs += 1;
-            floater(item.x, item.y, "BOMB");
-            tone(740, 0.1, "triangle");
-          } else {
-            state.score += 50;
-            floater(item.x, item.y, "+50");
-          }
+          collectPickup(item, item.x, item.y);
           if (options.onHud) options.onHud(state);
           return true;
         }
@@ -408,6 +430,7 @@
       }
       p.cooldown = Math.max(0, p.cooldown - dt * 1000);
       p.iframe = Math.max(0, p.iframe - dt * 1000);
+      p.rapid = Math.max(0, p.rapid - dt * 1000);
       state.shake = Math.max(0, state.shake - dt * 1000);
 
       state.frameAcc += dt * 1000;
@@ -534,17 +557,7 @@
 
       const playerBox = { x: p.x, y: p.y, w: p.w, h: p.h };
       state.pickups.forEach(function (item) {
-        if (hit(item, playerBox)) {
-          item.y = worldH + 40;
-          if (state.heldBombs < MAX_BOMBS) {
-            state.heldBombs += 1;
-            floater(p.x, p.y - 12, "BOMB");
-            tone(740, 0.1, "triangle");
-          } else {
-            state.score += 50;
-            floater(p.x, p.y - 12, "+50");
-          }
-        }
+        if (hit(item, playerBox)) collectPickup(item, p.x, p.y - 12);
       });
 
       if (p.iframe <= 0) {
@@ -607,12 +620,13 @@
       });
       if (state.saucer) px(SPRITES.saucer, 0, state.saucer.x, state.saucer.y, UNIT, ctx);
       state.pickups.forEach(function (item) {
+        const kind = item.kind === "rapid" ? "rapid" : "bomb";
         const glow = 0.55 + Math.sin(item.t / 90) * 0.45;
         ctx.globalAlpha = 0.25 + glow * 0.25;
-        ctx.fillStyle = "#ffb347";
+        ctx.fillStyle = SPRITES[kind].color;
         ctx.fillRect(item.x - 2, item.y - 2, item.w + 4, item.h + 4);
         ctx.globalAlpha = 1;
-        px(SPRITES.bomb, 0, item.x, item.y, UNIT, ctx);
+        px(SPRITES[kind], 0, item.x, item.y, UNIT, ctx);
       });
       state.shots.forEach(function (shot) {
         if (shot.kind === "rocket") {
@@ -620,9 +634,9 @@
           ctx.fillStyle = "#ff7a3a";
           ctx.fillRect(shot.x + shot.w / 2 - 1, shot.y + shot.h, 2, 6);
         } else {
-          ctx.fillStyle = "#fff4cc";
+          ctx.fillStyle = shot.rapid ? "#c8f4ff" : "#fff4cc";
           ctx.fillRect(shot.x, shot.y, shot.w, shot.h);
-          ctx.fillStyle = "#d6b36a";
+          ctx.fillStyle = shot.rapid ? "#8ad7ff" : "#d6b36a";
           ctx.fillRect(shot.x, shot.y + shot.h - 3, shot.w, 3);
         }
       });
@@ -654,7 +668,15 @@
       });
       if (state.status !== "lost") {
         if (state.player.iframe <= 0 || Math.floor(state.player.iframe / 80) % 2 === 0) {
-          px(SPRITES.player, 0, state.player.x, state.player.y, UNIT, ctx);
+          if (state.player.rapid > 0) {
+            ctx.globalAlpha = 0.35;
+            ctx.fillStyle = "#8ad7ff";
+            ctx.fillRect(state.player.x - 3, state.player.y - 3, state.player.w + 6, state.player.h + 6);
+            ctx.globalAlpha = 1;
+            px(SPRITES.player, 0, state.player.x, state.player.y, UNIT, ctx, "#c8f4ff");
+          } else {
+            px(SPRITES.player, 0, state.player.x, state.player.y, UNIT, ctx);
+          }
         }
       }
       if (state.flash > 0) {
