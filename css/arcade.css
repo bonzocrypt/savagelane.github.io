@@ -388,7 +388,7 @@ img { max-width: 100%; }
 .controls {
   flex: 0 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1.15fr 1fr 1fr;
+  grid-template-columns: 1fr 1.3fr 1fr;
   gap: 8px;
   padding: 10px 12px calc(12px + env(safe-area-inset-bottom));
   background: #08090d;
@@ -416,16 +416,10 @@ img { max-width: 100%; }
   border-color: rgba(244, 224, 176, 0.5);
 }
 
-.ctrl-fire {
-  background: linear-gradient(180deg, rgba(214, 179, 106, 0.28), rgba(214, 179, 106, 0.08));
-  color: #15110a;
-  font-size: 16px;
-}
-
 .ctrl-bomb {
-  background: linear-gradient(180deg, rgba(255, 122, 122, 0.55), rgba(255, 80, 80, 0.18));
+  background: linear-gradient(180deg, rgba(255, 122, 122, 0.62), rgba(255, 80, 80, 0.2));
   color: #fff6d6;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .ctrl-bomb.is-empty {

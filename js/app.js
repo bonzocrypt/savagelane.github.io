@@ -183,7 +183,6 @@
 
   bindHold(document.getElementById("ctrl-left"), "left");
   bindHold(document.getElementById("ctrl-right"), "right");
-  bindHold(document.getElementById("ctrl-fire"), "fire");
 
   const bombCtrl = document.getElementById("ctrl-bomb");
   if (bombCtrl) {
@@ -192,6 +191,12 @@
       game.bomb();
     });
   }
+
+  const canvas = document.getElementById("game-canvas");
+  canvas.addEventListener("pointerdown", function (ev) {
+    if (!screens.game.classList.contains("active")) return;
+    game.tap(ev.clientX, ev.clientY);
+  });
 
   document.getElementById("btn-play").addEventListener("click", function () {
     location.hash = "#play/" + SavageProgress.nextLockedLevel();
@@ -220,12 +225,7 @@
   document.addEventListener("keydown", function (ev) {
     if (ev.code === "ArrowLeft" || ev.code === "KeyA") game.input.left = true;
     if (ev.code === "ArrowRight" || ev.code === "KeyD") game.input.right = true;
-    if (ev.code === "Space" || ev.code === "ArrowUp" || ev.code === "KeyW") {
-      ev.preventDefault();
-      game.input.fire = true;
-      game.fire();
-    }
-    if (ev.code === "KeyB" || ev.code === "ShiftLeft" || ev.code === "ShiftRight") {
+    if (ev.code === "Space" || ev.code === "KeyB" || ev.code === "ShiftLeft" || ev.code === "ShiftRight") {
       ev.preventDefault();
       game.bomb();
     }
@@ -240,7 +240,7 @@
   document.addEventListener("keyup", function (ev) {
     if (ev.code === "ArrowLeft" || ev.code === "KeyA") game.input.left = false;
     if (ev.code === "ArrowRight" || ev.code === "KeyD") game.input.right = false;
-    if (ev.code === "Space" || ev.code === "ArrowUp" || ev.code === "KeyW") game.input.fire = false;
+
   });
 
   document.addEventListener("touchmove", function (ev) {

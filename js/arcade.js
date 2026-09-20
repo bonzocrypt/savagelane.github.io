@@ -310,10 +310,29 @@
         vy: -280,
         w: 3,
         h: 11,
-        kind: "shot"
+        kind: "shot",
+        struck: []
       });
       state.player.cooldown = state.level.cooldown;
-      tone(620, 0.07);
+      tone(620, 0.05, "square", 0.028);
+    }
+
+    function launchRocket(x, y) {
+      const dim = spriteDim("bomb");
+      state.shots.push({
+        x: x - dim.w / 2,
+        y: y - dim.h,
+        w: dim.w,
+        h: dim.h,
+        vy: -250,
+        kind: "rocket",
+        struck: [],
+        trail: 0
+      });
+      state.shake = 90;
+      wave(x, y, 28, "#ffb347");
+      tone(180, 0.12, "square", 0.05);
+      tone(420, 0.16, "triangle", 0.04);
     }
 
     function useBomb() {
@@ -324,32 +343,30 @@
       }
       state.heldBombs -= 1;
       const p = state.player;
-      const cx = p.x + p.w / 2;
-      const cy = p.y - 8;
-      const radius = state.level.bombRadius;
-      wave(cx, cy, radius + 20, "#ffb347");
-      wave(cx, cy, radius * 0.55, "#fff1c8");
-      state.flash = 220;
-      state.shake = 220;
-      tone(90, 0.18, "sawtooth", 0.06);
-      tone(240, 0.22, "square", 0.05);
-      living().forEach(function (inv) {
-        const dx = inv.x + inv.w / 2 - cx;
-        const dy = inv.y + inv.h / 2 - cy;
-        if (Math.sqrt(dx * dx + dy * dy) <= radius) killInvader(inv, 20 * state.level.id);
-      });
-      if (state.saucer) {
-        const dx = state.saucer.x + state.saucer.w / 2 - cx;
-        const dy = state.saucer.y + state.saucer.h / 2 - cy;
-        if (Math.sqrt(dx * dx + dy * dy) <= radius) {
-          explode(state.saucer.x + 10, state.saucer.y + 4, "#f4e0b0", 16);
-          state.score += 150;
-          floater(state.saucer.x, state.saucer.y, "+150");
-          state.saucer = null;
+      launchRocket(p.x + p.w / 2, p.y);
+      if (options.onHud) options.onHud(state);
+    }
+
+    function tapWorld(x, y) {
+      if (!state || state.status !== "playing" || paused) return false;
+      const pad = 16;
+      for (let i = state.pickups.length - 1; i >= 0; i--) {
+        const item = state.pickups[i];
+        if (x >= item.x - pad && x <= item.x + item.w + pad && y >= item.y - pad && y <= item.y + item.h + pad) {
+          item.y = worldH + 40;
+          if (state.heldBombs < MAX_BOMBS) {
+            state.heldBombs += 1;
+            floater(item.x, item.y, "BOMB");
+            tone(740, 0.1, "triangle");
+          } else {
+            state.score += 50;
+            floater(item.x, item.y, "+50");
+          }
+          if (options.onHud) options.onHud(state);
+          return true;
         }
       }
-      state.enemyShots = [];
-      if (options.onHud) options.onHud(state);
+      return false;
     }
 
     function loseLife() {
@@ -384,7 +401,7 @@
       if (input.left) p.x -= speed * dt;
       if (input.right) p.x += speed * dt;
       p.x = Math.max(4, Math.min(worldW - p.w - 4, p.x));
-      if (input.fire) firePlayer();
+      firePlayer();
       if (input.bomb) {
         useBomb();
         input.bomb = false;
@@ -472,15 +489,37 @@
       state.pickups = state.pickups.filter(function (item) { return item.y < worldH + 16; });
 
       state.shots.forEach(function (shot) {
+        if (shot.kind === "rocket") {
+          shot.trail = (shot.trail || 0) + 1;
+          if (shot.trail % 2 === 0) {
+            state.booms.push({
+              x: shot.x + shot.w / 2 + (Math.random() - 0.5) * 4,
+              y: shot.y + shot.h,
+              vx: (Math.random() - 0.5) * 20,
+              vy: 40,
+              t: 180,
+              color: "#ffb347"
+            });
+          }
+        }
         alive.forEach(function (inv) {
           if (!inv.alive) return;
-          if (hit(shot, inv)) {
+          if (!hit(shot, inv)) return;
+          if (shot.kind === "rocket") {
+            if (shot.struck.indexOf(inv) !== -1) return;
+            shot.struck.push(inv);
+            killInvader(inv, 20 * state.level.id);
+            state.shake = Math.max(state.shake, 70);
+          } else {
             shot.y = -99;
             killInvader(inv);
           }
         });
+        if (shot.kind === "rocket") {
+          state.enemyShots = state.enemyShots.filter(function (bomb) { return !hit(shot, bomb); });
+        }
         if (state.saucer && hit(shot, state.saucer)) {
-          shot.y = -99;
+          if (shot.kind !== "rocket") shot.y = -99;
           explode(state.saucer.x + state.saucer.w / 2, state.saucer.y + 4, "#f4e0b0", 16);
           state.score += 150;
           floater(state.saucer.x, state.saucer.y, "+150");
@@ -576,10 +615,16 @@
         px(SPRITES.bomb, 0, item.x, item.y, UNIT, ctx);
       });
       state.shots.forEach(function (shot) {
-        ctx.fillStyle = "#fff4cc";
-        ctx.fillRect(shot.x, shot.y, shot.w, shot.h);
-        ctx.fillStyle = "#d6b36a";
-        ctx.fillRect(shot.x, shot.y + shot.h - 3, shot.w, 3);
+        if (shot.kind === "rocket") {
+          px(SPRITES.bomb, 0, shot.x, shot.y, UNIT, ctx, "#ffb347");
+          ctx.fillStyle = "#ff7a3a";
+          ctx.fillRect(shot.x + shot.w / 2 - 1, shot.y + shot.h, 2, 6);
+        } else {
+          ctx.fillStyle = "#fff4cc";
+          ctx.fillRect(shot.x, shot.y, shot.w, shot.h);
+          ctx.fillStyle = "#d6b36a";
+          ctx.fillRect(shot.x, shot.y + shot.h - 3, shot.w, 3);
+        }
       });
       state.enemyShots.forEach(function (bomb) {
         ctx.fillStyle = "#ff7a7a";
@@ -659,6 +704,13 @@
       input: input,
       fire: firePlayer,
       bomb: useBomb,
+      tap: function (clientX, clientY) {
+        const rect = canvas.getBoundingClientRect();
+        if (!rect.width || !rect.height) return false;
+        const x = (clientX - rect.left) * worldW / rect.width;
+        const y = (clientY - rect.top) * worldH / rect.height;
+        return tapWorld(x, y);
+      },
       levels: LEVELS,
       resize: resize
     };
