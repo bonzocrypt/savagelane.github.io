@@ -25,6 +25,13 @@
       livesEl.textContent = String(Math.max(0, state.lives));
       levelEl.textContent = "L" + state.level.id;
       missionEl.textContent = state.level.name;
+      const bombsEl = document.getElementById("hud-bombs");
+      const bombBtn = document.getElementById("ctrl-bomb");
+      if (bombsEl) bombsEl.textContent = String(state.heldBombs || 0);
+      if (bombBtn) {
+        bombBtn.classList.toggle("is-empty", !state.heldBombs);
+        bombBtn.textContent = "BOMB " + (state.heldBombs || 0);
+      }
     },
     onWin: function (state) {
       SavageProgress.clearLevel(state.level.id);
@@ -178,6 +185,14 @@
   bindHold(document.getElementById("ctrl-right"), "right");
   bindHold(document.getElementById("ctrl-fire"), "fire");
 
+  const bombCtrl = document.getElementById("ctrl-bomb");
+  if (bombCtrl) {
+    bombCtrl.addEventListener("pointerdown", function (ev) {
+      ev.preventDefault();
+      game.bomb();
+    });
+  }
+
   document.getElementById("btn-play").addEventListener("click", function () {
     location.hash = "#play/" + SavageProgress.nextLockedLevel();
   });
@@ -209,6 +224,10 @@
       ev.preventDefault();
       game.input.fire = true;
       game.fire();
+    }
+    if (ev.code === "KeyB" || ev.code === "ShiftLeft" || ev.code === "ShiftRight") {
+      ev.preventDefault();
+      game.bomb();
     }
     if (ev.code === "Enter" && screens.title.classList.contains("active")) {
       document.getElementById("btn-play").click();
