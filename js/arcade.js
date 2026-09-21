@@ -295,6 +295,7 @@
         state.rapidDrops += 1;
         callout("Pick up the rapid fire", "rapid");
       }
+    }
 
     function finishKill(inv, points) {
       inv.alive = false;
