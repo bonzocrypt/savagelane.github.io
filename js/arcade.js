@@ -75,17 +75,19 @@
       reward: "about",
       rewardLabel: "About Dan",
       rows: [
-        { type: "bug", count: 6 },
-        { type: "bug", count: 6 }
+        { type: "bug", count: 7 },
+        { type: "bug", count: 7 },
+        { type: "bug", count: 7 }
       ],
-      stepMs: 560,
-      minStepMs: 260,
-      drop: 12,
-      fireChance: 0.007,
-      maxPlayerShots: 1,
-      cooldown: 200,
-      pickupChance: 0.32,
-      bombRadius: 118
+      stepMs: 280,
+      minStepMs: 110,
+      stepPx: 10,
+      drop: 14,
+      fireChance: 0.01,
+      maxPlayerShots: 18,
+      cooldown: 80,
+      shotSpeed: 560,
+      pickupChance: 0.28
     },
     2: {
       id: 2,
@@ -93,18 +95,20 @@
       reward: "projects",
       rewardLabel: "Projects",
       rows: [
-        { type: "ticket", count: 7 },
-        { type: "scope", count: 7 },
-        { type: "form", count: 7 }
+        { type: "ticket", count: 8 },
+        { type: "scope", count: 8 },
+        { type: "form", count: 8 },
+        { type: "bug", count: 8 }
       ],
-      stepMs: 440,
-      minStepMs: 160,
-      drop: 14,
-      fireChance: 0.018,
-      maxPlayerShots: 1,
-      cooldown: 230,
-      pickupChance: 0.22,
-      bombRadius: 132
+      stepMs: 200,
+      minStepMs: 78,
+      stepPx: 11,
+      drop: 15,
+      fireChance: 0.022,
+      maxPlayerShots: 18,
+      cooldown: 80,
+      shotSpeed: 600,
+      pickupChance: 0.2
     },
     3: {
       id: 3,
@@ -112,24 +116,27 @@
       reward: "contact",
       rewardLabel: "Contact",
       rows: [
-        { type: "mail", count: 7 },
-        { type: "meeting", count: 7 },
-        { type: "ticket", count: 7 },
-        { type: "bug", count: 7 }
+        { type: "bug", count: 5, hp: 4, unit: 5 },
+        { type: "mail", count: 8 },
+        { type: "meeting", count: 8 },
+        { type: "ticket", count: 8 },
+        { type: "bug", count: 8 }
       ],
-      stepMs: 330,
-      minStepMs: 105,
+      stepMs: 145,
+      minStepMs: 52,
+      stepPx: 12,
       drop: 16,
-      fireChance: 0.03,
-      maxPlayerShots: 2,
-      cooldown: 210,
-      pickupChance: 0.16,
-      bombRadius: 150
+      fireChance: 0.034,
+      maxPlayerShots: 18,
+      cooldown: 80,
+      shotSpeed: 640,
+      pickupChance: 0.16
     }
   };
 
   const UNIT = 3;
   const MAX_BOMBS = 3;
+  const RAPID_MULT = 10;
 
   function px(sprite, frame, x, y, size, ctx, color) {
     const rows = sprite.frames[frame % sprite.frames.length];
@@ -146,9 +153,10 @@
     return { cols: rows[0].length, rows: rows.length };
   }
 
-  function spriteDim(type) {
+  function spriteDim(type, unit) {
     const size = spriteSize(type);
-    return { w: size.cols * UNIT, h: size.rows * UNIT };
+    const u = unit || UNIT;
+    return { w: size.cols * u, h: size.rows * u };
   }
 
   function createGame(options) {
@@ -206,22 +214,29 @@
     function spawnLevel(id) {
       const level = LEVELS[id] || LEVELS[1];
       const invaders = [];
-      const cell = 40;
-      const top = 34;
-      level.rows.forEach(function (row, r) {
+      let y = 28;
+      level.rows.forEach(function (row) {
+        const unit = row.unit || UNIT;
+        const dim = spriteDim(row.type, unit);
+        const cell = Math.max(dim.w + 6, 34);
         const totalW = row.count * cell;
-        const startX = Math.max(8, (worldW - totalW) / 2);
+        const startX = Math.max(6, (worldW - totalW) / 2);
         for (let i = 0; i < row.count; i++) {
-          const dim = spriteDim(row.type);
+          const hp = row.hp || 1;
           invaders.push({
             type: row.type,
             x: startX + i * cell,
-            y: top + r * 30,
+            y: y,
             w: dim.w,
             h: dim.h,
+            unit: unit,
+            hp: hp,
+            maxHp: hp,
+            hitFlash: 0,
             alive: true
           });
         }
+        y += dim.h + 8;
       });
       const ship = spriteDim("player");
       state = {
@@ -284,12 +299,12 @@
       state.waves.push({ x: x, y: y, r: 6, max: maxR, color: color || "#ffb347" });
     }
 
-    function killInvader(inv, points) {
-      if (!inv.alive) return;
+    function finishKill(inv, points) {
       inv.alive = false;
-      const pts = points || (10 * state.level.id);
+      inv.hp = 0;
+      const pts = points || (10 * state.level.id * (inv.maxHp > 1 ? 3 : 1));
       state.score += pts;
-      explode(inv.x + inv.w / 2, inv.y + inv.h / 2, SPRITES[inv.type].color, 12);
+      explode(inv.x + inv.w / 2, inv.y + inv.h / 2, SPRITES[inv.type].color, inv.maxHp > 1 ? 18 : 12);
       floater(inv.x, inv.y, "+" + pts);
       tone(320, 0.09);
       if (Math.random() < state.level.pickupChance) {
@@ -301,31 +316,49 @@
           y: inv.y,
           w: dim.w,
           h: dim.h,
-          vy: 42,
+          vy: 48,
           t: 0
         });
       }
+    }
+
+    function damageInvader(inv, opts) {
+      if (!inv.alive) return;
+      opts = opts || {};
+      if (opts.pierce || inv.maxHp <= 1) {
+        finishKill(inv, opts.points);
+        return;
+      }
+      inv.hp -= opts.dmg || 1;
+      inv.hitFlash = 90;
+      if (inv.hp <= 0) {
+        finishKill(inv, opts.points);
+        return;
+      }
+      explode(inv.x + inv.w / 2, inv.y + inv.h / 2, SPRITES[inv.type].color, 5);
+      tone(210, 0.05, "square", 0.03);
     }
 
     function firePlayer() {
       if (!state || state.status !== "playing") return;
       if (state.player.cooldown > 0) return;
       const rapid = state.player.rapid > 0;
-      const maxShots = rapid ? Math.max(3, state.level.maxPlayerShots) : state.level.maxPlayerShots;
+      const maxShots = rapid ? state.level.maxPlayerShots * RAPID_MULT : state.level.maxPlayerShots;
       const current = state.shots.filter(function (s) { return s.kind === "shot"; }).length;
       if (current >= maxShots) return;
+      const speed = (state.level.shotSpeed || 560) * (rapid ? 1.35 : 1);
       state.shots.push({
         x: state.player.x + state.player.w / 2 - 1.5,
         y: state.player.y - 8,
-        vy: rapid ? -380 : -280,
-        w: rapid ? 3 : 3,
-        h: rapid ? 13 : 11,
+        vy: -speed,
+        w: 2,
+        h: rapid ? 10 : 9,
         kind: "shot",
         rapid: rapid,
         struck: []
       });
-      state.player.cooldown = rapid ? 70 : state.level.cooldown;
-      tone(rapid ? 760 : 620, 0.04, "square", rapid ? 0.022 : 0.028);
+      state.player.cooldown = rapid ? state.level.cooldown / RAPID_MULT : state.level.cooldown;
+      if (!rapid || current % 4 === 0) tone(rapid ? 780 : 640, 0.03, "square", rapid ? 0.016 : 0.022);
     }
 
     function collectPickup(item, labelX, labelY) {
@@ -354,7 +387,7 @@
         y: y - dim.h,
         w: dim.w,
         h: dim.h,
-        vy: -250,
+        vy: -420,
         kind: "rocket",
         struck: [],
         trail: 0
@@ -432,6 +465,9 @@
       p.iframe = Math.max(0, p.iframe - dt * 1000);
       p.rapid = Math.max(0, p.rapid - dt * 1000);
       state.shake = Math.max(0, state.shake - dt * 1000);
+      living().forEach(function (inv) {
+        inv.hitFlash = Math.max(0, (inv.hitFlash || 0) - dt * 1000);
+      });
 
       state.frameAcc += dt * 1000;
       if (state.frameAcc > 380) {
@@ -456,7 +492,7 @@
           y: 10,
           w: dim.w,
           h: dim.h,
-          vx: left ? 70 : -70
+          vx: left ? 110 : -110
         };
         state.saucerIn = 9000 + Math.random() * 5000;
         tone(880, 0.12, "triangle", 0.03);
@@ -476,14 +512,15 @@
       if (alive.length && state.stepAcc >= stepTarget) {
         state.stepAcc = 0;
         let hitEdge = false;
+        const step = state.level.stepPx || 10;
         alive.forEach(function (inv) {
-          inv.x += state.dir * 8;
-          if (inv.x < 6 || inv.x + inv.w > worldW - 6) hitEdge = true;
+          inv.x += state.dir * step;
+          if (inv.x < 4 || inv.x + inv.w > worldW - 4) hitEdge = true;
         });
         if (hitEdge) {
           state.dir *= -1;
           alive.forEach(function (inv) {
-            inv.x += state.dir * 8;
+            inv.x += state.dir * step;
             inv.y += state.level.drop;
           });
         }
@@ -496,7 +533,7 @@
         state.enemyShots.push({
           x: shooter.x + shooter.w / 2 - 1,
           y: shooter.y + shooter.h,
-          vy: 95 + state.level.id * 28,
+          vy: 150 + state.level.id * 40,
           w: 2,
           h: 8
         });
@@ -531,11 +568,11 @@
           if (shot.kind === "rocket") {
             if (shot.struck.indexOf(inv) !== -1) return;
             shot.struck.push(inv);
-            killInvader(inv, 20 * state.level.id);
+            damageInvader(inv, { pierce: true, points: 20 * state.level.id });
             state.shake = Math.max(state.shake, 70);
           } else {
             shot.y = -99;
-            killInvader(inv);
+            damageInvader(inv);
           }
         });
         if (shot.kind === "rocket") {
@@ -616,7 +653,10 @@
         ctx.fillRect(star.x, star.y, star.s, star.s);
       });
       living().forEach(function (inv) {
-        px(SPRITES[inv.type], state.frame, inv.x, inv.y, UNIT, ctx);
+        const color = inv.hitFlash > 0
+          ? "#ffffff"
+          : (inv.maxHp > 1 && inv.hp < inv.maxHp ? "#ffb0a8" : SPRITES[inv.type].color);
+        px(SPRITES[inv.type], state.frame, inv.x, inv.y, inv.unit || UNIT, ctx, color);
       });
       if (state.saucer) px(SPRITES.saucer, 0, state.saucer.x, state.saucer.y, UNIT, ctx);
       state.pickups.forEach(function (item) {
