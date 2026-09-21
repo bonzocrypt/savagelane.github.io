@@ -29,8 +29,8 @@
       drop: 10,
       fireChance: 0.009,
       maxPlayerShots: 10,
-      cooldown: 280,
-      shotSpeed: 140,
+      cooldown: 300,
+      shotSpeed: 100,
       pickupChance: 0.09,
       maxBombDrops: 2,
       maxRapidDrops: 2
@@ -52,8 +52,8 @@
       drop: 12,
       fireChance: 0.018,
       maxPlayerShots: 10,
-      cooldown: 280,
-      shotSpeed: 150,
+      cooldown: 300,
+      shotSpeed: 108,
       pickupChance: 0.07,
       maxBombDrops: 2,
       maxRapidDrops: 2
@@ -70,17 +70,17 @@
         { type: "ticket", count: 8 },
         { type: "bug", count: 8 }
       ],
-      stepMs: 165,
-      minStepMs: 70,
-      stepPx: 11,
-      drop: 13,
-      fireChance: 0.026,
+      stepMs: 250,
+      minStepMs: 120,
+      stepPx: 8,
+      drop: 10,
+      fireChance: 0.018,
       maxPlayerShots: 10,
-      cooldown: 280,
-      shotSpeed: 160,
+      cooldown: 300,
+      shotSpeed: 112,
       pickupChance: 0.06,
       maxBombDrops: 2,
-      maxRapidDrops: 1
+      maxRapidDrops: 2
     }
   };
 
@@ -202,6 +202,7 @@
         heldBombs: 0,
         bombDrops: 0,
         rapidDrops: 0,
+        kills: 0,
         invaders: invaders,
         dir: 1,
         stepMs: level.stepMs,
@@ -268,9 +269,11 @@
       const canBomb = state.bombDrops < (level.maxBombDrops || 2);
       const canRapid = state.rapidDrops < (level.maxRapidDrops || 2);
       if (!canBomb && !canRapid) return;
-      if (Math.random() > (level.pickupChance || 0.08)) return;
+      const forceRapid = canRapid && state.rapidDrops === 0 && state.kills <= 2;
+      if (!forceRapid && Math.random() > (level.pickupChance || 0.08)) return;
       let kind = "bomb";
-      if (canBomb && canRapid) kind = Math.random() < 0.55 ? "bomb" : "rapid";
+      if (forceRapid) kind = "rapid";
+      else if (canBomb && canRapid) kind = Math.random() < 0.4 ? "bomb" : "rapid";
       else if (canRapid) kind = "rapid";
       const dim = spriteDim(kind);
       state.pickups.push({
@@ -279,7 +282,7 @@
         y: inv.y,
         w: dim.w,
         h: dim.h,
-        vy: 36,
+        vy: kind === "rapid" ? 52 : 36,
         t: 0
       });
       if (kind === "bomb") state.bombDrops += 1;
@@ -291,6 +294,7 @@
       inv.hp = 0;
       const pts = points || (10 * state.level.id * (inv.maxHp > 1 ? 3 : 1));
       state.score += pts;
+      state.kills += 1;
       const skin = BODY[inv.type] || BODY.bug;
       explode(inv.x + inv.w / 2, inv.y + inv.h / 2, skin.color, inv.maxHp > 1 ? 22 : 14);
       floater(inv.x, inv.y, "+" + pts);
@@ -363,7 +367,7 @@
         y: y - dim.h,
         w: dim.w,
         h: dim.h,
-        vy: -180,
+        vy: -130,
         kind: "rocket",
         struck: [],
         trail: 0
