@@ -203,6 +203,9 @@
         bombDrops: 0,
         rapidDrops: 0,
         kills: 0,
+        combo: 0,
+        lastKillT: -9999,
+        callouts: {},
         invaders: invaders,
         dir: 1,
         stepMs: level.stepMs,
@@ -285,9 +288,13 @@
         vy: kind === "rapid" ? 52 : 36,
         t: 0
       });
-      if (kind === "bomb") state.bombDrops += 1;
-      else state.rapidDrops += 1;
-    }
+      if (kind === "bomb") {
+        state.bombDrops += 1;
+        callout("Pick up the bomb", "bomb");
+      } else {
+        state.rapidDrops += 1;
+        callout("Pick up the rapid fire", "rapid");
+      }
 
     function finishKill(inv, points) {
       inv.alive = false;
@@ -295,6 +302,12 @@
       const pts = points || (10 * state.level.id * (inv.maxHp > 1 ? 3 : 1));
       state.score += pts;
       state.kills += 1;
+      if (state.t - state.lastKillT < 1000) state.combo += 1;
+      else state.combo = 1;
+      state.lastKillT = state.t;
+      if (state.combo === 5) callout("5 streak", "streak");
+      if (state.combo === 10) callout("10 streak", "streak");
+      if (state.combo >= 3) state.score += state.combo;
       const skin = BODY[inv.type] || BODY.bug;
       explode(inv.x + inv.w / 2, inv.y + inv.h / 2, skin.color, inv.maxHp > 1 ? 22 : 14);
       floater(inv.x, inv.y, "+" + pts);
@@ -323,9 +336,12 @@
       if (!state || state.status !== "playing") return;
       if (state.player.cooldown > 0) return;
       const rapid = state.player.rapid > 0;
-      const maxShots = rapid ? state.level.maxPlayerShots * RAPID_MULT : state.level.maxPlayerShots;
-      const current = state.shots.filter(function (s) { return s.kind === "shot"; }).length;
-      if (current >= maxShots) return;
+      const muzzleY = state.player.y - 40;
+      const nearby = state.shots.filter(function (s) {
+        return s.kind === "shot" && s.y > muzzleY;
+      }).length;
+      const maxNear = rapid ? 6 : 1;
+      if (nearby >= maxNear) return;
       const speed = (state.level.shotSpeed || 140) * (rapid ? 1.15 : 1);
       state.shots.push({
         x: state.player.x + state.player.w / 2 - 1.2,
@@ -338,7 +354,12 @@
         struck: []
       });
       state.player.cooldown = rapid ? state.level.cooldown / RAPID_MULT : state.level.cooldown;
-      if (!rapid || current % 5 === 0) tone(rapid ? 820 : 520, 0.03, "sine", rapid ? 0.014 : 0.02);
+      if (!rapid || nearby % 4 === 0) tone(rapid ? 820 : 520, 0.03, "sine", rapid ? 0.014 : 0.02);
+    }
+
+    function callout(text, kind) {
+      if (!options.onCallout) return;
+      options.onCallout(text, kind || "");
     }
 
     function collectPickup(item, labelX, labelY) {
@@ -413,6 +434,7 @@
       tone(90, 0.2, "sawtooth");
       state.enemyShots = [];
       state.shots = [];
+      if (state.lives === 1) callout("Last life", "warn");
       if (state.lives <= 0) {
         state.status = "lost";
         if (options.onLose) options.onLose(state);
@@ -437,14 +459,27 @@
       if (input.left) p.x -= speed * dt;
       if (input.right) p.x += speed * dt;
       p.x = Math.max(4, Math.min(worldW - p.w - 4, p.x));
+      if (Math.random() < (p.rapid > 0 ? 0.7 : 0.35)) {
+        state.booms.push({
+          x: p.x + p.w / 2 + (Math.random() - 0.5) * 8,
+          y: p.y + p.h,
+          vx: (Math.random() - 0.5) * 16,
+          vy: 50 + Math.random() * 20,
+          t: 160,
+          r: 1.1 + Math.random(),
+          color: p.rapid > 0 ? "#7cf0ff" : "#ffb347"
+        });
+      }
       firePlayer();
       if (input.bomb) {
         useBomb();
         input.bomb = false;
       }
+      const wasRapid = p.rapid > 0;
       p.cooldown = Math.max(0, p.cooldown - dt * 1000);
       p.iframe = Math.max(0, p.iframe - dt * 1000);
       p.rapid = Math.max(0, p.rapid - dt * 1000);
+      if (wasRapid && p.rapid <= 0) p.cooldown = 0;
       state.shake = Math.max(0, state.shake - dt * 1000);
       living().forEach(function (inv) {
         inv.hitFlash = Math.max(0, (inv.hitFlash || 0) - dt * 1000);
@@ -471,6 +506,7 @@
         };
         state.saucerIn = 11000 + Math.random() * 6000;
         tone(760, 0.12, "sine", 0.03);
+        callout("Destroy that to activate a bomb", "saucer");
       }
       if (state.saucer) {
         state.saucer.x += state.saucer.vx * dt;
@@ -520,6 +556,13 @@
       state.pickups.forEach(function (item) {
         item.y += item.vy * dt;
         item.t += dt * 1000;
+        const dx = (p.x + p.w / 2) - (item.x + item.w / 2);
+        const dy = p.y - item.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 96 && dist > 1) {
+          item.x += (dx / dist) * 90 * dt;
+          item.y += (dy / dist) * 90 * dt;
+        }
       });
       state.pickups = state.pickups.filter(function (item) { return item.y < worldH + 16; });
 

@@ -32,6 +32,7 @@
       if (bombsEl) bombsEl.textContent = String(state.heldBombs || 0);
       if (bombBtn) {
         bombBtn.classList.toggle("is-empty", !state.heldBombs);
+        bombBtn.classList.toggle("has-charge", !!state.heldBombs);
         bombBtn.textContent = "BOMB " + (state.heldBombs || 0);
       }
       if (rapidWrap && rapidEl) {
@@ -39,6 +40,18 @@
         rapidWrap.classList.toggle("is-on", ms > 0);
         rapidEl.textContent = (ms / 1000).toFixed(1);
       }
+    },
+    onCallout: function (text, kind) {
+      const el = document.getElementById("game-callout");
+      if (!el) return;
+      el.hidden = false;
+      el.textContent = text;
+      el.className = "game-callout show" + (kind ? " is-" + kind : "");
+      clearTimeout(el._hide);
+      el._hide = setTimeout(function () {
+        el.classList.remove("show");
+        el.hidden = true;
+      }, 2800);
     },
     onWin: function (state) {
       SavageProgress.clearLevel(state.level.id);
