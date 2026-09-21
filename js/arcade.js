@@ -84,9 +84,9 @@
       stepPx: 10,
       drop: 14,
       fireChance: 0.01,
-      maxPlayerShots: 18,
+      maxPlayerShots: 36,
       cooldown: 80,
-      shotSpeed: 560,
+      shotSpeed: 280,
       pickupChance: 0.28
     },
     2: {
@@ -105,9 +105,9 @@
       stepPx: 11,
       drop: 15,
       fireChance: 0.022,
-      maxPlayerShots: 18,
+      maxPlayerShots: 36,
       cooldown: 80,
-      shotSpeed: 600,
+      shotSpeed: 300,
       pickupChance: 0.2
     },
     3: {
@@ -127,9 +127,9 @@
       stepPx: 12,
       drop: 16,
       fireChance: 0.034,
-      maxPlayerShots: 18,
+      maxPlayerShots: 36,
       cooldown: 80,
-      shotSpeed: 640,
+      shotSpeed: 320,
       pickupChance: 0.16
     }
   };
@@ -387,7 +387,7 @@
         y: y - dim.h,
         w: dim.w,
         h: dim.h,
-        vy: -420,
+        vy: -210,
         kind: "rocket",
         struck: [],
         trail: 0
