@@ -1,0 +1,84 @@
+/* One button treatment across the three portfolio pages. */
+:is(.about-page, .projects-page, .contact-page) .nav-links .portfolio-nav-button,
+:is(.about-page, .projects-page, .contact-page) .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid rgba(214, 179, 106, 0.35);
+  border-radius: 999px;
+  color: var(--accent-2);
+  background: rgba(214, 179, 106, 0.075);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+:is(.about-page, .projects-page, .contact-page) .nav-links .portfolio-nav-primary,
+:is(.about-page, .projects-page, .contact-page) .button-primary {
+  color: #15110a;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-color: rgba(244, 224, 176, 0.6);
+}
+
+:is(.about-page, .projects-page, .contact-page) .portfolio-nav-button:hover,
+:is(.about-page, .projects-page, .contact-page) .button:hover {
+  border-color: rgba(244, 224, 176, 0.8);
+  box-shadow: 0 0 16px rgba(214, 179, 106, 0.16);
+  transform: translateY(-1px);
+}
+
+:is(.about-page, .projects-page, .contact-page) .portfolio-nav-button:active,
+:is(.about-page, .projects-page, .contact-page) .button:active {
+  transform: translateY(0);
+}
+
+:is(.about-page, .projects-page, .contact-page) .button span,
+:is(.about-page, .projects-page, .contact-page) .portfolio-nav-button span {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+:is(.about-page, .projects-page, .contact-page) a:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 5px;
+}
+
+/* Keep the locked Contact link hidden until its wave is cleared or skipped. */
+.about-page .nav-links a.locked[data-requires="contact"] {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  :is(.about-page, .projects-page, .contact-page) .nav-inner {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  :is(.about-page, .projects-page, .contact-page) .nav-links {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+  }
+
+  :is(.about-page, .projects-page, .contact-page) .nav-links .portfolio-nav-button {
+    flex: 1 1 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.about-page, .projects-page, .contact-page) .portfolio-nav-button,
+  :is(.about-page, .projects-page, .contact-page) .button {
+    transition: none;
+  }
+
+  :is(.about-page, .projects-page, .contact-page) .portfolio-nav-button:hover,
+  :is(.about-page, .projects-page, .contact-page) .button:hover {
+    transform: none;
+  }
+}

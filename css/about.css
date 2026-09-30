@@ -77,11 +77,6 @@
   line-height: 1.7;
 }
 
-.about-page .button-primary {
-  background: var(--accent-2);
-  text-align: center;
-}
-
 .about-page a:focus-visible {
   outline: 2px solid var(--accent-2);
   outline-offset: 5px;

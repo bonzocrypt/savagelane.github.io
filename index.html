@@ -25,6 +25,8 @@
   <link rel="stylesheet" href="/css/arcade.css">
   <link rel="stylesheet" href="/css/about.css">
   <link rel="stylesheet" href="/css/projects.css">
+  <link rel="stylesheet" href="/css/portfolio.css">
+  <link rel="stylesheet" href="/css/contact.css">
 
   <meta property="og:site_name" content="Savage Lane">
   <meta property="og:title" content="Savage Lane | Dan Belliveau">
@@ -136,9 +138,9 @@
             <strong>Savage Lane</strong>
             <span>About unlocked</span>
           </a>
-          <nav class="nav-links">
-            <a data-requires="projects">Projects</a>
-            <a data-requires="contact">Contact</a>
+          <nav class="nav-links" aria-label="Portfolio navigation">
+            <a class="portfolio-nav-button portfolio-nav-primary" href="#play/2" data-next-cta="projects">Unlock Projects</a>
+            <a class="portfolio-nav-button" data-requires="contact">Contact</a>
           </nav>
         </div>
       </header>
@@ -186,8 +188,8 @@
             <span>Projects unlocked</span>
           </a>
           <nav class="nav-links" aria-label="Portfolio navigation">
-            <a class="project-nav-button project-nav-about" href="#about">About</a>
-            <a class="project-nav-button project-nav-contact" href="#play/3">Unlock Contact <span aria-hidden="true">&#8250;</span></a>
+            <a class="portfolio-nav-button" href="#about">About</a>
+            <a class="portfolio-nav-button portfolio-nav-primary" href="#play/3">Unlock Contact <span aria-hidden="true">&#8250;</span></a>
           </nav>
         </div>
       </header>
@@ -288,61 +290,34 @@
       </footer>
     </section>
 
-    <section id="screen-contact" class="screen page-screen">
+    <section id="screen-contact" class="screen page-screen contact-page">
       <header class="nav">
         <div class="nav-inner">
           <a class="brand" href="#title">
             <strong>Savage Lane</strong>
             <span>Contact unlocked</span>
           </a>
-          <nav class="nav-links">
-            <a href="#title">Arcade</a>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
+          <nav class="nav-links" aria-label="Portfolio navigation">
+            <a class="portfolio-nav-button" href="#about">About</a>
+            <a class="portfolio-nav-button portfolio-nav-primary" href="#projects">Projects</a>
           </nav>
         </div>
       </header>
-      <main class="content">
-        <section class="contact-panel">
-          <span class="eyebrow">Level 3 cleared · Available for select builds</span>
-          <h1>Need a website, app, dashboard, automation flow, or SEO cleanup that actually works?</h1>
-          <p>
-            Savage Lane is built to show the kind of systems Dan can create: practical digital products with clean positioning, real infrastructure, financial systems discipline, and business logic behind the screen.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="mailto:danbevo@gmail.com?subject=Savage%20Lane%20Project%20Inquiry">Start a project inquiry</a>
-            <a class="button button-secondary" href="#projects">Review the builds</a>
+      <main class="content contact-content">
+        <section aria-labelledby="contact-heading">
+          <p class="contact-label">Contact unlocked</p>
+          <h1 id="contact-heading">Let&rsquo;s connect.</h1>
+          <p class="contact-intro">Have a project in mind, a professional opportunity, or just want to reconnect? I&rsquo;d like to hear from you.</p>
+          <div class="contact-actions">
+            <a class="button button-primary" href="mailto:danbevo@gmail.com">Email Dan <span aria-hidden="true">&#8250;</span></a>
+            <a class="contact-email" href="mailto:danbevo@gmail.com">danbevo@gmail.com</a>
           </div>
-        </section>
-
-        <section>
-          <h2>What I can build for clients</h2>
-          <div class="services-grid">
-            <article class="service-card"><h3>Business websites</h3><p>Fast, polished websites with clear positioning, mobile first pages, metadata, forms, analytics, and launch ready structure.</p></article>
-            <article class="service-card"><h3>Firebase web apps</h3><p>User accounts, Firestore databases, file uploads, dashboards, private pages, backend functions, and permission based workflows.</p></article>
-            <article class="service-card"><h3>Admin dashboards</h3><p>Internal tools for review queues, user support, publishing flows, pricing workflows, content management, and business operations.</p></article>
-            <article class="service-card"><h3>SEO cleanup</h3><p>Titles, descriptions, canonical URLs, structured data, sitemaps, robots files, internal links, social previews, and Search Console fixes.</p></article>
-            <article class="service-card"><h3>Automation workflows</h3><p>Form handling, notifications, AI assisted research, repeatable content systems, intake pipelines, and structured operating processes.</p></article>
-            <article class="service-card"><h3>App launch support</h3><p>Mobile wrappers, app screenshots, Google Play setup, iOS review positioning, support pages, and app store metadata cleanup.</p></article>
-          </div>
-        </section>
-
-        <section>
-          <h2>How I approach builds</h2>
-          <div class="process">
-            <article class="process-card"><h3>Define the job</h3><p>Clarify the business goal, user flow, public message, private workflow, and what the product must prove.</p></article>
-            <article class="process-card"><h3>Build the system</h3><p>Create the frontend, backend, data model, forms, storage, dashboards, SEO structure, and deployment path.</p></article>
-            <article class="process-card"><h3>Test the edge cases</h3><p>Fix the messy parts: mobile layout, broken previews, state persistence, bad data, permissions, indexing, and review issues.</p></article>
-            <article class="process-card"><h3>Improve after launch</h3><p>Use real use, search data, feedback, and production problems to make the product cleaner and more useful.</p></article>
-          </div>
+          <p class="contact-real-estate">Buying or selling a home? Reach out before choosing an agent, and I can help you find the right connection.</p>
         </section>
       </main>
       <footer class="footer">
         <div>© 2026 Savage Lane. Digital product portfolio by Dan Belliveau.</div>
         <div class="footer-links">
-          <a href="#title">Arcade</a>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
           <a href="/privacy.html">Privacy</a>
         </div>
       </footer>
