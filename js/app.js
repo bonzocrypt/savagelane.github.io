@@ -55,9 +55,10 @@
     },
     onWin: function (state) {
       SavageProgress.clearLevel(state.level.id);
+      clearCallout();
       showOverlay(
-        "Wave cleared",
-        "You unlocked " + state.level.rewardLabel + ".",
+        "Congratulations!",
+        "Wave cleared. You unlocked " + state.level.rewardLabel + ".",
         [
           { label: "Continue to " + state.level.rewardLabel, primary: true, href: "#" + state.level.reward }
         ]
@@ -90,6 +91,7 @@
     if (name !== "game") {
       game.stop();
       hideOverlay();
+      clearCallout();
     }
     if (scrolling) window.scrollTo(0, 0);
     refreshLocks();
@@ -99,6 +101,14 @@
     overlayOpen = false;
     overlay.classList.remove("show");
     overlay.hidden = true;
+  }
+
+  function clearCallout() {
+    const el = document.getElementById("game-callout");
+    if (!el) return;
+    clearTimeout(el._hide);
+    el.classList.remove("show");
+    el.hidden = true;
   }
 
   function showOverlay(title, copy, actions) {
@@ -121,6 +131,7 @@
   function startLevel(id) {
     currentLevel = id;
     hideOverlay();
+    clearCallout();
     showScreen("game");
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
@@ -156,6 +167,12 @@
         el.textContent = "View " + (labels[page] || page);
       }
     });
+    const contactInvitation = document.querySelector("[data-contact-invitation]");
+    if (contactInvitation) {
+      contactInvitation.textContent = SavageProgress.isUnlocked("contact")
+        ? "Contact is unlocked. Let’s talk about what comes next."
+        : "Clear the final level to open Contact and start a conversation about your next project.";
+    }
   }
 
   function route() {

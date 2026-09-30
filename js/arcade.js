@@ -463,8 +463,38 @@
       return Object.keys(cols).map(function (k) { return cols[k]; });
     }
 
+    function updateEffects(dt) {
+      state.booms.forEach(function (b) {
+        b.x += b.vx * dt;
+        b.y += b.vy * dt;
+        b.t -= dt * 1000;
+      });
+      state.booms = state.booms.filter(function (b) { return b.t > 0; });
+      state.waves.forEach(function (w) { w.r += 240 * dt; });
+      state.waves = state.waves.filter(function (w) { return w.r < w.max; });
+      state.floaters.forEach(function (f) {
+        f.y -= 28 * dt;
+        f.t -= dt * 1000;
+      });
+      state.floaters = state.floaters.filter(function (f) { return f.t > 0; });
+      state.flash = Math.max(0, state.flash - dt * 1000);
+    }
+
     function update(dt) {
-      if (!state || state.status !== "playing" || paused) return;
+      if (!state || paused) return;
+      if (state.status === "celebrating") {
+        state.t += dt * 1000;
+        state.shake = Math.max(0, state.shake - dt * 1000);
+        updateEffects(dt);
+        state.victoryRemaining = Math.max(0, state.victoryRemaining - dt * 1000);
+        if (state.victoryRemaining === 0) {
+          state.status = "won";
+          if (options.onWin) options.onWin(state);
+        }
+        if (options.onHud) options.onHud(state);
+        return;
+      }
+      if (state.status !== "playing") return;
       const p = state.player;
       state.t += dt * 1000;
       p.y = worldH - p.h - 16;
@@ -629,6 +659,19 @@
         }
       });
 
+      if (!living().length && state.status === "playing") {
+        // Let the final explosion finish before offering the next page.
+        state.status = "celebrating";
+        state.victoryRemaining = 1400;
+        state.shots = [];
+        state.enemyShots = [];
+        state.pickups = [];
+        state.saucer = null;
+        tone(520, 0.12, "sine");
+        tone(740, 0.18, "sine");
+        callout("Wave cleared!", "streak");
+      }
+
       const playerBox = { x: p.x, y: p.y, w: p.w, h: p.h };
       state.pickups.forEach(function (item) {
         if (hit(item, playerBox)) collectPickup(item, p.x, p.y - 12);
@@ -645,34 +688,14 @@
       }
 
       alive.forEach(function (inv) {
-        if (inv.y + inv.h >= p.y) {
+        if (inv.alive && state.status === "playing" && inv.y + inv.h >= p.y) {
           state.lives = 0;
           state.status = "lost";
           if (options.onLose) options.onLose(state);
         }
       });
 
-      state.booms.forEach(function (b) {
-        b.x += b.vx * dt;
-        b.y += b.vy * dt;
-        b.t -= dt * 1000;
-      });
-      state.booms = state.booms.filter(function (b) { return b.t > 0; });
-      state.waves.forEach(function (w) { w.r += 240 * dt; });
-      state.waves = state.waves.filter(function (w) { return w.r < w.max; });
-      state.floaters.forEach(function (f) {
-        f.y -= 28 * dt;
-        f.t -= dt * 1000;
-      });
-      state.floaters = state.floaters.filter(function (f) { return f.t > 0; });
-      state.flash = Math.max(0, state.flash - dt * 1000);
-
-      if (!living().length && state.status === "playing") {
-        state.status = "won";
-        tone(520, 0.12, "sine");
-        tone(740, 0.18, "sine");
-        if (options.onWin) options.onWin(state);
-      }
+      updateEffects(dt);
 
       if (options.onHud) options.onHud(state);
     }

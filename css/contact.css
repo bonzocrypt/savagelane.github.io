@@ -61,18 +61,6 @@
   min-width: 156px;
 }
 
-.contact-page .contact-email {
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.7;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.contact-page .contact-email:hover {
-  color: var(--accent-2);
-}
-
 .contact-page .contact-real-estate {
   max-width: 560px;
   margin: 36px 0 0;
