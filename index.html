@@ -24,6 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/arcade.css">
   <link rel="stylesheet" href="/css/about.css">
+  <link rel="stylesheet" href="/css/projects.css">
 
   <meta property="og:site_name" content="Savage Lane">
   <meta property="og:title" content="Savage Lane | Dan Belliveau">
@@ -177,145 +178,110 @@
       </footer>
     </section>
 
-    <section id="screen-projects" class="screen page-screen">
+    <section id="screen-projects" class="screen page-screen projects-page">
       <header class="nav">
         <div class="nav-inner">
           <a class="brand" href="#title">
             <strong>Savage Lane</strong>
             <span>Projects unlocked</span>
           </a>
-          <nav class="nav-links">
-            <a href="#title">Arcade</a>
+          <nav class="nav-links" aria-label="Portfolio navigation">
             <a href="#about">About</a>
             <a data-requires="contact">Contact</a>
           </nav>
         </div>
       </header>
-      <main class="content">
-        <section class="hero">
-          <span class="eyebrow">Level 2 cleared · Featured builds</span>
-          <h1>Live products, not template sites.</h1>
-          <p>The homepage proof lives here. Case studies are on dedicated project pages if you want to go deeper.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#play/3" data-next-cta="contact">Play to unlock Contact</a>
+      <main class="content projects-content">
+        <header class="projects-heading">
+          <p class="projects-label">Level 2 cleared &middot; Selected work</p>
+          <h1>Selected projects</h1>
+          <p class="projects-intro">Products, trading systems, and blockchain development.</p>
+        </header>
+
+        <article id="project-vaultmybag" class="project-entry" aria-labelledby="project-vaultmybag-title">
+          <header class="project-entry-title">
+            <img class="project-logo" src="/images/vaultmybag_icon.png" alt="" width="56" height="56">
+            <div>
+              <h2 id="project-vaultmybag-title">VaultMyBag</h2>
+              <p class="project-description">Private collection management, resale intelligence, and digital records.</p>
+            </div>
+          </header>
+          <p class="project-status">Live on the web. Android and iOS applications in testing.</p>
+          <div class="project-copy">
+            <p>I lead product development and technical operations for VaultMyBag through Vaulted Holdings LLC. As a joint owner and product engineering lead, my work spans application development, architecture, cloud administration, integrations, testing, deployment, and mobile release management. The product has also involved contractor contributions at different stages.</p>
+            <p>Built with React, TypeScript, and Vite, the application combines detailed handbag records, photos, supporting documents, collection analytics, community features, and private sharing. Firebase Authentication manages identity, Firestore stores operational data, and Firebase Storage handles uploaded files. Cloud Functions support backend workflows, while BigQuery supports larger product and resale datasets.</p>
+            <p>Private sharing required coordinating authentication, invitations, expiration, and database permissions. Recipients can accept an invitation without subscribing and access the records shared with them. Administrative authorization and storage rules provide additional controls over customer information. I also manage cloud access through Google Cloud IAM and handle sensitive credentials through Secret Manager.</p>
+            <p>The valuation system combines automated research with administrative review. Comparable sales, accepted and rejected results, internal notes, and pricing decisions persist across sessions before a finished Vaulted Estimate is published. Stripe supports subscriptions and individual purchases, with payment state connected to the features each customer can access.</p>
+            <p>I integrated PostHog, GA4, and Microsoft Clarity to understand navigation, feature usage, and signup problems. Mobile distribution work includes Google Play testing and Apple TestFlight, alongside authentication configuration, subscription setup, and release preparation.</p>
           </div>
-        </section>
-
-        <div class="project-grid">
-          <article class="project-card">
-            <div class="project-media">
-              <a href="/projects/vaultmybag.html"><img src="/images/vaultmybag_case_study_card.png" alt="VaultMyBag case study" width="1672" height="941"></a>
-            </div>
-            <div class="project-content">
-              <div class="project-kicker"><span class="mini-pill">Luxury inventory app</span><span class="mini-pill">Live product</span></div>
-              <h3>VaultMyBag</h3>
-              <p><strong>A private digital vault for luxury handbag owners.</strong></p>
-              <p>Built with user accounts, handbag records, image uploads, private sharing, analytics, membership logic, admin tools, and AI assisted resale research.</p>
-              <ul class="project-proof">
-                <li>Firebase Authentication, Firestore, Storage, and Functions</li>
-                <li>Admin AI pricing workspace with persistent comp review</li>
-                <li>Private sharing, premium logic, analytics, and SEO pages</li>
-              </ul>
-              <div class="tech-list">
-                <span class="tech-item">React</span><span class="tech-item">TypeScript</span><span class="tech-item">Firebase</span><span class="tech-item">AI pricing</span>
-              </div>
-              <div class="project-actions">
-                <a class="button button-primary" href="/projects/vaultmybag.html">View case study</a>
-                <a class="button button-secondary" href="https://vaultmybag.com/" target="_blank" rel="noopener noreferrer">Visit VaultMyBag</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-media">
-              <a href="/projects/eventpricing.html"><img src="/images/eventpricing_case_study_card.png" alt="Event Pricing case study" width="1672" height="941"></a>
-            </div>
-            <div class="project-content">
-              <div class="project-kicker"><span class="mini-pill">Event platform</span><span class="mini-pill">Android app</span></div>
-              <h3>Event Pricing</h3>
-              <p><strong>A mobile first event discovery platform.</strong></p>
-              <p>Built with event ingestion, normalized records, canonical event pages, city and category browsing, favorites, alerts, SEO content, and admin review tools.</p>
-              <ul class="project-proof">
-                <li>Next.js App Router with SEO focused event pages</li>
-                <li>Firestore event storage, source cleanup, and visibility controls</li>
-                <li>Google Play launch with iOS improvement work in progress</li>
-              </ul>
-              <div class="tech-list">
-                <span class="tech-item">Next.js</span><span class="tech-item">Firebase</span><span class="tech-item">Capacitor</span><span class="tech-item">Google Play</span>
-              </div>
-              <div class="project-actions">
-                <a class="button button-primary" href="/projects/eventpricing.html">View case study</a>
-                <a class="button button-secondary" href="https://eventpricing.com/" target="_blank" rel="noopener noreferrer">Visit Event Pricing</a>
-                <a href="https://play.google.com/store/apps/details?id=com.eventpricing.app" target="_blank" rel="noopener noreferrer" aria-label="Get Event Pricing on Google Play">
-                  <img class="play-badge" src="/images/google-play-badge.png" alt="Get it on Google Play" width="646" height="191">
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-media">
-              <a href="/projects/the-recycle-room.html"><img src="/images/recycleroom_case_study_card.png" alt="The Recycle Room case study" width="1672" height="941"></a>
-            </div>
-            <div class="project-content">
-              <div class="project-kicker"><span class="mini-pill">Service website</span><span class="mini-pill">Firebase forms</span></div>
-              <h3>The Recycle Room</h3>
-              <p><strong>A premium resale and consignment intake site.</strong></p>
-              <p>Built to turn local seller interest into qualified leads with accepted item guidance, process content, FAQ support, contact flows, seller intake, and photo submission infrastructure.</p>
-              <ul class="project-proof">
-                <li>Premium brand positioning for high value resale</li>
-                <li>Firebase Hosting with Cloud Functions for form handling</li>
-                <li>Seller inquiries, photo submissions, SEO, and clean URLs</li>
-              </ul>
-              <div class="tech-list">
-                <span class="tech-item">HTML</span><span class="tech-item">Firebase Hosting</span><span class="tech-item">Cloud Functions</span><span class="tech-item">SEO</span>
-              </div>
-              <div class="project-actions">
-                <a class="button button-primary" href="/projects/the-recycle-room.html">View case study</a>
-                <a class="button button-secondary" href="https://therecycleroom.com/" target="_blank" rel="noopener noreferrer">Visit The Recycle Room</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-media">
-              <a href="/projects/smartdogautomation.html"><img src="/images/smartdogautomation_case_study_card.png" alt="SmartDog Automation case study" width="1672" height="941"></a>
-            </div>
-            <div class="project-content">
-              <div class="project-kicker"><span class="mini-pill">AI workflows</span><span class="mini-pill">Automation layer</span></div>
-              <h3>SmartDog Automation</h3>
-              <p><strong>A custom workflow automation concept.</strong></p>
-              <p>Built around structured prompts, operating rules, reusable task frameworks, project context, and repeatable output formats for business execution.</p>
-              <ul class="project-proof">
-                <li>Custom instruction framework and workflow rules</li>
-                <li>Reusable outputs for research, planning, content, and documentation</li>
-                <li>Positioned as practical workflow engineering, not a novelty chatbot</li>
-              </ul>
-              <div class="tech-list">
-                <span class="tech-item">AI workflows</span><span class="tech-item">Prompt architecture</span><span class="tech-item">Process design</span>
-              </div>
-              <div class="project-actions">
-                <a class="button button-primary" href="/projects/smartdogautomation.html">View case study</a>
-                <a class="button button-secondary" href="https://smartdogautomation.com/" target="_blank" rel="noopener noreferrer">Visit SmartDog Automation</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <section class="cta">
-          <span class="eyebrow">Next wave</span>
-          <h2>Contact is locked behind level 3.</h2>
-          <p>Open the Channel is the inbox wave. Clear it to reach inquiry and services.</p>
-          <div class="cta-actions">
-            <a class="button button-primary" href="#play/3" data-next-cta="contact">Play level 3</a>
-            <a class="button button-ghost" href="#about">Back to About</a>
+          <p class="project-stack"><strong>Technology:</strong> React, TypeScript, Vite, Firebase, Google Cloud, BigQuery, Stripe, PostHog.</p>
+          <div class="project-links">
+            <a href="https://vaultmybag.com/" target="_blank" rel="noopener noreferrer">Visit VaultMyBag</a>
           </div>
+        </article>
+
+        <article id="project-trading" class="project-entry" aria-labelledby="project-trading-title">
+          <header class="project-entry-title">
+            <div>
+              <h2 id="project-trading-title">Kalshi Time &amp; Sales</h2>
+              <p class="project-description">From trading automation to live market intelligence.</p>
+            </div>
+          </header>
+          <p class="project-status">Android and iOS applications in testing. Built from practical trading automation and research.</p>
+          <div class="project-copy">
+            <p>My automation work began with Coinbase trading scripts, followed by a bot that traded BTC prediction markets on Kalshi. Developing those systems involved collecting and analyzing market data, managing order execution, reconciling positions, and building controls for loss limits, emergency stops, and recovery after interruptions.</p>
+            <p>That research led to Kalshi Time &amp; Sales, a mobile application built with React Native, Expo, and TypeScript. It brings market listings, Level 2 order book data, individual trades, trade aggressor interpretation, and risk calculations into a dedicated market analysis interface.</p>
+            <p>REST APIs and WebSocket feeds connect the application to market data. RSA authentication supports API access, and SQLite provides local data storage. The development work connects my active trading background with data collection, execution systems, and the design of tools for understanding live prediction markets.</p>
+          </div>
+          <p class="project-stack"><strong>Technology:</strong> React Native, Expo, TypeScript, REST APIs, WebSockets, SQLite, RSA authentication.</p>
+        </article>
+
+        <article id="project-eventpricing" class="project-entry" aria-labelledby="project-eventpricing-title">
+          <header class="project-entry-title">
+            <img class="project-logo" src="/images/eventpricing_logo.png" alt="" width="56" height="56" loading="lazy">
+            <div>
+              <h2 id="project-eventpricing-title">EventPricing</h2>
+              <p class="project-description">Event discovery, ticket intelligence, and mobile delivery.</p>
+            </div>
+          </header>
+          <p class="project-status">Live on the web and Android.</p>
+          <div class="project-copy">
+            <p>I developed EventPricing to help people discover events, track favorites, and find presale and ticket information. The platform combines browsing by location and category with event detail pages, alerts, and administrative review tools.</p>
+            <p>The current web application uses Next.js, React, TypeScript, Firebase, and Firestore. Event ingestion and source normalization turn information from different sources into consistent records. Visibility controls support review before publication, while canonical URLs, metadata, and structured event data make individual events discoverable through search.</p>
+            <p>Capacitor packages the application for Android, connecting the web product with mobile functionality and Google Play distribution. Analytics through GA4, Google Tag Manager, and Microsoft Clarity support navigation and conversion analysis across the product.</p>
+          </div>
+          <p class="project-stack"><strong>Technology:</strong> Next.js, React, TypeScript, Firebase, Firestore, Capacitor, Google Play.</p>
+          <div class="project-links">
+            <a href="https://eventpricing.com/" target="_blank" rel="noopener noreferrer">Visit EventPricing</a>
+            <a href="https://play.google.com/store/apps/details?id=com.eventpricing.app" target="_blank" rel="noopener noreferrer">View Android app</a>
+          </div>
+        </article>
+
+        <article id="project-bnzo" class="project-entry" aria-labelledby="project-bnzo-title">
+          <header class="project-entry-title">
+            <img class="project-logo project-logo-bnzo" src="/images/bnzo_logo.png" alt="" width="56" height="56" loading="lazy">
+            <div>
+              <h2 id="project-bnzo-title">BNZO</h2>
+              <p class="project-description">A Solana token proof of concept and launch infrastructure.</p>
+            </div>
+          </header>
+          <p class="project-status">Historical blockchain development project.</p>
+          <div class="project-copy">
+            <p>I created and released BNZO on Solana, working with the Solana CLI and SPL Token tooling in a Windows and Ubuntu WSL development environment. The work included local validator testing, token minting, RPC connections, and remotely hosted metadata for wallet and explorer display.</p>
+            <p>I developed custom JavaScript and Rust tooling for Metaplex metadata operations, working with program derived addresses and update authorities. Resolving incompatible Rust, Solana, and Borsh dependencies required inspecting dependency trees, pinning versions, and separating projects into independent workspaces. I also compiled Metaplex CLI tooling from source.</p>
+            <p>The early HELLSBELLS token provided a live test of the launch infrastructure, including Raydium liquidity, Jupiter discovery, and public pages with blockchain explorer and market data integration. The project brought together blockchain tooling, metadata management, liquidity mechanics, web development, and launch lifecycle management.</p>
+          </div>
+          <p class="project-stack"><strong>Technology:</strong> Solana, SPL Token, Rust, Cargo, JavaScript, Node.js, Metaplex, Raydium, Jupiter.</p>
+        </article>
+
+        <section class="projects-next" aria-label="Continue to Contact">
+          <p>Clear the final level to open Contact and start a conversation about your next project.</p>
+          <a class="button button-primary" href="#play/3" data-next-cta="contact">Play level 3 to unlock Contact</a>
         </section>
       </main>
       <footer class="footer">
-        <div>© 2026 Savage Lane.</div>
+        <div>&copy; 2026 Savage Lane. Digital product portfolio by Dan Belliveau.</div>
         <div class="footer-links">
-          <a href="#title">Arcade</a>
           <a href="#about">About</a>
           <a href="/privacy.html">Privacy</a>
         </div>
