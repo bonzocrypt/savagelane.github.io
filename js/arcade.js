@@ -64,20 +64,26 @@
       reward: "contact",
       rewardLabel: "Contact",
       rows: [
-        { type: "bug", count: 5, hp: 4, unit: 5 },
-        { type: "mail", count: 8 },
-        { type: "meeting", count: 8 },
-        { type: "ticket", count: 8 },
-        { type: "bug", count: 8 }
+        { type: "bug", count: 5, hp: 3, unit: 4 },
+        { type: "mail", count: 7 },
+        { type: "meeting", count: 7 },
+        { type: "ticket", count: 7 },
+        { type: "bug", count: 7 }
       ],
-      stepMs: 250,
-      minStepMs: 120,
-      stepPx: 8,
-      drop: 10,
-      fireChance: 0.018,
+      minWorldHeight: 480,
+      startY: 24,
+      rowGap: 8,
+      stepMs: 340,
+      minStepMs: 190,
+      stepPx: 6,
+      drop: 6,
+      fireChance: 0.013,
+      frameIndependentFire: true,
+      enemyFireWarmup: 1800,
+      enemyShotSpeed: 150,
       maxPlayerShots: 10,
       cooldown: 300,
-      shotSpeed: 112,
+      shotSpeed: 140,
       pickupChance: 0.06,
       maxBombDrops: 2,
       maxRapidDrops: 2
@@ -148,18 +154,24 @@
       } catch (err) {}
     }
 
-    function resize() {
+    function resize(layoutLevel) {
       const parent = canvas.parentElement;
       const rect = parent ? parent.getBoundingClientRect() : { width: 0, height: 0 };
       let w = Math.round(rect.width || (parent && parent.clientWidth) || 0);
       let h = Math.round(rect.height || (parent && parent.clientHeight) || 0);
       if (w < 32) w = global.innerWidth || 360;
       if (h < 32) h = Math.max(160, (global.innerHeight || 640) - 180);
+      const level = layoutLevel || (state && state.level);
+      // Keep the final wave above the ship on desktop and landscape screens.
+      if (level && level.minWorldHeight) {
+        w = Math.min(w, Math.floor(h * 360 / level.minWorldHeight));
+      }
       const dpr = Math.min(global.devicePixelRatio || 1, 2);
       canvas.width = Math.max(1, Math.floor(w * dpr));
       canvas.height = Math.max(1, Math.floor(h * dpr));
       canvas.style.width = w + "px";
       canvas.style.height = h + "px";
+      canvas.style.margin = level && level.minWorldHeight ? "0 auto" : "0";
       worldW = 360;
       scale = canvas.width / worldW;
       worldH = canvas.height / scale;
@@ -169,7 +181,7 @@
     function spawnLevel(id) {
       const level = LEVELS[id] || LEVELS[1];
       const invaders = [];
-      let y = 36;
+      let y = level.startY || 36;
       level.rows.forEach(function (row) {
         const unit = row.unit || UNIT;
         const dim = spriteDim(row.type, unit);
@@ -192,7 +204,7 @@
             alive: true
           });
         }
-        y += dim.h + 10;
+        y += dim.h + (level.rowGap === undefined ? 10 : level.rowGap);
       });
       const ship = spriteDim("player");
       state = {
@@ -540,12 +552,16 @@
       }
 
       const shooters = bottomShooters(alive);
-      if (shooters.length && Math.random() < state.level.fireChance) {
+      const fireChance = state.level.frameIndependentFire
+        ? 1 - Math.pow(1 - state.level.fireChance, dt * 60)
+        : state.level.fireChance;
+      const canFire = state.t >= (state.level.enemyFireWarmup || 0);
+      if (shooters.length && canFire && Math.random() < fireChance) {
         const shooter = shooters[Math.floor(Math.random() * shooters.length)];
         state.enemyShots.push({
           x: shooter.x + shooter.w / 2 - 1.4,
           y: shooter.y + shooter.h,
-          vy: 120 + state.level.id * 28,
+          vy: state.level.enemyShotSpeed || 120 + state.level.id * 28,
           w: 2.8,
           h: 8
         });
@@ -1012,7 +1028,7 @@
 
     function start(levelId) {
       stop();
-      resize();
+      resize(LEVELS[levelId] || LEVELS[1]);
       spawnLevel(levelId);
       running = true;
       paused = false;
