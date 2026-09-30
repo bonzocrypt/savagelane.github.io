@@ -1,0 +1,88 @@
+/* Shared by the unlocked About screen and its standalone page. */
+.about-page {
+  min-height: 100dvh;
+  background: linear-gradient(180deg, #0c0f15 0%, #07080c 100%);
+}
+
+.about-page::before {
+  display: none;
+}
+
+.about-page .nav-inner,
+.about-page .footer {
+  max-width: 960px;
+}
+
+.about-page .about-content {
+  position: relative;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 76px) clamp(20px, 5vw, 48px) 64px;
+}
+
+.about-page .about-heading {
+  margin-bottom: 32px;
+}
+
+.about-page .about-label {
+  margin: 0 0 18px;
+  color: var(--accent-2);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.about-page .about-heading h1 {
+  margin: 0 0 16px;
+  font-size: clamp(36px, 7vw, 58px);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  line-height: 1.12;
+}
+
+.about-page .about-lead {
+  margin: 0;
+  color: var(--accent-2);
+  font-size: clamp(19px, 3vw, 25px);
+  line-height: 1.45;
+}
+
+.about-page .about-bio > p {
+  margin: 0 0 24px;
+  color: #c4cbd6;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.about-page .about-bio > p:last-of-type {
+  margin-bottom: 0;
+}
+
+.about-page .about-actions {
+  display: flex;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+
+.about-page .button-primary {
+  background: var(--accent-2);
+  text-align: center;
+}
+
+.about-page a:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 5px;
+}
+
+@media (max-width: 419px) {
+  .about-page .nav-inner {
+    flex-wrap: wrap;
+  }
+
+  .about-page .about-actions .button {
+    width: 100%;
+  }
+}
