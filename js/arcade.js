@@ -23,17 +23,23 @@
         { type: "bug", count: 7 },
         { type: "bug", count: 7 }
       ],
-      stepMs: 300,
-      minStepMs: 140,
-      stepPx: 9,
-      drop: 10,
-      fireChance: 0.009,
+      minWorldHeight: 480,
+      startY: 24,
+      rowGap: 8,
+      stepMs: 440,
+      minStepMs: 260,
+      stepPx: 4,
+      drop: 4,
+      fireChance: 0.006,
+      frameIndependentFire: true,
+      enemyFireWarmup: 2400,
+      enemyShotSpeed: 120,
       maxPlayerShots: 10,
       cooldown: 300,
-      shotSpeed: 100,
-      pickupChance: 0.09,
+      shotSpeed: 140,
+      pickupChance: 0.06,
       maxBombDrops: 2,
-      maxRapidDrops: 2
+      maxRapidDrops: 1
     },
     2: {
       id: 2,
@@ -41,22 +47,28 @@
       reward: "projects",
       rewardLabel: "Projects",
       rows: [
-        { type: "ticket", count: 8 },
-        { type: "scope", count: 8 },
-        { type: "form", count: 8 },
-        { type: "bug", count: 8 }
+        { type: "ticket", count: 7 },
+        { type: "scope", count: 7 },
+        { type: "form", count: 7 },
+        { type: "bug", count: 7 }
       ],
-      stepMs: 220,
-      minStepMs: 95,
-      stepPx: 10,
-      drop: 12,
-      fireChance: 0.018,
+      minWorldHeight: 480,
+      startY: 24,
+      rowGap: 8,
+      stepMs: 390,
+      minStepMs: 220,
+      stepPx: 5,
+      drop: 5,
+      fireChance: 0.009,
+      frameIndependentFire: true,
+      enemyFireWarmup: 2100,
+      enemyShotSpeed: 135,
       maxPlayerShots: 10,
       cooldown: 300,
-      shotSpeed: 108,
-      pickupChance: 0.07,
+      shotSpeed: 140,
+      pickupChance: 0.06,
       maxBombDrops: 2,
-      maxRapidDrops: 2
+      maxRapidDrops: 1
     },
     3: {
       id: 3,
@@ -86,14 +98,14 @@
       shotSpeed: 140,
       pickupChance: 0.06,
       maxBombDrops: 2,
-      maxRapidDrops: 2
+      maxRapidDrops: 1
     }
   };
 
   const UNIT = 3;
   const MAX_BOMBS = 3;
   const RAPID_MULT = 10;
-  const RAPID_MS = 3000;
+  const RAPID_MS = 2000;
 
   function spriteDim(type, unit) {
     const body = BODY[type] || BODY.bug;
@@ -231,7 +243,7 @@
         waves: [],
         floaters: [],
         saucer: null,
-        saucerIn: 7000 + Math.random() * 4000,
+        saucerIn: 4000 + Math.random() * 2000,
         stars: Array.from({ length: 70 }, function () {
           return {
             x: Math.random() * worldW,
@@ -284,11 +296,12 @@
       const canBomb = state.bombDrops < (level.maxBombDrops || 2);
       const canRapid = state.rapidDrops < (level.maxRapidDrops || 2);
       if (!canBomb && !canRapid) return;
-      const forceRapid = canRapid && state.rapidDrops === 0 && state.kills <= 2;
-      if (!forceRapid && Math.random() > (level.pickupChance || 0.08)) return;
+      const forceBomb = canBomb && (state.bombDrops === 0 ||
+        (state.bombDrops === 1 && state.kills >= Math.ceil(state.invaders.length / 2)));
+      if (!forceBomb && Math.random() > (level.pickupChance || 0.08)) return;
       let kind = "bomb";
-      if (forceRapid) kind = "rapid";
-      else if (canBomb && canRapid) kind = Math.random() < 0.4 ? "bomb" : "rapid";
+      if (forceBomb) kind = "bomb";
+      else if (canBomb && canRapid) kind = Math.random() < 0.75 ? "bomb" : "rapid";
       else if (canRapid) kind = "rapid";
       const dim = spriteDim(kind);
       state.pickups.push({
@@ -297,7 +310,7 @@
         y: inv.y,
         w: dim.w,
         h: dim.h,
-        vy: kind === "rapid" ? 52 : 36,
+        vy: kind === "rapid" ? 52 : 58,
         t: 0
       });
       if (kind === "bomb") {
@@ -541,19 +554,26 @@
         const dim = spriteDim("saucer");
         const left = Math.random() < 0.5;
         state.saucer = {
-          x: left ? -dim.w : worldW + 2,
-          y: 14,
+          x: left ? 4 : worldW - dim.w - 4,
+          y: 2,
           w: dim.w,
           h: dim.h,
-          vx: left ? 90 : -90
+          vx: left ? 50 : -50,
+          hp: 10,
+          maxHp: 10,
+          hitFlash: 0
         };
-        state.saucerIn = 11000 + Math.random() * 6000;
+        state.saucerIn = Infinity;
         tone(760, 0.12, "sine", 0.03);
-        callout("Destroy that to activate a bomb", "saucer");
+        callout("Top target: 10 hits or one bomb", "saucer");
       }
       if (state.saucer) {
         state.saucer.x += state.saucer.vx * dt;
-        if (state.saucer.x < -50 || state.saucer.x > worldW + 50) state.saucer = null;
+        state.saucer.hitFlash = Math.max(0, state.saucer.hitFlash - dt * 1000);
+        if (state.saucer.x < 4 || state.saucer.x + state.saucer.w > worldW - 4) {
+          state.saucer.x = Math.max(4, Math.min(worldW - state.saucer.w - 4, state.saucer.x));
+          state.saucer.vx *= -1;
+        }
       }
 
       state.shots.forEach(function (shot) { shot.y += shot.vy * dt; });
@@ -646,6 +666,13 @@
         }
         if (state.saucer && hit(shot, state.saucer)) {
           if (shot.kind !== "rocket") shot.y = -99;
+          state.saucer.hp = shot.kind === "rocket" ? 0 : state.saucer.hp - 1;
+          state.saucer.hitFlash = 160;
+          if (state.saucer.hp > 0) {
+            explode(state.saucer.x + state.saucer.w / 2, state.saucer.y + 4, "#ffe07a", 5);
+            tone(210, 0.05, "square", 0.03);
+            return;
+          }
           explode(state.saucer.x + state.saucer.w / 2, state.saucer.y + 4, "#ffe07a", 16);
           state.score += 150;
           floater(state.saucer.x, state.saucer.y, "+150");
@@ -832,16 +859,17 @@
       const cx = x + w / 2;
       const cy = y + h / 2;
       ctx.save();
-      ctx.shadowColor = "rgba(255,224,122,0.65)";
+      const damaged = s.hp <= 3;
+      ctx.shadowColor = s.hitFlash > 0 ? "#ff7a7a" : "rgba(255,224,122,0.65)";
       ctx.shadowBlur = 14;
       ctx.fillStyle = "rgba(255,224,122,0.18)";
       ctx.beginPath();
       ctx.ellipse(cx, cy + 2, w * 0.52, h * 0.28, 0, 0, Math.PI * 2);
       ctx.fill();
       const rim = ctx.createLinearGradient(x, y, x + w, y + h);
-      rim.addColorStop(0, "#fff6c8");
-      rim.addColorStop(0.5, "#e6b84a");
-      rim.addColorStop(1, "#8a5a12");
+      rim.addColorStop(0, s.hitFlash > 0 ? "#ffffff" : "#fff6c8");
+      rim.addColorStop(0.5, damaged ? "#ff7a7a" : "#e6b84a");
+      rim.addColorStop(1, damaged ? "#8a243d" : "#8a5a12");
       ctx.fillStyle = rim;
       ctx.beginPath();
       ctx.ellipse(cx, cy, w * 0.48, h * 0.22, 0, 0, Math.PI * 2);
@@ -850,6 +878,16 @@
       ctx.beginPath();
       ctx.ellipse(cx, cy - 2, w * 0.18, h * 0.16, 0, 0, Math.PI * 2);
       ctx.fill();
+      ctx.shadowBlur = 0;
+      const segment = (w - 8) / s.maxHp;
+      for (let i = 0; i < s.maxHp; i++) {
+        ctx.fillStyle = i < s.hp ? (damaged ? "#ff7a7a" : "#ffe07a") : "rgba(255,255,255,0.16)";
+        ctx.fillRect(x + 4 + i * segment, 0, segment - 1, 3);
+      }
+      ctx.font = "700 6px ui-sans-serif, sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#fff6c8";
+      ctx.fillText(s.hp + "/" + s.maxHp, cx, y + h - 1);
       ctx.restore();
     }
 
