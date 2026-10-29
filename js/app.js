@@ -131,6 +131,7 @@
   function startLevel(id) {
     currentLevel = id;
     hideOverlay();
+    setPaused(false);
     clearCallout();
     showScreen("game");
     requestAnimationFrame(function () {
@@ -239,24 +240,31 @@
     location.hash = "#play/" + SavageProgress.nextLockedLevel();
   });
 
+  function setPaused(paused) {
+    pauseBtn.setAttribute("aria-pressed", String(paused));
+    pauseBtn.setAttribute("aria-label", paused ? "Resume" : "Pause");
+  }
+
   pauseBtn.addEventListener("click", function () {
     if (overlayOpen && game.isPaused()) {
       hideOverlay();
       game.resume();
-      pauseBtn.textContent = "II";
+      setPaused(false);
       return;
     }
     game.pause();
-    pauseBtn.textContent = ">";
+    setPaused(true);
     showOverlay("Paused", "Take a breath. The bugs can wait.", [
-      { label: "Resume", primary: true, action: function () { hideOverlay(); game.resume(); pauseBtn.textContent = "II"; } },
+      { label: "Resume", primary: true, action: function () { hideOverlay(); game.resume(); setPaused(false); } },
       { label: "Quit to title", action: function () { location.hash = "#title"; } }
     ]);
   });
 
   muteBtn.addEventListener("click", function () {
     game.setMuted(!game.isMuted());
-    muteBtn.textContent = game.isMuted() ? "Sound" : "Mute";
+    const muted = game.isMuted();
+    muteBtn.setAttribute("aria-pressed", String(muted));
+    muteBtn.setAttribute("aria-label", muted ? "Unmute sound" : "Mute sound");
   });
 
   document.addEventListener("keydown", function (ev) {

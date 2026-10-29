@@ -69,7 +69,8 @@
   object-fit: contain;
 }
 
-.projects-page .project-logo-bnzo {
+.projects-page .project-logo-bnzo,
+.projects-page .project-logo-rounded {
   border-radius: 12px;
 }
 

@@ -33,12 +33,15 @@
   <meta property="og:description" content="Clear arcade waves to unlock the portfolio of Dan Belliveau: websites, apps, Firebase systems, and automation.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://savagelane.com/">
-  <meta property="og:image" content="https://savagelane.com/images/savagelane_header.png">
+  <meta property="og:image" content="https://savagelane.com/images/og-banner.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Savage Lane, the digital product portfolio of Dan Belliveau">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Savage Lane | Dan Belliveau">
   <meta name="twitter:description" content="A mobile arcade that unlocks Dan Belliveau's about, projects, and contact pages.">
-  <meta name="twitter:image" content="https://savagelane.com/images/savagelane_header.png">
+  <meta name="twitter:image" content="https://savagelane.com/images/og-banner.jpg">
 
   <script type="application/ld+json">
     {
@@ -75,7 +78,7 @@
         </div>
         <h1>Clear the bugs.<br>Unlock the work.</h1>
         <p class="title-copy">
-          Dan Belliveau’s site is a mobile combat protocol. Beat a wave to open each page. Your craft auto-fires. Gold orbs bank a column bomb. Rare cyan crystals give 2 seconds of 10x fire. The top bonus target takes 10 hits or one bomb. After a game over, you can skip.
+          Beat a wave to unlock each page of Dan Belliveau&rsquo;s portfolio. Your ship fires on its own. You just steer.
         </p>
         <div class="title-actions">
           <button class="button button-primary" id="btn-play" type="button">Play</button>
@@ -90,7 +93,17 @@
           <li><span><b>Level 2</b> · Ship the Work</span><span>Projects</span></li>
           <li><span><b>Level 3</b> · Open the Channel</span><span>Contact</span></li>
         </ul>
-        <p class="kbd-hint">Desktop: arrows or A/D to move. The ship auto-fires. B or space to bomb.</p>
+        <details class="how-to">
+          <summary>How to play</summary>
+          <ul>
+            <li>Your craft <b>auto-fires</b>. Steer left and right to dodge and aim.</li>
+            <li><b>Gold orbs</b> bank a bomb that clears a full column.</li>
+            <li>Rare <b>cyan crystals</b> give 2 seconds of 10x fire.</li>
+            <li>The <b>bonus target</b> at the top takes 10 hits or 1 bomb.</li>
+            <li>After a game over, you can skip ahead.</li>
+          </ul>
+          <p class="kbd-hint">Desktop: arrows or A/D to move. B or space to bomb. Enter to play.</p>
+        </details>
         <div class="title-foot">
           <a href="/privacy.html">Privacy</a>
           <a href="/sitemap.html">Sitemap</a>
@@ -109,8 +122,14 @@
         <div class="hud-center" id="hud-mission">Clear the Bugs</div>
         <div class="hud-right">
           <span class="hud-level"><b id="hud-level">L1</b></span>
-          <button class="icon-btn" id="btn-mute" type="button" aria-label="Mute">Mute</button>
-          <button class="icon-btn" id="btn-pause" type="button" aria-label="Pause">II</button>
+          <button class="icon-btn" id="btn-mute" type="button" aria-label="Mute sound" aria-pressed="false">
+            <svg class="icon-main" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
+            <svg class="icon-alt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m23 9-6 6"/><path d="m17 9 6 6"/></svg>
+          </button>
+          <button class="icon-btn" id="btn-pause" type="button" aria-label="Pause" aria-pressed="false">
+            <svg class="icon-main" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+            <svg class="icon-alt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+          </button>
         </div>
       </div>
       <div class="stage-wrap">
@@ -224,6 +243,7 @@
 
         <article id="project-trading" class="project-entry" aria-labelledby="project-trading-title">
           <header class="project-entry-title">
+            <img class="project-logo project-logo-rounded" src="/images/kalshitimesales_icon.png" alt="" width="56" height="56" loading="lazy">
             <div>
               <h2 id="project-trading-title">Kalshi Time &amp; Sales</h2>
               <p class="project-description">From trading automation to live market intelligence.</p>
@@ -236,6 +256,26 @@
             <p>REST APIs and WebSocket feeds connect the application to market data. RSA authentication supports API access, and SQLite provides local data storage. The development work connects my active trading background with data collection, execution systems, and the design of tools for understanding live prediction markets.</p>
           </div>
           <p class="project-stack"><strong>Technology:</strong> React Native, Expo, TypeScript, REST APIs, WebSockets, SQLite, RSA authentication.</p>
+        </article>
+
+        <article id="project-numbercove" class="project-entry" aria-labelledby="project-numbercove-title">
+          <header class="project-entry-title">
+            <img class="project-logo" src="/images/numbercove_icon.png" alt="" width="56" height="56" loading="lazy">
+            <div>
+              <h2 id="project-numbercove-title">NumberCove</h2>
+              <p class="project-description">Free, private calculators that show their math.</p>
+            </div>
+          </header>
+          <p class="project-status">Live on the web. Installable as an app on phones and desktops.</p>
+          <div class="project-copy">
+            <p>I built NumberCove as a library of 42 free calculators for decisions people actually face: what a seller keeps after fees on eBay, Poshmark, Mercari, Whatnot, and The RealReal, ticket resale payouts, options analysis and income strategies, loans and mortgages, retirement, home project materials, energy costs, health estimates, and unit conversion. Every calculator explains its method, and every input stays in the visitor&rsquo;s browser. No account is required.</p>
+            <p>The site is plain static HTML with no framework and no runtime dependencies. A Node build script treats two JSON files as the single source of truth for categories and tools, then generates the navigation, breadcrumbs, category hubs, related links, search index, sitemap, and content-hashed asset versions across every page. A shared calculation runtime handles validation, shareable result links, verdicts, and charts, and automated tests cover the options engine and each batch of calculators.</p>
+            <p>Discoverability was designed in from the start. Each calculator carries structured data, and the site publishes an llms.txt index, a longer AI brief, and a machine-readable tool catalog so search engines and AI assistants can find and cite the specific tool that answers a question. A web app manifest and service worker make NumberCove installable.</p>
+          </div>
+          <p class="project-stack"><strong>Technology:</strong> HTML, CSS, JavaScript, Node.js build tooling, JSON-LD structured data, service worker, GitHub Pages.</p>
+          <div class="project-links">
+            <a href="https://www.numbercove.com/" target="_blank" rel="noopener noreferrer">Visit NumberCove</a>
+          </div>
         </article>
 
         <article id="project-eventpricing" class="project-entry" aria-labelledby="project-eventpricing-title">
